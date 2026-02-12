@@ -24,6 +24,7 @@ def wait_for_response():
         if communication.any():
             msg = communication.readline()
             if msg:
+                # b'HOMING_STARTED\n' -> "HOMING_STARTED\n" -> "HOMING_STARTED"
                 msg = msg.decode().strip()
                 print("RX:", msg)
 

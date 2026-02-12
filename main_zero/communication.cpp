@@ -109,22 +109,10 @@ String receiveCommand()
 // =======================================================================
 void processCommand(const String &cmd)
 {
+    Serial1.println("DEBUG: Comando recibido: " + cmd);
     if (cmd == "HOME")
     {
         Serial1.println("HOMING_STARTED");
-        // if (!homingXY_IsActive(homingMotor1))
-        // {
-        //     homingXY_Start(motor1, motor1Config, homingMotor1, HALL_1);
-        // }
-        // // ⬇️ Ejecutar la máquina de estados del homing
-        // if (homingXY_IsActive(homingMotor1))
-        // {
-        //     homingXY_Step(motor1, motor1Config, homingMotor1, HALL_1);
-        // }
-        // if (homingXY_GetState(homingMotor1) == HOMING_OK)
-        // {
-        //     motorsXY_Disable();
-        // }
     }
     else if (cmd == "STATUS")
     {

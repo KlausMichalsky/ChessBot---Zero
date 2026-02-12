@@ -66,7 +66,6 @@ void setup()
     motorsXY_Init();
 
     homingXY_Init(homingMotor1);
-    Serial.println("Sistema listo -> Ingresar comando...");
 }
 
 // LOOP
@@ -76,7 +75,6 @@ void loop()
     if (commandAvailable())
     {
         String cmd = receiveCommand();
-        Serial1.println("Comando recibido: " + cmd); // Debug: mostrar comando recibido
         processCommand(cmd);
         // 🏠 arranca el homing si se recibe el comando "HOME"
     }
