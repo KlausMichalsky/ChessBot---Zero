@@ -75,6 +75,7 @@ void loop()
     if (commandAvailable())
     {
         String cmd = receiveCommand();
+        debug("Comando recibido: " + cmd); // solo imprime si DEBUG_UART = 1
         processCommand(cmd);
         // 🏠 arranca el homing si se recibe el comando "HOME"
     }

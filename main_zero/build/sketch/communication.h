@@ -38,6 +38,10 @@
 #pragma once
 #include <Arduino.h>
 
+// 🔹 FLAG DE DEBUG 🔹
+#define DEBUG_UART 1 // 1 = debug activado, 0 = debug desactivado
+
+void debug(const String &msg); // función para debug condicional
 void UART_Init();
 bool commandAvailable();
 String receiveCommand();

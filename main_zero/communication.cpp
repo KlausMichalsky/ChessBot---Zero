@@ -52,31 +52,12 @@ extern HomingState homingMotor1;
 
 // CONFIGURACIÓN DE DEPURACIÓN UART
 // =======================================================================
-//  ▫️ DESCRIPCIÓN
-//      Directiva para activar o desactivar mensajes de depuración
-//      enviados por la UART de depuración (Serial USB).
-//      Útil durante el desarrollo para monitorear el estado del sistema.
-//  ▫️ USO:
-//      #define DEBUG_UART 1 → debug activado (mensajes por Serial USB se envían)
-//      #define DEBUG_UART 0 → debug apagado (el preprocesador borra todas las líneas de debug,
-//      ni ocupan flash ni CPU)
-#define DEBUG_UART 1 // cambiar a 0 cuando el codigo esta listo
-
-// INICIALIZACIÓN DE COMUNICACIÓN UART
-// =======================================================================
-//  ▫️ DESCRIPCIÓN
-//      Inicializa la UART de depuración por USB y la UART1 para
-//      comunicarse con el cerebro lógico (Pi / Raspberry).
-//      La depuración se puede activar o desactivar mediante la
-//      directiva DEBUG_UART. Incluye una espera segura de hasta
-//      1 segundo para que el host USB esté listo, sin bloquear
-//      el firmware si no hay conexión.
-//
-//  ▫️ RESPONSABILIDADES:
-//      - Configurar la UART de depuración por USB (Serial).
-//      - Esperar de forma segura a que el host USB abra la conexión.
-//      - Configurar la UART1 (Serial1) para comunicación con la Pi.
-//      - Permitir activar o desactivar debug sin tocar más código.
+void debug(const String &msg)
+{
+#if DEBUG_UART
+    Serial1.println(msg);
+#endif
+}
 
 void UART_Init()
 {
@@ -109,7 +90,6 @@ String receiveCommand()
 // =======================================================================
 void processCommand(const String &cmd)
 {
-    Serial1.println("DEBUG: Comando recibido: " + cmd);
     if (cmd == "HOME")
     {
         Serial1.println("HOMING_STARTED");

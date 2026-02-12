@@ -54,7 +54,7 @@ Bounce debouncer; // Crea un objeto para el botón (solo en la fase de pruebas)
 // =======================================================================
 #line 54 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\main_zero.ino"
 void setup();
-#line 74 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\main_zero.ino"
+#line 73 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\main_zero.ino"
 void loop();
 #line 54 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\main_zero.ino"
 void setup()
@@ -72,7 +72,6 @@ void setup()
     motorsXY_Init();
 
     homingXY_Init(homingMotor1);
-    Serial.println("Sistema listo -> Ingresar comando...");
 }
 
 // LOOP
@@ -82,6 +81,7 @@ void loop()
     if (commandAvailable())
     {
         String cmd = receiveCommand();
+        debug("Comando recibido: " + cmd); // solo imprime si DEBUG_UART = 1
         processCommand(cmd);
         // 🏠 arranca el homing si se recibe el comando "HOME"
     }
