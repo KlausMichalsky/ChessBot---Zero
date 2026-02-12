@@ -1,20 +1,15 @@
 # ========================================================================
-#                      🔹P I C O   —   C H E S S🔹
+#                 🔹 C H E S S B O T  —   Z E R O 🔹
 # ========================================================================
 #   Archivo    : config.py
 #   Autor      : Klaus Michalsky
-#   Fecha      : 2025-12-04
+#   Fecha      : Feb. 2026
 # ------------------------------------------------------------------------
 #   ▫️ DESCRIPCIÓN
-#       Módulo de configuración del proyecto. Contiene constantes
-#       y parámetros globales para la pantalla OLED, comunicación
-#       UART, motores y demás periféricos.
-#   ▫️ RESPONSABILIDADES:
-#       - Definir parámetros de hardware como pines y frecuencias.
-#       - Mantener constantes de configuración de módulos y librerías.
-#       - Servir como fuente central de ajustes para todo el proyecto.
-#       - Facilitar la modificación rápida de parámetros sin alterar
-#         el resto del código.
+#       - Configuración de pines y parámetros del sistema
+#   ▫️ RESPONSABILIDADES
+#       - Definir UART y OLED
+#       - Centralizar constantes de hardware
 # ========================================================================
 
 
