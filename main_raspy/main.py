@@ -7,10 +7,8 @@
 # ------------------------------------------------------------------------
 #   ▫️ DESCRIPCIÓN
 #       - Programa principal del Pi
-#   ▫️ RESPONSABILIDADES
-#       - Pedir comandos
-#       - Enviar y recibir datos
-#       - Mostrar resultados en consola
+#       - Interfaz de usuario para enviar comandos
+#       - Mostrar resultados y respuestas del RP2040
 # ========================================================================
 
 import time
