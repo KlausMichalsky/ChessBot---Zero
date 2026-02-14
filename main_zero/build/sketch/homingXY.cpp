@@ -1,27 +1,17 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\homingXY.cpp"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/main_zero/homingXY.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
 
 //  Archivo    : homingXY.cpp
 //  Autor      : Klaus Michalsky
-//  Fecha      : 2025-12-04
+//  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN:
-//      Implementación del sistema de homing para motores paso a paso
-//      utilizando sensor Hall para movimientos angulares.
-//      Realiza la búsqueda de flancos,
-//      cálculo de centro magnético y posicionamiento de referencia.
-//  ▫️ RESPONSABILIDADES:
 //      - Ejecutar la máquina de estados de homing.
 //      - Detectar flancos del imán mediante sensor Hall.
-//      - Calcular el centro del imán.
-//      - Posicionar el eje en cero mecánico.
+//      - Calcular el centro del imán y posicionar motores en referencia.
 //      - Gestionar errores y timeouts de homing.
-// =======================================================================
-//  ▫️ ESTADO:
-//      ⚠️ EN DESARROLLO ⚠️
-//      Funcionalidad básica implementada y en fase de pruebas funcionales.
 // =======================================================================
 
 #include <Arduino.h>

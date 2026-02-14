@@ -1,5 +1,5 @@
 # ========================================================================
-#                 🔹 C H E S S B O T  —   Z E R O 🔹
+#                 🔹 C H E S S B O T  -  Z E R O 🔹
 # ========================================================================
 #   Archivo    : main.py
 #   Autor      : Klaus Michalsky
@@ -19,7 +19,6 @@ import communication
 
 
 def wait_for_response():
-
     while True:
         if communication.any():
             msg = communication.readline()
@@ -31,15 +30,14 @@ def wait_for_response():
                 if msg == "HOMING_STARTED":
                     print("Secuencia completada.\n")
                     return   # breake sale solo del bucle mas cercano, return sale de la funcion
-
+        # Evita consumo excesivo de CPU mientras espera respuesta
         time.sleep(0.1)
 
 
 def main_loop():
-
     while True:
-        command = input("Ingrese comando: ")
-        commands.send_command(command)
+        cmd = input("Ingrese comando: ")
+        commands.send_command(cmd)
         wait_for_response()
 
 

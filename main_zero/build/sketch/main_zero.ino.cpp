@@ -1,35 +1,21 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\main_zero.ino"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/main_zero/main_zero.ino"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
 
 //  Archivo    : main_zero.ino
 //  Autor      : Klaus Michalsky
-//  Fecha      : 2025-12-04
+//  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      Control principal del robot físico. Gestiona motores, sensores,
-//      LEDs y la comunicación con el cerebro lógico del Pico.
-//  ▫️ RESPONSABILIDADES:
+//      - Control principal del robot físico.
+//      - Gestiona motores, sensores,
+//        LEDs y la comunicación con el cerebro lógico del Pico.
 //      - Inicializar y controlar motores y actuadores.
 //      - Leer y procesar datos de sensores.
 //      - Controlar los LEDs indicadores.
 //      - Gestionar la comunicación con el Pico.
 //      - Ejecutar los movimientos físicos del robot de ajedrez.
-// =======================================================================
-//  ▫️ ESTADO:
-//      ⚠️ EN DESARROLLO ⚠️
-//      Funcionalidad básica implementada y en fase de pruebas funcionales.
-//      Pruebas realizadas:
-//      - Homing de motores con sensores HALL y AS5600 ✔️
-//      - Control de motores con AccelStepper ✔️
-//      Próximos pasos:
-//      - Comunicación UART básica
-//      - Lectura de sensores I2C AS5600
-//      - Integración completa con el cerebro lógico (Pico)
-//      - Implementación de movimientos XY y control de piezas
-//      - Optimización de parámetros de homing y movimiento
-//      - ...
 // =======================================================================
 
 #include <Arduino.h>
@@ -37,6 +23,7 @@
 #include <Wire.h>
 #include <Bounce2.h>
 #include "communication.h"
+#include "commands.h"
 #include "config.h"
 #include "filtro.h"
 #include "led.h"
@@ -45,18 +32,18 @@
 #include "homingXY.h"
 
 // DEFINICION DE OBJETOS
-// =======================================================================
+// -----------------------------------------------------------------------
 HomingState homingMotor1;
 HomingState homingMotor2;
 Bounce debouncer; // Crea un objeto para el botón (solo en la fase de pruebas)
 
 // SETUP
-// =======================================================================
-#line 54 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\main_zero.ino"
+// -----------------------------------------------------------------------
+#line 41 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/main_zero/main_zero.ino"
 void setup();
-#line 73 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\main_zero.ino"
+#line 60 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/main_zero/main_zero.ino"
 void loop();
-#line 54 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\main_zero.ino"
+#line 41 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/main_zero/main_zero.ino"
 void setup()
 {
     Serial.begin(115200);
@@ -75,7 +62,7 @@ void setup()
 }
 
 // LOOP
-// =======================================================================
+// -----------------------------------------------------------------------
 void loop()
 {
     if (commandAvailable())

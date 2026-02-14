@@ -1,12 +1,12 @@
 # ========================================================================
-#                 🔹 C H E S S B O T  —   Z E R O 🔹
+#                 🔹 C H E S S B O T  -  Z E R O 🔹
 # ========================================================================
 #   Archivo    : communication.py
 #   Autor      : Klaus Michalsky
 #   Fecha      : Feb. 2026
 # ------------------------------------------------------------------------
 #   ▫️ DESCRIPCIÓN
-#       - Comunicación UART con RP2040 Zero
+#       - Comunicación UART con el RP2040 Zero
 #   ▫️ RESPONSABILIDADES
 #       - Inicializar UART
 #       - Enviar y recibir datos
@@ -17,6 +17,7 @@ from machine import UART
 import config
 
 # Crear instancia UART UNA sola vez
+# ------------------------------------------------------------------------
 uart = UART(
     config.UART_ID,
     config.UART_BAUD,
