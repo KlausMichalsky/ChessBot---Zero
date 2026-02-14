@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/main_zero/motorsXY.h"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\motorsXY.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -17,6 +17,7 @@
 // =======================================================================
 
 #pragma once
+#include <Arduino.h>
 #include <AccelStepper.h>
 
 // DECLARACIÓN DE MOTORES (EXTERN)

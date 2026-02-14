@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/main_zero/communication.h"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\communication.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -10,6 +10,8 @@
 //  ▫️ DESCRIPCIÓN
 //      - Definición de la interfaz de comunicación UART con el Raspberry
 // =======================================================================
+
+#include <Arduino.h>
 
 #pragma once
 

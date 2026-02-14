@@ -10,6 +10,8 @@
 //      - Definición de la interfaz de comunicación UART con el Raspberry
 // =======================================================================
 
+#include <Arduino.h>
+
 #pragma once
 
 #define DEBUG_UART 1 // 1 = debug activado, 0 = debug desactivado

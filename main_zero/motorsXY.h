@@ -16,6 +16,7 @@
 // =======================================================================
 
 #pragma once
+#include <Arduino.h>
 #include <AccelStepper.h>
 
 // DECLARACIÓN DE MOTORES (EXTERN)
