@@ -71,6 +71,7 @@ void loop()
 void updateTasks()
 {
     homingXY_Step(motor1, motor1Config, homingMotor1, HALL_1);
+
     // Aqui se podrían agregar otras tareas periódicas,
     // como actualizar el estado de otros motores, leer sensores,
     // controlar LEDs, etc.
