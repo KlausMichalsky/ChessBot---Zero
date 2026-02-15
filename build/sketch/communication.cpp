@@ -1,0 +1,38 @@
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\communication.cpp"
+// =======================================================================
+//                 🔹 C H E S S B O T  —   Z E R O 🔹
+// =======================================================================
+
+//  Archivo    : communication.cpp
+//  Autor      : Klaus Michalsky
+//  Fecha      : Feb-2026
+// -----------------------------------------------------------------------
+//  ▫️ DESCRIPCIÓN
+//      - Comunicación UART con el Raspberry
+//      - Inicializar UART
+//      - Gestionar la recepción de datos de forma no bloqueante.
+// =======================================================================
+
+#include <Arduino.h>
+#include "communication.h"
+#include "config.h"
+
+// CONFIGURACIÓN DE DEPURACIÓN UART
+// =======================================================================
+void debug(const String &msg)
+{
+#if DEBUG_UART
+    Serial1.println(msg);
+#endif
+}
+
+void UART_Init()
+{
+    // USB para debug (opcional)
+    Serial.begin(115200);
+
+    // UART hardware en pines 0 y 1
+    Serial1.setTX(0);
+    Serial1.setRX(1);
+    Serial1.begin(115200);
+}
