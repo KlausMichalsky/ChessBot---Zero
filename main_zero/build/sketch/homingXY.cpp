@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\homingXY.cpp"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/main_zero/homingXY.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -209,7 +209,7 @@ void homingXY_Step(AccelStepper &motor,
 
 // PREGUNTAR ESTADO ACTUAL DEL HOMING
 // =======================================================================
-EstadoHoming homingXY_GetState(const HomingState &st)
+HomingStateEnum homingXY_GetState(const HomingState &st)
 {
     return st.state; // devuelve el estado actual
 }

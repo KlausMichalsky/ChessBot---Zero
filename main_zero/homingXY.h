@@ -29,7 +29,7 @@
 // Permite manejar múltiples motores con la misma lógica.
 struct HomingState
 {
-    EstadoHoming state;      // Estado actual de la máquina de estados de homing
+    HomingStateEnum state;   // Estado actual de la máquina de estados de homing// <-- aquí usamos el enum
     unsigned long startTime; // Tiempo (millis) en el que comenzó el homing
     long firstEdge;          // Primer flanco detectado por el sensor
     long secondEdge;         // Segundo flanco detectado por el sensor
@@ -61,4 +61,4 @@ void homingXY_Step(AccelStepper &motor,
 bool homingXY_HasError(const HomingState &st);
 
 // Devuelve el estado actual de la máquina de estados de homing
-EstadoHoming homingXY_GetState(const HomingState &st);
+HomingStateEnum homingXY_GetState(const HomingState &st);

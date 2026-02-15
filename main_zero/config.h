@@ -57,7 +57,7 @@ constexpr bool ENABLE_INACTIVE = HIGH; // Nivel lógico para deshabilitar motor
 // Posibles estados de la rutina de homing (CW = ClockWise, CCW = CounterClockWise)
 // Estructura que agrupa la configuración de los motores para la rutina de homing
 // Se utiliza para almacenar todos los parámetros necesarios para cada motor
-enum EstadoHoming
+enum HomingStateEnum
 {
     HOMING_INACTIVE,             // 🔹 Homing apagado / no activo
     HOMING_FIND_FIRST_EDGE_CW,   // 🔹 Buscar el primer flanco del imán en sentido horario

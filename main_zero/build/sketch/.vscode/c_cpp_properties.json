@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\.vscode\\c_cpp_properties.json"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/main_zero/.vscode/c_cpp_properties.json"
 {
   "configurations": [
     {
@@ -68,9 +68,9 @@
         "-I/Users/klausmichalsky/Arduino/libraries/AccelStepper/src",
         "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/libraries/Wire/src",
         "-I/Users/klausmichalsky/Arduino/libraries/Bounce2/src",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/main_zero/build/sketch/main_zero.ino.cpp",
+        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/main_zero/build/sketch/commands.cpp",
         "-o",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/main_zero/build/sketch/main_zero.ino.cpp.o"
+        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/main_zero/build/sketch/commands.cpp.o"
       ],
       "defines": [
         "USBD_PID=0x0003",

@@ -1,8 +1,57 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\#manual-homingXY.md"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/main_zero/#manual-homingXY.md"
 ###### ♟️ ChessBot---Zero
 ---
 
 ## 📘 Manual de homingXY
+
+---
+
+### ⚙️ Módulo: homingXY (RP2040 Zero)
+
+---
+
+#### ✏️ Descripción
+
+- Gestiona la rutina de homing de los motores del robot.  
+- Implementa la máquina de estados para buscar el centro de referencia de cada motor.  
+- Mantiene un struct `HomingState` que guarda toda la información del homing.  
+- Se ejecuta periódicamente mediante `updateTasks()` desde `main_zero.ino`.  
+
+---
+
+#### 💡 Resumen rápido:
+- Enum = lista de posibles estados.
+- Struct = paquete que guarda el estado actual + variables auxiliares.
+- Variable HomingState → usa el enum HomingStateEnum dentro de ella.
+
+
+## 🧩 Cómo se usa en código
+
+```cpp
+HomingState homingMotor1;                   // Crear struct para el motor
+homingMotor1.state = HOMING_INACTIVE;       // Inicializar el estado
+
+homingXY_Start(motor1, configMotor1, homingMotor1, HALL1_PIN);
+// homingMotor1.state irá cambiando automáticamente en updateTasks()
+
+---
+
+#### 🧩 Tipos de datos principales
+
+##### Struct HomingState
+Almacena todo el estado interno de un homing:
+
+| Campo           | Tipo                | Descripción |
+|-----------------|---------------------|-------------|
+| `state`         | `HomingStateEnum`   | Estado actual de la máquina de homing |
+| `startTime`     | `unsigned long`     | Timestamp de inicio del homing |
+| `firstEdge`     | `long`              | Posición del primer flanco detectado |
+| `secondEdge`    | `long`              | Posición del segundo flanco detectado |
+| `centerPosition`| `long`              | Centro calculado entre flancos |
+| `fault`         | `bool`              | Marca si hubo un error latcheado |
+
+#### Enum HomingStateEnum
+Define todos los posibles estados de la máquina de homing:
 
 ---
 
@@ -117,7 +166,7 @@
 
 📌 Parámetros:
 - st — referencia constante a HomingState.
-- Ret_orno: Valor de tipo EstadoHoming indicando el estado actual.
+- Ret_orno: Valor de tipo HomingStateEnum indicando el estado actual.
 
 🧩 Ejemplo:<br>
-> `EstadoHoming estado = homingXY_GetState(miHomingState);`
+> `HomingStateEnum estado = homingXY_GetState(miHomingState);`

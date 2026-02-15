@@ -208,7 +208,7 @@ void homingXY_Step(AccelStepper &motor,
 
 // PREGUNTAR ESTADO ACTUAL DEL HOMING
 // =======================================================================
-EstadoHoming homingXY_GetState(const HomingState &st)
+HomingStateEnum homingXY_GetState(const HomingState &st)
 {
     return st.state; // devuelve el estado actual
 }

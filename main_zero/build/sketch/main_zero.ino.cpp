@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\main_zero.ino"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/main_zero/main_zero.ino"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -39,11 +39,13 @@ Bounce debouncer; // Crea un objeto para el botón (solo en la fase de pruebas)
 
 // SETUP
 // -----------------------------------------------------------------------
-#line 41 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\main_zero.ino"
+#line 41 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/main_zero/main_zero.ino"
 void setup();
-#line 60 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\main_zero.ino"
+#line 60 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/main_zero/main_zero.ino"
 void loop();
-#line 41 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\main_zero.ino"
+#line 71 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/main_zero/main_zero.ino"
+void updateTasks();
+#line 41 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/main_zero/main_zero.ino"
 void setup()
 {
     Serial.begin(115200);
@@ -70,7 +72,15 @@ void loop()
         String cmd = receiveCommand();
         debug("Comando recibido: " + cmd); // solo imprime si DEBUG_UART = 1
         processCommand(cmd);
-        // 🏠 arranca el homing si se recibe el comando "HOME"
     }
+    updateTasks();
+}
+
+void updateTasks()
+{
+    homingXY_Step(motor1, motor1Config, homingMotor1, HALL_1);
+    // Aqui se podrían agregar otras tareas periódicas,
+    // como actualizar el estado de otros motores, leer sensores,
+    // controlar LEDs, etc.
 }
 
