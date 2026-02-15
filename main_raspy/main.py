@@ -8,7 +8,7 @@
 #   ▫️ DESCRIPCIÓN
 #       - Programa principal del Pi
 #       - Interfaz de usuario para enviar comandos
-#       - Mostrar resultados y respuestas del RP2040
+#       - Mostrar resultados y respuestas del RP2040.
 # ========================================================================
 
 import time
