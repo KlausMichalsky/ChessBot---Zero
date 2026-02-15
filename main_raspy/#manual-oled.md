@@ -1,6 +1,10 @@
-# 📘 Manual OLED — Módulo de Visualización
+###### ♟️ ChessBot---Zero
+---
+
+## 📘 Manual OLED — Módulo de Visualización
 
 ---
+
 
 ⚙️ *** Bloque de Inicialización: *** OLED SSD1306  
 > Descripción:  

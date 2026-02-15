@@ -1,11 +1,60 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\motorsXY-manual.md"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\main_zero\\#manual-motorsXY.md"
 ###### ♟️ ChessBot---Zero
+---
+
+## 📘 Manual de motorsXY.cpp
 
 ---
 
-## 📘 Manual de `motorsXY`
+#### ⚙️ *** Módulo: *** motorsXY.cpp
 
 Módulo responsable del control del sistema **XY** del robot de ajedrez. Este módulo gestiona **energía, movimiento y estado** del sistema XY. El proceso de referencia (homing) se realiza en el módulo `homingXY`.
+
+---
+
+### ⚙️ *** Sección: *** INSTANCIAS DE MOTORES
+
+✏️ Descripción:
+Crea las instancias de los motores utilizando la librería AccelStepper.
+
+🧩 Implementación:
+> `AccelStepper motor1(AccelStepper::DRIVER, MOTOR1_STEP, MOTOR1_DIR);`  
+> `AccelStepper motor2(AccelStepper::DRIVER, MOTOR2_STEP, MOTOR2_DIR);`
+
+---
+
+### ⚙️ *** Sección: *** ESTADO INTERNO DE MOTORES
+
+✏️ Descripción:
+Esta variable controla si los motores están habilitados (true) o deshabilitados (false).
+
+- ▸ static: hace que la variable sea **local al archivo motor.cpp**,  
+  es decir, **no es visible desde otros módulos**.  
+- ▸ Se inicializa en false para que al arrancar el sistema  
+  los motores estén apagados por seguridad.  
+- ▸ Se actualiza en motorsXY_Enable() y motorsXY_Disable() para que  
+  otras funciones del módulo sepan si se puede mover el motor.
+
+🧩 Implementación:
+> `static bool motorsEnabled = false;`
+
+---
+
+### ⚙️ *** Sección: *** API PÚBLICA (Application Programming Interface)
+
+✏️ Descripción:
+Inicializa los motores del sistema y prepara el hardware para operar de manera segura.
+
+📌 Funcionalidad:
+- Configura los pines ENABLE de cada motor como salida.  
+- Deshabilita los motores al arrancar para evitar movimientos inesperados (estado seguro).  
+- Establece parámetros básicos de cada motor:  
+  • Velocidad máxima (fastSpeed)  
+  • Aceleración (acceleration)  
+- Prepara los motores para recibir comandos de movimiento  
+
+⚠️ Nota:
+Esta función debe llamarse **antes de cualquier intento de mover los motores**, preferentemente al inicio del setup().
 
 ---
 
@@ -185,6 +234,11 @@ Indica si el último movimiento del sistema XY finalizó.
 ⚠️ **Notas:**
 
 * No inicia ni detiene movimientos.
+* Devuelve true si **ambos motores han llegado** a su posición objetivo
+* distanceToGo() devuelve la distancia restante que le falta
+  al motor para alcanzar el objetivo definido por moveTo().
+* Se verifica que motor1 y motor2 hayan terminado su movimiento.
+* Esto permite que otras funciones (por ejemplo, homing o secuencias  de movimiento) sepan cuándo se completó el desplazamiento.
 
 🧩 **Ejemplo:**
 

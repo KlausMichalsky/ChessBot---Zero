@@ -4,23 +4,13 @@
 
 //  Archivo    : homingXY.cpp
 //  Autor      : Klaus Michalsky
-//  Fecha      : 2025-12-04
+//  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN:
-//      Implementación del sistema de homing para motores paso a paso
-//      utilizando sensor Hall para movimientos angulares.
-//      Realiza la búsqueda de flancos,
-//      cálculo de centro magnético y posicionamiento de referencia.
-//  ▫️ RESPONSABILIDADES:
 //      - Ejecutar la máquina de estados de homing.
 //      - Detectar flancos del imán mediante sensor Hall.
-//      - Calcular el centro del imán.
-//      - Posicionar el eje en cero mecánico.
+//      - Calcular el centro del imán y posicionar motores en referencia.
 //      - Gestionar errores y timeouts de homing.
-// =======================================================================
-//  ▫️ ESTADO:
-//      ⚠️ EN DESARROLLO ⚠️
-//      Funcionalidad básica implementada y en fase de pruebas funcionales.
 // =======================================================================
 
 #include <Arduino.h>
@@ -218,7 +208,7 @@ void homingXY_Step(AccelStepper &motor,
 
 // PREGUNTAR ESTADO ACTUAL DEL HOMING
 // =======================================================================
-EstadoHoming homingXY_GetState(const HomingState &st)
+HomingStateEnum homingXY_GetState(const HomingState &st)
 {
     return st.state; // devuelve el estado actual
 }
