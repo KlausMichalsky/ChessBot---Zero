@@ -2,29 +2,15 @@
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
 
-//  Archivo    : config.h
+//  Archivo    : communication.cpp
 //  Autor      : Klaus Michalsky
-//  Fecha      : 2025-12-04
+//  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      Definiciones de hardware del robot.
-//      Contiene únicamente pines físicos, enums y estructuras
-//      relacionadas con motores, sensores y homing.
-//
-//  ▫️ RESPONSABILIDADES
 //      - Definir pines de motores, sensores y LEDs.
 //      - Declarar enums de estados.
 //      - Definir estructuras de configuración de motores.
 //      - Centralizar parámetros mecánicos dependientes del hardware.
-// =======================================================================
-//  ▫️ ESTADO:
-//      ⚠️ EN DESARROLLO ⚠️
-//      Funcionalidad básica implementada y en fase de pruebas funcionales
-//      con un solo motor.
-// Próximos pasos:
-//      - Añadir configuraciones para más motores si es necesario.
-//      - Ajustar parámetros según pruebas físicas.
-//      - Configuracion para el resto del sistema.
 // =======================================================================
 
 #pragma once

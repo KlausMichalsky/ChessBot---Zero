@@ -4,15 +4,9 @@
 
 //  Archivo    : motorsXY.h
 //  Autor      : Klaus Michalsky
-//  Fecha      : 2025-12-04
+//  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      Interfaz de control de motores del robot de ajedrez.
-//      Define las declaraciones de los motores y las funciones
-//      de alto nivel para su inicialización, control de energía
-//      y movimiento.
-//
-//  ▫️ RESPONSABILIDADES
 //      - Declarar los motores utilizados por el sistema.
 //      - Proveer funciones para habilitar y deshabilitar motores.
 //      - Definir la API de movimiento y velocidad.
@@ -20,38 +14,21 @@
 //      - Permitir la reutilización y escalabilidad del control
 //        de motores a múltiples ejes.
 // =======================================================================
-//  ▫️ ESTADO:
-//      ⚠️ EN DESARROLLO ⚠️
-//      Funcionalidad básica implementada y en fase de pruebas funcionales.
-// =======================================================================
 
 #pragma once
+#include <Arduino.h>
 #include <AccelStepper.h>
 
 // DECLARACIÓN DE MOTORES (EXTERN)
 // =======================================================================
-// Declaración externa de los objetos AccelStepper utilizados
-// para controlar los motores del sistema.
+// Declaración externa de los objetos AccelStepper
 // La palabra clave `extern` indica que estos objetos están
-// definidos en otro archivo fuente (.cpp), permitiendo
-// compartir el control de los motores entre distintos
-// módulos sin duplicar instancias.
+// definidos en otro archivo fuente (.cpp), sin duplicar instancias.
 extern AccelStepper motor1;
 extern AccelStepper motor2;
 
-// FUNCIONES DE CONTROL DE MOTOR
+// API PUBLICA FUNCIONES DE CONTROL DE MOTOR
 // =======================================================================
-//   Conjunto de funciones de alto nivel para inicializar,
-//   energizar y controlar el movimiento de un motor.
-//   Estas funciones encapsulan:
-//   - Inicialización del hardware y parámetros básicos.
-//   - Habilitación y deshabilitación de potencia.
-//   - Movimiento y control de velocidad.
-//   - Ejecución continua del motor (servicio en loop).
-//   - Parada de emergencia.
-//   - Consulta del estado de movimiento.
-//   Diseñado para ser reutilizado y extendido a múltiples
-//   motores en etapas posteriores del proyecto.
 // Inicialización
 void motorsXY_Init();
 

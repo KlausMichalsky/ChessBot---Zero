@@ -4,26 +4,15 @@
 
 //  Archivo    : homingXY.h
 //  Autor      : Klaus Michalsky
-//  Fecha      : 2025-12-04
+//  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      Declaraciones para el sistema de homing de motores paso a paso con
-//      sensor Hall para movimientos angulares.
-//      Define la estructura de estado y la API pública que
-//      permite inicializar, arrancar, ejecutar y consultar el homing.
-//      La máquina de estados y los valores de configuración se definen
-//      en 'config.h'.
-//  ▫️ RESPONSABILIDADES:
 //      - Definir la estructura de estado del homing (HomingState).
 //      - Proporcionar funciones públicas para inicializar y ejecutar la
 //        rutina de homing.
 //      - Permitir consultar el estado actual y detectar errores.
 //      - Servir como interfaz para otros módulos del robot que requieran
 //        funcionalidad de homing.
-// =======================================================================
-//  ▫️ ESTADO:
-//      ⚠️ EN DESARROLLO ⚠️
-//      Funcionalidad básica implementada y en fase de pruebas funcionales.
 // =======================================================================
 
 #pragma once
@@ -50,11 +39,6 @@ struct HomingState
 
 // API PÚBLICA DEL MÓDULO DE HOMING
 // =======================================================================
-// Estas funciones forman la interfaz pública del módulo de homing.
-// El código principal (loop) solo debe usar estas funciones,
-// sin tocar estados internos ni lógica de la máquina de estados.
-// Esto permite reutilizar el homing en distintos motores y proyectos.
-
 // Inicializa el estado del homing
 void homingXY_Init(HomingState &st);
 

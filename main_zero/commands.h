@@ -2,19 +2,23 @@
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
 
-//  Archivo    : communication.h
+//  Archivo    : commands.h
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      - Definición de la interfaz de comunicación UART con el Raspberry
+//      - Declaración de funciones para la gestión de comandos
+//        recibidos por UART
 // =======================================================================
 
+#pragma once
 #include <Arduino.h>
 
-#pragma once
-
-#define DEBUG_UART 1 // 1 = debug activado, 0 = debug desactivado
-
-void debug(const String &msg); // función para debug condicional
-void UART_Init();
+bool commandAvailable();
+String receiveCommand();
+void processCommand(const String &command);
+// void readAngles();
+// void sendAngle(float angle);
+// void sendStatus();
+// void sendError(const String &error);
+// void sendDebug(const String &debug);
