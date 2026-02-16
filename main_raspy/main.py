@@ -27,7 +27,7 @@ def wait_for_response():
 
                 if msg == "HOMING_STARTED":
                     print("Secuencia completada.\n")
-                    return   # breake sale solo del bucle mas cercano, return sale de la funcion
+                return   # breake sale solo del bucle mas cercano, return sale de la funcion
         # Evita consumo excesivo de CPU mientras espera respuesta
         time.sleep(0.1)
 

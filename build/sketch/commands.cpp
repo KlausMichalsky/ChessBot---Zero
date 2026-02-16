@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\commands.cpp"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/commands.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -20,6 +20,7 @@
 #include "motorsXY.h"
 
 extern HomingState homingMotor1;
+extern HomingState homingMotor2;
 
 // COMPROBACIÓN DE COMANDOS DISPONIBLES
 // =======================================================================
@@ -41,22 +42,39 @@ String receiveCommand()
 // =======================================================================
 void processCommand(const String &cmd)
 {
-    if (cmd == "HOME")
+    if (cmd == "STATUS")
     {
-        Serial1.println("HOMING_STARTED");
+        if ((homingMotor1.state != HOMING_INACTIVE) && (homingMotor1.state != HOMING_OK) && (homingMotor1.state != HOMING_ERROR))
+        {
+            Serial1.println("RX: HOMING IN PROGRESS");
+        }
+        else if (homingMotor1.fault || homingMotor2.fault)
+        {
+            Serial1.println("RX: HOMING ERROR");
+        }
+        else
+        {
+            Serial1.println("RX: HOMING OK");
+        }
+    }
+    else if (cmd == "RESET_ERRORS")
+    {
+        homingMotor1.fault = false;
+        homingMotor2.fault = false;
+        Serial1.println("RX: ERRORS RESET");
+    }
+    else if (cmd == "HOME_MOTOR1")
+    {
+        Serial1.println("RX HOMING MOTOR1 STARTED");
         homingXY_Start(motor1, motor1Config, homingMotor1, HALL_1);
     }
-    else if (cmd == "STATUS")
+    else if (cmd == "HOME_MOTOR2")
     {
-        Serial1.println("READY");
+        Serial1.println("RX HOMING MOTOR2 STARTED");
+        homingXY_Start(motor2, motor2Config, homingMotor2, HALL_2);
     }
-}
-
-// ENVIAR ESTADO
-// =======================================================================
-void sendStatus()
-{
-    // Enviar estado del robot al Pico
-    String status = "STATUS:OK\n"; // Ejemplo de estado
-    Serial1.print(status);
+    else
+    {
+        Serial1.println("RX: UNKNOWN COMMAND");
+    }
 }

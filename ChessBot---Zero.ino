@@ -49,10 +49,13 @@ void setup()
     // LED indicador
     pinMode(LED, OUTPUT);
 
+    // Inicialización de comunicación UART
     UART_Init();
-    motorsXY_Init();
 
+    // Inicialización de motores y homing
+    motorsXY_Init();
     homingXY_Init(homingMotor1);
+    homingXY_Init(homingMotor2);
 }
 
 // LOOP
@@ -71,6 +74,7 @@ void loop()
 void updateTasks()
 {
     homingXY_Step(motor1, motor1Config, homingMotor1, HALL_1);
+    homingXY_Step(motor2, motor2Config, homingMotor2, HALL_2);
 
     // Aqui se podrían agregar otras tareas periódicas,
     // como actualizar el estado de otros motores, leer sensores,
