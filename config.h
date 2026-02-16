@@ -53,10 +53,18 @@ constexpr bool ENABLE_INACTIVE = HIGH; // Nivel lógico para deshabilitar motor
 
 // TIPOS Y ESTRUCTURAS
 // =======================================================================
-// Tipo enumerado (enum)
-// Posibles estados de la rutina de homing (CW = ClockWise, CCW = CounterClockWise)
-// Estructura que agrupa la configuración de los motores para la rutina de homing
-// Se utiliza para almacenar todos los parámetros necesarios para cada motor
+
+// Tipo enumerado (enum) para los comandos recibidos por UART
+enum Command
+{
+    CMD_STATUS,
+    CMD_RESET_ERRORS,
+    CMD_HOME_MOTOR1,
+    CMD_HOME_MOTOR2,
+    CMD_UNKNOWN
+};
+
+// Tipo enumerado (enum) para los estados de la rutina de homing (CW = ClockWise, CCW = CounterClockWise)
 enum HomingStateEnum
 {
     HOMING_INACTIVE,             // 🔹 Homing apagado / no activo
