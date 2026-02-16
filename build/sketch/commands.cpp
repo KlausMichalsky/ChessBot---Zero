@@ -40,6 +40,73 @@ String receiveCommand()
 
 // PROCESAMIENTO DE COMANDOS
 // =======================================================================
+// Función para mapear String a enum
+Command parseCommand(const String &cmd)
+{
+    if (cmd == "STATUS")
+        return CMD_STATUS;
+    if (cmd == "RESET_ERRORS")
+        return CMD_RESET_ERRORS;
+    if (cmd == "HOME_MOTOR1")
+        return CMD_HOME_MOTOR1;
+    if (cmd == "HOME_MOTOR2")
+        return CMD_HOME_MOTOR2;
+    return CMD_UNKNOWN;
+}
+
+void processCommand(const String &cmd)
+{
+    String trimmedCmd = cmd;
+    trimmedCmd.trim(); // elimina \r\n y espacios
+
+    switch (parseCommand(trimmedCmd))
+    {
+    case CMD_STATUS:
+        if ((homingMotor1.state != HOMING_INACTIVE) &&
+            (homingMotor1.state != HOMING_OK) &&
+            (homingMotor1.state != HOMING_ERROR))
+        {
+            Serial1.println("HOMING IN PROGRESS");
+        }
+        else if (homingMotor1.state == HOMING_OK)
+        {
+            Serial1.println("HOMING MOTOR1 OK");
+        }
+        else if (homingMotor1.state == HOMING_ERROR)
+        {
+            Serial1.println("HOMING MOTOR1 ERROR");
+        }
+        else
+        {
+            Serial1.println("IDLE");
+        }
+        break;
+
+    case CMD_RESET_ERRORS:
+        homingMotor1.fault = false;
+        homingMotor2.fault = false;
+        Serial1.println("ERRORS RESET");
+        break;
+
+    case CMD_HOME_MOTOR1:
+        Serial1.println("HOMING MOTOR1 STARTED");
+        homingXY_Start(motor1, motor1Config, homingMotor1, HALL_1);
+        break;
+
+    case CMD_HOME_MOTOR2:
+        Serial1.println("HOMING MOTOR2 STARTED");
+        homingXY_Start(motor2, motor2Config, homingMotor2, HALL_2);
+        break;
+
+    default:
+        Serial1.println("UNKNOWN COMMAND");
+        break;
+    }
+}
+
+/*
+// PROCESAMIENTO DE COMANDOS
+// =======================================================================
 void processCommand(const String &cmd)
 {
     if (cmd == "STATUS")
@@ -47,6 +114,14 @@ void processCommand(const String &cmd)
         if ((homingMotor1.state != HOMING_INACTIVE) && (homingMotor1.state != HOMING_OK) && (homingMotor1.state != HOMING_ERROR))
         {
             Serial1.println("HOMING IN PROGRESS");
+        }
+        else if (homingMotor1.state == HOMING_OK)
+        {
+            Serial1.println("HOMING MOTOR1 OK");
+        }
+        else if (homingMotor1.state == HOMING_ERROR)
+        {
+            Serial1.println("HOMING MOTOR1 ERROR");
         }
         else
         {
@@ -74,3 +149,4 @@ void processCommand(const String &cmd)
         Serial1.println("UNKNOWN COMMAND");
     }
 }
+*/

@@ -55,7 +55,10 @@ Command parseCommand(const String &cmd)
 
 void processCommand(const String &cmd)
 {
-    switch (parseCommand(cmd))
+    String trimmedCmd = cmd;
+    trimmedCmd.trim(); // elimina \r\n y espacios
+
+    switch (parseCommand(trimmedCmd))
     {
     case CMD_STATUS:
         if ((homingMotor1.state != HOMING_INACTIVE) &&
