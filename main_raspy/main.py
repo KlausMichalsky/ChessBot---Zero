@@ -23,18 +23,16 @@ def wait_for_response():
             if msg:
                 # b'HOMING_STARTED\n' -> "HOMING_STARTED\n" -> "HOMING_STARTED"
                 msg = msg.decode().strip()
-                print("RX:", msg)
-
-                if msg == "HOMING_STARTED":
-                    print("Secuencia completada.\n")
-                return   # breake sale solo del bucle mas cercano, return sale de la funcion
+                print("Status:", msg + "\n")
+            return   # breake sale solo del bucle mas cercano, return sale de la funcion
         # Evita consumo excesivo de CPU mientras espera respuesta
         time.sleep(0.1)
 
 
 def main_loop():
     while True:
-        cmd = input("Ingrese comando: ")
+        print("Comandos disponibles:\nSTATUS\nRESET_ERRORS\nHOME_MOTOR1\nHOME_MOTOR2")
+        cmd = input("\nIngrese comando: ")
         commands.send_command(cmd)
         wait_for_response()
 

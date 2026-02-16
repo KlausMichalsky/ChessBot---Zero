@@ -45,35 +45,31 @@ void processCommand(const String &cmd)
     {
         if ((homingMotor1.state != HOMING_INACTIVE) && (homingMotor1.state != HOMING_OK) && (homingMotor1.state != HOMING_ERROR))
         {
-            Serial1.println("RX: HOMING IN PROGRESS");
-        }
-        else if (homingMotor1.fault || homingMotor2.fault)
-        {
-            Serial1.println("RX: HOMING ERROR");
+            Serial1.println("HOMING IN PROGRESS");
         }
         else
         {
-            Serial1.println("RX: HOMING OK");
+            Serial1.println("IDLE");
         }
     }
     else if (cmd == "RESET_ERRORS")
     {
         homingMotor1.fault = false;
         homingMotor2.fault = false;
-        Serial1.println("RX: ERRORS RESET");
+        Serial1.println("ERRORS RESET");
     }
     else if (cmd == "HOME_MOTOR1")
     {
-        Serial1.println("RX HOMING MOTOR1 STARTED");
+        Serial1.println("HOMING MOTOR1 STARTED");
         homingXY_Start(motor1, motor1Config, homingMotor1, HALL_1);
     }
     else if (cmd == "HOME_MOTOR2")
     {
-        Serial1.println("RX HOMING MOTOR2 STARTED");
+        Serial1.println("HOMING MOTOR2 STARTED");
         homingXY_Start(motor2, motor2Config, homingMotor2, HALL_2);
     }
     else
     {
-        Serial1.println("RX: UNKNOWN COMMAND");
+        Serial1.println("UNKNOWN COMMAND");
     }
 }

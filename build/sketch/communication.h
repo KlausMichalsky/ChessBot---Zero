@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/communication.h"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\communication.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -15,7 +15,7 @@
 
 #pragma once
 
-#define DEBUG_UART 1 // 1 = debug activado, 0 = debug desactivado
+#define DEBUG_UART 0 // 1 = debug activado, 0 = debug desactivado
 
 void debug(const String &msg); // función para debug condicional
 void UART_Init();

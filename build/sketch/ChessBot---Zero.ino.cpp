@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -39,13 +39,13 @@ Bounce debouncer; // Crea un objeto para el botón (solo en la fase de pruebas)
 
 // SETUP
 // -----------------------------------------------------------------------
-#line 41 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
+#line 41 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void setup();
-#line 63 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
+#line 63 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void loop();
-#line 74 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
+#line 74 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void updateTasks();
-#line 41 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
+#line 41 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void setup()
 {
     Serial.begin(115200);
@@ -73,7 +73,7 @@ void loop()
     if (commandAvailable())
     {
         String cmd = receiveCommand();
-        debug("Comando recibido: " + cmd); // solo imprime si DEBUG_UART = 1
+        debug(cmd); // solo imprime el comando recibido si DEBUG_UART = 1
         processCommand(cmd);
     }
     updateTasks();

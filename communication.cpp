@@ -21,7 +21,7 @@
 void debug(const String &msg)
 {
 #if DEBUG_UART
-    Serial1.println(msg);
+    Serial1.println("Comando recibido: " + msg);
 #endif
 }
 

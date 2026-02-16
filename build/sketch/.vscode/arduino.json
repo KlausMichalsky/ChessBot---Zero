@@ -1,7 +1,7 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/.vscode/arduino.json"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\.vscode\\arduino.json"
 {
-  "port": "/dev/cu.debug-console",
-  "configuration": "flash=2097152_0,freq=200,opt=Small,os=none,profile=Disabled,rtti=Disabled,stackprotect=Disabled,exceptions=Disabled,dbgport=Disabled,dbglvl=None,usbstack=picosdk,ipbtstack=ipv4only,uploadmethod=default",
+  "port": "COM22",
+  "configuration": "flash=2097152_0,freq=200,opt=Small,profile=Disabled,rtti=Disabled,stackprotect=Disabled,exceptions=Disabled,dbgport=Disabled,dbglvl=None,usbstack=picosdk,ipbtstack=ipv4only,uploadmethod=default",
   "output": "build",
   "board": "rp2040:rp2040:waveshare_rp2040_zero",
   "programmer": "",
@@ -11,7 +11,7 @@
   "compile_profile": "",
   "monitorPortSettings": {
     "settings": {
-      "port": "/dev/tty.debug-console",
+      "port": "COM22",
       "baudRate": 115200,
       "lineEnding": "\r\n",
       "dataBits": 8,

@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/sensors.cpp"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\sensors.cpp"
 // =======================================================================
 //                    🔹 P I C O   —   C H E S S 🔹
 // =======================================================================

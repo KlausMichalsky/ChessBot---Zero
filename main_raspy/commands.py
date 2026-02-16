@@ -20,5 +20,3 @@ import communication
 def send_command(cmd):
     # .encode() convierte el string en bytes.
     communication.write(f"{cmd}\n".encode())
-    print("Comando enviado al RP2040-Zero!")
-    print("Esperando respuesta...\n")
