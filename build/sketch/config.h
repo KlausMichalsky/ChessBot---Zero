@@ -107,23 +107,23 @@ struct HomingConfig
 // va cada valor, sin importar el orden.
 const HomingConfig motor1Config = {
     .microstepping = 16,
-    .reduction = 1,
+    .reduction = 9,
     .stepsPerRevolution = 200,
     .fastSpeed = 1500.0,
-    .slowSpeed = 750.0,
+    .slowSpeed = 800.0,
     .acceleration = 1000.0,
-    .steps90Deg = 16 * 1 * 200 / 4,
+    .steps90Deg = motor1Config.microstepping * motor1Config.stepsPerRevolution / 4,
     .timeout = 15000,
     .enablePin = MOTOR1_ENABLE};
 
 const HomingConfig motor2Config = {
     .microstepping = 16,
-    .reduction = 1,
+    .reduction = 6,
     .stepsPerRevolution = 200,
-    .fastSpeed = 400.0,
-    .slowSpeed = 200.0,
-    .acceleration = 800.0,
-    .steps90Deg = 16 * 1 * 200 / 4,
+    .fastSpeed = 1000.0,
+    .slowSpeed = 533.0,
+    .acceleration = 1000.0,
+    .steps90Deg = motor2Config.microstepping * motor2Config.stepsPerRevolution / 4,
     .timeout = 15000,
     .enablePin = MOTOR2_ENABLE};
 

@@ -70,6 +70,7 @@ void motorsXY_Disable()
     motorsEnabled = false;
 }
 
+/*
 void motorsXY_Move(long x, long y)
 {
     // ‼️ No ejecuta el movimiento inmediatamente.
@@ -107,3 +108,4 @@ bool motorsXY_Done()
     return motor1.distanceToGo() == 0 &&
            motor2.distanceToGo() == 0;
 }
+*/
