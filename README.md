@@ -2,7 +2,7 @@
 
 Sistema de control para un robot de ajedrez basado en RP2040,
 con comunicación UART entre Pi Zero y RP2040 Zero, visualización
-mediante OLED SSD1306 y Touchscreen.
+mediante OLED SH1106.
 
 ---
 
@@ -11,7 +11,7 @@ mediante OLED SSD1306 y Touchscreen.
 - Buck Converter 12V-5V > 8A 
 - RP2040 Zero (control principa de motores y sensores) -> Zero
 - Raspberry Pi Zero 2 W (control del arlgoritmo) -> Raspy
-- Pantalla OLED SSD1306 via I2C (visualizacion de estados del hardware)
+- Pantalla OLED SH1106 1.3" via I2C (visualizacion de estados del hardware)
 - Motor Nema17 0.42Ncm
 - Motor Nema17 0,17Ncm
 - Mini 15mm 2-Phase Stepper 55mm Stroke linear actuator
