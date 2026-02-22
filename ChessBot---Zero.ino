@@ -88,7 +88,7 @@ void updateTasks()
     if (continuousAngle_1)
     {
         sendAngle_1();
-        delay(1); // Pequeña pausa para evitar saturar la comunicación
+        delay(20); // ~50 Hz
     }
 
     // Aqui se podrían agregar otras tareas periódicas,
