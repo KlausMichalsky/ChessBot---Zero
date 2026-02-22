@@ -1,2 +1,0 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\led.cpp"
-#include <Arduino.h>

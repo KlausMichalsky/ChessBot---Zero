@@ -18,8 +18,11 @@
 #pragma once
 #include <Wire.h>
 
-void inicializarSensores();
-float leerAS5600_1();
-float leerAS5600_2();
-bool leerHall_1();
-bool leerHall_2();
+void sensorsInit();
+uint16_t readAngle_1();
+void sendAngle_1();
+
+// float leerAS5600_1();
+// float leerAS5600_2();
+// bool leerHall_1();
+// bool leerHall_2();

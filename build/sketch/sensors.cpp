@@ -1,33 +1,63 @@
 #line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\sensors.cpp"
 // =======================================================================
-//                    🔹 P I C O   —   C H E S S 🔹
+//                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
-//  Archivo    : sensores.cpp
+
+//  Archivo    : sensors.cpp
 //  Autor      : Klaus Michalsky
-//  Fecha      : 2025-12-04
+//  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      Implementación de funciones para la lectura y gestión de
-//      sensores del robot de ajedrez.
-//  ▫️ RESPONSABILIDADES:
+//      - Implementación de funciones para la lectura y gestión de
+//        sensores AS5600.
 //      - Inicializar y configurar sensores.
-//      - Leer valores de sensores de posición o proximidad.
+//      - Leer valores.
 //      - Validar y filtrar datos obtenidos.
-//      - Proveer funciones de soporte para otros módulos.
 // =======================================================================
 
 // sensores.cpp
 #include <Arduino.h>
-#include "sensors.h"
 #include "config.h"
+#include "sensors.h"
+#include "calc.h"
 
-void inicializarSensores()
+unsigned long lastSendTime_1 = 0; // Guarda el momento en milisegundos del último envío
+float lastSentAngle_1 = -1000.0f; // Guarda el último ángulo enviado para el motor 1
+// -1000 es solo un valor de “inicio imposible” para asegurar que el primer envío siempre se haga
+
+void sensorsInit()
 {
-    // Wire1.begin(AS5600_1_SDA, AS5600_1_SCL);
-    // Wire2.begin(AS5600_2_SDA, AS5600_2_SCL);
+    Wire.setSDA(AS5600_1_SDA);
+    Wire.setSCL(AS5600_1_SCL);
+    Wire.begin();
+    // Aquí podrías agregar más inicializaciones si es necesario
 }
 
-float leerAS5600_1() { return 0.0; }
-float leerAS5600_2() { return 0.0; }
-bool leerHall_1() { return digitalRead(HALL_1); }
-bool leerHall_2() { return digitalRead(HALL_2); }
+// FUNCION AS5600 ----------------------------------------------------------------
+uint16_t readAngle_1()
+{
+    Wire.beginTransmission(AS5600_ADDR);
+    Wire.write(0x0E);
+    Wire.endTransmission(false);
+    Wire.requestFrom(AS5600_ADDR, (uint8_t)2);
+
+    if (Wire.available() < 2)
+        return 0;
+
+    uint8_t high = Wire.read();
+    uint8_t low = Wire.read();
+
+    return ((high & 0x0F) << 8) | low;
+}
+
+void sendAngle_1()
+{
+    uint16_t rawAngle = readAngle_1();
+    float degrees = rawToDegrees(rawAngle);
+    degrees = round1Decimal(degrees);
+    sendFilteredFloat(degrees, lastSentAngle_1, lastSendTime_1, 0.5, 1000, Serial1);
+}
+// Aquí podrías agregar funciones para leer otros sensores
+// uint16_t readAS5600Angle_2()
+// bool leerHall_2() { return digitalRead(HALL_2); }
+// bool leerHall_1() { return digitalRead(HALL_1); }

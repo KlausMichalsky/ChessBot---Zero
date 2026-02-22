@@ -31,7 +31,9 @@ def wait_for_response():
 
 def main_loop():
     while True:
-        print("Comandos disponibles:\nSTATUS\nRESET_ERRORS\nHOME_MOTOR1\nHOME_MOTOR2")
+        print(
+            "Comandos disponibles:\nSTATUS\nRESET_ERRORS\nHOME_MOTOR1\nHOME_MOTOR2\nGET_ANGLE_1\nGET_ANGLE_1_START\nGET_ANGLE_1_STOP"
+        )
         cmd = input("\nIngrese comando: ")
         commands.send_command(cmd)
         wait_for_response()

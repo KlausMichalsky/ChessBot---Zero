@@ -22,6 +22,7 @@
 
 extern HomingState homingMotor1;
 extern HomingState homingMotor2;
+extern bool continuousAngle_1;
 
 // COMPROBACIÓN DE COMANDOS DISPONIBLES -----------------------------------
 bool commandAvailable()
@@ -50,6 +51,10 @@ Command parseCommand(const String &cmd) // Función para mapear String a enum
         return CMD_HOME_MOTOR2;
     if (cmd == "GET_ANGLE_1")
         return CMD_GET_ANGLE_1;
+    if (cmd == "GET_ANGLE_1_START")
+        return CMD_GET_ANGLE_1_START;
+    if (cmd == "GET_ANGLE_1_STOP")
+        return CMD_GET_ANGLE_1_STOP;
     return CMD_UNKNOWN;
 }
 

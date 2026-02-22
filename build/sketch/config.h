@@ -12,6 +12,15 @@
 //      - Declarar enums de estados.
 //      - Definir estructuras de configuración de motores.
 //      - Centralizar parámetros mecánicos dependientes del hardware.
+/*
+| Qué poner en `config.h`                                 |
+| ------------------------------------------------------- |
+| Constantes, direcciones, límites, parámetros ajustables |
+
+| Qué poner en `.cpp` / `.ino`                           |
+| ------------------------------------------------------ |
+| Variables de estado, contadores, temporizadores, flags |
+*/
 // =======================================================================
 
 #pragma once
@@ -39,8 +48,20 @@
 #define MOTOR3_DIR 10
 #define MOTOR3_STEP 11
 
+// Pines de LEDs y electroimán
 #define LED 2
-#define BOTON 28 // cambiar a 28 para Zero A0 para Nano (solo usado en la fase de pruebas)
+#define IMAN 28
+
+// PARAMETROS DE CONFIGURACIÓN
+// =======================================================================
+// Dirección I2C del sensor AS5600
+// (direccion común pero perifericos I2C distintos)
+// -> Wire para AS5600_1, Wire1 para AS5600_2)
+#define AS5600_ADDR 0x36
+
+// Config. de transmisión de angulo por UART
+#define SEND_INTERVAL 33 // ms -> ~30Hz
+#define DELTA_DEG 0.5f   // Enviar solo si el ángulo cambia más de este valor
 
 // NIVELES LÓGICOS DE ENABLE
 // =======================================================================
@@ -54,7 +75,6 @@ constexpr bool ENABLE_INACTIVE = HIGH; // Nivel lógico para deshabilitar motor
 
 // TIPOS Y ESTRUCTURAS
 // =======================================================================
-
 // Tipo enumerado (enum) para los comandos recibidos por UART
 enum Command
 {
@@ -62,6 +82,9 @@ enum Command
     CMD_RESET_ERRORS,
     CMD_HOME_MOTOR1,
     CMD_HOME_MOTOR2,
+    CMD_GET_ANGLE_1,
+    CMD_GET_ANGLE_1_START,
+    CMD_GET_ANGLE_1_STOP,
     CMD_UNKNOWN
 };
 

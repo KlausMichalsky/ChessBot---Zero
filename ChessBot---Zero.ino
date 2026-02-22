@@ -25,7 +25,6 @@
 #include "commands.h"
 #include "config.h"
 #include "filtro.h"
-#include "led.h"
 #include "motorsXY.h"
 #include "sensors.h"
 #include "homingXY.h"
@@ -38,17 +37,16 @@ Bounce debouncer; // Crea un objeto para el botón (solo en la fase de pruebas)
 
 // FLAGS Y VARIABLES GLOBALES
 // -----------------------------------------------------------------------
-bool continuousAngle1 = false; // Flag para lectura continua del ángulo AS5600
+bool continuousAngle_1 = false; // Flag para lectura continua del ángulo AS5600
 
 // SETUP
 // -----------------------------------------------------------------------
 void setup()
 {
     Serial.begin(115200);
-    // Boton con debounce
-    pinMode(BOTON, INPUT_PULLUP);
-    debouncer.attach(BOTON);
-    debouncer.interval(25); // 25 ms de debounce
+
+    // Electroiman
+    pinMode(IMAN, INPUT_PULLUP);
 
     // LED indicador
     pinMode(LED, OUTPUT);
