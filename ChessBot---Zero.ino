@@ -36,6 +36,10 @@ HomingState homingMotor1;
 HomingState homingMotor2;
 Bounce debouncer; // Crea un objeto para el botón (solo en la fase de pruebas)
 
+// FLAGS Y VARIABLES GLOBALES
+// -----------------------------------------------------------------------
+bool continuousAngle1 = false; // Flag para lectura continua del ángulo AS5600
+
 // SETUP
 // -----------------------------------------------------------------------
 void setup()
@@ -73,8 +77,15 @@ void loop()
 
 void updateTasks()
 {
+    // Homing de motores (sin bloquear el loop)
     homingXY_Step(motor1, motor1Config, homingMotor1, HALL_1);
     homingXY_Step(motor2, motor2Config, homingMotor2, HALL_2);
+
+    // Lectura continua del ángulo 1 si el flag está activo
+    if (continuousAngle_1)
+    {
+        sendAngle_1();
+    }
 
     // Aqui se podrían agregar otras tareas periódicas,
     // como actualizar el estado de otros motores, leer sensores,
