@@ -146,4 +146,5 @@ C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sket
  C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\filtro.h \
  C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\motorsXY.h \
  C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\sensors.h \
- C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\homingXY.h
+ C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\homingXY.h \
+ C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\calc.h

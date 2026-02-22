@@ -28,6 +28,7 @@
 #include "motorsXY.h"
 #include "sensors.h"
 #include "homingXY.h"
+#include "calc.h"
 
 // DEFINICION DE OBJETOS
 // -----------------------------------------------------------------------
@@ -54,6 +55,9 @@ void setup()
     // Inicialización de comunicación UART
     UART_Init();
 
+    // Inicialización de sensores
+    sensorsInit();
+
     // Inicialización de motores y homing
     motorsXY_Init();
     homingXY_Init(homingMotor1);
@@ -67,8 +71,9 @@ void loop()
     if (commandAvailable())
     {
         String cmd = receiveCommand();
-        debug(cmd); // solo imprime el comando recibido si DEBUG_UART = 1
+        debug(cmd);
         processCommand(cmd);
+        Serial.println("Comando procesado: " + cmd);
     }
     updateTasks();
 }
@@ -83,6 +88,7 @@ void updateTasks()
     if (continuousAngle_1)
     {
         sendAngle_1();
+        delay(1); // Pequeña pausa para evitar saturar la comunicación
     }
 
     // Aqui se podrían agregar otras tareas periódicas,

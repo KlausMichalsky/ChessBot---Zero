@@ -19,9 +19,5 @@
 
 void sensorsInit();
 uint16_t readAngle_1();
+float convertRawToDegrees_1(uint16_t rawAngle);
 void sendAngle_1();
-
-// float leerAS5600_1();
-// float leerAS5600_2();
-// bool leerHall_1();
-// bool leerHall_2();

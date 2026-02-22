@@ -29,6 +29,7 @@
 #include "motorsXY.h"
 #include "sensors.h"
 #include "homingXY.h"
+#include "calc.h"
 
 // DEFINICION DE OBJETOS
 // -----------------------------------------------------------------------
@@ -42,13 +43,13 @@ bool continuousAngle_1 = false; // Flag para lectura continua del ángulo AS5600
 
 // SETUP
 // -----------------------------------------------------------------------
-#line 44 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 45 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void setup();
-#line 65 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 69 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void loop();
-#line 76 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 81 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void updateTasks();
-#line 44 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 45 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void setup()
 {
     Serial.begin(115200);
@@ -61,6 +62,9 @@ void setup()
 
     // Inicialización de comunicación UART
     UART_Init();
+
+    // Inicialización de sensores
+    sensorsInit();
 
     // Inicialización de motores y homing
     motorsXY_Init();
@@ -75,8 +79,9 @@ void loop()
     if (commandAvailable())
     {
         String cmd = receiveCommand();
-        debug(cmd); // solo imprime el comando recibido si DEBUG_UART = 1
+        debug(cmd);
         processCommand(cmd);
+        Serial.println("Comando procesado: " + cmd);
     }
     updateTasks();
 }
@@ -91,6 +96,7 @@ void updateTasks()
     if (continuousAngle_1)
     {
         sendAngle_1();
+        delay(1); // Pequeña pausa para evitar saturar la comunicación
     }
 
     // Aqui se podrían agregar otras tareas periódicas,

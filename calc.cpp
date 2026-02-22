@@ -20,15 +20,6 @@ float rawToDegrees(uint16_t rawAngle)
     return (rawAngle * 360.0) / 4096.0;
 }
 
-// Convierte coordenadas XY a ángulo relativo al eje (0-360°) ------------
-float XYtoAngle(float x, float y)
-{
-    float angle = atan2(y, x) * 180.0 / PI; // atan2 devuelve en radianes, convertimos a grados
-    if (angle < 0)
-        angle += 360.0; // normalizamos a 0-360°
-    return angle;
-}
-
 // Redondea un float a 1 decimal (ej. 123.456 -> 123.5) ------------------
 float round1Decimal(float value)
 {
@@ -46,3 +37,14 @@ void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime, f
         lastTime = now;
     }
 }
+
+/*
+// Convierte coordenadas XY a ángulo relativo al eje (0-360°) ------------
+float XYtoAngle(float x, float y)
+{
+    float angle = atan2(y, x) * 180.0 / PI; // atan2 devuelve en radianes, convertimos a grados
+    if (angle < 0)
+        angle += 360.0; // normalizamos a 0-360°
+    return angle;
+}
+*/

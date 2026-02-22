@@ -26,35 +26,41 @@ float lastSentAngle_1 = -1000.0f; // Guarda el último ángulo enviado para el m
 
 void sensorsInit()
 {
-    Wire.setSDA(AS5600_1_SDA);
-    Wire.setSCL(AS5600_1_SCL);
-    Wire.begin();
+    Wire1.setSDA(AS5600_2_SDA);
+    Wire1.setSCL(AS5600_2_SCL);
+    Wire1.begin();
     // Aquí podrías agregar más inicializaciones si es necesario
 }
 
 // FUNCION AS5600 ----------------------------------------------------------------
 uint16_t readAngle_1()
 {
-    Wire.beginTransmission(AS5600_ADDR);
-    Wire.write(0x0E);
-    Wire.endTransmission(false);
-    Wire.requestFrom(AS5600_ADDR, (uint8_t)2);
+    Wire1.beginTransmission(AS5600_ADDR);
+    Wire1.write(0x0E);
+    Wire1.endTransmission(false);
+    Wire1.requestFrom(AS5600_ADDR, (uint8_t)2);
 
-    if (Wire.available() < 2)
+    if (Wire1.available() < 2)
         return 0;
 
-    uint8_t high = Wire.read();
-    uint8_t low = Wire.read();
+    uint8_t high = Wire1.read();
+    uint8_t low = Wire1.read();
 
     return ((high & 0x0F) << 8) | low;
 }
 
+float convertRawToDegrees_1(uint16_t rawAngle)
+{
+    uint16_t rawAngle_1 = readAngle_1();
+    float degrees_1 = rawToDegrees(rawAngle);
+    degrees_1 = round1Decimal(degrees_1);
+    return degrees_1;
+}
+
 void sendAngle_1()
 {
-    uint16_t rawAngle = readAngle_1();
-    float degrees = rawToDegrees(rawAngle);
-    degrees = round1Decimal(degrees);
-    sendFilteredFloat(degrees, lastSentAngle_1, lastSendTime_1, 0.5, 1000, Serial1);
+    float degrees_1 = convertRawToDegrees_1(readAngle_1());
+    sendFilteredFloat(degrees_1, lastSentAngle_1, lastSendTime_1, 0.5, 1000, Serial1);
 }
 // Aquí podrías agregar funciones para leer otros sensores
 // uint16_t readAS5600Angle_2()
