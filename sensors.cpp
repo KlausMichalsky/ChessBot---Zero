@@ -18,9 +18,10 @@
 #include <Arduino.h>
 #include "config.h"
 #include "sensors.h"
+#include "calc.h"
 
-unsigned long lastSendTime = 0;  // Guarda el momento en milisegundos del último envío
-float lastSentAngle1 = -1000.0f; // Guarda el último ángulo enviado para el motor 1
+unsigned long lastSendTime_1 = 0; // Guarda el momento en milisegundos del último envío
+float lastSentAngle_1 = -1000.0f; // Guarda el último ángulo enviado para el motor 1
 // -1000 es solo un valor de “inicio imposible” para asegurar que el primer envío siempre se haga
 
 void sensorsInit()
@@ -53,7 +54,7 @@ void sendAngle_1()
     uint16_t rawAngle = readAngle_1();
     float degrees = rawToDegrees(rawAngle);
     degrees = round1Decimal(degrees);
-    sendFilteredFloat(degrees, lastAngle1, lastAngle1Time, 0.5, 1000, Serial1);
+    sendFilteredFloat(degrees, lastSentAngle_1, lastSendTime_1, 0.5, 1000, Serial1);
 }
 // Aquí podrías agregar funciones para leer otros sensores
 // uint16_t readAS5600Angle_2()
