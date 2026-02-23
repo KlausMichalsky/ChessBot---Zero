@@ -45,18 +45,35 @@ def main_loop():
 
         # print(msg.decode().strip())
 
-        # 🔹 2️⃣ Revisar si hay input de teclado sin bloquear
-        rlist, _, _ = select.select([sys.stdin], [], [], 0)
-        if rlist:
-            cmd = sys.stdin.readline().strip()
-            commands.send_command(cmd)
-            if cmd == "GET_ANGLE_1_START":
-                streaming = True
-                print("\n⚡ Streaming iniciado\n")
-            elif cmd == "GET_ANGLE_1_STOP":
-                streaming = False
-                print("\n⏹ Streaming detenido\n")
-        time.sleep(0.002)  # 2 ms → latencia mínima
+        keyboard_input()  # revisar input de teclado sin bloquear
+
+
+def readUart():
+    if communication.any():
+        msg = communication.readline()
+        if msg:
+            # decodificar y eliminar \r, \n, espacios
+            # print(msg)  # mostrar mensaje sin procesar
+            clean_msg = msg.decode('utf-8', 'ignore').rstrip('\r\n')
+            # clean_msg = print(msg.decode().strip())
+            print(clean_msg)
+
+
+def keyboard_input():
+    # 🔹 2️⃣ Revisar si hay input de teclado sin bloquear
+    rlist, _, _ = select.select([sys.stdin], [], [], 0)
+    if rlist:
+        cmd = sys.stdin.readline().strip()
+        commands.send_command(cmd)
+        # aqui limpiar el input para que no quede en la consola
+        print(f"Comando enviado: {cmd}")
+        if cmd == "GET_ANGLE_1_START":
+            streaming = True
+            print("\n⚡ Streaming iniciado\n")
+        elif cmd == "GET_ANGLE_1_STOP":
+            streaming = False
+            print("\n⏹ Streaming detenido\n")
+    time.sleep(0.002)  # 2 ms → latencia mínima
 
 
 if __name__ == "__main__":
