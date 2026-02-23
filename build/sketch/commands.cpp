@@ -36,6 +36,8 @@ String receiveCommand()
 {
     String cmd = Serial1.readStringUntil('\n');
     cmd.trim();
+    while (Serial1.available())
+        Serial1.read(); // limpiar cualquier residuo
     return cmd;
 }
 
@@ -104,6 +106,7 @@ void processCommand(const String &cmd)
         break;
 
     case CMD_GET_ANGLE_1:
+        Serial1.print("ANGLE_1:");
         sendAngle_1();
         break;
 
