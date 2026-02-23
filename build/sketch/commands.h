@@ -17,6 +17,7 @@
 
 bool commandAvailable();
 String receiveCommand();
+void sendResponse(const String &msg);
 void processCommand(const String &command);
 // void readAngles();
 // void sendAngle(float angle);

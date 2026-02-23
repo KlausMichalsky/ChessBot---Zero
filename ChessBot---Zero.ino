@@ -71,9 +71,10 @@ void loop()
     if (commandAvailable())
     {
         String cmd = receiveCommand();
-        debug(cmd);
-        processCommand(cmd);
-        Serial.println("Comando procesado: " + cmd);
+        if (cmd.length() > 0) // 🔥 SOLO procesar si hay comando completo
+        {
+            processCommand(cmd);
+        }
     }
     updateTasks();
 }

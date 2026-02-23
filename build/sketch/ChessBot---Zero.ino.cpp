@@ -47,7 +47,7 @@ bool continuousAngle_1 = false; // Flag para lectura continua del ángulo AS5600
 void setup();
 #line 69 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void loop();
-#line 81 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 82 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void updateTasks();
 #line 45 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void setup()
@@ -79,9 +79,10 @@ void loop()
     if (commandAvailable())
     {
         String cmd = receiveCommand();
-        debug(cmd);
-        processCommand(cmd);
-        Serial.println("Comando procesado: " + cmd);
+        if (cmd.length() > 0) // 🔥 SOLO procesar si hay comando completo
+        {
+            processCommand(cmd);
+        }
     }
     updateTasks();
 }

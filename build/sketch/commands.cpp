@@ -34,18 +34,39 @@ bool commandAvailable()
 // LECTURA DE COMANDOS ----------------------------------------------------------
 String receiveCommand()
 {
-    String cmd = Serial1.readStringUntil('\n');
-    cmd.trim();
+    static String buffer = "";
     while (Serial1.available())
-        Serial1.read(); // limpiar cualquier residuo
-    return cmd;
+    {
+        char c = Serial1.read();
+        if (c == '\n')
+        {
+            String cmd = buffer;
+            buffer = "";
+            cmd.trim();
+            return cmd;
+        }
+        else
+        {
+            buffer += c;
+        }
+    }
+    return ""; // no hay comando completo todavía
 }
+
+// String receiveCommand()
+// {
+//     String cmd = Serial1.readStringUntil('\n');
+//     cmd.trim();
+//     while (Serial1.available())
+//         Serial1.read(); // limpiar cualquier residuo
+//     return cmd;
+// }
 
 // PROCESAMIENTO DE COMANDOS -----------------------------------------------
 Command parseCommand(const String &cmd) // Función para mapear String a enum
 {
-    if (cmd == "STATUS")
-        return CMD_STATUS;
+    if (cmd == "ESTADO")
+        return CMD_ESTADO;
     if (cmd == "RESET_ERRORS")
         return CMD_RESET_ERRORS;
     if (cmd == "HOME_MOTOR1")
@@ -61,6 +82,13 @@ Command parseCommand(const String &cmd) // Función para mapear String a enum
     return CMD_UNKNOWN;
 }
 
+void sendResponse(const String &msg)
+{
+    while (Serial1.available())
+        Serial1.read(); // limpiar residuos
+    Serial1.println(msg);
+}
+
 void processCommand(const String &cmd)
 {
     String trimmedCmd = cmd;
@@ -68,46 +96,52 @@ void processCommand(const String &cmd)
 
     switch (parseCommand(trimmedCmd))
     {
-    case CMD_STATUS:
-        if ((homingMotor1.state != HOMING_INACTIVE) &&
-            (homingMotor1.state != HOMING_OK) &&
-            (homingMotor1.state != HOMING_ERROR))
-        {
-            Serial1.println("HOMING IN PROGRESS");
-        }
-        else if (homingMotor1.state == HOMING_OK)
-        {
-            Serial1.println("HOMING MOTOR1 OK");
-        }
-        else if (homingMotor1.state == HOMING_ERROR)
-        {
-            Serial1.println("HOMING MOTOR1 ERROR");
-        }
-        else
-        {
-            Serial1.println("IDLE");
-        }
+    case CMD_ESTADO:
+        sendResponse("IDLE");
+
+        // while (Serial1.available())
+        //     Serial1.read(); // limpiar cualquier residuo
+
+        // if ((homingMotor1.state != HOMING_INACTIVE) &&
+        //     (homingMotor1.state != HOMING_OK) &&
+        //     (homingMotor1.state != HOMING_ERROR))
+        // {
+        //     Serial1.println("HOMING IN PROGRESS");
+        // }
+        // else if (homingMotor1.state == HOMING_OK)
+        // {
+        //     Serial1.println("HOMING MOTOR1 OK");
+        // }
+        // else if (homingMotor1.state == HOMING_ERROR)
+        // {
+        //     Serial1.println("HOMING MOTOR1 ERROR");
+        // }
+        // else
+        // {
+        //     Serial1.println("IDLE"); // <--- println aquí
+        // }
         break;
 
     case CMD_RESET_ERRORS:
         homingMotor1.fault = false;
         homingMotor2.fault = false;
-        Serial1.println("ERRORS RESET");
+        Serial1.print("ERRORS RESET\n");
         break;
 
     case CMD_HOME_MOTOR1:
-        Serial1.println("HOMING MOTOR1 STARTED");
+        Serial1.print("HOMING MOTOR1 STARTED\n");
         homingXY_Start(motor1, motor1Config, homingMotor1, HALL_1);
         break;
 
     case CMD_HOME_MOTOR2:
-        Serial1.println("HOMING MOTOR2 STARTED");
+        Serial1.print("HOMING MOTOR2 STARTED\n");
         homingXY_Start(motor2, motor2Config, homingMotor2, HALL_2);
         break;
 
     case CMD_GET_ANGLE_1:
-        Serial1.print("ANGLE_1:");
+        Serial1.print("ANGLE_1: ");
         sendAngle_1();
+        Serial1.print("\n");
         break;
 
     case CMD_GET_ANGLE_1_START:
@@ -119,7 +153,7 @@ void processCommand(const String &cmd)
         break;
 
     default:
-        Serial1.println("UNKNOWN COMMAND");
+        Serial1.print("UNKNOWN COMMAND\n");
         break;
     }
 }
