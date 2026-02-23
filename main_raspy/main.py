@@ -12,65 +12,52 @@
 # ========================================================================
 
 import time
+import sys
+import select
 import commands
 import communication
 
-
-def wait_for_response(streaming=False):
-    while True:
-        while communication.any():  # lee todos los datos disponibles
-            msg = communication.readline()
-            if msg:
-                # b'HOMING_STARTED\n' -> "HOMING_STARTED\n" -> "HOMING_STARTED"
-                msg = msg.decode().strip()
-                print("Status:", msg)
-
-        if not streaming:
-            break  # salir si no estamos en modo streaming
-
-        time.sleep(0.1)  # pequeña pausa para evitar 100% CPU
+streaming = False
 
 
 def main_loop():
-    streaming = False  # Flag para indicar si estamos en modo streaming
-    while True:
-        if not streaming:
-            print(
-                "Comandos disponibles:\n"
-                "STATUS\n"
-                "RESET_ERRORS\n"
-                "HOME_MOTOR1\n"
-                "HOME_MOTOR2\n"
-                "GET_ANGLE_1\n"
-                "GET_ANGLE_1_START\n"
-                "GET_ANGLE_1_STOP"
-            )
+    global streaming
 
-            cmd = input("\nIngrese comando: ")
+    print(
+        "Comandos disponibles:\n"
+        "STATUS\n"
+        "RESET_ERRORS\n"
+        "HOME_MOTOR1\n"
+        "HOME_MOTOR2\n"
+        "GET_ANGLE_1\n"
+        "GET_ANGLE_1_START\n"
+        "GET_ANGLE_1_STOP\n"
+    )
+
+    while True:
+
+        # 🔹 1️⃣ Leer UART siempre
+        while communication.any():
+            msg = communication.readline()
+            if msg:
+                print(msg.decode().strip())
+
+        # 🔹 2️⃣ Revisar si hay input de teclado sin bloquear
+        rlist, _, _ = select.select([sys.stdin], [], [], 0)
+
+        if rlist:
+            cmd = sys.stdin.readline().strip()
             commands.send_command(cmd)
 
-            # Si es GET_ANGLE_1_START, activamos modo streaming
-            if cmd.strip() == "GET_ANGLE_1_START":
+            if cmd == "GET_ANGLE_1_START":
                 streaming = True
-                print(
-                    "\n⚡ Streaming de ángulos iniciado. Enviar GET_ANGLE_1_STOP para detener.\n")
-                # empieza a leer continuamente
-                wait_for_response(streaming=True)
-            else:
-                wait_for_response(streaming=False)  # lee solo respuesta normal
+                print("\n⚡ Streaming iniciado\n")
 
-        else:
-            # Estamos en streaming, seguimos leyendo continuamente
-            wait_for_response(streaming=True)
-            # Chequeamos si el usuario envió GET_ANGLE_1_STOP
-            # Para esto, el comando GET_ANGLE_1_STOP debe ser enviado desde la terminal
-            # y detectado en el bucle de comunicación. Por simplicidad, hacemos input rápido.
-            user_input = input(
-                "\nPara detener streaming escriba GET_ANGLE_1_STOP: ")
-            if user_input.strip() == "GET_ANGLE_1_STOP":
-                commands.send_command(user_input.strip())
+            elif cmd == "GET_ANGLE_1_STOP":
                 streaming = False
-                print("\n⏹ Streaming de ángulos detenido.\n")
+                print("\n⏹ Streaming detenido\n")
+
+        time.sleep(0.002)  # 2 ms → latencia mínima
 
 
 if __name__ == "__main__":

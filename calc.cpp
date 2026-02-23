@@ -32,7 +32,8 @@ void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime, f
     unsigned long now = millis();
     if (abs(value - lastValue) >= delta && now - lastTime >= interval)
     {
-        Serial1.println(value, 1); // enviar valor redondeado
+        uart.print(value, 1); // enviar valor redondeado
+        uart.print("\n");
         lastValue = value;
         lastTime = now;
     }

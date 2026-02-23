@@ -34,4 +34,6 @@ void UART_Init()
     Serial1.setTX(0);
     Serial1.setRX(1);
     Serial1.begin(115200);
+    while (Serial1.available())
+        Serial1.read(); // limpia buffer UART
 }
