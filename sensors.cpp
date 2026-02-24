@@ -49,14 +49,6 @@ uint16_t readAngle_1()
     return ((high & 0x0F) << 8) | low;
 }
 
-// float convertRawToDegrees_1(uint16_t rawAngle)
-// {
-//     uint16_t rawAngle_1 = readAngle_1();
-//     float degrees_1 = rawToDegrees(rawAngle);
-//     degrees_1 = round1Decimal(degrees_1);
-//     return degrees_1;
-// }
-
 void sendAngle_1()
 {
     uint16_t rawAngle_1 = readAngle_1();                                             // Leer sensor AS5600

@@ -64,8 +64,8 @@ String receiveCommand()
 // PROCESAMIENTO DE COMANDOS -----------------------------------------------
 Command parseCommand(const String &cmd) // Función para mapear String a enum
 {
-    if (cmd == "ESTADO")
-        return CMD_ESTADO;
+    if (cmd == "STATUS")
+        return CMD_STATUS;
     if (cmd == "RESET_ERRORS")
         return CMD_RESET_ERRORS;
     if (cmd == "HOME_MOTOR1")
@@ -95,30 +95,25 @@ void processCommand(const String &cmd)
 
     switch (parseCommand(trimmedCmd))
     {
-    case CMD_ESTADO:
-        sendResponse("IDLE");
-
-        // while (Serial1.available())
-        //     Serial1.read(); // limpiar cualquier residuo
-
-        // if ((homingMotor1.state != HOMING_INACTIVE) &&
-        //     (homingMotor1.state != HOMING_OK) &&
-        //     (homingMotor1.state != HOMING_ERROR))
-        // {
-        //     Serial1.println("HOMING IN PROGRESS");
-        // }
-        // else if (homingMotor1.state == HOMING_OK)
-        // {
-        //     Serial1.println("HOMING MOTOR1 OK");
-        // }
-        // else if (homingMotor1.state == HOMING_ERROR)
-        // {
-        //     Serial1.println("HOMING MOTOR1 ERROR");
-        // }
-        // else
-        // {
-        //     Serial1.println("IDLE"); // <--- println aquí
-        // }
+    case CMD_STATUS:
+        if ((homingMotor1.state != HOMING_INACTIVE) &&
+            (homingMotor1.state != HOMING_OK) &&
+            (homingMotor1.state != HOMING_ERROR))
+        {
+            Serial1.println("HOMING IN PROGRESS");
+        }
+        else if (homingMotor1.state == HOMING_OK)
+        {
+            Serial1.println("HOMING MOTOR1 OK");
+        }
+        else if (homingMotor1.state == HOMING_ERROR)
+        {
+            Serial1.println("HOMING MOTOR1 ERROR");
+        }
+        else
+        {
+            sendResponse("IDLE");
+        }
         break;
 
     case CMD_RESET_ERRORS:
@@ -140,7 +135,6 @@ void processCommand(const String &cmd)
     case CMD_GET_ANGLE_1:
         Serial1.print("ANGLE_1: ");
         sendAngle_1();
-        Serial1.print("\n");
         break;
 
     case CMD_GET_ANGLE_1_START:

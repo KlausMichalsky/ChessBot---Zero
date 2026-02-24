@@ -78,7 +78,7 @@ constexpr bool ENABLE_INACTIVE = HIGH; // Nivel lógico para deshabilitar motor
 // Tipo enumerado (enum) para los comandos recibidos por UART
 enum Command
 {
-    CMD_ESTADO,
+    CMD_STATUS,
     CMD_RESET_ERRORS,
     CMD_HOME_MOTOR1,
     CMD_HOME_MOTOR2,

@@ -17,6 +17,7 @@ import select
 import commands
 import communication
 
+
 streaming = False
 
 
@@ -64,16 +65,16 @@ def keyboard_input():
     rlist, _, _ = select.select([sys.stdin], [], [], 0)
     if rlist:
         cmd = sys.stdin.readline().strip()
+        print(f"Input: {cmd}")
         commands.send_command(cmd)
         # aqui limpiar el input para que no quede en la consola
-        print(f"Comando enviado: {cmd}")
         if cmd == "GET_ANGLE_1_START":
             streaming = True
             print("\n⚡ Streaming iniciado\n")
         elif cmd == "GET_ANGLE_1_STOP":
             streaming = False
             print("\n⏹ Streaming detenido\n")
-    time.sleep(0.002)  # 2 ms → latencia mínima
+    time.sleep_ms(10)  # 10 ms → latencia mínima
 
 
 if __name__ == "__main__":
