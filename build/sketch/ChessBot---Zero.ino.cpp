@@ -39,17 +39,18 @@ Bounce debouncer; // Crea un objeto para el botón (solo en la fase de pruebas)
 
 // FLAGS Y VARIABLES GLOBALES
 // -----------------------------------------------------------------------
-bool dynamicAngle = false; // Flag para lectura continua del ángulo AS5600
+bool dynamicAngle1 = false; // Flag para lectura continua del ángulo AS5600
+bool dynamicAngle2 = false; // Flag para lectura continua del ángulo AS5600
 
 // SETUP
 // -----------------------------------------------------------------------
-#line 45 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
+#line 46 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
 void setup();
-#line 69 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
+#line 70 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
 void loop();
-#line 82 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
+#line 83 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
 void updateTasks();
-#line 45 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
+#line 46 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
 void setup()
 {
     Serial.begin(115200);
@@ -94,11 +95,15 @@ void updateTasks()
     homingXY_Step(motor2, motor2Config, homingMotor2, HALL_2);
 
     // Lectura continua del ángulo 1 si el flag está activo
-    if (dynamicAngle)
+    if (dynamicAngle1)
     {
         sendDynamicAngle(Wire, lastSentAngle_1, lastSendTime_1);
-        sendDynamicAngle(Wire1, lastSentAngle_2, lastSendTime_2); // Leer y enviar ángulo del segundo sensor
-        delay(20);                                                // ~50 Hz
+        delay(20);
+    }
+    if (dynamicAngle2)
+    {
+        sendDynamicAngle(Wire1, lastSentAngle_2, lastSendTime_2);
+        delay(20);
     }
 
     // Aqui se podrían agregar otras tareas periódicas,
