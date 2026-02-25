@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/#Documentacion/#manual-motorsXY.md"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\#Documentacion\\#manual-motorsXY.md"
 ###### ♟️ ChessBot---Zero
 ---
 
