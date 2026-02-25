@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\calc.h"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/calc.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -18,11 +18,12 @@
 // Convierte valor bruto del AS5600 (0-4095) a grados (0-360°)
 float rawToDegrees(uint16_t rawAngle);
 
-// Convierte coordenadas XY a ángulo relativo al eje (en grados)
-float XYtoAngle(float x, float y);
-
 // Redondea un float a 1 decimal
 float round1Decimal(float value);
 
 // Filtra y envía un valor por UART solo si cambia suficiente y respeta intervalo
-void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime, float delta, unsigned long interval, HardwareSerial &uart);
+void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime,
+                       float delta, unsigned long interval, HardwareSerial &uart);
+
+// Convierte coordenadas XY a ángulo relativo al eje (en grados)
+float XYtoAngle(float x, float y);

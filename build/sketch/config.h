@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\config.h"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/config.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -82,9 +82,9 @@ enum Command
     CMD_RESET_ERRORS,
     CMD_HOME_MOTOR1,
     CMD_HOME_MOTOR2,
-    CMD_GET_ANGLE_1,
-    CMD_GET_ANGLE_1_START,
-    CMD_GET_ANGLE_1_STOP,
+    CMD_GET_ANGLE1,
+    CMD_GET_ANGLE1_START,
+    CMD_GET_ANGLE1_STOP,
     CMD_UNKNOWN
 };
 

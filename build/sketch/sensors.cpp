@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\sensors.cpp"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/sensors.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -23,49 +23,56 @@
 
 unsigned long lastSendTime_1 = 0; // Guarda el momento en milisegundos del último envío
 float lastSentAngle_1 = -1000.0f; // Guarda el último ángulo enviado para el motor 1
+unsigned long lastSendTime_2 = 0; // Guarda el momento en milisegundos del último envío para el motor 2
+float lastSentAngle_2 = -1000.0f; // Guarda el último á
 // -1000 es solo un valor de “inicio imposible” para asegurar que el primer envío siempre se haga
 
-void sensorsInit()
+void sensors_Init()
 {
     Wire.setSDA(AS5600_1_SDA);
     Wire.setSCL(AS5600_1_SCL);
     Wire.begin();
-    // Aquí podrías agregar más inicializaciones si es necesario
+    Wire1.setSDA(AS5600_2_SDA);
+    Wire1.setSCL(AS5600_2_SCL);
+    Wire1.begin();
 }
 
 // FUNCION AS5600 ----------------------------------------------------------------
-uint16_t readAngle_1()
+// TwoWire → le decimos “la función va a recibir un objeto de tipo TwoWire”.
+// &wire → le decimos “pasalo por referencia, no por copia”.
+uint16_t readAngle(TwoWire &wire)
 {
-    Wire.beginTransmission(AS5600_ADDR);
-    Wire.write(0x0E);
-    Wire.endTransmission(false);
-    Wire.requestFrom(AS5600_ADDR, (uint8_t)2);
+    wire.beginTransmission(AS5600_ADDR);
+    wire.write(0x0E);
+    wire.endTransmission(false);
+    wire.requestFrom(AS5600_ADDR, (uint8_t)2);
 
-    if (Wire.available() < 2)
+    if (wire.available() < 2)
         return 0;
 
-    uint8_t high = Wire.read();
-    uint8_t low = Wire.read();
+    uint8_t high = wire.read();
+    uint8_t low = wire.read();
 
     return ((high & 0x0F) << 8) | low;
 }
 
-void sendContinuosAngle_1()
+void sendStaticAngle(TwoWire &wire)
 {
-    uint16_t rawAngle_1 = readAngle_1();                                             // Leer sensor AS5600
-    float degrees_1 = rawToDegrees(rawAngle_1);                                      // Convertir a grados
-    degrees_1 = round1Decimal(degrees_1);                                            // Redondear a 1 decimal
-    sendFilteredFloat(degrees_1, lastSentAngle_1, lastSendTime_1, 0.5, 33, Serial1); // Enviar por UART
-}
-
-void sendStaticAngle_1()
-{
-    uint16_t rawAngle_1 = readAngle_1();        // Leer sensor AS5600
-    float degrees_1 = rawToDegrees(rawAngle_1); // Convertir a grados
-    degrees_1 = round1Decimal(degrees_1);       // Redondear a 1 decimal
-    Serial1.print(degrees_1, 1);                // Enviar por UART
+    uint16_t rawAngle = readAngle(wire);    // Leer sensor AS5600
+    float degrees = rawToDegrees(rawAngle); // Convertir a grados
+    degrees = round1Decimal(degrees);       // Redondear a 1 decimal
+    Serial1.print(degrees, 1);              // Enviar por UART
     Serial1.print("\n");
 }
+
+void sendDynamicAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastSendTime)
+{
+    uint16_t rawAngle = readAngle(wire);                                       // Leer sensor AS5600
+    float degrees = rawToDegrees(rawAngle);                                    // Convertir a grados
+    degrees = round1Decimal(degrees);                                          // Redondear a 1 decimal
+    sendFilteredFloat(degrees, lastSentAngle, lastSendTime, 0.5, 33, Serial1); // Enviar por UART
+}
+
 // Aquí podrías agregar funciones para leer otros sensores
 // uint16_t readAS5600Angle_2()
 // bool leerHall_2() { return digitalRead(HALL_2); }

@@ -1,1 +1,1 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\#manual-ChessBot---Zero.md"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/#manual-ChessBot---Zero.md"

@@ -22,7 +22,7 @@
 
 extern HomingState homingMotor1;
 extern HomingState homingMotor2;
-extern bool continuousAngle_1;
+extern bool dynamicAngle;
 
 // COMPROBACIÓN DE COMANDOS DISPONIBLES -----------------------------------
 bool commandAvailable()
@@ -72,12 +72,12 @@ Command parseCommand(const String &cmd) // Función para mapear String a enum
         return CMD_HOME_MOTOR1;
     if (cmd == "HOME_MOTOR2")
         return CMD_HOME_MOTOR2;
-    if (cmd == "GET_ANGLE_1")
-        return CMD_GET_ANGLE_1;
-    if (cmd == "GET_ANGLE_1_START")
-        return CMD_GET_ANGLE_1_START;
-    if (cmd == "GET_ANGLE_1_STOP")
-        return CMD_GET_ANGLE_1_STOP;
+    if (cmd == "GET_ANGLE1")
+        return CMD_GET_ANGLE1;
+    if (cmd == "GET_ANGLE1_START")
+        return CMD_GET_ANGLE1_START;
+    if (cmd == "GET_ANGLE1_STOP")
+        return CMD_GET_ANGLE1_STOP;
     return CMD_UNKNOWN;
 }
 
@@ -132,17 +132,17 @@ void processCommand(const String &cmd)
         homingXY_Start(motor2, motor2Config, homingMotor2, HALL_2);
         break;
 
-    case CMD_GET_ANGLE_1:
-        Serial1.print("ANGLE_1: ");
-        sendStaticAngle_1();
+    case CMD_GET_ANGLE1:
+        Serial1.print("ANGLE1: ");
+        sendStaticAngle(Wire); // Leer y enviar ángulo del primer sensor
         break;
 
-    case CMD_GET_ANGLE_1_START:
-        continuousAngle_1 = true; // Activar lectura continua
+    case CMD_GET_ANGLE1_START:
+        dynamicAngle = true; // Activar lectura continua
         break;
 
-    case CMD_GET_ANGLE_1_STOP:
-        continuousAngle_1 = false; // Desactivar lectura continua
+    case CMD_GET_ANGLE1_STOP:
+        dynamicAngle = false; // Desactivar lectura continua
         break;
 
     default:

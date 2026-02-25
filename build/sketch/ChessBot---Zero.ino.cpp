@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -39,17 +39,17 @@ Bounce debouncer; // Crea un objeto para el botón (solo en la fase de pruebas)
 
 // FLAGS Y VARIABLES GLOBALES
 // -----------------------------------------------------------------------
-bool continuousAngle_1 = false; // Flag para lectura continua del ángulo AS5600
+bool dynamicAngle = false; // Flag para lectura continua del ángulo AS5600
 
 // SETUP
 // -----------------------------------------------------------------------
-#line 45 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 45 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
 void setup();
-#line 69 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 69 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
 void loop();
-#line 82 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 82 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
 void updateTasks();
-#line 45 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 45 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
 void setup()
 {
     Serial.begin(115200);
@@ -64,7 +64,7 @@ void setup()
     UART_Init();
 
     // Inicialización de sensores
-    sensorsInit();
+    sensors_Init();
 
     // Inicialización de motores y homing
     motorsXY_Init();
@@ -94,10 +94,11 @@ void updateTasks()
     homingXY_Step(motor2, motor2Config, homingMotor2, HALL_2);
 
     // Lectura continua del ángulo 1 si el flag está activo
-    if (continuousAngle_1)
+    if (dynamicAngle)
     {
-        sendContinuosAngle_1();
-        delay(20); // ~50 Hz
+        sendDynamicAngle(Wire, lastSentAngle_1, lastSendTime_1);
+        sendDynamicAngle(Wire1, lastSentAngle_2, lastSendTime_2); // Leer y enviar ángulo del segundo sensor
+        delay(20);                                                // ~50 Hz
     }
 
     // Aqui se podrían agregar otras tareas periódicas,

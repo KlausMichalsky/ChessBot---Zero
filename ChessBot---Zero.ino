@@ -38,7 +38,7 @@ Bounce debouncer; // Crea un objeto para el botón (solo en la fase de pruebas)
 
 // FLAGS Y VARIABLES GLOBALES
 // -----------------------------------------------------------------------
-bool continuousAngle_1 = false; // Flag para lectura continua del ángulo AS5600
+bool dynamicAngle = false; // Flag para lectura continua del ángulo AS5600
 
 // SETUP
 // -----------------------------------------------------------------------
@@ -56,7 +56,7 @@ void setup()
     UART_Init();
 
     // Inicialización de sensores
-    sensorsInit();
+    sensors_Init();
 
     // Inicialización de motores y homing
     motorsXY_Init();
@@ -86,10 +86,11 @@ void updateTasks()
     homingXY_Step(motor2, motor2Config, homingMotor2, HALL_2);
 
     // Lectura continua del ángulo 1 si el flag está activo
-    if (continuousAngle_1)
+    if (dynamicAngle)
     {
-        sendContinuosAngle_1();
-        delay(20); // ~50 Hz
+        sendDynamicAngle(Wire, lastSentAngle_1, lastSendTime_1);
+        sendDynamicAngle(Wire1, lastSentAngle_2, lastSendTime_2); // Leer y enviar ángulo del segundo sensor
+        delay(20);                                                // ~50 Hz
     }
 
     // Aqui se podrían agregar otras tareas periódicas,
