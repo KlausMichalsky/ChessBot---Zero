@@ -96,7 +96,7 @@ void updateTasks()
     // Lectura continua del ángulo 1 si el flag está activo
     if (continuousAngle_1)
     {
-        sendAngle_1();
+        sendContinuosAngle_1();
         delay(20); // ~50 Hz
     }
 

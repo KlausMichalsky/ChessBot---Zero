@@ -20,4 +20,5 @@
 void sensorsInit();
 uint16_t readAngle_1();
 float convertRawToDegrees_1(uint16_t rawAngle);
-void sendAngle_1();
+void sendContinuosAngle_1();
+void sendStaticAngle_1();

@@ -135,8 +135,7 @@ void processCommand(const String &cmd)
 
     case CMD_GET_ANGLE_1:
         Serial1.print("ANGLE_1: ");
-        sendAngle_1();
-        Serial1.print("\n");
+        sendStaticAngle_1();
         break;
 
     case CMD_GET_ANGLE_1_START:

@@ -50,20 +50,21 @@ uint16_t readAngle_1()
     return ((high & 0x0F) << 8) | low;
 }
 
-// float convertRawToDegrees_1(uint16_t rawAngle)
-// {
-//     uint16_t rawAngle_1 = readAngle_1();
-//     float degrees_1 = rawToDegrees(rawAngle);
-//     degrees_1 = round1Decimal(degrees_1);
-//     return degrees_1;
-// }
-
-void sendAngle_1()
+void sendContinuosAngle_1()
 {
     uint16_t rawAngle_1 = readAngle_1();                                             // Leer sensor AS5600
     float degrees_1 = rawToDegrees(rawAngle_1);                                      // Convertir a grados
     degrees_1 = round1Decimal(degrees_1);                                            // Redondear a 1 decimal
     sendFilteredFloat(degrees_1, lastSentAngle_1, lastSendTime_1, 0.5, 33, Serial1); // Enviar por UART
+}
+
+void sendStaticAngle_1()
+{
+    uint16_t rawAngle_1 = readAngle_1();        // Leer sensor AS5600
+    float degrees_1 = rawToDegrees(rawAngle_1); // Convertir a grados
+    degrees_1 = round1Decimal(degrees_1);       // Redondear a 1 decimal
+    Serial1.print(degrees_1, 1);                // Enviar por UART
+    Serial1.print("\n");
 }
 // Aquí podrías agregar funciones para leer otros sensores
 // uint16_t readAS5600Angle_2()

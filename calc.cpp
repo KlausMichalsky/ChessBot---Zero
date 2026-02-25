@@ -27,7 +27,8 @@ float round1Decimal(float value)
 }
 
 // Filtra y envía un valor por UART solo si cambia suficiente y respeta intervalo
-void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime, float delta, unsigned long interval, HardwareSerial &uart)
+void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime,
+                       float delta, unsigned long interval, HardwareSerial &uart)
 {
     unsigned long now = millis();
     if (abs(value - lastValue) >= delta && now - lastTime >= interval)
