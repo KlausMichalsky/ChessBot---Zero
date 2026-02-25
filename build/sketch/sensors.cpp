@@ -27,25 +27,25 @@ float lastSentAngle_1 = -1000.0f; // Guarda el último ángulo enviado para el m
 
 void sensorsInit()
 {
-    Wire1.setSDA(AS5600_2_SDA);
-    Wire1.setSCL(AS5600_2_SCL);
-    Wire1.begin();
+    Wire.setSDA(AS5600_1_SDA);
+    Wire.setSCL(AS5600_1_SCL);
+    Wire.begin();
     // Aquí podrías agregar más inicializaciones si es necesario
 }
 
 // FUNCION AS5600 ----------------------------------------------------------------
 uint16_t readAngle_1()
 {
-    Wire1.beginTransmission(AS5600_ADDR);
-    Wire1.write(0x0E);
-    Wire1.endTransmission(false);
-    Wire1.requestFrom(AS5600_ADDR, (uint8_t)2);
+    Wire.beginTransmission(AS5600_ADDR);
+    Wire.write(0x0E);
+    Wire.endTransmission(false);
+    Wire.requestFrom(AS5600_ADDR, (uint8_t)2);
 
-    if (Wire1.available() < 2)
+    if (Wire.available() < 2)
         return 0;
 
-    uint8_t high = Wire1.read();
-    uint8_t low = Wire1.read();
+    uint8_t high = Wire.read();
+    uint8_t low = Wire.read();
 
     return ((high & 0x0F) << 8) | low;
 }

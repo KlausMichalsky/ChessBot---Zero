@@ -6992,7 +6992,7 @@ LOAD linker stubs
  .debug_str     0x0001fbf0     0x26c8 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\communication.cpp.o
  .debug_str     0x0001fbf0     0x2b39 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homingXY.cpp.o
  .debug_str     0x0001fbf0     0x2b1b C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motorsXY.cpp.o
- .debug_str     0x0001fbf0     0x2891 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\sensors.cpp.o
+ .debug_str     0x0001fbf0     0x2890 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\sensors.cpp.o
  .debug_str     0x0001fbf0     0x30d7 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
  .debug_str     0x0001fbf0     0x435b C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
  .debug_str     0x0001fbf0     0x2b02 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\Bounce2\Bounce2.cpp.o
@@ -7334,8 +7334,8 @@ Serial1                                           C:\Users\Benutzer1\Documents\#
                                                   C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\commands.cpp.o
 Serial2                                           C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(SerialUART.cpp.o)
 Wire                                              C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
-Wire1                                             C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
                                                   C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\sensors.cpp.o
+Wire1                                             C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
 _Balloc                                           C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mprec.o)
                                                   C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-dtoa.o)
                                                   C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-gethex.o)
