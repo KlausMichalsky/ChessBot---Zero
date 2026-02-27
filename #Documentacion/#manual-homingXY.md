@@ -4,10 +4,6 @@
 
 ### ⚙️ Módulo: homingXY (RP2040 Zero)
 
----
-
-#### ✏️ Descripción
-
 - Gestiona la rutina de homing de los motores del robot.  
 - Implementa la máquina de estados para buscar el centro de referencia de cada motor.  
 - Mantiene un struct `HomingState` que guarda toda la información del homing.  
