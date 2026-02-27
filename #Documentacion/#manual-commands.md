@@ -1,5 +1,3 @@
-##### ♟️ ChessBot---Zero
-
 # **📘 Manual de commands.cpp**
 
 ## **➡️ Comprobación y lectura de comandos UART**

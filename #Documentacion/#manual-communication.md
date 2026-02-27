@@ -1,5 +1,3 @@
-##### ♟️ ChessBot---Zero
-
 # **📘 Manual de communication.cpp**
 
 - Inicializar la comunicación UART.
