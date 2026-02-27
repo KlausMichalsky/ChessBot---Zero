@@ -2,10 +2,10 @@
 
 # **📘 Manual de communication.cpp**
 
-Inicializar la comunicación UART.
-Configurar los pines físicos TX/RX.
-Proveer una función de depuración opcional.
-Es el puente de comunicación entre el Zero (RP2040) y el Raspberry Pi.
+- Inicializar la comunicación UART.
+- Configurar los pines físicos TX/RX.
+- Proveer una función de depuración opcional.
+- Es el puente de comunicación entre el Zero (RP2040) y el Raspberry Pi.
 
 ## **⚙️ Función debug()**
 

@@ -1,9 +1,6 @@
 ###### ♟️ ChessBot---Zero
----
 
-## 📘 Manual de homingXY
-
----
+# **📘 Manual de homingXY**
 
 ### ⚙️ Módulo: homingXY (RP2040 Zero)
 
