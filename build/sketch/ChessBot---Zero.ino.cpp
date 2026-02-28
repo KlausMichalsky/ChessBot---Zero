@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -25,7 +25,6 @@
 #include "communication.h"
 #include "commands.h"
 #include "config.h"
-#include "filtro.h"
 #include "motorsXY.h"
 #include "sensors.h"
 #include "homingXY.h"
@@ -44,13 +43,13 @@ bool dynamicAngle2 = false; // Flag para lectura continua del ángulo AS5600
 
 // SETUP
 // -----------------------------------------------------------------------
-#line 46 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
+#line 45 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void setup();
-#line 70 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
+#line 69 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void loop();
-#line 83 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
+#line 82 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void updateTasks();
-#line 46 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
+#line 45 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void setup()
 {
     Serial.begin(115200);
@@ -80,7 +79,7 @@ void loop()
     if (commandAvailable())
     {
         String cmd = receiveCommand();
-        if (cmd.length() > 0) // 🔥 SOLO procesar si hay comando completo
+        if (cmd.length() > 0) // 🔥 SOLO procesar si hay comando completo.
         {
             processCommand(cmd);
         }

@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/commands.cpp"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\commands.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -66,21 +66,21 @@ Command parseCommand(const String &cmd)
 {
     if (cmd == "STATUS")
         return Command::STATUS;
-    if (cmd == "RESET_ERRORS")
+    if (cmd == "RESET-ERRORS")
         return Command::RESET_ERRORS;
-    if (cmd == "HOME_MOTOR1")
+    if (cmd == "HOME-MOTOR1")
         return Command::HOME_MOTOR1;
-    if (cmd == "HOME_MOTOR2")
+    if (cmd == "HOME-MOTOR2")
         return Command::HOME_MOTOR2;
-    if (cmd == "GET_ANGLE1")
+    if (cmd == "GET-ANGLE1")
         return Command::GET_ANGLE1;
-    if (cmd == "GET_ANGLE1_START")
+    if (cmd == "GET-ANGLE1-START")
         return Command::GET_ANGLE1_START;
-    if (cmd == "GET_ANGLE2")
+    if (cmd == "GET-ANGLE2")
         return Command::GET_ANGLE2;
-    if (cmd == "GET_ANGLE2_START")
+    if (cmd == "GET-ANGLE2-START")
         return Command::GET_ANGLE2_START;
-    if (cmd == "GET_ANGLE_STOP")
+    if (cmd == "GET-ANGLE-STOP")
         return Command::GET_ANGLE_STOP;
     return Command::UNKNOWN;
 }

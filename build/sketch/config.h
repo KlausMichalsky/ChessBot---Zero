@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/config.h"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\config.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -70,10 +70,10 @@
 // constexpr: indica que es una constante en tiempo de compilación
 // -> no existe como variable en tiempo de ejecución
 // -> el compilador reemplaza ENABLE_ACTIVE por LOW directamente en el código
-constexpr bool ENABLE_ACTIVE = LOW;    // Nivel lógico para habilitar motor (LOW=ON, HIGH=OFF)
-constexpr bool ENABLE_INACTIVE = HIGH; // Nivel lógico para deshabilitar motor
+constexpr bool ENABLE_ACTIVE = LOW; // Nivel lógico (LOW=ON, HIGH=OFF)
+constexpr bool ENABLE_INACTIVE = HIGH;
 
-// TIPOS Y ESTRUCTURAS
+// TIPOS DE DATOS Y ENUMERADOS
 // =======================================================================
 // Tipo enumerado (enum) para los comandos recibidos por UART
 enum class Command
@@ -109,6 +109,8 @@ enum class HomingStateXY
 
 };
 
+// ESTRUCTURAS DE CONFIGURACIÓN
+// =======================================================================
 struct HomingConfig
 {
     int microstepping;
@@ -124,13 +126,6 @@ struct HomingConfig
     int enablePin;
 };
 
-// CONFIGURACIONES DE MOTORES
-// =======================================================================
-// Incluye todos los parámetros mecánicos y de velocidad necesarios para cada motor
-// El punto . delante de cada nombre de campo dentro de la inicialización
-// de la estructura se llama “designated initializer” o inicializador designado.
-// Significa que le estás diciendo explícitamente a qué campo de la estructura
-// va cada valor, sin importar el orden.
 const HomingConfig motor1Config = {
     .microstepping = 16,
     .reduction = 9,
