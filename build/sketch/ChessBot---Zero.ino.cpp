@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -28,12 +28,14 @@
 #include "motorsXY.h"
 #include "sensors.h"
 #include "homingXY.h"
+#include "homingZ.h"
 #include "calc.h"
 
 // DEFINICION DE OBJETOS
 // -----------------------------------------------------------------------
 HomingRunTimeXY homingMotor1;
 HomingRunTimeXY homingMotor2;
+HomingRunTimeZ homingMotor3;
 Bounce debouncer; // Crea un objeto para el botón (solo en la fase de pruebas)
 
 // FLAGS Y VARIABLES GLOBALES
@@ -43,13 +45,13 @@ bool dynamicAngle2 = false; // Flag para lectura continua del ángulo AS5600
 
 // SETUP
 // -----------------------------------------------------------------------
-#line 45 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 47 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
 void setup();
-#line 69 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 72 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
 void loop();
-#line 82 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 85 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
 void updateTasks();
-#line 45 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 47 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
 void setup()
 {
     Serial.begin(115200);
@@ -70,6 +72,7 @@ void setup()
     motorsXY_Init();
     homingXY_Init(homingMotor1);
     homingXY_Init(homingMotor2);
+    homingZ_Init(homingMotor3);
 }
 
 // LOOP
@@ -92,6 +95,7 @@ void updateTasks()
     // Homing de motores (sin bloquear el loop)
     homingXY_Step(motor1, motor1Config, homingMotor1, HALL_1);
     homingXY_Step(motor2, motor2Config, homingMotor2, HALL_2);
+    homingZ_Step(motor3, motor3Config, homingMotor3, HALL_3);
 
     // Lectura continua del ángulo 1 si el flag está activo
     if (dynamicAngle1)

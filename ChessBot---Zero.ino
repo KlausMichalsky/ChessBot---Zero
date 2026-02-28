@@ -27,12 +27,14 @@
 #include "motorsXY.h"
 #include "sensors.h"
 #include "homingXY.h"
+#include "homingZ.h"
 #include "calc.h"
 
 // DEFINICION DE OBJETOS
 // -----------------------------------------------------------------------
 HomingRunTimeXY homingMotor1;
 HomingRunTimeXY homingMotor2;
+HomingRunTimeZ homingMotor3;
 Bounce debouncer; // Crea un objeto para el botón (solo en la fase de pruebas)
 
 // FLAGS Y VARIABLES GLOBALES
@@ -62,6 +64,7 @@ void setup()
     motorsXY_Init();
     homingXY_Init(homingMotor1);
     homingXY_Init(homingMotor2);
+    homingZ_Init(homingMotor3);
 }
 
 // LOOP
@@ -84,6 +87,7 @@ void updateTasks()
     // Homing de motores (sin bloquear el loop)
     homingXY_Step(motor1, motor1Config, homingMotor1, HALL_1);
     homingXY_Step(motor2, motor2Config, homingMotor2, HALL_2);
+    homingZ_Step(motor3, motor3Config, homingMotor3, HALL_3);
 
     // Lectura continua del ángulo 1 si el flag está activo
     if (dynamicAngle1)

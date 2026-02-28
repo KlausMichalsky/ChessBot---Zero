@@ -62,6 +62,7 @@ enum class Command
     RESET_ERRORS,
     HOME_MOTOR1,
     HOME_MOTOR2,
+    HOME_MOTOR3,
     GET_ANGLE1,
     GET_ANGLE1_START,
     GET_ANGLE2,
@@ -70,7 +71,7 @@ enum class Command
     UNKNOWN
 };
 
-// Estados de la rutina de homing (CW = ClockWise, CCW = CounterClockWise)
+// Estados de homing, motor1-2 (CW = ClockWise, CCW = CounterClockWise)
 enum class HomingStateXY
 {
     INACTIVE,
@@ -88,6 +89,17 @@ enum class HomingStateXY
     ERROR
 };
 
+// Estados de homing, motor3
+enum class HomingStateZ
+{
+    INACTIVE,
+    FIND_EDGE_DOWNWARD,
+    FIND_EDGE_UPWARD,
+    MOVE_TO_REFERENCE,
+    OK,
+    ERROR
+};
+
 // ESTRUCTURAS DE CONFIGURACIÓN
 // =======================================================================
 struct HomingConfig
@@ -101,10 +113,12 @@ struct HomingConfig
     float acceleration;
 
     long steps90Deg;
+    long stepsLimit;
     unsigned long timeout;
     int enablePin;
 };
 
+// Configuracion de Homing para cada motor, con parámetros mecánicos específicos
 inline const HomingConfig motor1Config = {
     .microstepping = 16,
     .reduction = 9,
@@ -127,4 +141,13 @@ inline const HomingConfig motor2Config = {
     .timeout = 15000,
     .enablePin = MOTOR2_ENABLE};
 
-// Aqui agregar más configuraciones de motores si es necesario
+inline const HomingConfig motor3Config = {
+    .microstepping = 8,
+    .reduction = 1,
+    .stepsPerRevolution = 200,
+    .fastSpeed = 4000.0,
+    .slowSpeed = 500.0,
+    .acceleration = 1000.0,
+    .stepsLimit = -100, // pasos máximos si arranca fuera del imán
+    .timeout = 12000,
+    .enablePin = MOTOR3_ENABLE};

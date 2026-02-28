@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\commands.cpp"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/commands.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -17,6 +17,7 @@
 #include "config.h" // enum class Command
 #include "commands.h"
 #include "homingXY.h"
+#include "homingZ.h"
 #include "motorsXY.h"
 #include "sensors.h"
 #include "calc.h"
@@ -24,6 +25,7 @@
 // Variables externas
 extern HomingRunTimeXY homingMotor1;
 extern HomingRunTimeXY homingMotor2;
+extern HomingRunTimeZ homingMotor3;
 extern bool dynamicAngle1;
 extern bool dynamicAngle2;
 
@@ -72,6 +74,8 @@ Command parseCommand(const String &cmd)
         return Command::HOME_MOTOR1;
     if (cmd == "HOME-MOTOR2")
         return Command::HOME_MOTOR2;
+    if (cmd == "HOME-MOTOR3")
+        return Command::HOME_MOTOR3;
     if (cmd == "GET-ANGLE1")
         return Command::GET_ANGLE1;
     if (cmd == "GET-ANGLE1-START")
@@ -142,6 +146,11 @@ void processCommand(const String &cmdStr)
     case Command::HOME_MOTOR2:
         sendResponse("HOMING MOTOR2 STARTED");
         homingXY_Start(motor2, motor2Config, homingMotor2, HALL_2);
+        break;
+
+    case Command::HOME_MOTOR3:
+        sendResponse("HOMING MOTOR3 STARTED");
+        homingZ_Start(motor3, motor3Config, homingMotor3, HALL_3);
         break;
 
     case Command::GET_ANGLE1:

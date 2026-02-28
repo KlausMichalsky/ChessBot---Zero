@@ -2,7 +2,7 @@
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
 
-//  Archivo    : motorsXY.h
+//  Archivo    : motorsXY.h ❌ cambiar nombre a motors.h
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
@@ -26,15 +26,20 @@
 // definidos en otro archivo fuente (.cpp), sin duplicar instancias.
 extern AccelStepper motor1;
 extern AccelStepper motor2;
+extern AccelStepper motor3;
 
 // API PUBLICA FUNCIONES DE CONTROL DE MOTOR
 // =======================================================================
 // Inicialización
 void motorsXY_Init();
-
+void motorZ_Init();
 // Control de energía
 void motorsXY_Enable();
 void motorsXY_Disable();
+void motorZ_Enable();
+void motorZ_Disable();
+
+/*
 // Movimiento
 void motorsXY_Move(long x, long y);
 void motorsXY_SetSpeed(long speed);
@@ -47,3 +52,4 @@ void motorsXY_Stop();
 
 // Estado terminado?
 bool motorsXY_Done();
+*/
