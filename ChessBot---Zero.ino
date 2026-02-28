@@ -72,7 +72,7 @@ void loop()
     if (commandAvailable())
     {
         String cmd = receiveCommand();
-        if (cmd.length() > 0) // 🔥 SOLO procesar si hay comando completo
+        if (cmd.length() > 0) // 🔥 SOLO procesar si hay comando completo.
         {
             processCommand(cmd);
         }
