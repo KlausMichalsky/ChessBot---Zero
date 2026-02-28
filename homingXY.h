@@ -7,7 +7,7 @@
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      - Definir la estructura de estado del homing (HomingState).
+//      - Definir la estructura de estado del homing (HomingRunTimeXY).
 //      - Proporcionar funciones públicas para inicializar y ejecutar la
 //        rutina de homing.
 //      - Permitir consultar el estado actual y detectar errores.
@@ -27,9 +27,9 @@
 // Se pasa por referencia entre homingXY_Init(), homingXY_Start(),
 // homingXY_Step() y las funciones de consulta.
 // Permite manejar múltiples motores con la misma lógica.
-struct HomingState
+struct HomingRunTimeXY
 {
-    HomingStateEnum state;   // Estado actual de la máquina de estados de homing// <-- aquí usamos el enum
+    HomingStateXY state;     // Estado actual de la máquina de estados de homing// <-- aquí usamos el enum
     unsigned long startTime; // Tiempo (millis) en el que comenzó el homing
     long firstEdge;          // Primer flanco detectado por el sensor
     long secondEdge;         // Segundo flanco detectado por el sensor
@@ -40,25 +40,25 @@ struct HomingState
 // API PÚBLICA DEL MÓDULO DE HOMING
 // =======================================================================
 // Inicializa el estado del homing
-void homingXY_Init(HomingState &st);
+void homingXY_Init(HomingRunTimeXY &st);
 
 // Inicia el proceso de homing
 void homingXY_Start(AccelStepper &motor,
                     const HomingConfig &cfg,
-                    HomingState &st,
+                    HomingRunTimeXY &st,
                     int hallPin);
 
 // Indica si el homing está actualmente en ejecución
-bool homingXY_IsActive(const HomingState &st);
+bool homingXY_IsActive(const HomingRunTimeXY &st);
 
 // Ejecuta un paso del homing (NO bloqueante)
 void homingXY_Step(AccelStepper &motor,
                    const HomingConfig &cfg,
-                   HomingState &st,
+                   HomingRunTimeXY &st,
                    int hallPin);
 
 // Indica si ocurrió un error durante el homing
-bool homingXY_HasError(const HomingState &st);
+bool homingXY_HasError(const HomingRunTimeXY &st);
 
 // Devuelve el estado actual de la máquina de estados de homing
-HomingStateEnum homingXY_GetState(const HomingState &st);
+HomingStateXY homingXY_GetState(const HomingRunTimeXY &st);

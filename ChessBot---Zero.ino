@@ -32,8 +32,8 @@
 
 // DEFINICION DE OBJETOS
 // -----------------------------------------------------------------------
-HomingState homingMotor1;
-HomingState homingMotor2;
+HomingRunTimeXY homingMotor1;
+HomingRunTimeXY homingMotor2;
 Bounce debouncer; // Crea un objeto para el botón (solo en la fase de pruebas)
 
 // FLAGS Y VARIABLES GLOBALES

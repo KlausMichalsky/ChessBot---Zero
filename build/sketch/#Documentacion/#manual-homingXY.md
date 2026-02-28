@@ -1,16 +1,9 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\#Documentacion\\#manual-homingXY.md"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/#Documentacion/#manual-homingXY.md"
 ###### ♟️ ChessBot---Zero
----
 
-## 📘 Manual de homingXY
-
----
+# **📘 Manual de homingXY**
 
 ### ⚙️ Módulo: homingXY (RP2040 Zero)
-
----
-
-#### ✏️ Descripción
 
 - Gestiona la rutina de homing de los motores del robot.  
 - Implementa la máquina de estados para buscar el centro de referencia de cada motor.  

@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\#manual-filtro.md"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/#manual-filtro.md"
 ### Filtro Exponencial
 
 El filtro exponencial se utiliza para suavizar señales ruidosas, como los ángulos de los motores, dando más peso al valor anterior y menos al valor actual.
