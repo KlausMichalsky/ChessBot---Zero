@@ -9,30 +9,35 @@
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
 //      - Implementación de funciones para la gestión de comandos
-//        recibidos por UART
+//        recibidos por UART usando enum class Command
 // =======================================================================
 
 #include <Arduino.h>
 #include <AccelStepper.h>
-#include "config.h"
+#include "config.h" // enum class Command
 #include "commands.h"
 #include "homingXY.h"
 #include "motorsXY.h"
 #include "sensors.h"
 #include "calc.h"
 
-extern HomingState homingMotor1;
-extern HomingState homingMotor2;
+// Variables externas
+extern HomingRunTimeXY homingMotor1;
+extern HomingRunTimeXY homingMotor2;
 extern bool dynamicAngle1;
 extern bool dynamicAngle2;
 
-// COMPROBACIÓN DE COMANDOS DISPONIBLES -----------------------------------
+// -----------------------------------------------------------------------
+// COMPROBACIÓN DE COMANDOS DISPONIBLES
+// -----------------------------------------------------------------------
 bool commandAvailable()
 {
     return Serial1.available();
 }
 
-// LECTURA DE COMANDOS ----------------------------------------------------------
+// -----------------------------------------------------------------------
+// LECTURA DE COMANDOS
+// -----------------------------------------------------------------------
 String receiveCommand()
 {
     static String buffer = "";
@@ -54,39 +59,35 @@ String receiveCommand()
     return ""; // no hay comando completo todavía
 }
 
-// String receiveCommand()
-// {
-//     String cmd = Serial1.readStringUntil('\n');
-//     cmd.trim();
-//     while (Serial1.available())
-//         Serial1.read(); // limpiar cualquier residuo
-//     return cmd;
-// }
-
-// PROCESAMIENTO DE COMANDOS -----------------------------------------------
-Command parseCommand(const String &cmd) // Función para mapear String a enum
+// -----------------------------------------------------------------------
+// MAPEAR STRING A enum class Command
+// -----------------------------------------------------------------------
+Command parseCommand(const String &cmd)
 {
     if (cmd == "STATUS")
-        return CMD_STATUS;
-    if (cmd == "RESET_ERRORS")
-        return CMD_RESET_ERRORS;
-    if (cmd == "HOME_MOTOR1")
-        return CMD_HOME_MOTOR1;
-    if (cmd == "HOME_MOTOR2")
-        return CMD_HOME_MOTOR2;
-    if (cmd == "GET_ANGLE1")
-        return CMD_GET_ANGLE1;
-    if (cmd == "GET_ANGLE1_START")
-        return CMD_GET_ANGLE1_START;
-    if (cmd == "GET_ANGLE2")
-        return CMD_GET_ANGLE2;
-    if (cmd == "GET_ANGLE2_START")
-        return CMD_GET_ANGLE2_START;
-    if (cmd == "GET_ANGLE_STOP")
-        return CMD_GET_ANGLE_STOP;
-    return CMD_UNKNOWN;
+        return Command::STATUS;
+    if (cmd == "RESET-ERRORS")
+        return Command::RESET_ERRORS;
+    if (cmd == "HOME-MOTOR1")
+        return Command::HOME_MOTOR1;
+    if (cmd == "HOME-MOTOR2")
+        return Command::HOME_MOTOR2;
+    if (cmd == "GET-ANGLE1")
+        return Command::GET_ANGLE1;
+    if (cmd == "GET-ANGLE1-START")
+        return Command::GET_ANGLE1_START;
+    if (cmd == "GET-ANGLE2")
+        return Command::GET_ANGLE2;
+    if (cmd == "GET-ANGLE2-START")
+        return Command::GET_ANGLE2_START;
+    if (cmd == "GET-ANGLE-STOP")
+        return Command::GET_ANGLE_STOP;
+    return Command::UNKNOWN;
 }
 
+// -----------------------------------------------------------------------
+// ENVIAR RESPUESTA POR UART
+// -----------------------------------------------------------------------
 void sendResponse(const String &msg)
 {
     while (Serial1.available())
@@ -94,25 +95,30 @@ void sendResponse(const String &msg)
     Serial1.println(msg);
 }
 
-void processCommand(const String &cmd)
+// -----------------------------------------------------------------------
+// PROCESAMIENTO DE COMANDOS
+// -----------------------------------------------------------------------
+void processCommand(const String &cmdStr)
 {
-    String trimmedCmd = cmd;
-    trimmedCmd.trim(); // elimina \r\n y espacios
+    String trimmedCmd = cmdStr;
+    trimmedCmd.trim();
 
-    switch (parseCommand(trimmedCmd))
+    Command cmd = parseCommand(trimmedCmd);
+
+    switch (cmd)
     {
-    case CMD_STATUS:
-        if ((homingMotor1.state != HOMING_INACTIVE) &&
-            (homingMotor1.state != HOMING_OK) &&
-            (homingMotor1.state != HOMING_ERROR))
+    case Command::STATUS:
+        if ((homingMotor1.state != HomingStateXY::INACTIVE) &&
+            (homingMotor1.state != HomingStateXY::OK) &&
+            (homingMotor1.state != HomingStateXY::ERROR))
         {
             Serial1.println("HOMING IN PROGRESS");
         }
-        else if (homingMotor1.state == HOMING_OK)
+        else if (homingMotor1.state == HomingStateXY::OK)
         {
             Serial1.println("HOMING MOTOR1 OK");
         }
-        else if (homingMotor1.state == HOMING_ERROR)
+        else if (homingMotor1.state == HomingStateXY::ERROR)
         {
             Serial1.println("HOMING MOTOR1 ERROR");
         }
@@ -122,47 +128,48 @@ void processCommand(const String &cmd)
         }
         break;
 
-    case CMD_RESET_ERRORS:
+    case Command::RESET_ERRORS:
         homingMotor1.fault = false;
         homingMotor2.fault = false;
-        Serial1.print("ERRORS RESET\n");
+        sendResponse("ERRORS RESET");
         break;
 
-    case CMD_HOME_MOTOR1:
-        Serial1.print("HOMING MOTOR1 STARTED\n");
+    case Command::HOME_MOTOR1:
+        sendResponse("HOMING MOTOR1 STARTED");
         homingXY_Start(motor1, motor1Config, homingMotor1, HALL_1);
         break;
 
-    case CMD_HOME_MOTOR2:
-        Serial1.print("HOMING MOTOR2 STARTED\n");
+    case Command::HOME_MOTOR2:
+        sendResponse("HOMING MOTOR2 STARTED");
         homingXY_Start(motor2, motor2Config, homingMotor2, HALL_2);
         break;
 
-    case CMD_GET_ANGLE1:
+    case Command::GET_ANGLE1:
         Serial1.print("ANGLE1: ");
         sendStaticAngle(Wire); // Leer y enviar ángulo del primer sensor
         break;
 
-    case CMD_GET_ANGLE1_START:
+    case Command::GET_ANGLE1_START:
         dynamicAngle1 = true; // Activar lectura continua
         break;
 
-    case CMD_GET_ANGLE2:
+    case Command::GET_ANGLE2:
         Serial1.print("ANGLE2: ");
         sendStaticAngle(Wire1); // Leer y enviar ángulo del segundo sensor
         break;
 
-    case CMD_GET_ANGLE2_START:
+    case Command::GET_ANGLE2_START:
         dynamicAngle2 = true; // Activar lectura continua
         break;
 
-    case CMD_GET_ANGLE_STOP:
-        dynamicAngle1 = false; // Desactivar lectura continua
-        dynamicAngle2 = false; // Desactivar lectura continua
+    case Command::GET_ANGLE_STOP:
+        dynamicAngle1 = false;
+        dynamicAngle2 = false;
         break;
 
+    case Command::UNKNOWN:
     default:
-        Serial1.print("UNKNOWN COMMAND\n");
+        sendResponse("UNKNOWN COMMAND");
         break;
     }
 }

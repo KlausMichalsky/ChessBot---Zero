@@ -26,14 +26,14 @@ def main_loop():
     print(
         "Comandos disponibles:\n"
         "STATUS\n"
-        "RESET_ERRORS\n"
-        "HOME_MOTOR1\n"
-        "HOME_MOTOR2\n"
-        "GET_ANGLE1\n"
-        "GET_ANGLE1_START\n"
-        "GET_ANGLE2\n"
-        "GET_ANGLE2_START\n"
-        "GET_ANGLE_STOP\n"
+        "RESET-ERRORS\n"
+        "HOME-MOTOR1\n"
+        "HOME-MOTOR2\n"
+        "GET-ANGLE1\n"
+        "GET-ANGLE1-START\n"
+        "GET-ANGLE2\n"
+        "GET-ANGLE2-START\n"
+        "GET-ANGLE-STOP\n"
     )
 
     while True:
@@ -70,12 +70,25 @@ def keyboard_input():
         print(f"Input: {cmd}")
         commands.send_command(cmd)
         # aqui limpiar el input para que no quede en la consola
-        if cmd == "GET_ANGLE1_START" or cmd == "GET_ANGLE2_START":
+        if cmd == "GET-ANGLE1-START" or cmd == "GET-ANGLE2-START":
             streaming = True
             print("\n⚡ Streaming iniciado\n")
-        elif cmd == "GET_ANGLE_STOP":
+        elif cmd == "GET-ANGLE-STOP":
             streaming = False
             print("\n⏹ Streaming detenido\n")
+        elif cmd == "SHOW-COMMANDS":
+            print(
+                "Comandos disponibles:\n"
+                "STATUS\n"
+                "RESET-ERRORS\n"
+                "HOME-MOTOR1\n"
+                "HOME-MOTOR2\n"
+                "GET-ANGLE1\n"
+                "GET-ANGLE1-START\n"
+                "GET-ANGLE2\n"
+                "GET-ANGLE2-START\n"
+                "GET-ANGLE-STOP\n"
+            )
     time.sleep_ms(10)  # 10 ms → latencia mínima
 
 

@@ -27,24 +27,24 @@ static const int8_t CCW = -1; // Counter-ClockWise (sentido antihorario)
 
 // INICIALIZACIÓN DEL ESTADO DE HOMING
 // =======================================================================
-void homingXY_Init(HomingState &st)
+void homingXY_Init(HomingRunTimeXY &st)
 {
-    st.state = HOMING_INACTIVE; // estado inicial: homing apagado
-    st.startTime = 0;           // timestamp de inicio de homing
-    st.firstEdge = 0;           // primer flanco detectado (entrada/salida)
-    st.secondEdge = 0;          // segundo flanco detectado
-    st.centerPosition = 0;      // centro calculado entre flancos
-    st.fault = false;           // no hay error latcheado
+    st.state = HomingStateXY::INACTIVE; // estado inicial: homing apagado
+    st.startTime = 0;                   // timestamp de inicio de homing
+    st.firstEdge = 0;                   // primer flanco detectado (entrada/salida)
+    st.secondEdge = 0;                  // segundo flanco detectado
+    st.centerPosition = 0;              // centro calculado entre flancos
+    st.fault = false;                   // no hay error latcheado
 }
 
 // INICIO DEL PROCESO DE HOMING
 // =======================================================================
 void homingXY_Start(AccelStepper &motor,
                     const HomingConfig &cfg,
-                    HomingState &st,
+                    HomingRunTimeXY &st,
                     int hallPin)
 {
-    if (st.state != HOMING_INACTIVE) // Evita reentradas: si el homing ya está activo, no hace nada
+    if (st.state != HomingStateXY::INACTIVE) // Evita reentradas: si el homing ya está activo, no hace nada
         return;
     pinMode(cfg.enablePin, OUTPUT);
     digitalWrite(cfg.enablePin, ENABLE_ACTIVE);
@@ -59,146 +59,146 @@ void homingXY_Start(AccelStepper &motor,
     motor.setCurrentPosition(0);
 
     // Inicializa variables internas del estado
-    st.startTime = millis();          // marca de tiempo de inicio
-    st.fault = false;                 // limpia error previo
-    st.state = HOMING_SEARCH_FAST_CW; // primer estado del homing
+    st.startTime = millis();                  // marca de tiempo de inicio
+    st.fault = false;                         // limpia error previo
+    st.state = HomingStateXY::SEARCH_FAST_CW; // primer estado del homing
 }
 
 // HOMING ACTIVO?
 // =======================================================================
-bool homingXY_IsActive(const HomingState &st)
+bool homingXY_IsActive(const HomingRunTimeXY &st)
 {
-    return st.state != HOMING_INACTIVE;
+    return st.state != HomingStateXY::INACTIVE;
 }
 
 // MÁQUINA DE ESTADOS DE HOMING
 // =======================================================================
 void homingXY_Step(AccelStepper &motor,
                    const HomingConfig &cfg,
-                   HomingState &st,
+                   HomingRunTimeXY &st,
                    int hallPin)
 {
     bool imanPresente = (digitalRead(hallPin) == LOW); // activo con pull-up, LOW = imán presente
 
     if (millis() - st.startTime > cfg.timeout) // si el homing dura más que cfg.timeout, marcar error
     {
-        st.state = HOMING_ERROR;
+        st.state = HomingStateXY::ERROR;
     }
 
     switch (st.state)
     {
-    case HOMING_SEARCH_FAST_CW:
+    case HomingStateXY::SEARCH_FAST_CW:
         // 🔹 Mover rápido en sentido horario hasta detectar imán
         // o hasta alcanzar límite de 90° (cfg.steps90Deg)
         motor.setSpeed(CW * cfg.fastSpeed);
         motor.runSpeed();
         if (imanPresente)
-            st.state = HOMING_FIND_FIRST_EDGE_CW; // imán detectado → buscar primer flanco
+            st.state = HomingStateXY::FIND_FIRST_EDGE_CW; // imán detectado → buscar primer flanco
         else if (motor.currentPosition() > cfg.steps90Deg)
-            st.state = HOMING_SEARCH_FAST_CCW; // no detectó imán → revertir dirección
+            st.state = HomingStateXY::SEARCH_FAST_CCW; // no detectó imán → revertir dirección
         break;
 
-    case HOMING_SEARCH_FAST_CCW:
+    case HomingStateXY::SEARCH_FAST_CCW:
         // 🔹 Mover rápido en sentido antihorario hasta detectar imán
         // o hasta límite de -90° (cfg.steps90Deg)
         motor.setSpeed(CCW * cfg.fastSpeed);
         motor.runSpeed();
         if (imanPresente)
-            st.state = HOMING_FIND_FIRST_EDGE_CCW; // imán detectado → buscar primer flanco
+            st.state = HomingStateXY::FIND_FIRST_EDGE_CCW; // imán detectado → buscar primer flanco
         else if (motor.currentPosition() < -cfg.steps90Deg)
-            st.state = HOMING_ERROR; // límite alcanzado en ambas direcciones → error
+            st.state = HomingStateXY::ERROR; // límite alcanzado en ambas direcciones → error
         break;
 
-    case HOMING_FIND_FIRST_EDGE_CW:
+    case HomingStateXY::FIND_FIRST_EDGE_CW:
         // 🔹 Aproximación lenta para detectar el primer flanco de salida del imán (caída)
         motor.setSpeed(CW * cfg.slowSpeed);
         motor.runSpeed();
         if (!imanPresente)
         {
-            st.firstEdge = motor.currentPosition(); // guardar posición del primer flanco
-            st.state = HOMING_REVERSE_EDGE_CW;      // invertir dirección para buscar segundo flanco
+            st.firstEdge = motor.currentPosition();    // guardar posición del primer flanco
+            st.state = HomingStateXY::REVERSE_EDGE_CW; // invertir dirección para buscar segundo flanco
         }
         break;
 
-    case HOMING_FIND_FIRST_EDGE_CCW:
+    case HomingStateXY::FIND_FIRST_EDGE_CCW:
         // 🔹 Aproximación lenta para detectar el primer flanco de salida del imán (caída) antihorario
         motor.setSpeed(CCW * cfg.slowSpeed);
         motor.runSpeed();
         if (!imanPresente)
         {
             st.firstEdge = motor.currentPosition();
-            st.state = HOMING_REVERSE_EDGE_CCW;
+            st.state = HomingStateXY::REVERSE_EDGE_CCW;
         }
         break;
 
-    case HOMING_REVERSE_EDGE_CW:
+    case HomingStateXY::REVERSE_EDGE_CW:
         // 🔹 Invertir dirección lentamente para encontrar el flanco de entrada del imán (subida)
         motor.setSpeed(CCW * cfg.slowSpeed);
         motor.runSpeed();
         if (imanPresente)
-            st.state = HOMING_FIND_SECOND_EDGE_CW;
+            st.state = HomingStateXY::FIND_SECOND_EDGE_CW;
         break;
 
-    case HOMING_REVERSE_EDGE_CCW:
+    case HomingStateXY::REVERSE_EDGE_CCW:
         // 🔹 Invertir dirección lentamente para encontrar el flanco de entrada del imán (subida) antihorario
         motor.setSpeed(CW * cfg.slowSpeed);
         motor.runSpeed();
         if (imanPresente)
-            st.state = HOMING_FIND_SECOND_EDGE_CCW;
+            st.state = HomingStateXY::FIND_SECOND_EDGE_CCW;
         break;
 
-    case HOMING_FIND_SECOND_EDGE_CW:
+    case HomingStateXY::FIND_SECOND_EDGE_CW:
         // 🔹 Mover lentamente para detectar el segundo flanco de salida del imán
         motor.setSpeed(CCW * cfg.slowSpeed);
         motor.runSpeed();
         if (!imanPresente)
         {
             st.secondEdge = motor.currentPosition(); // guardar segundo flanco
-            st.state = HOMING_CALC_CENTER;           // calcular el centro
+            st.state = HomingStateXY::CALC_CENTER;   // calcular el centro
         }
         break;
 
-    case HOMING_FIND_SECOND_EDGE_CCW:
+    case HomingStateXY::FIND_SECOND_EDGE_CCW:
         // 🔹 Mover lentamente para detectar el segundo flanco de salida del imán antihorario
         motor.setSpeed(CW * cfg.slowSpeed);
         motor.runSpeed();
         if (!imanPresente)
         {
             st.secondEdge = motor.currentPosition();
-            st.state = HOMING_CALC_CENTER;
+            st.state = HomingStateXY::CALC_CENTER;
         }
         break;
 
-    case HOMING_CALC_CENTER:
+    case HomingStateXY::CALC_CENTER:
         // 🔹 Calcular centro entre los dos flancos detectados y dar la orden de moverse al centro
         st.centerPosition = (st.firstEdge + st.secondEdge) / 2;
         motor.moveTo(st.centerPosition);
-        st.state = HOMING_MOVE_TO_CENTER;
+        st.state = HomingStateXY::MOVE_TO_CENTER;
         break;
 
-    case HOMING_MOVE_TO_CENTER:
+    case HomingStateXY::MOVE_TO_CENTER:
         // 🔹 Moverse hasta la posición central (referencia)
         motor.run();
         if (motor.distanceToGo() == 0)
         {
             motor.setCurrentPosition(0); // definir posición cero
             digitalWrite(cfg.enablePin, ENABLE_INACTIVE);
-            st.state = HOMING_OK;
+            st.state = HomingStateXY::OK;
         }
         break;
 
-    case HOMING_OK:
+    case HomingStateXY::OK:
         // 🔹 Homing completado correctamente
         digitalWrite(LED, HIGH); // indicar éxito
         digitalWrite(cfg.enablePin, ENABLE_INACTIVE);
-        st.state = HOMING_INACTIVE; // reiniciar máquina de estados
+        st.state = HomingStateXY::INACTIVE; // reiniciar máquina de estados
         break;
 
-    case HOMING_ERROR:
+    case HomingStateXY::ERROR:
         // 🔹 Homing falló
         digitalWrite(cfg.enablePin, ENABLE_INACTIVE);
-        st.fault = true;            // marcar error latcheado
-        st.state = HOMING_INACTIVE; // reiniciar máquina de estados
+        st.fault = true;                    // marcar error latcheado
+        st.state = HomingStateXY::INACTIVE; // reiniciar máquina de estados
         break;
 
     default:
@@ -209,14 +209,14 @@ void homingXY_Step(AccelStepper &motor,
 
 // PREGUNTAR ESTADO ACTUAL DEL HOMING
 // =======================================================================
-HomingStateEnum homingXY_GetState(const HomingState &st)
+HomingStateXY homingXY_GetState(const HomingRunTimeXY &st)
 {
     return st.state; // devuelve el estado actual
 }
 
 // COMPROBAR SI HUBO ERROR EN HOMING
 // =======================================================================
-bool homingXY_HasError(const HomingState &st)
+bool homingXY_HasError(const HomingRunTimeXY &st)
 {
     return st.fault; // devuelve true si hubo error
 }

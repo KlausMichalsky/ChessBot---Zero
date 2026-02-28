@@ -25,7 +25,6 @@
 #include "communication.h"
 #include "commands.h"
 #include "config.h"
-#include "filtro.h"
 #include "motorsXY.h"
 #include "sensors.h"
 #include "homingXY.h"
@@ -33,8 +32,8 @@
 
 // DEFINICION DE OBJETOS
 // -----------------------------------------------------------------------
-HomingState homingMotor1;
-HomingState homingMotor2;
+HomingRunTimeXY homingMotor1;
+HomingRunTimeXY homingMotor2;
 Bounce debouncer; // Crea un objeto para el botón (solo en la fase de pruebas)
 
 // FLAGS Y VARIABLES GLOBALES
@@ -44,13 +43,13 @@ bool dynamicAngle2 = false; // Flag para lectura continua del ángulo AS5600
 
 // SETUP
 // -----------------------------------------------------------------------
-#line 46 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 45 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void setup();
-#line 70 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 69 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void loop();
-#line 83 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 82 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void updateTasks();
-#line 46 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 45 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void setup()
 {
     Serial.begin(115200);
@@ -80,7 +79,7 @@ void loop()
     if (commandAvailable())
     {
         String cmd = receiveCommand();
-        if (cmd.length() > 0) // 🔥 SOLO procesar si hay comando completo
+        if (cmd.length() > 0) // 🔥 SOLO procesar si hay comando completo.
         {
             processCommand(cmd);
         }

@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\filtro.h"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\#Archiv\\filtro.h"
 #pragma once
 /* Filtro exponencial con offset incluido */
 

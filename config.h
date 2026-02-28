@@ -69,44 +69,47 @@
 // constexpr: indica que es una constante en tiempo de compilación
 // -> no existe como variable en tiempo de ejecución
 // -> el compilador reemplaza ENABLE_ACTIVE por LOW directamente en el código
-constexpr bool ENABLE_ACTIVE = LOW;    // Nivel lógico para habilitar motor (LOW=ON, HIGH=OFF)
-constexpr bool ENABLE_INACTIVE = HIGH; // Nivel lógico para deshabilitar motor
+constexpr bool ENABLE_ACTIVE = LOW; // Nivel lógico (LOW=ON, HIGH=OFF)
+constexpr bool ENABLE_INACTIVE = HIGH;
 
-// TIPOS Y ESTRUCTURAS
+// TIPOS DE DATOS Y ENUMERADOS
 // =======================================================================
 // Tipo enumerado (enum) para los comandos recibidos por UART
-enum Command
+enum class Command
 {
-    CMD_STATUS,
-    CMD_RESET_ERRORS,
-    CMD_HOME_MOTOR1,
-    CMD_HOME_MOTOR2,
-    CMD_GET_ANGLE1,
-    CMD_GET_ANGLE1_START,
-    CMD_GET_ANGLE2,
-    CMD_GET_ANGLE2_START,
-    CMD_GET_ANGLE_STOP,
-    CMD_UNKNOWN
+    STATUS,
+    RESET_ERRORS,
+    HOME_MOTOR1,
+    HOME_MOTOR2,
+    GET_ANGLE1,
+    GET_ANGLE1_START,
+    GET_ANGLE2,
+    GET_ANGLE2_START,
+    GET_ANGLE_STOP,
+    UNKNOWN
 };
 
 // Tipo enumerado (enum) para los estados de la rutina de homing (CW = ClockWise, CCW = CounterClockWise)
-enum HomingStateEnum
+enum class HomingStateXY
 {
-    HOMING_INACTIVE,             // 🔹 Homing apagado / no activo
-    HOMING_FIND_FIRST_EDGE_CW,   // 🔹 Buscar el primer flanco del imán en sentido horario
-    HOMING_FIND_SECOND_EDGE_CW,  // 🔹 Buscar el segundo flanco del imán en sentido horario
-    HOMING_FIND_FIRST_EDGE_CCW,  // 🔹 Buscar el primer flanco del imán en sentido antihorario
-    HOMING_FIND_SECOND_EDGE_CCW, // 🔹 Buscar el segundo flanco del imán en sentido antihorario
-    HOMING_SEARCH_FAST_CW,       // 🔹 Movimiento rápido inicial en sentido horario hasta detectar el imán
-    HOMING_SEARCH_FAST_CCW,      // 🔹 Movimiento rápido inicial en sentido antihorario hasta detectar el imán
-    HOMING_REVERSE_EDGE_CW,      // 🔹 Invertir dirección tras primer flanco para encontrar el segundo (horario)
-    HOMING_REVERSE_EDGE_CCW,     // 🔹 Invertir dirección tras primer flanco para encontrar el segundo (antihorario)
-    HOMING_CALC_CENTER,          // 🔹 Calcular el centro entre los flancos detectados
-    HOMING_MOVE_TO_CENTER,       // 🔹 Mover motor hacia el centro calculado (referencia)
-    HOMING_OK,                   // 🔹 Homing completado correctamente
-    HOMING_ERROR                 // 🔹 Ocurrió un error en homing (timeout, sensor no detectado, límite alcanzado)
+    INACTIVE,             // 🔹 Homing apagado / no activo
+    FIND_FIRST_EDGE_CW,   // 🔹 Buscar el primer flanco del imán en sentido horario
+    FIND_SECOND_EDGE_CW,  // 🔹 Buscar el segundo flanco del imán en sentido horario
+    FIND_FIRST_EDGE_CCW,  // 🔹 Buscar el primer flanco del imán en sentido antihorario
+    FIND_SECOND_EDGE_CCW, // 🔹 Buscar el segundo flanco del imán en sentido antihorario
+    SEARCH_FAST_CW,       // 🔹 Movimiento rápido inicial en sentido horario hasta detectar el imán
+    SEARCH_FAST_CCW,      // 🔹 Movimiento rápido inicial en sentido antihorario hasta detectar el imán
+    REVERSE_EDGE_CW,      // 🔹 Invertir dirección tras primer flanco para encontrar el segundo (horario)
+    REVERSE_EDGE_CCW,     // 🔹 Invertir dirección tras primer flanco para encontrar el segundo (antihorario)
+    CALC_CENTER,          // 🔹 Calcular el centro entre los flancos detectados
+    MOVE_TO_CENTER,       // 🔹 Mover motor hacia el centro calculado (referencia)
+    OK,                   // 🔹 Homing completado correctamente
+    ERROR                 // 🔹 Ocurrió un error en homing (timeout, sensor no detectado, límite alcanzado)
+
 };
 
+// ESTRUCTURAS DE CONFIGURACIÓN
+// =======================================================================
 struct HomingConfig
 {
     int microstepping;
@@ -122,13 +125,6 @@ struct HomingConfig
     int enablePin;
 };
 
-// CONFIGURACIONES DE MOTORES
-// =======================================================================
-// Incluye todos los parámetros mecánicos y de velocidad necesarios para cada motor
-// El punto . delante de cada nombre de campo dentro de la inicialización
-// de la estructura se llama “designated initializer” o inicializador designado.
-// Significa que le estás diciendo explícitamente a qué campo de la estructura
-// va cada valor, sin importar el orden.
 const HomingConfig motor1Config = {
     .microstepping = 16,
     .reduction = 9,
