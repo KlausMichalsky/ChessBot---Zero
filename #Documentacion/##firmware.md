@@ -1,12 +1,55 @@
-# **📘Manual de reglas.md**
+# **📘Manual de firmware**
 
+Este documento define las reglas fundamentales de diseño del
+firmware.
 -   Definir correctamente los tipos de datos del sistema.
 -   Separar estados, datos y comportamiento.
 -   Mantener tipado fuerte y arquitectura limpia.
 -   Evitar colisiones y errores por tipos inseguros.
 
-Este archivo define las reglas fundamentales de diseño en C++ para el
-firmware del Zero (RP2040).
+## **➡️ Contenido de Archivos**
+
+### **<img src="img/c++.png" width="20" style="position: relative; top: 4px;"> ChessBot---Zero.ino**
+
+...
+
+
+### **<img src="img/c++.png" width="20" style="position: relative; top: 4px;"> calc.h / calc.cpp**
+
+...
+
+### **<img src="img/c++.png" width="20" style="position: relative; top: 4px;"> commands.h / commands.cpp**
+
+...
+
+### **<img src="img/c++.png" width="20" style="position: relative; top: 4px;"> communication.h / communication.cpp**
+
+...
+
+### **<img src="img/c++.png" width="20" style="position: relative; top: 4px;"> config.h / config.cpp**
+
+...
+
+### **<img src="img/c++.png" width="20" style="position: relative; top: 4px;"> homingXY.h / homingXY.cpp**
+
+...
+
+### **<img src="img/c++.png" width="20" style="position: relative; top: 4px;"> motorsXY.h / motorsXY.cpp**
+
+...
+
+### **<img src="img/c++.png" width="20" style="position: relative; top: 4px;"> sensors.h / sensors.cpp**
+
+...
+
+
+
+
+
+
+  
+
+
 
 ## **➡️ enum class (Estados y Comandos)**
 
@@ -100,6 +143,11 @@ switch(cmd)
 ## **➡️ struct (Contenedor de datos)**
 
 Se utiliza cuando necesitamos agrupar variables relacionadas.
+Incluye todos los parámetros mecánicos y de velocidad necesarios para cada motor.
+El punto . delante de cada nombre de campo dentro de la inicialización
+de la estructura se llama “designated initializer” o inicializador designado.
+Significa que le estás diciendo explícitamente a qué campo de la estructura
+va cada valor, sin importar el orden.
 
 Ideal para:
 
@@ -230,3 +278,6 @@ Con estas reglas el firmware Zero queda:
 -   Escalable.
 -   Profesional.
 -   Fácil de mantener.
+
+
+
