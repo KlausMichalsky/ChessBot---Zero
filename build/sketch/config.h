@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/config.h"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\config.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -64,6 +64,7 @@ enum class Command
     HOME_MOTOR1,
     HOME_MOTOR2,
     HOME_MOTOR3,
+    HOME_ALL,
     GET_ANGLE1,
     GET_ANGLE1_START,
     GET_ANGLE2,
@@ -147,7 +148,7 @@ inline const HomingConfig motor3Config = {
     .reduction = 1,
     .stepsPerRevolution = 200,
     .fastSpeed = 4000.0,
-    .slowSpeed = 500.0,
+    .slowSpeed = 2500.0,
     .acceleration = 1000.0,
     .stepsLimit = -100, // pasos máximos si arranca fuera del imán
     .timeout = 12000,
