@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\sensors.cpp"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/sensors.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -29,6 +29,10 @@ float lastSentAngle_2 = -1000.0f; // Guarda el último á
 
 void sensors_Init()
 {
+    pinMode(HALL_1, INPUT_PULLUP);
+    pinMode(HALL_2, INPUT_PULLUP);
+    pinMode(HALL_3, INPUT_PULLUP);
+
     Wire.setSDA(AS5600_1_SDA);
     Wire.setSCL(AS5600_1_SCL);
     Wire.begin();

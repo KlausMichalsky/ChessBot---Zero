@@ -17,6 +17,7 @@
 #include <AccelStepper.h>
 #include "config.h"
 #include "homingXY.h"
+#include "sensors.h"
 
 // CONSTANTES INTERNAS DEL MÓDULO
 // =======================================================================

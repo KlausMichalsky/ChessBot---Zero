@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\homingXY.cpp"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/homingXY.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -18,6 +18,7 @@
 #include <AccelStepper.h>
 #include "config.h"
 #include "homingXY.h"
+#include "sensors.h"
 
 // CONSTANTES INTERNAS DEL MÓDULO
 // =======================================================================
