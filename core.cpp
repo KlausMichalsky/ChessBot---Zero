@@ -63,25 +63,6 @@ void updateHoming()
     if (homingMotor3.state == HomingStateZ::OK || homingMotor3.state == HomingStateZ::ERROR)
         homingMotor3.state = HomingStateZ::INACTIVE;
 }
-// void updateHoming()
-// {
-//     // Homing de motores sin bloquear el loop
-//     if (homingXY_IsActive(homingMotor1))
-//         homingXY_Step(motor1, motor1Config, homingMotor1, HALL_1);
-
-//     if (homingXY_IsActive(homingMotor2))
-//         homingXY_Step(motor2, motor2Config, homingMotor2, HALL_2);
-
-//     if (homingZ_IsActive(homingMotor3))
-//         homingZ_Step(motor3, motor3Config, homingMotor3, HALL_3);
-
-//     // Lectura continua de ángulos
-//     if (dynamicAngle1)
-//         sendDynamicAngle(Wire, lastSentAngle_1, lastSendTime_1);
-
-//     if (dynamicAngle2)
-//         sendDynamicAngle(Wire1, lastSentAngle_2, lastSendTime_2);
-// }
 
 // -----------------------------------------------------------------------
 void handleHomeAll()
