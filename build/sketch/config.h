@@ -2,25 +2,17 @@
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
-
-//  Archivo    : communication.cpp
+//  Archivo    : config.h
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      - Definir pines de motores, sensores y LEDs.
+//      - Definición de pines fisicos, constantes y tipos de datos.
+//      - Definición de parametros globales.
+//      -
 //      - Declarar enums de estados.
 //      - Definir estructuras de configuración de motores.
 //      - Centralizar parámetros mecánicos dependientes del hardware.
-/*
-| Qué poner en `config.h`                                 |
-| ------------------------------------------------------- |
-| Constantes, direcciones, límites, parámetros ajustables |
-
-| Qué poner en `.cpp` / `.ino`                           |
-| ------------------------------------------------------ |
-| Variables de estado, contadores, temporizadores, flags |
-*/
 // =======================================================================
 
 #pragma once
@@ -47,41 +39,32 @@
 #define MOTOR3_ENABLE 9
 #define MOTOR3_DIR 10
 #define MOTOR3_STEP 11
-
 // Pines de LEDs y electroimán
 #define LED 2
 #define IMAN 28
 
 // PARAMETROS DE CONFIGURACIÓN
 // =======================================================================
-// Dirección I2C del sensor AS5600
-// (direccion común pero perifericos I2C distintos)
-// -> Wire para AS5600_1, Wire1 para AS5600_2)
 #define AS5600_ADDR 0x36
-
-// Config. de transmisión de angulo por UART
 #define SEND_INTERVAL 33 // ms -> ~30Hz
-#define DELTA_DEG 0.5f   // Enviar solo si el ángulo cambia más de este valor
+#define DELTA_DEG 0.5f   // Enviar si el ángulo cambia más de DELTA_DEG
 
 // NIVELES LÓGICOS DE ENABLE
 // =======================================================================
-// Define los niveles lógicos para habilitar y deshabilitar los motores
-// Si se invierte alguna señal en setup(), cambiar aquí también
-// constexpr: indica que es una constante en tiempo de compilación
-// -> no existe como variable en tiempo de ejecución
-// -> el compilador reemplaza ENABLE_ACTIVE por LOW directamente en el código
 constexpr bool ENABLE_ACTIVE = LOW; // Nivel lógico (LOW=ON, HIGH=OFF)
 constexpr bool ENABLE_INACTIVE = HIGH;
 
-// TIPOS DE DATOS Y ENUMERADOS
+// TIPOS DE DATOS
 // =======================================================================
-// Tipo enumerado (enum) para los comandos recibidos por UART
+// Comandos recibidos por UART
 enum class Command
 {
     STATUS,
     RESET_ERRORS,
     HOME_MOTOR1,
     HOME_MOTOR2,
+    HOME_MOTOR3,
+    HOME_ALL,
     GET_ANGLE1,
     GET_ANGLE1_START,
     GET_ANGLE2,
@@ -90,23 +73,33 @@ enum class Command
     UNKNOWN
 };
 
-// Tipo enumerado (enum) para los estados de la rutina de homing (CW = ClockWise, CCW = CounterClockWise)
+// Estados de homing, motor1-2 (CW = ClockWise, CCW = CounterClockWise)
 enum class HomingStateXY
 {
-    INACTIVE,             // 🔹 Homing apagado / no activo
-    FIND_FIRST_EDGE_CW,   // 🔹 Buscar el primer flanco del imán en sentido horario
-    FIND_SECOND_EDGE_CW,  // 🔹 Buscar el segundo flanco del imán en sentido horario
-    FIND_FIRST_EDGE_CCW,  // 🔹 Buscar el primer flanco del imán en sentido antihorario
-    FIND_SECOND_EDGE_CCW, // 🔹 Buscar el segundo flanco del imán en sentido antihorario
-    SEARCH_FAST_CW,       // 🔹 Movimiento rápido inicial en sentido horario hasta detectar el imán
-    SEARCH_FAST_CCW,      // 🔹 Movimiento rápido inicial en sentido antihorario hasta detectar el imán
-    REVERSE_EDGE_CW,      // 🔹 Invertir dirección tras primer flanco para encontrar el segundo (horario)
-    REVERSE_EDGE_CCW,     // 🔹 Invertir dirección tras primer flanco para encontrar el segundo (antihorario)
-    CALC_CENTER,          // 🔹 Calcular el centro entre los flancos detectados
-    MOVE_TO_CENTER,       // 🔹 Mover motor hacia el centro calculado (referencia)
-    OK,                   // 🔹 Homing completado correctamente
-    ERROR                 // 🔹 Ocurrió un error en homing (timeout, sensor no detectado, límite alcanzado)
+    INACTIVE,
+    FIND_FIRST_EDGE_CW,
+    FIND_SECOND_EDGE_CW,
+    FIND_FIRST_EDGE_CCW,
+    FIND_SECOND_EDGE_CCW,
+    SEARCH_FAST_CW,
+    SEARCH_FAST_CCW,
+    REVERSE_EDGE_CW,
+    REVERSE_EDGE_CCW,
+    CALC_CENTER,
+    MOVE_TO_CENTER,
+    OK,
+    ERROR
+};
 
+// Estados de homing, motor3
+enum class HomingStateZ
+{
+    INACTIVE,
+    FIND_EDGE_DOWNWARD,
+    FIND_EDGE_UPWARD,
+    MOVE_TO_REFERENCE,
+    OK,
+    ERROR
 };
 
 // ESTRUCTURAS DE CONFIGURACIÓN
@@ -122,11 +115,13 @@ struct HomingConfig
     float acceleration;
 
     long steps90Deg;
+    long stepsLimit;
     unsigned long timeout;
     int enablePin;
 };
 
-const HomingConfig motor1Config = {
+// Configuracion de Homing para cada motor, con parámetros mecánicos específicos
+inline const HomingConfig motor1Config = {
     .microstepping = 16,
     .reduction = 9,
     .stepsPerRevolution = 200,
@@ -137,7 +132,7 @@ const HomingConfig motor1Config = {
     .timeout = 15000,
     .enablePin = MOTOR1_ENABLE};
 
-const HomingConfig motor2Config = {
+inline const HomingConfig motor2Config = {
     .microstepping = 16,
     .reduction = 6,
     .stepsPerRevolution = 200,
@@ -148,4 +143,13 @@ const HomingConfig motor2Config = {
     .timeout = 15000,
     .enablePin = MOTOR2_ENABLE};
 
-// Aqui agregar más configuraciones de motores si es necesario
+inline const HomingConfig motor3Config = {
+    .microstepping = 8,
+    .reduction = 1,
+    .stepsPerRevolution = 200,
+    .fastSpeed = 4000.0,
+    .slowSpeed = 2500.0,
+    .acceleration = 1000.0,
+    .stepsLimit = -100, // pasos máximos si arranca fuera del imán
+    .timeout = 12000,
+    .enablePin = MOTOR3_ENABLE};

@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../ChessBot---Zero_Documentation"
+		},
+		{
+			"path": "../STEPPER--Homing_linear"
+		}
+	],
+	"settings": {
+		"python.languageServer": "Pylance"
+	}
+}

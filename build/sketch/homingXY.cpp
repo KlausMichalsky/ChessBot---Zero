@@ -8,7 +8,7 @@
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN:
-//      - Ejecutar la máquina de estados de homing.
+//      - Ejecutar la máquina de estados de homing del motor1-2 (XY).
 //      - Detectar flancos del imán mediante sensor Hall.
 //      - Calcular el centro del imán y posicionar motores en referencia.
 //      - Gestionar errores y timeouts de homing.
@@ -71,6 +71,20 @@ bool homingXY_IsActive(const HomingRunTimeXY &st)
     return st.state != HomingStateXY::INACTIVE;
 }
 
+// PREGUNTAR ESTADO ACTUAL DEL HOMING
+// =======================================================================
+HomingStateXY homingXY_GetState(const HomingRunTimeXY &st)
+{
+    return st.state; // devuelve el estado actual
+}
+
+// COMPROBAR SI HUBO ERROR EN HOMING
+// =======================================================================
+bool homingXY_HasError(const HomingRunTimeXY &st)
+{
+    return st.fault; // devuelve true si hubo error
+}
+
 // MÁQUINA DE ESTADOS DE HOMING
 // =======================================================================
 void homingXY_Step(AccelStepper &motor,
@@ -78,9 +92,11 @@ void homingXY_Step(AccelStepper &motor,
                    HomingRunTimeXY &st,
                    int hallPin)
 {
-    bool imanPresente = (digitalRead(hallPin) == LOW); // activo con pull-up, LOW = imán presente
+    // Invierte la logica del HAll (imán presente = LOW)
+    bool imanPresente = (digitalRead(hallPin) == LOW); // activo con pull-up
 
-    if (millis() - st.startTime > cfg.timeout) // si el homing dura más que cfg.timeout, marcar error
+    // ⏱️ Timeout de homing (si tiempo de homing excede el límite)
+    if (millis() - st.startTime > cfg.timeout)
     {
         st.state = HomingStateXY::ERROR;
     }
@@ -205,18 +221,4 @@ void homingXY_Step(AccelStepper &motor,
         // 🔹 Si el estado es desconocido -> no hacer nada
         break;
     }
-}
-
-// PREGUNTAR ESTADO ACTUAL DEL HOMING
-// =======================================================================
-HomingStateXY homingXY_GetState(const HomingRunTimeXY &st)
-{
-    return st.state; // devuelve el estado actual
-}
-
-// COMPROBAR SI HUBO ERROR EN HOMING
-// =======================================================================
-bool homingXY_HasError(const HomingRunTimeXY &st)
-{
-    return st.fault; // devuelve true si hubo error
 }

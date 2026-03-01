@@ -10,7 +10,7 @@
   "compile_profile": "",
   "monitorPortSettings": {
     "settings": {
-      "port": "/dev/tty.Bluetooth-Incoming-Port",
+      "port": "/dev/tty.A285M-Q672",
       "baudRate": 115200,
       "lineEnding": "\r\n",
       "dataBits": 8,
