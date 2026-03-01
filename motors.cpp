@@ -2,7 +2,7 @@
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
 
-//  Archivo    : motorsXY.cpp ❌ cambiar nombre a motors.cpp
+//  Archivo    : motors.cpp
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
@@ -16,7 +16,7 @@
 
 #include <Arduino.h>
 #include <AccelStepper.h>
-#include "motorsXY.h"
+#include "motors.h"
 #include "config.h"
 
 // INSTANCIAS DE MOTORES
@@ -32,11 +32,8 @@ static bool motorZ_Enabled = false;
 
 // API PÚBLICA DE MOTORES
 // =======================================================================
-void motorsXY_Init()
+void motors_Init()
 {
-    pinMode(HALL_1, INPUT_PULLUP); // ❌ poner en sensors_Init()
-    pinMode(HALL_2, INPUT_PULLUP); // ❌ poner en sensors_Init()
-
     // ‼️ Adaptar también en config.h las señales ENABLE_ACTIVE/INACTIVE
     motor1.setPinsInverted(true, false, false); // (DIR, STEP, ENABLE) true = invertir señal. Aqui: LOW=ON HIGH=OFF
     motor2.setPinsInverted(true, false, false); // (DIR, STEP, ENABLE) true = invertir señal. Aqui: LOW=ON HIGH=OFF
@@ -73,7 +70,6 @@ void motorsXY_Disable()
 
 void motorZ_Init()
 {
-    pinMode(HALL_3, INPUT_PULLUP); // ❌ poner en sensors_Init()
     motor3.setPinsInverted(true, false, false);
     pinMode(motor3Config.enablePin, OUTPUT);
     motorsXY_Disable(); // ‼️ Esto evita movimientos inesperados al encender el sistema

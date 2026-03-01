@@ -1,5 +1,5 @@
-C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\motorsXY.cpp.o: \
- C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\motorsXY.cpp \
+C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\motors.cpp.o: \
+ C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\motors.cpp \
  C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/Arduino.h \
  C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/stdlib_noniso.h \
  C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/RP2040Version.h \
@@ -133,5 +133,5 @@ C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sket
  C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/Bootsel.h \
  C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2_common/pico_stdio/include/pico/stdio.h \
  C:\Users\Benutzer1\Documents\Arduino\libraries\AccelStepper\src/AccelStepper.h \
- C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\motorsXY.h \
+ C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\motors.h \
  C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\config.h

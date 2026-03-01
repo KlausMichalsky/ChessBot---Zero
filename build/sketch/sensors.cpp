@@ -21,6 +21,7 @@
 #include "sensors.h"
 #include "calc.h"
 
+// ❌ Mover estas variables a core❓
 unsigned long lastSendTime_1 = 0; // Guarda el momento en milisegundos del último envío
 float lastSentAngle_1 = -1000.0f; // Guarda el último ángulo enviado para el motor 1
 unsigned long lastSendTime_2 = 0; // Guarda el momento en milisegundos del último envío para el motor 2
@@ -29,6 +30,10 @@ float lastSentAngle_2 = -1000.0f; // Guarda el último á
 
 void sensors_Init()
 {
+    pinMode(HALL_1, INPUT_PULLUP);
+    pinMode(HALL_2, INPUT_PULLUP);
+    pinMode(HALL_3, INPUT_PULLUP);
+
     Wire.setSDA(AS5600_1_SDA);
     Wire.setSCL(AS5600_1_SCL);
     Wire.begin();

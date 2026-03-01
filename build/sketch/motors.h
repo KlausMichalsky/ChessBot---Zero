@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\motorsXY.h"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\motors.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -32,8 +32,7 @@ extern AccelStepper motor3;
 // API PUBLICA FUNCIONES DE CONTROL DE MOTOR
 // =======================================================================
 // Inicialización
-void motorsXY_Init();
-void motorZ_Init();
+void motors_Init();
 // Control de energía
 void motorsXY_Enable();
 void motorsXY_Disable();

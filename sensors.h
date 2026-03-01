@@ -30,7 +30,6 @@
 // Esto evita errores de “variable ya definida” (multiple definition).
 extern float lastSentAngle_1;
 extern unsigned long lastSendTime_1;
-
 extern float lastSentAngle_2;
 extern unsigned long lastSendTime_2;
 
