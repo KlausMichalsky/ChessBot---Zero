@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/commands.cpp"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\commands.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -18,7 +18,7 @@
 #include "commands.h"
 #include "homingXY.h"
 #include "homingZ.h"
-#include "motorsXY.h"
+#include "motors.h"
 #include "sensors.h"
 #include "calc.h"
 

@@ -1,6 +1,5 @@
-C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\core\SerialUART.cpp.o: \
- C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040\SerialUART.cpp \
- C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040\SerialUART.h \
+C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\core\RP2040USB.cpp.o: \
+ C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040\RP2040USB.cpp \
  C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/Arduino.h \
  C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/stdlib_noniso.h \
  C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/RP2040Version.h \
@@ -75,6 +74,17 @@ C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\core
  C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/SerialUSB.h \
  C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/api/HardwareSerial.h \
  C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/ArduinoCore-API/api/HardwareSerial.h \
+ C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/SerialUART.h \
+ C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/CoreMutex.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/common/pico_sync/include/pico/mutex.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/common/pico_sync/include/pico/lock_core.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/common/pico_time/include/pico/time.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2_common/hardware_timer/include/hardware/timer.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/timer.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/timer.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2_common/hardware_sync/include/hardware/sync.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2_common/hardware_sync_spin_lock/include/hardware/sync/spin_lock.h \
+ C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/_freertos.h \
  C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/SerialSemi.h \
  C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/Semihosting.h \
  C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/RP2040Support.h \
@@ -98,14 +108,6 @@ C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\core
  C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2_common/pico_multicore/include/pico/multicore.h \
  C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/common/pico_sync/include/pico/sync.h \
  C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/common/pico_sync/include/pico/sem.h \
- C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/common/pico_sync/include/pico/lock_core.h \
- C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/common/pico_time/include/pico/time.h \
- C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2_common/hardware_timer/include/hardware/timer.h \
- C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/timer.h \
- C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/timer.h \
- C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2_common/hardware_sync/include/hardware/sync.h \
- C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2_common/hardware_sync_spin_lock/include/hardware/sync/spin_lock.h \
- C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/common/pico_sync/include/pico/mutex.h \
  C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/common/pico_sync/include/pico/critical_section.h \
  C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2_common/hardware_dma/include/hardware/dma.h \
  C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/dma.h \
@@ -119,8 +121,6 @@ C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\core
  C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2_common/pico_bootrom/include/pico/bootrom/lock.h \
  C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2_common/hardware_boot_lock/include/hardware/boot_lock.h \
  C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2_common/pico_flash/include/pico/flash.h \
- C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/CoreMutex.h \
- C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/_freertos.h \
  C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/PIOProgram.h \
  C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/ccount.pio.h \
  C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/SerialPIO.h \
@@ -131,4 +131,34 @@ C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\core
  C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/resets.h \
  C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/resets.h \
  C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040/Bootsel.h \
- C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2_common/pico_stdio/include/pico/stdio.h
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2_common/pico_stdio/include/pico/stdio.h \
+ C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040\RP2040USB.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/tusb.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/common/tusb_common.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/tusb_option.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/common/tusb_compiler.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/include/rp2040/tusb_config.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/common/tusb_mcu.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/common/tusb_compiler.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/common/tusb_verify.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/common/tusb_types.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/common/tusb_debug.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/osal/osal.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/common/tusb_common.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/osal/osal_pico.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/common/tusb_fifo.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/osal/osal.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/common/tusb_fifo.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/device/usbd.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/class/hid/hid_device.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/class/hid/hid.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/class/cdc/cdc.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/class/msc/msc_device.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/class/msc/msc.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/class/hid/hid_device.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/class/audio/audio.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/common/pico_usb_reset_interface_headers/include/pico/usb_reset_interface.h \
+ C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040\sdkoverride/tusb_gamepad16.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/device/usbd_pvt.h \
+ C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/lib/tinyusb/src/common/tusb_private.h

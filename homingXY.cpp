@@ -46,11 +46,9 @@ void homingXY_Start(AccelStepper &motor,
 {
     if (st.state != HomingStateXY::INACTIVE) // Evita reentradas: si el homing ya está activo, no hace nada
         return;
+
     pinMode(cfg.enablePin, OUTPUT);
     digitalWrite(cfg.enablePin, ENABLE_ACTIVE);
-
-    pinMode(hallPin, INPUT_PULLUP);
-
     digitalWrite(LED, LOW);
 
     // Configuración dinámica del motor para homing y referencia temporal al iniciar homing

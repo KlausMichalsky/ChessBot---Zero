@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/homingXY.cpp"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\homingXY.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -50,7 +50,7 @@ void homingXY_Start(AccelStepper &motor,
     pinMode(cfg.enablePin, OUTPUT);
     digitalWrite(cfg.enablePin, ENABLE_ACTIVE);
 
-    pinMode(hallPin, INPUT_PULLUP);
+    // pinMode(hallPin, INPUT_PULLUP);
 
     digitalWrite(LED, LOW);
 
