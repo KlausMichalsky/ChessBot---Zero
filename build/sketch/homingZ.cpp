@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/homingZ.cpp"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\homingZ.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -142,13 +142,13 @@ void homingZ_Step(AccelStepper &motor,
     case HomingStateZ::OK:
         digitalWrite(LED, HIGH);
         st.state = HomingStateZ::INACTIVE;
-        digitalWrite(cfg.enablePin, ENABLE_INACTIVE);
+        // digitalWrite(cfg.enablePin, ENABLE_INACTIVE); ❌ quitar esta linea
         break;
 
     case HomingStateZ::ERROR:
         digitalWrite(cfg.enablePin, ENABLE_INACTIVE);
-        st.fault = true;                   // marca la falla
-        st.state = HomingStateZ::INACTIVE; // vuelve a IDLE
+        st.fault = true; // marca la falla
+        // st.state = HomingStateZ::INACTIVE; // ❌ quitar esta linea
         break;
 
     default:

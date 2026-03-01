@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/homingXY.cpp"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\homingXY.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -206,14 +206,14 @@ void homingXY_Step(AccelStepper &motor,
         // 🔹 Homing completado correctamente
         digitalWrite(LED, HIGH); // indicar éxito
         digitalWrite(cfg.enablePin, ENABLE_INACTIVE);
-        st.state = HomingStateXY::INACTIVE; // reiniciar máquina de estados
+        // st.state = HomingStateXY::INACTIVE; // reiniciar máquina de estados ❌ quitar esta linea
         break;
 
     case HomingStateXY::ERROR:
         // 🔹 Homing falló
         digitalWrite(cfg.enablePin, ENABLE_INACTIVE);
-        st.fault = true;                    // marcar error latcheado
-        st.state = HomingStateXY::INACTIVE; // reiniciar máquina de estados
+        st.fault = true; // marcar error latcheado
+        // st.state = HomingStateXY::INACTIVE; // reiniciar máquina de estados❌ quitar esta linea
         break;
 
     default:

@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/commands.cpp"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\commands.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -14,7 +14,8 @@
 
 #include <Arduino.h>
 #include <AccelStepper.h>
-#include "config.h" // enum class Command
+#include "core.h"
+#include "config.h"
 #include "commands.h"
 #include "homingXY.h"
 #include "homingZ.h"
@@ -28,6 +29,7 @@ extern HomingRunTimeXY homingMotor2;
 extern HomingRunTimeZ homingMotor3;
 extern bool dynamicAngle1;
 extern bool dynamicAngle2;
+extern bool homeAllActive;
 
 // -----------------------------------------------------------------------
 // COMPROBACIÓN DE COMANDOS DISPONIBLES
@@ -137,6 +139,11 @@ void processCommand(const String &cmdStr)
     case Command::RESET_ERRORS:
         homingMotor1.fault = false;
         homingMotor2.fault = false;
+        homingMotor3.fault = false;        // si querés limpiar Z también
+        homingXY_Init(homingMotor1);       // reinicia motor1
+        homingXY_Init(homingMotor2);       // reinicia motor2
+        homingZ_Init(homingMotor3);        // reinicia motor3
+        homeAllState = HomeAllState::IDLE; // si estabas en HOME-ALL, cancelalo
         sendResponse("ERRORS RESET");
         break;
 
@@ -155,13 +162,10 @@ void processCommand(const String &cmdStr)
         homingZ_Start(motor3, motor3Config, homingMotor3, HALL_3);
         break;
 
-    case Command::HOME_ALL: // ❌ integrar loop para homing sequencia
-        sendResponse("HOMING MOTOR1 STARTED");
-        homingXY_Start(motor1, motor1Config, homingMotor1, HALL_1);
-        sendResponse("HOMING MOTOR2 STARTED");
-        homingXY_Start(motor2, motor2Config, homingMotor2, HALL_2);
-        sendResponse("HOMING MOTOR3 STARTED");
-        homingZ_Start(motor3, motor3Config, homingMotor3, HALL_3);
+    case Command::HOME_ALL:
+        // 🔹 Inicializa secuencia HOME-ALL
+        homeAllState = HomeAllState::MOTOR1;
+        sendResponse("HOME ALL SEQUENCE STARTED");
         break;
 
     case Command::GET_ANGLE1:

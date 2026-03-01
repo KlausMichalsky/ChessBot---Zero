@@ -10,14 +10,13 @@
   "compile_profile": "",
   "monitorPortSettings": {
     "settings": {
-      "port": "/dev/tty.A285M-Q672",
+      "port": "COM15",
       "baudRate": 115200,
       "lineEnding": "\r\n",
       "dataBits": 8,
       "parity": "none",
       "stopBits": "one"
     },
-    "profile_name": "",
-    "port": "COM15"
+    "profile_name": ""
   }
 }

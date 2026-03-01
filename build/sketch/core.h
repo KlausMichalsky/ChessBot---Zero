@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/core.h"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\core.h"
 #pragma once
 #include <Arduino.h>
 #include "config.h"
@@ -21,6 +21,7 @@ extern HomingRunTimeXY homingMotor1;
 extern HomingRunTimeXY homingMotor2;
 extern HomingRunTimeZ homingMotor3;
 extern HomeAllState homeAllState;
+extern bool homeAllActive;
 
 // Inicialización del core
 void core_Init();

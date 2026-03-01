@@ -20,6 +20,7 @@ extern HomingRunTimeXY homingMotor1;
 extern HomingRunTimeXY homingMotor2;
 extern HomingRunTimeZ homingMotor3;
 extern HomeAllState homeAllState;
+extern bool homeAllActive;
 
 // Inicialización del core
 void core_Init();
