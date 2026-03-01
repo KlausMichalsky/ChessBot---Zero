@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\homingZ.cpp"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/homingZ.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -45,11 +45,9 @@ void homingZ_Start(AccelStepper &motor,
 {
     if (st.state != HomingStateZ::INACTIVE) // Evita reentradas: si el homing ya está activo, no hace nada
         return;
+
     pinMode(cfg.enablePin, OUTPUT);
     digitalWrite(cfg.enablePin, ENABLE_ACTIVE);
-
-    pinMode(hallPin, INPUT_PULLUP); // ❌ poner en sensors_Init()❓
-
     digitalWrite(LED, LOW);
 
     // Configuración dinámica del motor para homing y referencia temporal al iniciar homing

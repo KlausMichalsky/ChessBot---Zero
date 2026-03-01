@@ -31,8 +31,7 @@ extern AccelStepper motor3;
 // API PUBLICA FUNCIONES DE CONTROL DE MOTOR
 // =======================================================================
 // Inicialización
-void motorsXY_Init();
-void motorZ_Init();
+void motors_Init();
 // Control de energía
 void motorsXY_Enable();
 void motorsXY_Disable();

@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\sensors.h"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/sensors.h"
 // =======================================================================
 //                    🔹 P I C O   —   C H E S S 🔹
 // =======================================================================
@@ -31,7 +31,6 @@
 // Esto evita errores de “variable ya definida” (multiple definition).
 extern float lastSentAngle_1;
 extern unsigned long lastSendTime_1;
-
 extern float lastSentAngle_2;
 extern unsigned long lastSendTime_2;
 

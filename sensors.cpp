@@ -20,6 +20,7 @@
 #include "sensors.h"
 #include "calc.h"
 
+// ❌ Mover estas variables a core❓
 unsigned long lastSendTime_1 = 0; // Guarda el momento en milisegundos del último envío
 float lastSentAngle_1 = -1000.0f; // Guarda el último ángulo enviado para el motor 1
 unsigned long lastSendTime_2 = 0; // Guarda el momento en milisegundos del último envío para el motor 2

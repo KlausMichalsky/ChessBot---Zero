@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\motors.cpp"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/motors.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -33,7 +33,7 @@ static bool motorZ_Enabled = false;
 
 // API PÚBLICA DE MOTORES
 // =======================================================================
-void motorsXY_Init()
+void motors_Init()
 {
     // ‼️ Adaptar también en config.h las señales ENABLE_ACTIVE/INACTIVE
     motor1.setPinsInverted(true, false, false); // (DIR, STEP, ENABLE) true = invertir señal. Aqui: LOW=ON HIGH=OFF
