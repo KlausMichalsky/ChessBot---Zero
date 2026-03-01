@@ -24,7 +24,7 @@
 #include "communication.h"
 #include "commands.h"
 #include "config.h"
-#include "motorsXY.h"
+#include "motors.h"
 #include "sensors.h"
 #include "homingXY.h"
 #include "homingZ.h"

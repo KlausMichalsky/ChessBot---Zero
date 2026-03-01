@@ -17,7 +17,7 @@
 #include "commands.h"
 #include "homingXY.h"
 #include "homingZ.h"
-#include "motorsXY.h"
+#include "motors.h"
 #include "sensors.h"
 #include "calc.h"
 

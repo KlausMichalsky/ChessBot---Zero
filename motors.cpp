@@ -2,7 +2,7 @@
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
 
-//  Archivo    : motorsXY.cpp ❌ cambiar nombre a motors.cpp
+//  Archivo    : motors.cpp
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
@@ -16,7 +16,7 @@
 
 #include <Arduino.h>
 #include <AccelStepper.h>
-#include "motorsXY.h"
+#include "motors.h"
 #include "config.h"
 
 // INSTANCIAS DE MOTORES
