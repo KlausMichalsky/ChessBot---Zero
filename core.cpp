@@ -1,3 +1,21 @@
+// =======================================================================
+//                 🔹 C H E S S B O T  —   Z E R O 🔹
+// =======================================================================
+//  Archivo    : core.cpp
+//  Autor      : Klaus Michalsky
+//  Fecha      : Mar-2026
+// -----------------------------------------------------------------------
+//  ▫️ DESCRIPCIÓN
+//      - Implementación de funciones centrales del robot.
+//      - updateCore() gestiona homings y secuencias HOME-ALL.
+//      - updateHoming() ejecuta homing de motores individuales
+//        y lecturas de ángulos.
+//      - handleHomeAll() ejecuta secuencia secuencial de homing
+//        de los tres motores.
+//      - Reinicia el estado de homings individuales cuando
+//        finalizan para permitir nuevos comandos.
+// =======================================================================
+
 #include <Arduino.h>
 #include "core.h"
 #include "motors.h"

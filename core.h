@@ -1,3 +1,17 @@
+// =======================================================================
+//                 🔹 C H E S S B O T  —   Z E R O 🔹
+// =======================================================================
+//  Archivo    : core.h
+//  Autor      : Klaus Michalsky
+//  Fecha      : Mar-2026
+// -----------------------------------------------------------------------
+//  ▫️ DESCRIPCIÓN
+//      - Declaración de funciones centrales del robot.
+//      - Gestión de homing, flags globales y actualización de core.
+//      - Separa la lógica de secuencia HOME-ALL de los homings individuales.
+//      - Contiene variables globales accesibles desde otros módulos.
+// =======================================================================
+
 #pragma once
 #include <Arduino.h>
 #include "config.h"
