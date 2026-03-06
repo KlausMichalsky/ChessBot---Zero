@@ -94,10 +94,13 @@ void homingXY_Step(AccelStepper &motor,
     // Invierte la logica del HAll (imán presente = LOW)
     bool imanPresente = (digitalRead(hallPin) == LOW); // activo con pull-up
 
-    // ⏱️ Timeout de homing (si tiempo de homing excede el límite)
-    if (millis() - st.startTime > cfg.timeout)
+    // ⏱️ Timeout de homing solo si está activo
+    if (st.state != HomingStateXY::OK && st.state != HomingStateXY::ERROR)
     {
-        st.state = HomingStateXY::ERROR;
+        if (millis() - st.startTime > cfg.timeout)
+        {
+            st.state = HomingStateXY::ERROR;
+        }
     }
 
     switch (st.state)

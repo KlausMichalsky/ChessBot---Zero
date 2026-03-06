@@ -91,10 +91,13 @@ void homingZ_Step(AccelStepper &motor,
     // Invierte la logica del HAll (imán presente = LOW)
     bool imanPresente = (digitalRead(hallPin) == LOW); // activo con pull-up
 
-    // ⏱️ Timeout de homing (si tiempo de homing excede el límite)
-    if (millis() - st.startTime > cfg.timeout)
+    // ⏱️ Timeout de homing solo si está activo
+    if (st.state != HomingStateZ::OK && st.state != HomingStateZ::ERROR)
     {
-        st.state = HomingStateZ::ERROR;
+        if (millis() - st.startTime > cfg.timeout)
+        {
+            st.state = HomingStateZ::ERROR;
+        }
     }
 
     switch (st.state)
@@ -140,8 +143,8 @@ void homingZ_Step(AccelStepper &motor,
 
     case HomingStateZ::OK:
         digitalWrite(LED, HIGH);
-        st.state = HomingStateZ::INACTIVE;
-        // digitalWrite(cfg.enablePin, ENABLE_INACTIVE); ❌ quitar esta linea
+        digitalWrite(cfg.enablePin, ENABLE_INACTIVE);
+        // st.state = HomingStateZ::INACTIVE; ❌ quitar esta linea
         break;
 
     case HomingStateZ::ERROR:

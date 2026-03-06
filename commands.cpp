@@ -31,6 +31,67 @@ extern bool dynamicAngle2;
 extern bool homeAllActive;
 
 // -----------------------------------------------------------------------
+// GENERAR RESPUESTA DE STATUS DE TODOS LOS MOTORES
+// -----------------------------------------------------------------------
+String statusReport()
+{
+    String resp = "";
+
+    // Motor1
+    switch (homingMotor1.state)
+    {
+    case HomingStateXY::OK:
+        resp += "MOTOR1 OK; ";
+        break;
+    case HomingStateXY::ERROR:
+        resp += "MOTOR1 ERROR; ";
+        break;
+    case HomingStateXY::INACTIVE:
+        break; // nada que mostrar
+    default:
+        resp += "MOTOR1 RUNNING; ";
+        break;
+    }
+
+    // Motor2
+    switch (homingMotor2.state)
+    {
+    case HomingStateXY::OK:
+        resp += "MOTOR2 OK; ";
+        break;
+    case HomingStateXY::ERROR:
+        resp += "MOTOR2 ERROR; ";
+        break;
+    case HomingStateXY::INACTIVE:
+        break;
+    default:
+        resp += "MOTOR2 RUNNING; ";
+        break;
+    }
+
+    // Motor3
+    switch (homingMotor3.state)
+    {
+    case HomingStateZ::OK:
+        resp += "MOTOR3 OK; ";
+        break;
+    case HomingStateZ::ERROR:
+        resp += "MOTOR3 ERROR; ";
+        break;
+    case HomingStateZ::INACTIVE:
+        break;
+    default:
+        resp += "MOTOR3 RUNNING; ";
+        break;
+    }
+
+    if (resp == "")
+        resp = "IDLE"; // si ningún motor tiene actividad
+
+    return resp;
+}
+
+// -----------------------------------------------------------------------
 // COMPROBACIÓN DE COMANDOS DISPONIBLES
 // -----------------------------------------------------------------------
 bool commandAvailable()
@@ -97,8 +158,8 @@ Command parseCommand(const String &cmd)
 // -----------------------------------------------------------------------
 void sendResponse(const String &msg)
 {
-    while (Serial1.available())
-        Serial1.read(); // limpiar residuos
+    // while (Serial1.available())
+    //     Serial1.read(); // limpiar residuos
     Serial1.println(msg);
 }
 
@@ -115,24 +176,7 @@ void processCommand(const String &cmdStr)
     switch (cmd)
     {
     case Command::STATUS:
-        if ((homingMotor1.state != HomingStateXY::INACTIVE) &&
-            (homingMotor1.state != HomingStateXY::OK) &&
-            (homingMotor1.state != HomingStateXY::ERROR))
-        {
-            Serial1.println("HOMING IN PROGRESS");
-        }
-        else if (homingMotor1.state == HomingStateXY::OK)
-        {
-            Serial1.println("HOMING MOTOR1 OK");
-        }
-        else if (homingMotor1.state == HomingStateXY::ERROR)
-        {
-            Serial1.println("HOMING MOTOR1 ERROR");
-        }
-        else
-        {
-            sendResponse("IDLE");
-        }
+        sendResponse(statusReport());
         break;
 
     case Command::RESET_ERRORS:
