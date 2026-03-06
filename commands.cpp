@@ -115,25 +115,14 @@ void processCommand(const String &cmdStr)
     switch (cmd)
     {
     case Command::STATUS:
-        if ((homingMotor1.state != HomingStateXY::INACTIVE) &&
-            (homingMotor1.state != HomingStateXY::OK) &&
-            (homingMotor1.state != HomingStateXY::ERROR))
-        {
-            Serial1.println("HOMING IN PROGRESS");
-        }
-        else if (homingMotor1.state == HomingStateXY::OK)
-        {
-            Serial1.println("HOMING MOTOR1 OK");
-        }
-        else if (homingMotor1.state == HomingStateXY::ERROR)
-        {
-            Serial1.println("HOMING MOTOR1 ERROR");
-        }
-        else
-        {
-            sendResponse("IDLE");
-        }
-        break;
+    {
+        Serial1.print("MOTOR1: ");
+        Serial1.print(homingXY_StateToString(homingMotor1.state));
+
+        Serial1.print("MOTOR2: ");
+        Serial1.print(homingXY_StateToString(homingMotor2.state));
+    }
+    break;
 
     case Command::RESET_ERRORS:
         homingMotor1.fault = false;

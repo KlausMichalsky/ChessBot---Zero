@@ -83,6 +83,21 @@ bool homingXY_HasError(const HomingRunTimeXY &st)
     return st.fault; // devuelve true si hubo error
 }
 
+const char *homingXY_StateToString(HomingStateXY state)
+{
+    switch (state)
+    {
+    case HomingStateXY::INACTIVE:
+        return "INACTIVE";
+    case HomingStateXY::OK:
+        return "OK";
+    case HomingStateXY::ERROR:
+        return "ERROR";
+    default:
+        return "HOMING";
+    }
+}
+
 // MÁQUINA DE ESTADOS DE HOMING
 // =======================================================================
 void homingXY_Step(AccelStepper &motor,

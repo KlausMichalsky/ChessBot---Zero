@@ -57,6 +57,8 @@ void homingXY_Step(AccelStepper &motor,
                    HomingRunTimeXY &st,
                    int hallPin);
 
+const char *homingXY_StateToString(HomingStateXY state);
+
 // Indica si ocurrió un error durante el homing
 bool homingXY_HasError(const HomingRunTimeXY &st);
 

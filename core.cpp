@@ -70,16 +70,6 @@ void updateHoming()
 
     if (dynamicAngle2)
         sendDynamicAngle(Wire1, lastSentAngle_2, lastSendTime_2);
-
-    // 🔹 Reiniciar homing individual después de completar
-    if (homingMotor1.state == HomingStateXY::OK || homingMotor1.state == HomingStateXY::ERROR)
-        homingMotor1.state = HomingStateXY::INACTIVE;
-
-    if (homingMotor2.state == HomingStateXY::OK || homingMotor2.state == HomingStateXY::ERROR)
-        homingMotor2.state = HomingStateXY::INACTIVE;
-
-    if (homingMotor3.state == HomingStateZ::OK || homingMotor3.state == HomingStateZ::ERROR)
-        homingMotor3.state = HomingStateZ::INACTIVE;
 }
 
 // -----------------------------------------------------------------------
