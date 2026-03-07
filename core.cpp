@@ -7,13 +7,7 @@
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
 //      - Implementación de funciones centrales del robot.
-//      - updateCore() gestiona homings y secuencias HOME-ALL.
-//      - updateHoming() ejecuta homing de motores individuales
-//        y lecturas de ángulos.
-//      - handleHomeAll() ejecuta secuencia secuencial de homing
-//        de los tres motores.
-//      - Reinicia el estado de homings individuales cuando
-//        finalizan para permitir nuevos comandos.
+//      - Sincronización
 // =======================================================================
 
 #include <Arduino.h>

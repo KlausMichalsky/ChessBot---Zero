@@ -2,45 +2,28 @@
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
-
 //  Archivo    : main_zero.ino
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
-//  ▫️ DESCRIPCIÓN
-//      - Control principal del robot físico.
-//      - Gestiona motores, sensores,
-//        LEDs y la comunicación con el cerebro lógico del Pico.
-//      - Inicializar y controlar motores y actuadores.
-//      - Leer y procesar datos de sensores.
-//      - Controlar los LEDs indicadores.
-//      - Gestionar la comunicación con el Pico.
-//      - Ejecutar los movimientos físicos del robot de ajedrez.
+//  ▫️ DESCRIPCIÓN:
 // =======================================================================
 
 #include <Arduino.h>
-#include <AccelStepper.h>
 #include <Wire.h>
-#include <Bounce2.h>
-#include "core.h"
-#include "communication.h"
+
+#include <AccelStepper.h>
 #include "commands.h"
+#include "communication.h"
 #include "config.h"
+#include "core.h"
+#include "homing.h"
 #include "motors.h"
 #include "sensors.h"
-#include "homingXY.h"
-#include "homingZ.h"
-#include "calc.h"
-
-Bounce debouncer; // Crea un objeto para el botón (solo en la fase de pruebas)
+#include "utils.h"
 
 // SETUP
 // -----------------------------------------------------------------------
-#line 38 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
-void setup();
-#line 54 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
-void loop();
-#line 38 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void setup()
 {
     Serial.begin(115200);

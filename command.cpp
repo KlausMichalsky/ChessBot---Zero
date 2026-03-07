@@ -1,28 +1,29 @@
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
-
-//  Archivo    : commands.cpp
+//  Archivo    : command.cpp
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
 //      - Implementación de funciones para la gestión de comandos
-//        recibidos por UART usando enum class Command
+//        recibidos por UART
 // =======================================================================
 
 #include <Arduino.h>
+
 #include <AccelStepper.h>
-#include "core.h"
+
+#include "command.h"
 #include "config.h"
-#include "commands.h"
-#include "homingXY.h"
-#include "homingZ.h"
+#include "core.h"
+#include "homing.h"
 #include "motors.h"
 #include "sensors.h"
-#include "calc.h"
+#include "utils.h"
 
-// Variables externas
+// VARIABLES EXTERNAS
+// -----------------------------------------------------------------------
 extern HomingRunTimeXY homingMotor1;
 extern HomingRunTimeXY homingMotor2;
 extern HomingRunTimeZ homingMotor3;
@@ -30,10 +31,16 @@ extern bool dynamicAngle1;
 extern bool dynamicAngle2;
 extern bool homeAllActive;
 
+// COMPROBACIÓN DE COMANDOS DISPONIBLES
 // -----------------------------------------------------------------------
+bool CommandAvailable()
+{
+    return Serial1.available();
+}
+
 // GENERAR RESPUESTA DE STATUS DE TODOS LOS MOTORES
 // -----------------------------------------------------------------------
-String statusReport()
+String commandStatusReport()
 {
     String resp = "";
 
@@ -91,18 +98,9 @@ String statusReport()
     return resp;
 }
 
-// -----------------------------------------------------------------------
-// COMPROBACIÓN DE COMANDOS DISPONIBLES
-// -----------------------------------------------------------------------
-bool commandAvailable()
-{
-    return Serial1.available();
-}
-
-// -----------------------------------------------------------------------
 // LECTURA DE COMANDOS
 // -----------------------------------------------------------------------
-String receiveCommand()
+String readCommand()
 {
     static String buffer = "";
     while (Serial1.available())
@@ -123,8 +121,7 @@ String receiveCommand()
     return ""; // no hay comando completo todavía
 }
 
-// -----------------------------------------------------------------------
-// MAPEAR STRING A enum class Command
+// MAPEAR STRING a enum class Command
 // -----------------------------------------------------------------------
 Command parseCommand(const String &cmd)
 {
@@ -153,17 +150,15 @@ Command parseCommand(const String &cmd)
     return Command::UNKNOWN;
 }
 
-// -----------------------------------------------------------------------
 // ENVIAR RESPUESTA POR UART
 // -----------------------------------------------------------------------
-void sendResponse(const String &msg)
+void commandSendResponse(const String &msg)
 {
-    // while (Serial1.available())
-    //     Serial1.read(); // limpiar residuos
+    // while (Serial1.available())              ⚠️
+    //     Serial1.read(); // limpiar residuos  ⚠️
     Serial1.println(msg);
 }
 
-// -----------------------------------------------------------------------
 // PROCESAMIENTO DE COMANDOS
 // -----------------------------------------------------------------------
 void processCommand(const String &cmdStr)
@@ -176,7 +171,7 @@ void processCommand(const String &cmdStr)
     switch (cmd)
     {
     case Command::STATUS:
-        sendResponse(statusReport());
+        sendResponse(commandsStatusReport());
         break;
 
     case Command::RESET_ERRORS:
