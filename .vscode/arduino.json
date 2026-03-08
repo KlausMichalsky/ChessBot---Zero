@@ -1,6 +1,6 @@
 {
-  "port": "/dev/cu.Bluetooth-Incoming-Port",
-  "configuration": "flash=2097152_0,freq=200,opt=Small,os=none,profile=Disabled,rtti=Disabled,stackprotect=Disabled,exceptions=Disabled,dbgport=Disabled,dbglvl=None,usbstack=picosdk,ipbtstack=ipv4only,uploadmethod=default",
+  "port": "COM15",
+  "configuration": "flash=2097152_0,freq=200,opt=Small,profile=Disabled,rtti=Disabled,stackprotect=Disabled,exceptions=Disabled,dbgport=Disabled,dbglvl=None,usbstack=picosdk,ipbtstack=ipv4only,uploadmethod=default",
   "output": "build",
   "board": "rp2040:rp2040:waveshare_rp2040_zero",
   "programmer": "",
@@ -17,6 +17,7 @@
       "parity": "none",
       "stopBits": "one"
     },
-    "profile_name": ""
+    "profile_name": "",
+    "port": "COM15"
   }
 }

@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/homing.cpp"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\homing.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -27,7 +27,7 @@
 // static → visibles solo dentro de este archivo (.cpp)
 static const int8_t CW = 1;   // ClockWise plano XY
 static const int8_t CCW = -1; // Counter-ClockWise plano XY
-static const int8_t dir = 1;  // Dirección inicial eje Z
+static const int8_t dir = -1; // Dirección inicial eje Z
 
 // INICIALIZACIÓN DEL ESTADO DE HOMING
 // -----------------------------------------------------------------------
