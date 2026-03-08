@@ -28,6 +28,8 @@ float round1Decimal(float value)
 }
 
 // Filtra y envía un valor por UART solo si cambia suficiente y respeta intervalo
+// ⚠️ Solo para pruebas de lectura de angulo continuo
+// -> El envio continuo bloquea movimiento de motores
 void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime,
                        float delta, unsigned long interval, HardwareSerial &uart)
 {

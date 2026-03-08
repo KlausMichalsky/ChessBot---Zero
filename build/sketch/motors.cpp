@@ -40,7 +40,7 @@ void motorsInit()
     // (DIR, STEP, ENABLE) true = invertir señal. Aqui: LOW=ON HIGH=OFF
     motor1.setPinsInverted(true, false, false);
     motor2.setPinsInverted(true, false, false);
-    motor3.setPinsInverted(true, false, false);
+    motor3.setPinsInverted(false, false, false);
 
     pinMode(motor1Config.enablePin, OUTPUT);
     pinMode(motor2Config.enablePin, OUTPUT);

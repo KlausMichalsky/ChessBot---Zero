@@ -60,6 +60,7 @@ void homeSingleMotor()
     if (motor1Homing.state == HomingStateXY::OK && !reported1)
     {
         commandSendResponse("HOMING MOTOR1 OK"); // 🔹 evento “solo una vez”
+        sendStaticAngle(Wire);
         reported1 = true;
     }
     else if (motor1Homing.state != HomingStateXY::OK)
@@ -73,6 +74,7 @@ void homeSingleMotor()
     if (motor2Homing.state == HomingStateXY::OK && !reported2)
     {
         commandSendResponse("HOMING MOTOR2 OK");
+        sendStaticAngle(Wire1);
         reported2 = true;
     }
     else if (motor2Homing.state != HomingStateXY::OK)

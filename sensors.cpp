@@ -68,6 +68,8 @@ void sendStaticAngle(TwoWire &wire)
     Serial1.print("\n");
 }
 
+// ⚠️ Solo para pruebas de lectura de angulo continuo
+// -> El envio continuo bloquea movimiento de motores
 void sendDynamicAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastSendTime)
 {
     uint16_t rawAngle = readAngle(wire);                                       // Leer sensor AS5600
