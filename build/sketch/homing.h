@@ -53,7 +53,6 @@ struct HomingZ
 // API PÚBLICA PLANO XY
 // -----------------------------------------------------------------------
 void homingInitXY(HomingXY &st);
-void homingInitZ(HomingZ &st);
 
 void homingStartXY(AccelStepper &motor,
                    const HomingConfig &cfg,
@@ -73,6 +72,8 @@ HomingStateXY homingXY_GetState(const HomingXY &st);
 
 // API PÚBLICA EJE Z
 // -----------------------------------------------------------------------
+void homingInitZ(HomingZ &st);
+
 void homingStartZ(AccelStepper &motor,
                   const HomingConfig &cfg,
                   HomingZ &st,

@@ -27,7 +27,7 @@
 // static → visibles solo dentro de este archivo (.cpp)
 static const int8_t CW = 1;   // ClockWise plano XY
 static const int8_t CCW = -1; // Counter-ClockWise plano XY
-static const int8_t dir = -1; // Dirección inicial eje Z
+static const int8_t dir = 1;  // Dirección inicial eje Z
 
 // INICIALIZACIÓN DEL ESTADO DE HOMING
 // -----------------------------------------------------------------------
