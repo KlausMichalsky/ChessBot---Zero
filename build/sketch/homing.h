@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\homing.h"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/homing.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -59,14 +59,14 @@ void homingStartXY(AccelStepper &motor,
                    HomingXY &st,
                    int hallPin);
 
-bool homingXY_IsActive(const HomingXY &st);
+bool homingIsActiveXY(const HomingXY &st);
 
 void homingStepXY(AccelStepper &motor,
                   const HomingConfig &cfg,
                   HomingXY &st,
                   int hallPin);
 
-bool homingXY_HasError(const HomingXY &st);
+bool homingHasError(const HomingXY &st);
 
 HomingStateXY homingXY_GetState(const HomingXY &st);
 

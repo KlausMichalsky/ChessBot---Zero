@@ -40,16 +40,16 @@ void coreUpdate()
 {
     if (homeAllState != HomeAllState::IDLE)
     {
-        homeAll();
+        coreHomeAll();
     }
     else
     {
-        homeSingleMotor();
+        coreHomeSingleMotor();
     }
 }
 
 // -----------------------------------------------------------------------
-void homeSingleMotor()
+void coreHomeSingleMotor()
 {
     // Homing Motor1
     static bool reported1 = false;
@@ -95,16 +95,16 @@ void homeSingleMotor()
 
 // ⚠️ Solo para pruebas de lectura de angulo continuo
 // -> El envio continuo bloquea movimiento de motores
-void readDynamicAngle()
+void coreStreamAngles()
 {
     if (dynamicAngle1)
-        sendDynamicAngle(Wire, lastSentAngle_1, lastSendTime_1);
+        sensorStreamAngle(Wire, lastSentAngle_1, lastSendTime_1);
     if (dynamicAngle2)
-        sendDynamicAngle(Wire1, lastSentAngle_2, lastSendTime_2);
+        sensorStreamAngle(Wire1, lastSentAngle_2, lastSendTime_2);
 }
 
 // -----------------------------------------------------------------------
-void homeAll()
+void coreHomeAll()
 {
     // Ejecutar homings normalmente
     switch (homeAllState)

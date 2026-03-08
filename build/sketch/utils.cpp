@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\utils.cpp"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/utils.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -29,6 +29,8 @@ float round1Decimal(float value)
 }
 
 // Filtra y envía un valor por UART solo si cambia suficiente y respeta intervalo
+// ⚠️ Solo para pruebas de lectura de angulo continuo
+// -> El envio continuo bloquea movimiento de motores
 void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime,
                        float delta, unsigned long interval, HardwareSerial &uart)
 {

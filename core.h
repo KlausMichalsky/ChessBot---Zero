@@ -35,7 +35,7 @@ extern HomeAllState homeAllState;
 extern bool homeAllActive;
 
 void coreInit();
-void homeAll();
-void homeSingleMotor();
-void readDynamicAngle();
+void coreHomeAll();
+void coreHomeSingleMotor();
+void coreStreamAngles();
 void coreUpdate();

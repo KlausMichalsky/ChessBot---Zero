@@ -58,16 +58,16 @@ void homingStartXY(AccelStepper &motor,
                    HomingXY &st,
                    int hallPin);
 
-bool homingXY_IsActive(const HomingXY &st);
+bool homingIsActiveXY(const HomingXY &st);
 
 void homingStepXY(AccelStepper &motor,
                   const HomingConfig &cfg,
                   HomingXY &st,
                   int hallPin);
 
-bool homingXY_HasError(const HomingXY &st);
+bool homingHasErrorXY(const HomingXY &st);
 
-HomingStateXY homingXY_GetState(const HomingXY &st);
+HomingStateXY homingGetStateXY(const HomingXY &st);
 
 // API PÚBLICA EJE Z
 // -----------------------------------------------------------------------
@@ -78,13 +78,13 @@ void homingStartZ(AccelStepper &motor,
                   HomingZ &st,
                   int hallPin);
 
-bool homingZ_IsActive(const HomingZ &st);
+bool homingIsActiveZ(const HomingZ &st);
 
 void homingStepZ(AccelStepper &motor,
                  const HomingConfig &cfg,
                  HomingZ &st,
                  int hallPin);
 
-bool homingZ_HasError(const HomingZ &st);
+bool homingHasErrorZ(const HomingZ &st);
 
-HomingStateZ homingZ_GetState(const HomingZ &st);
+HomingStateZ homingGetStateZ(const HomingZ &st);

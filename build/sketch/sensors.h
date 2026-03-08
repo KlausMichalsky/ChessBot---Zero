@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\sensors.h"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/sensors.h"
 // =======================================================================
 //                    🔹 P I C O   —   C H E S S 🔹
 // =======================================================================
@@ -28,6 +28,6 @@ extern float lastSentAngle_2;
 extern unsigned long lastSendTime_2;
 
 void sensorsInit();
-uint16_t readAngle(TwoWire &wire);
-void sendDynamicAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastSendTime);
-void sendStaticAngle(TwoWire &wire);
+uint16_t sensorReadAngle(TwoWire &wire);
+void sensorStreamAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastSendTime);
+void sensorSendAngle(TwoWire &wire);

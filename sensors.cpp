@@ -43,7 +43,7 @@ void sensorsInit()
 
 // TwoWire → le decimos “la función va a recibir un objeto de tipo TwoWire”.
 // &wire → le decimos “pasalo por referencia, no por copia”.
-uint16_t readAngle(TwoWire &wire)
+uint16_t sensorReadAngle(TwoWire &wire)
 {
     wire.beginTransmission(AS5600_ADDR);
     wire.write(0x0E);
@@ -59,20 +59,20 @@ uint16_t readAngle(TwoWire &wire)
     return ((high & 0x0F) << 8) | low;
 }
 
-void sendStaticAngle(TwoWire &wire)
+void sensorSendAngle(TwoWire &wire)
 {
-    uint16_t rawAngle = readAngle(wire);    // Leer sensor AS5600
-    float degrees = rawToDegrees(rawAngle); // Convertir a grados
-    degrees = round1Decimal(degrees);       // Redondear a 1 decimal
-    Serial1.print(degrees, 1);              // Enviar por UART
+    uint16_t rawAngle = sensorReadAngle(wire); // Leer sensor AS5600
+    float degrees = rawToDegrees(rawAngle);    // Convertir a grados
+    degrees = round1Decimal(degrees);          // Redondear a 1 decimal
+    Serial1.print(degrees, 1);                 // Asegurar envio de solo 1 decimal
     Serial1.print("\n");
 }
 
 // ⚠️ Solo para pruebas de lectura de angulo continuo
 // -> El envio continuo bloquea movimiento de motores
-void sendDynamicAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastSendTime)
+void sensorStreamAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastSendTime)
 {
-    uint16_t rawAngle = readAngle(wire);                                       // Leer sensor AS5600
+    uint16_t rawAngle = sensorReadAngle(wire);                                 // Leer sensor AS5600
     float degrees = rawToDegrees(rawAngle);                                    // Convertir a grados
     degrees = round1Decimal(degrees);                                          // Redondear a 1 decimal
     sendFilteredFloat(degrees, lastSentAngle, lastSendTime, 0.5, 33, Serial1); // Enviar angulo filtrado por UART
