@@ -73,7 +73,7 @@ void motorZ_Init()
 {
     motor3.setPinsInverted(true, false, false);
     pinMode(motor3Config.enablePin, OUTPUT);
-    motorsXY_Disable(); // ‼️ Esto evita movimientos inesperados al encender el sistema
+    motorZ_Disable(); // ‼️ Esto evita movimientos inesperados al encender el sistema
     motor3.setMaxSpeed(motor3Config.fastSpeed);
     motor3.setAcceleration(motor3Config.acceleration);
 }

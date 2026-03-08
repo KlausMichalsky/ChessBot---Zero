@@ -432,12 +432,12 @@ Discarded input sections
  .bss           0x00000000        0x0 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
  .text._Z15motorsXY_Enablev
                 0x00000000       0x14 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
- .text._Z11motorZ_Initv
-                0x00000000       0x3c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
  .text._Z13motorZ_Enablev
                 0x00000000        0xc C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
  .text._Z14motorZ_Disablev
                 0x00000000        0xc C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
+ .text._Z11motorZ_Initv
+                0x00000000       0x3c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
  .text          0x00000000        0x0 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\sensors.cpp.o
  .data          0x00000000        0x0 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\sensors.cpp.o
  .bss           0x00000000        0x0 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\sensors.cpp.o
