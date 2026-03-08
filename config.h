@@ -59,7 +59,7 @@ constexpr bool ENABLE_INACTIVE = HIGH;
 enum class Command
 {
     STATUS,
-    RESET_ERRORS,
+    RESET,
     HOME_MOTOR1,
     HOME_MOTOR2,
     HOME_MOTOR3,

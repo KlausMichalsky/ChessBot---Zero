@@ -16,4 +16,4 @@
 #define DEBUG_UART 0 // 1 = debug activado, 0 = debug desactivado
 
 void debug(const String &msg); // función para debug condicional
-void UART_Init();
+void communicationInit();

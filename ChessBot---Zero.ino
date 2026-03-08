@@ -26,13 +26,13 @@
 // -----------------------------------------------------------------------
 void setup()
 {
-    communicationInitUART();
+    communicationInit();
     coreInit();
+    homingInitXY(motor1Homing);
+    homingInitXY(motor2Homing);
+    homingInitZ(motor3Homing);
     motorsInit();
     sensorsInit();
-    homingInitXY(homingMotor1);
-    homingInitXY(homingMotor2);
-    homingInitZ(homingMotor3);
 
     pinMode(IMAN, INPUT_PULLUP);
     pinMode(LED, OUTPUT);
@@ -42,9 +42,9 @@ void setup()
 // -----------------------------------------------------------------------
 void loop()
 {
-    if (CommandAvailable())
+    if (commandAvailable())
     {
-        String cmd = receiveCommand();
+        String cmd = readCommand();
         if (cmd.length() > 0) // 🔥 SOLO procesar si hay comando completo.
         {
             processCommand(cmd);

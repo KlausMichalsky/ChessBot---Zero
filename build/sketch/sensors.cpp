@@ -1,34 +1,34 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\sensors.cpp"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/sensors.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
-
 //  Archivo    : sensors.cpp
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
+//      - Inicializar y configurar sensores.
 //      - Implementación de funciones para la lectura y gestión de
 //        sensores AS5600.
-//      - Inicializar y configurar sensores.
-//      - Leer valores.
-//      - Validar y filtrar datos obtenidos.
 // =======================================================================
 
-// sensores.cpp
 #include <Arduino.h>
+
 #include "config.h"
 #include "sensors.h"
-#include "calc.h"
+#include "utils.h"
 
-// ❌ Mover estas variables a core❓
-unsigned long lastSendTime_1 = 0; // Guarda el momento en milisegundos del último envío
-float lastSentAngle_1 = -1000.0f; // Guarda el último ángulo enviado para el motor 1
-unsigned long lastSendTime_2 = 0; // Guarda el momento en milisegundos del último envío para el motor 2
-float lastSentAngle_2 = -1000.0f; // Guarda el último á
+// VARIABLES INTERNAS DEL MÓDULO ❌ Mover estas variables a core❓
+// -----------------------------------------------------------------------
 // -1000 es solo un valor de “inicio imposible” para asegurar que el primer envío siempre se haga
+unsigned long lastSendTime_1 = 0; // Guarda el momento en milisegundos del último envío
+float lastSentAngle_1 = -1000.0f; // Guarda el último ángulo enviado
+unsigned long lastSendTime_2 = 0;
+float lastSentAngle_2 = -1000.0f;
 
-void sensors_Init()
+// API PÚBLICA DE SENSORES
+// -----------------------------------------------------------------------
+void sensorsInit()
 {
     pinMode(HALL_1, INPUT_PULLUP);
     pinMode(HALL_2, INPUT_PULLUP);
@@ -42,7 +42,6 @@ void sensors_Init()
     Wire1.begin();
 }
 
-// FUNCION AS5600 ----------------------------------------------------------------
 // TwoWire → le decimos “la función va a recibir un objeto de tipo TwoWire”.
 // &wire → le decimos “pasalo por referencia, no por copia”.
 uint16_t readAngle(TwoWire &wire)
@@ -75,10 +74,5 @@ void sendDynamicAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastSe
     uint16_t rawAngle = readAngle(wire);                                       // Leer sensor AS5600
     float degrees = rawToDegrees(rawAngle);                                    // Convertir a grados
     degrees = round1Decimal(degrees);                                          // Redondear a 1 decimal
-    sendFilteredFloat(degrees, lastSentAngle, lastSendTime, 0.5, 33, Serial1); // Enviar por UART
+    sendFilteredFloat(degrees, lastSentAngle, lastSendTime, 0.5, 33, Serial1); // Enviar angulo filtrado por UART
 }
-
-// Aquí podrías agregar funciones para leer otros sensores
-// uint16_t readAS5600Angle_2()
-// bool leerHall_2() { return digitalRead(HALL_2); }
-// bool leerHall_1() { return digitalRead(HALL_1); }

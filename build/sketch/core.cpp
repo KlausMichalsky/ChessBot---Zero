@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\core.cpp"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/core.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -8,99 +8,92 @@
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
 //      - Implementación de funciones centrales del robot.
-//      - updateCore() gestiona homings y secuencias HOME-ALL.
-//      - updateHoming() ejecuta homing de motores individuales
-//        y lecturas de ángulos.
-//      - handleHomeAll() ejecuta secuencia secuencial de homing
-//        de los tres motores.
-//      - Reinicia el estado de homings individuales cuando
-//        finalizan para permitir nuevos comandos.
+//      - Sincronización
 // =======================================================================
 
 #include <Arduino.h>
+
+#include "command.h"
 #include "core.h"
+#include "homing.h"
 #include "motors.h"
 #include "sensors.h"
-#include "homingXY.h"
-#include "homingZ.h"
-#include "commands.h"
 
 // FLAGS Y VARIABLES GLOBALES
+// -----------------------------------------------------------------------
 bool dynamicAngle1 = false;
 bool dynamicAngle2 = false;
 
-// Homing runtime
-HomingRunTimeXY homingMotor1;
-HomingRunTimeXY homingMotor2;
-HomingRunTimeZ homingMotor3;
+HomingXY motor1Homing;
+HomingXY motor2Homing;
+HomingZ motor3Homing;
 
-// Estado global HOME-ALL
 HomeAllState homeAllState = HomeAllState::IDLE;
 
 // -----------------------------------------------------------------------
-void core_Init()
+void coreInit()
 {
     homeAllState = HomeAllState::IDLE;
 }
 
 // -----------------------------------------------------------------------
-void updateCore()
+void coreUpdate()
 {
-    // 🔹 Si estamos en secuencia HOME-ALL, solo ejecutar handleHomeAll()
     if (homeAllState != HomeAllState::IDLE)
     {
-        handleHomeAll();
+        homeAll();
     }
     else
     {
-        // 🔹 Si no, actualizar homings individuales
-        updateHoming();
+        homeSingleMotor();
     }
 }
 
 // -----------------------------------------------------------------------
-void updateHoming()
+void homeSingleMotor()
 {
     // Homing Motor1
     static bool reported1 = false;
-    if (homingXY_IsActive(homingMotor1))
-        homingXY_Step(motor1, motor1Config, homingMotor1, HALL_1);
+    if (homingXY_IsActive(motor1Homing))
+        homingStepXY(motor1, motor1Config, motor1Homing, HALL_1);
 
-    if (homingMotor1.state == HomingStateXY::OK && !reported1)
+    if (motor1Homing.state == HomingStateXY::OK && !reported1)
     {
-        sendResponse("HOMING MOTOR1 OK"); // 🔹 evento “solo una vez”
+        commandSendResponse("HOMING MOTOR1 OK"); // 🔹 evento “solo una vez”
         reported1 = true;
     }
-    else if (homingMotor1.state != HomingStateXY::OK)
+    else if (motor1Homing.state != HomingStateXY::OK)
         reported1 = false;
 
     // Homing Motor2
     static bool reported2 = false;
-    if (homingXY_IsActive(homingMotor2))
-        homingXY_Step(motor2, motor2Config, homingMotor2, HALL_2);
+    if (homingXY_IsActive(motor2Homing))
+        homingStepXY(motor2, motor2Config, motor2Homing, HALL_2);
 
-    if (homingMotor2.state == HomingStateXY::OK && !reported2)
+    if (motor2Homing.state == HomingStateXY::OK && !reported2)
     {
-        sendResponse("HOMING MOTOR2 OK");
+        commandSendResponse("HOMING MOTOR2 OK");
         reported2 = true;
     }
-    else if (homingMotor2.state != HomingStateXY::OK)
+    else if (motor2Homing.state != HomingStateXY::OK)
         reported2 = false;
 
     // Homing Motor3
     static bool reported3 = false;
-    if (homingZ_IsActive(homingMotor3))
-        homingZ_Step(motor3, motor3Config, homingMotor3, HALL_3);
+    if (homingZ_IsActive(motor3Homing))
+        homingStepZ(motor3, motor3Config, motor3Homing, HALL_3);
 
-    if (homingMotor3.state == HomingStateZ::OK && !reported3)
+    if (motor3Homing.state == HomingStateZ::OK && !reported3)
     {
-        sendResponse("HOMING MOTOR3 OK");
+        commandSendResponse("HOMING MOTOR3 OK");
         reported3 = true;
     }
-    else if (homingMotor3.state != HomingStateZ::OK)
+    else if (motor3Homing.state != HomingStateZ::OK)
         reported3 = false;
+}
 
-    // Lectura ángulos dinámicos
+void readDynamicAngle()
+{
     if (dynamicAngle1)
         sendDynamicAngle(Wire, lastSentAngle_1, lastSendTime_1);
     if (dynamicAngle2)
@@ -108,38 +101,38 @@ void updateHoming()
 }
 
 // -----------------------------------------------------------------------
-void handleHomeAll()
+void homeAll()
 {
     // Ejecutar homings normalmente
     switch (homeAllState)
     {
     case HomeAllState::MOTOR1:
-        if (homingMotor1.state == HomingStateXY::INACTIVE)
-            homingXY_Start(motor1, motor1Config, homingMotor1, HALL_1);
+        if (motor1Homing.state == HomingStateXY::INACTIVE)
+            homingStartXY(motor1, motor1Config, motor1Homing, HALL_1);
 
-        homingXY_Step(motor1, motor1Config, homingMotor1, HALL_1);
+        homingStepXY(motor1, motor1Config, motor1Homing, HALL_1);
 
-        if (homingMotor1.state == HomingStateXY::OK)
+        if (motor1Homing.state == HomingStateXY::OK)
             homeAllState = HomeAllState::MOTOR2;
         break;
 
     case HomeAllState::MOTOR2:
-        if (homingMotor2.state == HomingStateXY::INACTIVE)
-            homingXY_Start(motor2, motor2Config, homingMotor2, HALL_2);
+        if (motor2Homing.state == HomingStateXY::INACTIVE)
+            homingStartXY(motor2, motor2Config, motor2Homing, HALL_2);
 
-        homingXY_Step(motor2, motor2Config, homingMotor2, HALL_2);
+        homingStepXY(motor2, motor2Config, motor2Homing, HALL_2);
 
-        if (homingMotor2.state == HomingStateXY::OK)
+        if (motor2Homing.state == HomingStateXY::OK)
             homeAllState = HomeAllState::MOTOR3;
         break;
 
     case HomeAllState::MOTOR3:
-        if (homingMotor3.state == HomingStateZ::INACTIVE)
-            homingZ_Start(motor3, motor3Config, homingMotor3, HALL_3);
+        if (motor3Homing.state == HomingStateZ::INACTIVE)
+            homingStartZ(motor3, motor3Config, motor3Homing, HALL_3);
 
-        homingZ_Step(motor3, motor3Config, homingMotor3, HALL_3);
+        homingStepZ(motor3, motor3Config, motor3Homing, HALL_3);
 
-        if (homingMotor3.state == HomingStateZ::OK)
+        if (motor3Homing.state == HomingStateZ::OK)
         {
             homeAllState = HomeAllState::IDLE; // ya terminó
         }

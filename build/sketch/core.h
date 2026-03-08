@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\core.h"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/core.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -8,16 +8,14 @@
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
 //      - Declaración de funciones centrales del robot.
-//      - Gestión de homing, flags globales y actualización de core.
-//      - Separa la lógica de secuencia HOME-ALL de los homings individuales.
-//      - Contiene variables globales accesibles desde otros módulos.
 // =======================================================================
 
 #pragma once
+
 #include <Arduino.h>
+
 #include "config.h"
-#include "homingXY.h"
-#include "homingZ.h"
+#include "homing.h"
 
 // Máquina de estado para HOME_ALL
 enum class HomeAllState
@@ -31,19 +29,14 @@ enum class HomeAllState
 
 extern bool dynamicAngle1;
 extern bool dynamicAngle2;
-extern HomingRunTimeXY homingMotor1;
-extern HomingRunTimeXY homingMotor2;
-extern HomingRunTimeZ homingMotor3;
+extern HomingXY motor1Homing;
+extern HomingXY motor2Homing;
+extern HomingZ motor3Homing;
 extern HomeAllState homeAllState;
 extern bool homeAllActive;
 
-// Inicialización del core
-void core_Init();
-
-// Actualización periódica
-void updateCore();
-
-// Manejo de secuencias globales
-void handleHomeAll();
-
-void updateHoming();
+void coreInit();
+void homeAll();
+void homeSingleMotor();
+void readDynamicAngle();
+void coreUpdate();
