@@ -98,11 +98,11 @@ void homingStartZ(AccelStepper &motor,
 
 // HOMING ACTIVO?
 // -----------------------------------------------------------------------
-bool homingIsActiveXY(const HomingXY &st)
+bool homingXYisActive(const HomingXY &st)
 {
     return st.state != HomingStateXY::INACTIVE;
 }
-bool homingIsActiveZ(const HomingZ &st)
+bool homingZisActive(const HomingZ &st)
 {
     return st.state != HomingStateZ::INACTIVE;
 }
@@ -120,11 +120,11 @@ HomingStateZ homingGetStateZ(const HomingZ &st)
 
 // COMPROBAR SI HUBO ERROR EN HOMING
 // -----------------------------------------------------------------------
-bool homingHasErrorXY(const HomingXY &st)
+bool homingXYhasError(const HomingXY &st)
 {
     return st.fault; // devuelve true si hubo error
 }
-bool homingHasErrorZ(const HomingZ &st)
+bool homingZHasError(const HomingZ &st)
 {
     return st.fault;
 }

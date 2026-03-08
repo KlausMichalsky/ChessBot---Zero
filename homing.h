@@ -49,42 +49,40 @@ struct HomingZ
     bool fault;              // Flag de error latcheado, permanece activo hasta que el
 };
 
-// API PÚBLICA PLANO XY
+// API PÚBLICA PLANO
 // -----------------------------------------------------------------------
 void homingInitXY(HomingXY &st);
+
+void homingInitZ(HomingZ &st);
 
 void homingStartXY(AccelStepper &motor,
                    const HomingConfig &cfg,
                    HomingXY &st,
                    int hallPin);
 
-bool homingIsActiveXY(const HomingXY &st);
+void homingStartZ(AccelStepper &motor,
+                  const HomingConfig &cfg,
+                  HomingZ &st,
+                  int hallPin);
+
+bool homingXYisActive(const HomingXY &st);
+
+bool homingZisActive(const HomingZ &st);
 
 void homingStepXY(AccelStepper &motor,
                   const HomingConfig &cfg,
                   HomingXY &st,
                   int hallPin);
 
-bool homingHasErrorXY(const HomingXY &st);
-
-HomingStateXY homingGetStateXY(const HomingXY &st);
-
-// API PÚBLICA EJE Z
-// -----------------------------------------------------------------------
-void homingInitZ(HomingZ &st);
-
-void homingStartZ(AccelStepper &motor,
-                  const HomingConfig &cfg,
-                  HomingZ &st,
-                  int hallPin);
-
-bool homingIsActiveZ(const HomingZ &st);
-
 void homingStepZ(AccelStepper &motor,
                  const HomingConfig &cfg,
                  HomingZ &st,
                  int hallPin);
 
-bool homingHasErrorZ(const HomingZ &st);
+bool homingXYhasError(const HomingXY &st);
+
+bool homingZhasError(const HomingZ &st);
+
+HomingStateXY homingGetStateXY(const HomingXY &st);
 
 HomingStateZ homingGetStateZ(const HomingZ &st);

@@ -53,13 +53,13 @@ void coreHomeSingleMotor()
 {
     // Homing Motor1
     static bool reported1 = false;
-    if (homingXY_IsActive(motor1Homing))
+    if (homingXYisActive(motor1Homing))
         homingStepXY(motor1, motor1Config, motor1Homing, HALL_1);
 
     if (motor1Homing.state == HomingStateXY::OK && !reported1)
     {
         commandSendResponse("HOMING MOTOR1 OK"); // 🔹 evento “solo una vez”
-        sendStaticAngle(Wire);
+        sensorSendAngle(Wire);
         reported1 = true;
     }
     else if (motor1Homing.state != HomingStateXY::OK)
@@ -67,13 +67,13 @@ void coreHomeSingleMotor()
 
     // Homing Motor2
     static bool reported2 = false;
-    if (homingXY_IsActive(motor2Homing))
+    if (homingXYisActive(motor2Homing))
         homingStepXY(motor2, motor2Config, motor2Homing, HALL_2);
 
     if (motor2Homing.state == HomingStateXY::OK && !reported2)
     {
         commandSendResponse("HOMING MOTOR2 OK");
-        sendStaticAngle(Wire1);
+        sensorSendAngle(Wire1);
         reported2 = true;
     }
     else if (motor2Homing.state != HomingStateXY::OK)
@@ -81,7 +81,7 @@ void coreHomeSingleMotor()
 
     // Homing Motor3
     static bool reported3 = false;
-    if (homingZ_IsActive(motor3Homing))
+    if (homingZisActive(motor3Homing))
         homingStepZ(motor3, motor3Config, motor3Homing, HALL_3);
 
     if (motor3Homing.state == HomingStateZ::OK && !reported3)

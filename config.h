@@ -60,15 +60,15 @@ enum class Command
 {
     STATUS,
     RESET,
-    HOME_MOTOR1,
-    HOME_MOTOR2,
-    HOME_MOTOR3,
+    HOME1,
+    HOME2,
+    HOME3,
     HOME_ALL,
-    GET_ANGLE1,
-    GET_ANGLE1_START,
-    GET_ANGLE2,
-    GET_ANGLE2_START,
-    GET_ANGLE_STOP,
+    ANGLE1,
+    ANGLE1_STREAM,
+    ANGLE2,
+    ANGLE2_STREAM,
+    STOP_STREAM,
     UNKNOWN
 };
 

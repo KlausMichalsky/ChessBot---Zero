@@ -131,23 +131,23 @@ Command parseCommand(const String &cmd)
     if (cmd == "RESET")
         return Command::RESET;
     if (cmd == "HOME-MOTOR1")
-        return Command::HOME_MOTOR1;
+        return Command::HOME1;
     if (cmd == "HOME-MOTOR2")
-        return Command::HOME_MOTOR2;
+        return Command::HOME2;
     if (cmd == "HOME-MOTOR3")
-        return Command::HOME_MOTOR3;
+        return Command::HOME3;
     if (cmd == "HOME-ALL")
         return Command::HOME_ALL;
     if (cmd == "GET-ANGLE1")
-        return Command::GET_ANGLE1;
+        return Command::ANGLE1;
     if (cmd == "GET-ANGLE1-START")
-        return Command::GET_ANGLE1_START;
+        return Command::ANGLE1_STREAM;
     if (cmd == "GET-ANGLE2")
-        return Command::GET_ANGLE2;
+        return Command::ANGLE2;
     if (cmd == "GET-ANGLE2-START")
-        return Command::GET_ANGLE2_START;
+        return Command::ANGLE2_STREAM;
     if (cmd == "GET-ANGLE-STOP")
-        return Command::GET_ANGLE_STOP;
+        return Command::STOP_STREAM;
     return Command::UNKNOWN;
 }
 
@@ -186,17 +186,17 @@ void processCommand(const String &cmdStr)
         commandSendResponse("RESET");
         break;
 
-    case Command::HOME_MOTOR1:
+    case Command::HOME1:
         commandSendResponse("HOMING MOTOR1 STARTED");
         homingStartXY(motor1, motor1Config, motor1Homing, HALL_1);
         break;
 
-    case Command::HOME_MOTOR2:
+    case Command::HOME2:
         commandSendResponse("HOMING MOTOR2 STARTED");
         homingStartXY(motor2, motor2Config, motor2Homing, HALL_2);
         break;
 
-    case Command::HOME_MOTOR3:
+    case Command::HOME3:
         commandSendResponse("HOMING MOTOR3 STARTED");
         homingStartZ(motor3, motor3Config, motor3Homing, HALL_3);
         break;
@@ -207,25 +207,25 @@ void processCommand(const String &cmdStr)
         commandSendResponse("HOME ALL SEQUENCE STARTED");
         break;
 
-    case Command::GET_ANGLE1:
+    case Command::ANGLE1:
         Serial1.print("ANGLE1: ");
-        sendStaticAngle(Wire); // Leer y enviar ángulo del primer sensor
+        sensorSendAngle(Wire); // Leer y enviar ángulo del primer sensor
         break;
 
-    case Command::GET_ANGLE1_START:
+    case Command::ANGLE1_STREAM:
         dynamicAngle1 = true; // Activar lectura continua
         break;
 
-    case Command::GET_ANGLE2:
+    case Command::ANGLE2:
         Serial1.print("ANGLE2: ");
-        sendStaticAngle(Wire1); // Leer y enviar ángulo del segundo sensor
+        sensorSendAngle(Wire1); // Leer y enviar ángulo del segundo sensor
         break;
 
-    case Command::GET_ANGLE2_START:
+    case Command::ANGLE2_STREAM:
         dynamicAngle2 = true; // Activar lectura continua
         break;
 
-    case Command::GET_ANGLE_STOP:
+    case Command::STOP_STREAM:
         dynamicAngle1 = false;
         dynamicAngle2 = false;
         break;
