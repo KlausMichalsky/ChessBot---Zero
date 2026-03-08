@@ -2,18 +2,18 @@
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
-
 //  Archivo    : communication.cpp
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      - Comunicación UART con el Raspberry
 //      - Inicializar UART
+//      - Comunicación UART con el Raspberry
 //      - Gestionar la recepción de datos de forma no bloqueante.
 // =======================================================================
 
 #include <Arduino.h>
+
 #include "communication.h"
 #include "config.h"
 
@@ -26,7 +26,7 @@ void debug(const String &msg)
 #endif
 }
 
-void UART_Init()
+void communicationInit()
 {
     // USB para debug (opcional)
     Serial.begin(115200);

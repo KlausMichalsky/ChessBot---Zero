@@ -6,27 +6,30 @@
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      - Implementación de funciones de cálculo y conversión
+//      - Implementación de funciones de cálculo y conversiónes
 // =======================================================================
 
 #include <Arduino.h>
-#include "calc.h"
 #include <math.h>
-#include "communication.h"
 
-// Convierte valor bruto 12 bits del AS5600 (0-4095) a grados ------------
+#include "communication.h"
+#include "utils.h"
+
+// Convierte valor bruto 12 bits del AS5600 (0-4095) a grados
 float rawToDegrees(uint16_t rawAngle)
 {
     return (rawAngle * 360.0) / 4096.0;
 }
 
-// Redondea un float a 1 decimal (ej. 123.456 -> 123.5) ------------------
+// Redondea un float a 1 decimal (ej. 123.456 -> 123.5)
 float round1Decimal(float value)
 {
     return ((int)(value * 10 + 0.5)) / 10.0;
 }
 
 // Filtra y envía un valor por UART solo si cambia suficiente y respeta intervalo
+// ⚠️ Solo para pruebas de lectura de angulo continuo
+// -> El envio continuo bloquea movimiento de motores
 void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime,
                        float delta, unsigned long interval, HardwareSerial &uart)
 {

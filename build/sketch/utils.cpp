@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\calc.cpp"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\utils.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -7,21 +7,22 @@
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      - Implementación de funciones de cálculo y conversión
+//      - Implementación de funciones de cálculo y conversiónes
 // =======================================================================
 
 #include <Arduino.h>
-#include "calc.h"
 #include <math.h>
-#include "communication.h"
 
-// Convierte valor bruto 12 bits del AS5600 (0-4095) a grados ------------
+#include "communication.h"
+#include "utils.h"
+
+// Convierte valor bruto 12 bits del AS5600 (0-4095) a grados
 float rawToDegrees(uint16_t rawAngle)
 {
     return (rawAngle * 360.0) / 4096.0;
 }
 
-// Redondea un float a 1 decimal (ej. 123.456 -> 123.5) ------------------
+// Redondea un float a 1 decimal (ej. 123.456 -> 123.5)
 float round1Decimal(float value)
 {
     return ((int)(value * 10 + 0.5)) / 10.0;

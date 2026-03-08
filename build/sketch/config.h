@@ -9,32 +9,32 @@
 //  ▫️ DESCRIPCIÓN
 //      - Definición de pines fisicos, constantes y tipos de datos.
 //      - Definición de parametros globales.
-//      -
-//      - Declarar enums de estados.
-//      - Definir estructuras de configuración de motores.
+//      - Definición de enums de estados.
+//      - Definición estructuras de configuración de motores.
 //      - Centralizar parámetros mecánicos dependientes del hardware.
 // =======================================================================
 
-#pragma once
 #include <Arduino.h>
 
+#pragma once
+
 // PINES DE CONFIGURACIÓN
-// =======================================================================
-// Sensor1, Encoder1, Motor 1
+// -----------------------------------------------------------------------
+// Sensor1, Encoder1, Motor1
 #define HALL_1 3
 #define AS5600_1_SDA 4
 #define AS5600_1_SCL 5
 #define MOTOR1_ENABLE 6
 #define MOTOR1_DIR 7
 #define MOTOR1_STEP 8
-// Sensor2, Encoder2, Motor 2
+// Sensor2, Encoder2, Motor2
 #define HALL_2 15
 #define AS5600_2_SDA 26
 #define AS5600_2_SCL 27
 #define MOTOR2_ENABLE 12
 #define MOTOR2_DIR 13
 #define MOTOR2_STEP 14
-// Sensor3, Encoder3, Motor 3
+// Sensor3, Encoder3, Motor3
 #define HALL_3 29
 #define MOTOR3_ENABLE 9
 #define MOTOR3_DIR 10
@@ -44,23 +44,23 @@
 #define IMAN 28
 
 // PARAMETROS DE CONFIGURACIÓN
-// =======================================================================
+// -----------------------------------------------------------------------
 #define AS5600_ADDR 0x36
 #define SEND_INTERVAL 33 // ms -> ~30Hz
 #define DELTA_DEG 0.5f   // Enviar si el ángulo cambia más de DELTA_DEG
 
-// NIVELES LÓGICOS DE ENABLE
-// =======================================================================
+// NIVELES LÓGICOS DE ENABLE DEL TMC2209
+// -----------------------------------------------------------------------
 constexpr bool ENABLE_ACTIVE = LOW; // Nivel lógico (LOW=ON, HIGH=OFF)
 constexpr bool ENABLE_INACTIVE = HIGH;
 
 // TIPOS DE DATOS
-// =======================================================================
+// -----------------------------------------------------------------------
 // Comandos recibidos por UART
 enum class Command
 {
     STATUS,
-    RESET_ERRORS,
+    RESET,
     HOME_MOTOR1,
     HOME_MOTOR2,
     HOME_MOTOR3,
@@ -102,8 +102,8 @@ enum class HomingStateZ
     ERROR
 };
 
-// ESTRUCTURAS DE CONFIGURACIÓN
-// =======================================================================
+// ESTRUCTURAS DE CONFIGURACIÓN DE MOTORES
+// -----------------------------------------------------------------------
 struct HomingConfig
 {
     int microstepping;

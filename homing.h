@@ -1,0 +1,90 @@
+// =======================================================================
+//                 🔹 C H E S S B O T  —   Z E R O 🔹
+// =======================================================================
+//  Archivo    : homing.h
+//  Autor      : Klaus Michalsky
+//  Fecha      : Feb-2026
+// -----------------------------------------------------------------------
+//  ▫️ DESCRIPCIÓN
+//      - Definir la estructura de estado del homing
+//      - Proporcionar funciones públicas para inicializar y ejecutar la
+//        rutina de homing.
+//      - Permitir consultar el estado actual y detectar errores.
+//      - Servir como interfaz para otros módulos del robot que requieran
+//        funcionalidad de homing.
+// =======================================================================
+
+#pragma once
+
+#include <Arduino.h>
+
+#include <AccelStepper.h>
+
+#include "config.h"
+
+// ESTRUCTURA DE ESTADO DEL HOMING
+// -----------------------------------------------------------------------
+// Esta estructura guarda TODO el estado necesario para ejecutar
+// una rutina de homing no bloqueante.
+// Se pasa por referencia entre homingInitXY(), homingStartXY(),
+// homingStepXY() y las funciones de consulta.
+// Permite manejar múltiples motores con la misma lógica.
+struct HomingXY
+{
+    HomingStateXY state;     // Estado actual de la máquina de estados de homing// <-- aquí usamos el enum
+    unsigned long startTime; // Tiempo (millis) en el que comenzó el homing
+    long firstEdge;          // Primer flanco detectado por el sensor
+    long secondEdge;         // Segundo flanco detectado por el sensor
+    long centerPosition;     // Posición calculada a partir de los flancos -> referencia absoluta
+    bool fault;              // Flag de error latcheado, permanece activo hasta que el usuario lo resetea
+};
+
+struct HomingZ
+{
+    HomingStateZ state;      // Estado actual de la máquina de estados de homing// <-- aquí usamos el enum
+    unsigned long startTime; // Tiempo (millis) en el que comenzó el homing
+    long initialPosition;    // Posición calculada a partir de los flancos -> referencia absoluta
+    long edge;               // Flanco de salida detectado por el sensor
+    long reference;          // Posiciónde homing calculada
+    bool fault;              // Flag de error latcheado, permanece activo hasta que el
+};
+
+// API PÚBLICA PLANO XY
+// -----------------------------------------------------------------------
+void homingInitXY(HomingXY &st);
+
+void homingStartXY(AccelStepper &motor,
+                   const HomingConfig &cfg,
+                   HomingXY &st,
+                   int hallPin);
+
+bool homingXY_IsActive(const HomingXY &st);
+
+void homingStepXY(AccelStepper &motor,
+                  const HomingConfig &cfg,
+                  HomingXY &st,
+                  int hallPin);
+
+bool homingXY_HasError(const HomingXY &st);
+
+HomingStateXY homingXY_GetState(const HomingXY &st);
+
+// API PÚBLICA EJE Z
+// -----------------------------------------------------------------------
+void homingInitZ(HomingZ &st);
+
+void homingStartZ(AccelStepper &motor,
+                  const HomingConfig &cfg,
+                  HomingZ &st,
+                  int hallPin);
+
+bool homingZ_IsActive(const HomingZ &st);
+
+void homingStepZ(AccelStepper &motor,
+                 const HomingConfig &cfg,
+                 HomingZ &st,
+                 int hallPin);
+
+bool homingZ_HasError(const HomingZ &st);
+
+HomingStateZ homingZ_GetState(const HomingZ &st);

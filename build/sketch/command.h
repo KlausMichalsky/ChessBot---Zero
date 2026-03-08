@@ -1,8 +1,8 @@
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\command.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
-
-//  Archivo    : commands.h
+//  Archivo    : command.h
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
@@ -11,15 +11,12 @@
 //        recibidos por UART
 // =======================================================================
 
-#pragma once
 #include <Arduino.h>
 
+#pragma once
+
 bool commandAvailable();
-String receiveCommand();
-void sendResponse(const String &msg);
+String commandStatusReport();
+void commandSendResponse(const String &msg);
 void processCommand(const String &command);
-// void readAngles();
-// void sendAngle(float angle);
-// void sendStatus();
-// void sendError(const String &error);
-// void sendDebug(const String &debug);
+String readCommand();

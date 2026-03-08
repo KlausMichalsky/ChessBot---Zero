@@ -1,45 +1,51 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\commands.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
-
-//  Archivo    : commands.cpp
+//  Archivo    : command.cpp
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
 //      - Implementación de funciones para la gestión de comandos
-//        recibidos por UART usando enum class Command
+//        recibidos por UART
 // =======================================================================
 
 #include <Arduino.h>
+
 #include <AccelStepper.h>
-#include "core.h"
+
+#include "command.h"
 #include "config.h"
-#include "commands.h"
-#include "homingXY.h"
-#include "homingZ.h"
+#include "core.h"
+#include "homing.h"
 #include "motors.h"
 #include "sensors.h"
-#include "calc.h"
+#include "utils.h"
 
-// Variables externas
-extern HomingRunTimeXY homingMotor1;
-extern HomingRunTimeXY homingMotor2;
-extern HomingRunTimeZ homingMotor3;
+// VARIABLES EXTERNAS
+// -----------------------------------------------------------------------
+extern HomingXY motor1Homing;
+extern HomingXY motor2Homing;
+extern HomingZ motor3Homing;
 extern bool dynamicAngle1;
 extern bool dynamicAngle2;
 extern bool homeAllActive;
 
+// COMPROBACIÓN DE COMANDOS DISPONIBLES
 // -----------------------------------------------------------------------
+bool commandAvailable()
+{
+    return Serial1.available();
+}
+
 // GENERAR RESPUESTA DE STATUS DE TODOS LOS MOTORES
 // -----------------------------------------------------------------------
-String statusReport()
+String commandStatusReport()
 {
     String resp = "";
 
     // Motor1
-    switch (homingMotor1.state)
+    switch (motor1Homing.state)
     {
     case HomingStateXY::OK:
         resp += "MOTOR1 OK; ";
@@ -55,7 +61,7 @@ String statusReport()
     }
 
     // Motor2
-    switch (homingMotor2.state)
+    switch (motor2Homing.state)
     {
     case HomingStateXY::OK:
         resp += "MOTOR2 OK; ";
@@ -71,7 +77,7 @@ String statusReport()
     }
 
     // Motor3
-    switch (homingMotor3.state)
+    switch (motor3Homing.state)
     {
     case HomingStateZ::OK:
         resp += "MOTOR3 OK; ";
@@ -92,18 +98,9 @@ String statusReport()
     return resp;
 }
 
-// -----------------------------------------------------------------------
-// COMPROBACIÓN DE COMANDOS DISPONIBLES
-// -----------------------------------------------------------------------
-bool commandAvailable()
-{
-    return Serial1.available();
-}
-
-// -----------------------------------------------------------------------
 // LECTURA DE COMANDOS
 // -----------------------------------------------------------------------
-String receiveCommand()
+String readCommand()
 {
     static String buffer = "";
     while (Serial1.available())
@@ -124,15 +121,14 @@ String receiveCommand()
     return ""; // no hay comando completo todavía
 }
 
-// -----------------------------------------------------------------------
-// MAPEAR STRING A enum class Command
+// MAPEAR STRING a enum class Command
 // -----------------------------------------------------------------------
 Command parseCommand(const String &cmd)
 {
     if (cmd == "STATUS")
         return Command::STATUS;
-    if (cmd == "RESET-ERRORS")
-        return Command::RESET_ERRORS;
+    if (cmd == "RESET")
+        return Command::RESET;
     if (cmd == "HOME-MOTOR1")
         return Command::HOME_MOTOR1;
     if (cmd == "HOME-MOTOR2")
@@ -154,17 +150,15 @@ Command parseCommand(const String &cmd)
     return Command::UNKNOWN;
 }
 
-// -----------------------------------------------------------------------
 // ENVIAR RESPUESTA POR UART
 // -----------------------------------------------------------------------
-void sendResponse(const String &msg)
+void commandSendResponse(const String &msg)
 {
-    // while (Serial1.available())
-    //     Serial1.read(); // limpiar residuos
+    // while (Serial1.available())              ⚠️
+    //     Serial1.read(); // limpiar residuos  ⚠️
     Serial1.println(msg);
 }
 
-// -----------------------------------------------------------------------
 // PROCESAMIENTO DE COMANDOS
 // -----------------------------------------------------------------------
 void processCommand(const String &cmdStr)
@@ -177,39 +171,39 @@ void processCommand(const String &cmdStr)
     switch (cmd)
     {
     case Command::STATUS:
-        sendResponse(statusReport());
+        commandSendResponse(commandStatusReport());
         break;
 
-    case Command::RESET_ERRORS:
-        homingMotor1.fault = false;
-        homingMotor2.fault = false;
-        homingMotor3.fault = false;        // si querés limpiar Z también
-        homingXY_Init(homingMotor1);       // reinicia motor1
-        homingXY_Init(homingMotor2);       // reinicia motor2
-        homingZ_Init(homingMotor3);        // reinicia motor3
+    case Command::RESET:
+        motor1Homing.fault = false;
+        motor2Homing.fault = false;
+        motor3Homing.fault = false;        // si querés limpiar Z también
+        homingInitXY(motor1Homing);        // reinicia motor1
+        homingInitXY(motor2Homing);        // reinicia motor2
+        homingInitZ(motor3Homing);         // reinicia motor3
         homeAllState = HomeAllState::IDLE; // si estabas en HOME-ALL, cancelalo
-        sendResponse("ERRORS RESET");
+        commandSendResponse("RESET");
         break;
 
     case Command::HOME_MOTOR1:
-        sendResponse("HOMING MOTOR1 STARTED");
-        homingXY_Start(motor1, motor1Config, homingMotor1, HALL_1);
+        commandSendResponse("HOMING MOTOR1 STARTED");
+        homingStartXY(motor1, motor1Config, motor1Homing, HALL_1);
         break;
 
     case Command::HOME_MOTOR2:
-        sendResponse("HOMING MOTOR2 STARTED");
-        homingXY_Start(motor2, motor2Config, homingMotor2, HALL_2);
+        commandSendResponse("HOMING MOTOR2 STARTED");
+        homingStartXY(motor2, motor2Config, motor2Homing, HALL_2);
         break;
 
     case Command::HOME_MOTOR3:
-        sendResponse("HOMING MOTOR3 STARTED");
-        homingZ_Start(motor3, motor3Config, homingMotor3, HALL_3);
+        commandSendResponse("HOMING MOTOR3 STARTED");
+        homingStartZ(motor3, motor3Config, motor3Homing, HALL_3);
         break;
 
     case Command::HOME_ALL:
         // 🔹 Inicializa secuencia HOME-ALL
         homeAllState = HomeAllState::MOTOR1;
-        sendResponse("HOME ALL SEQUENCE STARTED");
+        commandSendResponse("HOME ALL SEQUENCE STARTED");
         break;
 
     case Command::GET_ANGLE1:
@@ -237,7 +231,7 @@ void processCommand(const String &cmdStr)
 
     case Command::UNKNOWN:
     default:
-        sendResponse("UNKNOWN COMMAND");
+        commandSendResponse("UNKNOWN COMMAND");
         break;
     }
 }
