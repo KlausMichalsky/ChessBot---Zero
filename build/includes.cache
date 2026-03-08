@@ -1,21 +1,21 @@
 [
   {
-    "added_include_path": "/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/cores/rp2040"
+    "added_include_path": "C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\cores\\rp2040"
   },
   {
-    "added_include_path": "/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/variants/waveshare_rp2040_zero"
+    "added_include_path": "C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\variants\\waveshare_rp2040_zero"
   },
   {
     "compile": {
-      "source_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/ChessBot---Zero.ino.cpp",
-      "object_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/ChessBot---Zero.ino.cpp.o",
-      "depfile_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/ChessBot---Zero.ino.cpp.d"
+      "source_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\ChessBot---Zero.ino.cpp",
+      "object_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\ChessBot---Zero.ino.cpp.o",
+      "depfile_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\ChessBot---Zero.ino.cpp.d"
     },
     "compile_task": {
       "args": [
-        "/Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/arm-none-eabi-g++",
+        "C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\tools\\pqt-gcc\\4.0.1-8ec9d6f/bin/arm-none-eabi-g++",
         "-I",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build/core",
         "-c",
         "-Werror=return-type",
         "-Wno-psabi",
@@ -33,18 +33,17 @@
         "-DDISABLE_FS_H_WARNING=1",
         "-DARDUINO_VARIANT=\"waveshare_rp2040_zero\"",
         "-DPICO_FLASH_SIZE_BYTES=2097152",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/platform_def.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_def.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_def.txt",
         "-march=armv6-m",
         "-mcpu=cortex-m0plus",
         "-mthumb",
         "-ffunction-sections",
         "-fdata-sections",
         "-fno-exceptions",
-        "-iprefix/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_inc.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/core_inc.txt",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/include",
+        "-iprefixC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_inc.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/core_inc.txt",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/include",
         "-fno-rtti",
         "-std=gnu++17",
         "-g",
@@ -61,11 +60,11 @@
         "-DARDUINO_ARCH_RP2040",
         "-Os",
         "-DWIFICC=CYW43_COUNTRY_WORLDWIDE",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/cores/rp2040",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/variants/waveshare_rp2040_zero",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/ChessBot---Zero.ino.cpp",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\cores\\rp2040",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\variants\\waveshare_rp2040_zero",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\ChessBot---Zero.ino.cpp",
         "-o",
-        "/dev/null"
+        "nul"
       ]
     }
   },
@@ -73,19 +72,19 @@
     "missing_include_h": "Wire.h"
   },
   {
-    "added_include_path": "/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/libraries/Wire/src"
+    "added_include_path": "C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\libraries\\Wire\\src"
   },
   {
     "compile": {
-      "source_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/ChessBot---Zero.ino.cpp",
-      "object_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/ChessBot---Zero.ino.cpp.o",
-      "depfile_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/ChessBot---Zero.ino.cpp.d"
+      "source_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\ChessBot---Zero.ino.cpp",
+      "object_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\ChessBot---Zero.ino.cpp.o",
+      "depfile_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\ChessBot---Zero.ino.cpp.d"
     },
     "compile_task": {
       "args": [
-        "/Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/arm-none-eabi-g++",
+        "C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\tools\\pqt-gcc\\4.0.1-8ec9d6f/bin/arm-none-eabi-g++",
         "-I",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build/core",
         "-c",
         "-Werror=return-type",
         "-Wno-psabi",
@@ -103,18 +102,17 @@
         "-DDISABLE_FS_H_WARNING=1",
         "-DARDUINO_VARIANT=\"waveshare_rp2040_zero\"",
         "-DPICO_FLASH_SIZE_BYTES=2097152",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/platform_def.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_def.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_def.txt",
         "-march=armv6-m",
         "-mcpu=cortex-m0plus",
         "-mthumb",
         "-ffunction-sections",
         "-fdata-sections",
         "-fno-exceptions",
-        "-iprefix/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_inc.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/core_inc.txt",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/include",
+        "-iprefixC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_inc.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/core_inc.txt",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/include",
         "-fno-rtti",
         "-std=gnu++17",
         "-g",
@@ -131,12 +129,12 @@
         "-DARDUINO_ARCH_RP2040",
         "-Os",
         "-DWIFICC=CYW43_COUNTRY_WORLDWIDE",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/cores/rp2040",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/variants/waveshare_rp2040_zero",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/libraries/Wire/src",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/ChessBot---Zero.ino.cpp",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\cores\\rp2040",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\variants\\waveshare_rp2040_zero",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\libraries\\Wire\\src",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\ChessBot---Zero.ino.cpp",
         "-o",
-        "/dev/null"
+        "nul"
       ]
     }
   },
@@ -144,19 +142,19 @@
     "missing_include_h": "AccelStepper.h"
   },
   {
-    "added_include_path": "/Users/klausmichalsky/Arduino/libraries/AccelStepper/src"
+    "added_include_path": "C:\\Users\\Benutzer1\\Documents\\Arduino\\libraries\\AccelStepper\\src"
   },
   {
     "compile": {
-      "source_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/ChessBot---Zero.ino.cpp",
-      "object_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/ChessBot---Zero.ino.cpp.o",
-      "depfile_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/ChessBot---Zero.ino.cpp.d"
+      "source_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\ChessBot---Zero.ino.cpp",
+      "object_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\ChessBot---Zero.ino.cpp.o",
+      "depfile_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\ChessBot---Zero.ino.cpp.d"
     },
     "compile_task": {
       "args": [
-        "/Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/arm-none-eabi-g++",
+        "C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\tools\\pqt-gcc\\4.0.1-8ec9d6f/bin/arm-none-eabi-g++",
         "-I",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build/core",
         "-c",
         "-Werror=return-type",
         "-Wno-psabi",
@@ -174,18 +172,17 @@
         "-DDISABLE_FS_H_WARNING=1",
         "-DARDUINO_VARIANT=\"waveshare_rp2040_zero\"",
         "-DPICO_FLASH_SIZE_BYTES=2097152",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/platform_def.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_def.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_def.txt",
         "-march=armv6-m",
         "-mcpu=cortex-m0plus",
         "-mthumb",
         "-ffunction-sections",
         "-fdata-sections",
         "-fno-exceptions",
-        "-iprefix/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_inc.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/core_inc.txt",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/include",
+        "-iprefixC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_inc.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/core_inc.txt",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/include",
         "-fno-rtti",
         "-std=gnu++17",
         "-g",
@@ -202,13 +199,13 @@
         "-DARDUINO_ARCH_RP2040",
         "-Os",
         "-DWIFICC=CYW43_COUNTRY_WORLDWIDE",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/cores/rp2040",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/variants/waveshare_rp2040_zero",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/libraries/Wire/src",
-        "-I/Users/klausmichalsky/Arduino/libraries/AccelStepper/src",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/ChessBot---Zero.ino.cpp",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\cores\\rp2040",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\variants\\waveshare_rp2040_zero",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\libraries\\Wire\\src",
+        "-IC:\\Users\\Benutzer1\\Documents\\Arduino\\libraries\\AccelStepper\\src",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\ChessBot---Zero.ino.cpp",
         "-o",
-        "/dev/null"
+        "nul"
       ]
     }
   },
@@ -217,15 +214,15 @@
   },
   {
     "compile": {
-      "source_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/command.cpp",
-      "object_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/command.cpp.o",
-      "depfile_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/command.cpp.d"
+      "source_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\command.cpp",
+      "object_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\command.cpp.o",
+      "depfile_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\command.cpp.d"
     },
     "compile_task": {
       "args": [
-        "/Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/arm-none-eabi-g++",
+        "C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\tools\\pqt-gcc\\4.0.1-8ec9d6f/bin/arm-none-eabi-g++",
         "-I",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build/core",
         "-c",
         "-Werror=return-type",
         "-Wno-psabi",
@@ -243,18 +240,17 @@
         "-DDISABLE_FS_H_WARNING=1",
         "-DARDUINO_VARIANT=\"waveshare_rp2040_zero\"",
         "-DPICO_FLASH_SIZE_BYTES=2097152",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/platform_def.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_def.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_def.txt",
         "-march=armv6-m",
         "-mcpu=cortex-m0plus",
         "-mthumb",
         "-ffunction-sections",
         "-fdata-sections",
         "-fno-exceptions",
-        "-iprefix/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_inc.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/core_inc.txt",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/include",
+        "-iprefixC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_inc.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/core_inc.txt",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/include",
         "-fno-rtti",
         "-std=gnu++17",
         "-g",
@@ -271,13 +267,13 @@
         "-DARDUINO_ARCH_RP2040",
         "-Os",
         "-DWIFICC=CYW43_COUNTRY_WORLDWIDE",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/cores/rp2040",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/variants/waveshare_rp2040_zero",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/libraries/Wire/src",
-        "-I/Users/klausmichalsky/Arduino/libraries/AccelStepper/src",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/command.cpp",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\cores\\rp2040",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\variants\\waveshare_rp2040_zero",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\libraries\\Wire\\src",
+        "-IC:\\Users\\Benutzer1\\Documents\\Arduino\\libraries\\AccelStepper\\src",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\command.cpp",
         "-o",
-        "/dev/null"
+        "nul"
       ]
     }
   },
@@ -286,15 +282,15 @@
   },
   {
     "compile": {
-      "source_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/communication.cpp",
-      "object_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/communication.cpp.o",
-      "depfile_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/communication.cpp.d"
+      "source_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\communication.cpp",
+      "object_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\communication.cpp.o",
+      "depfile_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\communication.cpp.d"
     },
     "compile_task": {
       "args": [
-        "/Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/arm-none-eabi-g++",
+        "C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\tools\\pqt-gcc\\4.0.1-8ec9d6f/bin/arm-none-eabi-g++",
         "-I",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build/core",
         "-c",
         "-Werror=return-type",
         "-Wno-psabi",
@@ -312,18 +308,17 @@
         "-DDISABLE_FS_H_WARNING=1",
         "-DARDUINO_VARIANT=\"waveshare_rp2040_zero\"",
         "-DPICO_FLASH_SIZE_BYTES=2097152",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/platform_def.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_def.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_def.txt",
         "-march=armv6-m",
         "-mcpu=cortex-m0plus",
         "-mthumb",
         "-ffunction-sections",
         "-fdata-sections",
         "-fno-exceptions",
-        "-iprefix/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_inc.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/core_inc.txt",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/include",
+        "-iprefixC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_inc.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/core_inc.txt",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/include",
         "-fno-rtti",
         "-std=gnu++17",
         "-g",
@@ -340,13 +335,13 @@
         "-DARDUINO_ARCH_RP2040",
         "-Os",
         "-DWIFICC=CYW43_COUNTRY_WORLDWIDE",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/cores/rp2040",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/variants/waveshare_rp2040_zero",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/libraries/Wire/src",
-        "-I/Users/klausmichalsky/Arduino/libraries/AccelStepper/src",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/communication.cpp",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\cores\\rp2040",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\variants\\waveshare_rp2040_zero",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\libraries\\Wire\\src",
+        "-IC:\\Users\\Benutzer1\\Documents\\Arduino\\libraries\\AccelStepper\\src",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\communication.cpp",
         "-o",
-        "/dev/null"
+        "nul"
       ]
     }
   },
@@ -355,15 +350,15 @@
   },
   {
     "compile": {
-      "source_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/core.cpp",
-      "object_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/core.cpp.o",
-      "depfile_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/core.cpp.d"
+      "source_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\core.cpp",
+      "object_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\core.cpp.o",
+      "depfile_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\core.cpp.d"
     },
     "compile_task": {
       "args": [
-        "/Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/arm-none-eabi-g++",
+        "C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\tools\\pqt-gcc\\4.0.1-8ec9d6f/bin/arm-none-eabi-g++",
         "-I",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build/core",
         "-c",
         "-Werror=return-type",
         "-Wno-psabi",
@@ -381,18 +376,17 @@
         "-DDISABLE_FS_H_WARNING=1",
         "-DARDUINO_VARIANT=\"waveshare_rp2040_zero\"",
         "-DPICO_FLASH_SIZE_BYTES=2097152",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/platform_def.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_def.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_def.txt",
         "-march=armv6-m",
         "-mcpu=cortex-m0plus",
         "-mthumb",
         "-ffunction-sections",
         "-fdata-sections",
         "-fno-exceptions",
-        "-iprefix/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_inc.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/core_inc.txt",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/include",
+        "-iprefixC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_inc.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/core_inc.txt",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/include",
         "-fno-rtti",
         "-std=gnu++17",
         "-g",
@@ -409,13 +403,13 @@
         "-DARDUINO_ARCH_RP2040",
         "-Os",
         "-DWIFICC=CYW43_COUNTRY_WORLDWIDE",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/cores/rp2040",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/variants/waveshare_rp2040_zero",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/libraries/Wire/src",
-        "-I/Users/klausmichalsky/Arduino/libraries/AccelStepper/src",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/core.cpp",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\cores\\rp2040",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\variants\\waveshare_rp2040_zero",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\libraries\\Wire\\src",
+        "-IC:\\Users\\Benutzer1\\Documents\\Arduino\\libraries\\AccelStepper\\src",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\core.cpp",
         "-o",
-        "/dev/null"
+        "nul"
       ]
     }
   },
@@ -424,15 +418,15 @@
   },
   {
     "compile": {
-      "source_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/homing.cpp",
-      "object_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/homing.cpp.o",
-      "depfile_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/homing.cpp.d"
+      "source_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\homing.cpp",
+      "object_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\homing.cpp.o",
+      "depfile_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\homing.cpp.d"
     },
     "compile_task": {
       "args": [
-        "/Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/arm-none-eabi-g++",
+        "C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\tools\\pqt-gcc\\4.0.1-8ec9d6f/bin/arm-none-eabi-g++",
         "-I",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build/core",
         "-c",
         "-Werror=return-type",
         "-Wno-psabi",
@@ -450,18 +444,17 @@
         "-DDISABLE_FS_H_WARNING=1",
         "-DARDUINO_VARIANT=\"waveshare_rp2040_zero\"",
         "-DPICO_FLASH_SIZE_BYTES=2097152",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/platform_def.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_def.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_def.txt",
         "-march=armv6-m",
         "-mcpu=cortex-m0plus",
         "-mthumb",
         "-ffunction-sections",
         "-fdata-sections",
         "-fno-exceptions",
-        "-iprefix/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_inc.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/core_inc.txt",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/include",
+        "-iprefixC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_inc.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/core_inc.txt",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/include",
         "-fno-rtti",
         "-std=gnu++17",
         "-g",
@@ -478,13 +471,13 @@
         "-DARDUINO_ARCH_RP2040",
         "-Os",
         "-DWIFICC=CYW43_COUNTRY_WORLDWIDE",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/cores/rp2040",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/variants/waveshare_rp2040_zero",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/libraries/Wire/src",
-        "-I/Users/klausmichalsky/Arduino/libraries/AccelStepper/src",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/homing.cpp",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\cores\\rp2040",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\variants\\waveshare_rp2040_zero",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\libraries\\Wire\\src",
+        "-IC:\\Users\\Benutzer1\\Documents\\Arduino\\libraries\\AccelStepper\\src",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\homing.cpp",
         "-o",
-        "/dev/null"
+        "nul"
       ]
     }
   },
@@ -493,15 +486,15 @@
   },
   {
     "compile": {
-      "source_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/motors.cpp",
-      "object_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/motors.cpp.o",
-      "depfile_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/motors.cpp.d"
+      "source_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\motors.cpp",
+      "object_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\motors.cpp.o",
+      "depfile_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\motors.cpp.d"
     },
     "compile_task": {
       "args": [
-        "/Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/arm-none-eabi-g++",
+        "C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\tools\\pqt-gcc\\4.0.1-8ec9d6f/bin/arm-none-eabi-g++",
         "-I",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build/core",
         "-c",
         "-Werror=return-type",
         "-Wno-psabi",
@@ -519,18 +512,17 @@
         "-DDISABLE_FS_H_WARNING=1",
         "-DARDUINO_VARIANT=\"waveshare_rp2040_zero\"",
         "-DPICO_FLASH_SIZE_BYTES=2097152",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/platform_def.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_def.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_def.txt",
         "-march=armv6-m",
         "-mcpu=cortex-m0plus",
         "-mthumb",
         "-ffunction-sections",
         "-fdata-sections",
         "-fno-exceptions",
-        "-iprefix/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_inc.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/core_inc.txt",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/include",
+        "-iprefixC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_inc.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/core_inc.txt",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/include",
         "-fno-rtti",
         "-std=gnu++17",
         "-g",
@@ -547,13 +539,13 @@
         "-DARDUINO_ARCH_RP2040",
         "-Os",
         "-DWIFICC=CYW43_COUNTRY_WORLDWIDE",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/cores/rp2040",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/variants/waveshare_rp2040_zero",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/libraries/Wire/src",
-        "-I/Users/klausmichalsky/Arduino/libraries/AccelStepper/src",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/motors.cpp",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\cores\\rp2040",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\variants\\waveshare_rp2040_zero",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\libraries\\Wire\\src",
+        "-IC:\\Users\\Benutzer1\\Documents\\Arduino\\libraries\\AccelStepper\\src",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\motors.cpp",
         "-o",
-        "/dev/null"
+        "nul"
       ]
     }
   },
@@ -562,15 +554,15 @@
   },
   {
     "compile": {
-      "source_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/sensors.cpp",
-      "object_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/sensors.cpp.o",
-      "depfile_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/sensors.cpp.d"
+      "source_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\sensors.cpp",
+      "object_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\sensors.cpp.o",
+      "depfile_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\sensors.cpp.d"
     },
     "compile_task": {
       "args": [
-        "/Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/arm-none-eabi-g++",
+        "C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\tools\\pqt-gcc\\4.0.1-8ec9d6f/bin/arm-none-eabi-g++",
         "-I",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build/core",
         "-c",
         "-Werror=return-type",
         "-Wno-psabi",
@@ -588,18 +580,17 @@
         "-DDISABLE_FS_H_WARNING=1",
         "-DARDUINO_VARIANT=\"waveshare_rp2040_zero\"",
         "-DPICO_FLASH_SIZE_BYTES=2097152",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/platform_def.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_def.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_def.txt",
         "-march=armv6-m",
         "-mcpu=cortex-m0plus",
         "-mthumb",
         "-ffunction-sections",
         "-fdata-sections",
         "-fno-exceptions",
-        "-iprefix/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_inc.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/core_inc.txt",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/include",
+        "-iprefixC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_inc.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/core_inc.txt",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/include",
         "-fno-rtti",
         "-std=gnu++17",
         "-g",
@@ -616,13 +607,13 @@
         "-DARDUINO_ARCH_RP2040",
         "-Os",
         "-DWIFICC=CYW43_COUNTRY_WORLDWIDE",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/cores/rp2040",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/variants/waveshare_rp2040_zero",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/libraries/Wire/src",
-        "-I/Users/klausmichalsky/Arduino/libraries/AccelStepper/src",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/sensors.cpp",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\cores\\rp2040",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\variants\\waveshare_rp2040_zero",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\libraries\\Wire\\src",
+        "-IC:\\Users\\Benutzer1\\Documents\\Arduino\\libraries\\AccelStepper\\src",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\sensors.cpp",
         "-o",
-        "/dev/null"
+        "nul"
       ]
     }
   },
@@ -631,15 +622,15 @@
   },
   {
     "compile": {
-      "source_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/utils.cpp",
-      "object_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/utils.cpp.o",
-      "depfile_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/utils.cpp.d"
+      "source_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\utils.cpp",
+      "object_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\utils.cpp.o",
+      "depfile_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\utils.cpp.d"
     },
     "compile_task": {
       "args": [
-        "/Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/arm-none-eabi-g++",
+        "C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\tools\\pqt-gcc\\4.0.1-8ec9d6f/bin/arm-none-eabi-g++",
         "-I",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build/core",
         "-c",
         "-Werror=return-type",
         "-Wno-psabi",
@@ -657,18 +648,17 @@
         "-DDISABLE_FS_H_WARNING=1",
         "-DARDUINO_VARIANT=\"waveshare_rp2040_zero\"",
         "-DPICO_FLASH_SIZE_BYTES=2097152",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/platform_def.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_def.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_def.txt",
         "-march=armv6-m",
         "-mcpu=cortex-m0plus",
         "-mthumb",
         "-ffunction-sections",
         "-fdata-sections",
         "-fno-exceptions",
-        "-iprefix/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_inc.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/core_inc.txt",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/include",
+        "-iprefixC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_inc.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/core_inc.txt",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/include",
         "-fno-rtti",
         "-std=gnu++17",
         "-g",
@@ -685,13 +675,13 @@
         "-DARDUINO_ARCH_RP2040",
         "-Os",
         "-DWIFICC=CYW43_COUNTRY_WORLDWIDE",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/cores/rp2040",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/variants/waveshare_rp2040_zero",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/libraries/Wire/src",
-        "-I/Users/klausmichalsky/Arduino/libraries/AccelStepper/src",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/utils.cpp",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\cores\\rp2040",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\variants\\waveshare_rp2040_zero",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\libraries\\Wire\\src",
+        "-IC:\\Users\\Benutzer1\\Documents\\Arduino\\libraries\\AccelStepper\\src",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\utils.cpp",
         "-o",
-        "/dev/null"
+        "nul"
       ]
     }
   },
@@ -700,15 +690,15 @@
   },
   {
     "compile": {
-      "source_path": "/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/libraries/Wire/src/Wire.cpp",
-      "object_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/libraries/Wire/Wire.cpp.o",
-      "depfile_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/libraries/Wire/Wire.cpp.d"
+      "source_path": "C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\libraries\\Wire\\src\\Wire.cpp",
+      "object_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\libraries\\Wire\\Wire.cpp.o",
+      "depfile_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\libraries\\Wire\\Wire.cpp.d"
     },
     "compile_task": {
       "args": [
-        "/Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/arm-none-eabi-g++",
+        "C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\tools\\pqt-gcc\\4.0.1-8ec9d6f/bin/arm-none-eabi-g++",
         "-I",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build/core",
         "-c",
         "-Werror=return-type",
         "-Wno-psabi",
@@ -726,18 +716,17 @@
         "-DDISABLE_FS_H_WARNING=1",
         "-DARDUINO_VARIANT=\"waveshare_rp2040_zero\"",
         "-DPICO_FLASH_SIZE_BYTES=2097152",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/platform_def.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_def.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_def.txt",
         "-march=armv6-m",
         "-mcpu=cortex-m0plus",
         "-mthumb",
         "-ffunction-sections",
         "-fdata-sections",
         "-fno-exceptions",
-        "-iprefix/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_inc.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/core_inc.txt",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/include",
+        "-iprefixC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_inc.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/core_inc.txt",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/include",
         "-fno-rtti",
         "-std=gnu++17",
         "-g",
@@ -754,13 +743,13 @@
         "-DARDUINO_ARCH_RP2040",
         "-Os",
         "-DWIFICC=CYW43_COUNTRY_WORLDWIDE",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/cores/rp2040",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/variants/waveshare_rp2040_zero",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/libraries/Wire/src",
-        "-I/Users/klausmichalsky/Arduino/libraries/AccelStepper/src",
-        "/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/libraries/Wire/src/Wire.cpp",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\cores\\rp2040",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\variants\\waveshare_rp2040_zero",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\libraries\\Wire\\src",
+        "-IC:\\Users\\Benutzer1\\Documents\\Arduino\\libraries\\AccelStepper\\src",
+        "C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\libraries\\Wire\\src\\Wire.cpp",
         "-o",
-        "/dev/null"
+        "nul"
       ]
     }
   },
@@ -769,15 +758,15 @@
   },
   {
     "compile": {
-      "source_path": "/Users/klausmichalsky/Arduino/libraries/AccelStepper/src/AccelStepper.cpp",
-      "object_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/libraries/AccelStepper/AccelStepper.cpp.o",
-      "depfile_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/libraries/AccelStepper/AccelStepper.cpp.d"
+      "source_path": "C:\\Users\\Benutzer1\\Documents\\Arduino\\libraries\\AccelStepper\\src\\AccelStepper.cpp",
+      "object_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\libraries\\AccelStepper\\AccelStepper.cpp.o",
+      "depfile_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\libraries\\AccelStepper\\AccelStepper.cpp.d"
     },
     "compile_task": {
       "args": [
-        "/Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/arm-none-eabi-g++",
+        "C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\tools\\pqt-gcc\\4.0.1-8ec9d6f/bin/arm-none-eabi-g++",
         "-I",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build/core",
         "-c",
         "-Werror=return-type",
         "-Wno-psabi",
@@ -795,18 +784,17 @@
         "-DDISABLE_FS_H_WARNING=1",
         "-DARDUINO_VARIANT=\"waveshare_rp2040_zero\"",
         "-DPICO_FLASH_SIZE_BYTES=2097152",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/platform_def.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_def.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_def.txt",
         "-march=armv6-m",
         "-mcpu=cortex-m0plus",
         "-mthumb",
         "-ffunction-sections",
         "-fdata-sections",
         "-fno-exceptions",
-        "-iprefix/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_inc.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/core_inc.txt",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/include",
+        "-iprefixC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_inc.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/core_inc.txt",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/include",
         "-fno-rtti",
         "-std=gnu++17",
         "-g",
@@ -823,13 +811,13 @@
         "-DARDUINO_ARCH_RP2040",
         "-Os",
         "-DWIFICC=CYW43_COUNTRY_WORLDWIDE",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/cores/rp2040",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/variants/waveshare_rp2040_zero",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/libraries/Wire/src",
-        "-I/Users/klausmichalsky/Arduino/libraries/AccelStepper/src",
-        "/Users/klausmichalsky/Arduino/libraries/AccelStepper/src/AccelStepper.cpp",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\cores\\rp2040",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\variants\\waveshare_rp2040_zero",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\libraries\\Wire\\src",
+        "-IC:\\Users\\Benutzer1\\Documents\\Arduino\\libraries\\AccelStepper\\src",
+        "C:\\Users\\Benutzer1\\Documents\\Arduino\\libraries\\AccelStepper\\src\\AccelStepper.cpp",
         "-o",
-        "/dev/null"
+        "nul"
       ]
     }
   },
@@ -838,15 +826,15 @@
   },
   {
     "compile": {
-      "source_path": "/Users/klausmichalsky/Arduino/libraries/AccelStepper/src/MultiStepper.cpp",
-      "object_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/libraries/AccelStepper/MultiStepper.cpp.o",
-      "depfile_path": "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/libraries/AccelStepper/MultiStepper.cpp.d"
+      "source_path": "C:\\Users\\Benutzer1\\Documents\\Arduino\\libraries\\AccelStepper\\src\\MultiStepper.cpp",
+      "object_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\libraries\\AccelStepper\\MultiStepper.cpp.o",
+      "depfile_path": "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\libraries\\AccelStepper\\MultiStepper.cpp.d"
     },
     "compile_task": {
       "args": [
-        "/Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/arm-none-eabi-g++",
+        "C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\tools\\pqt-gcc\\4.0.1-8ec9d6f/bin/arm-none-eabi-g++",
         "-I",
-        "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build/core",
         "-c",
         "-Werror=return-type",
         "-Wno-psabi",
@@ -864,18 +852,17 @@
         "-DDISABLE_FS_H_WARNING=1",
         "-DARDUINO_VARIANT=\"waveshare_rp2040_zero\"",
         "-DPICO_FLASH_SIZE_BYTES=2097152",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/platform_def.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_def.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_def.txt",
         "-march=armv6-m",
         "-mcpu=cortex-m0plus",
         "-mthumb",
         "-ffunction-sections",
         "-fdata-sections",
         "-fno-exceptions",
-        "-iprefix/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/platform_inc.txt",
-        "@/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/core_inc.txt",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/include",
+        "-iprefixC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/rp2040/platform_inc.txt",
+        "@C:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/lib/core_inc.txt",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2/include",
         "-fno-rtti",
         "-std=gnu++17",
         "-g",
@@ -892,13 +879,13 @@
         "-DARDUINO_ARCH_RP2040",
         "-Os",
         "-DWIFICC=CYW43_COUNTRY_WORLDWIDE",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/cores/rp2040",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/variants/waveshare_rp2040_zero",
-        "-I/Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/libraries/Wire/src",
-        "-I/Users/klausmichalsky/Arduino/libraries/AccelStepper/src",
-        "/Users/klausmichalsky/Arduino/libraries/AccelStepper/src/MultiStepper.cpp",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\cores\\rp2040",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\variants\\waveshare_rp2040_zero",
+        "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\libraries\\Wire\\src",
+        "-IC:\\Users\\Benutzer1\\Documents\\Arduino\\libraries\\AccelStepper\\src",
+        "C:\\Users\\Benutzer1\\Documents\\Arduino\\libraries\\AccelStepper\\src\\MultiStepper.cpp",
         "-o",
-        "/dev/null"
+        "nul"
       ]
     }
   },

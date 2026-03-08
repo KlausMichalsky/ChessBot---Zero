@@ -93,7 +93,7 @@ def keyboard_input():
                 "ANGLE2\n"
                 "ANGLE2-STREAM\n"
                 "STOP-STREAM\n"
-                "SHOW-COMMANDS"
+                "SHOW-COMMANDS\n"
             )
     time.sleep_ms(10)  # 10 ms → latencia mínima
 
