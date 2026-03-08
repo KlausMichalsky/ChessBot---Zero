@@ -26,7 +26,17 @@ extern unsigned long lastSendTime_1;
 extern float lastSentAngle_2;
 extern unsigned long lastSendTime_2;
 
+// Offsets calculados durante homing
+extern float sensor1Offset;
+extern float sensor2Offset;
+
+// Ángulos ya corregidos con el offset
+extern float sensor1Angle;
+extern float sensor2Angle;
+
 void sensorsInit();
 uint16_t sensorReadAngle(TwoWire &wire);
 void sensorStreamAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastSendTime);
 void sensorSendAngle(TwoWire &wire);
+float sensorHomingOffset(TwoWire &wire);
+float sensorCorrectedAngle(TwoWire &wire, float offset);

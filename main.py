@@ -36,7 +36,7 @@ def main_loop():
         "ANGLE2\n"
         "ANGLE2-STREAM\n"
         "STOP-STREAM\n"
-        "SHOW-COMMANDS"
+        "SHOW-COMMANDS\n"
     )
 
     while True:

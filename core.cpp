@@ -58,9 +58,12 @@ void coreHomeSingleMotor()
 
     if (motor1Homing.state == HomingStateXY::OK && !reported1)
     {
-        commandSendResponse("HOMING MOTOR1 OK"); // 🔹 evento “solo una vez”
-        sensorSendAngle(Wire);
-        reported1 = true;
+        commandSendResponse("HOMING MOTOR1 OK");
+        sensor1Offset = sensorHomingOffset(Wire);
+        sensor1Angle = sensorCorrectedAngle(Wire, sensor1Offset);
+        Serial1.print("Angle: ");
+        Serial1.print(sensor1Angle);
+        reported1 = true; // 👀 esto hace que el if se ejecute solo 1 vez en el loop
     }
     else if (motor1Homing.state != HomingStateXY::OK)
         reported1 = false;

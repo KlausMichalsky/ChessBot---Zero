@@ -25,6 +25,12 @@ float lastSentAngle_1 = -1000.0f; // Guarda el último ángulo enviado
 unsigned long lastSendTime_2 = 0;
 float lastSentAngle_2 = -1000.0f;
 
+float sensor1Offset = 0;
+float sensor2Offset = 0;
+
+float sensor1Angle = 0;
+float sensor2Angle = 0;
+
 // API PÚBLICA DE SENSORES
 // -----------------------------------------------------------------------
 void sensorsInit()
@@ -78,29 +84,10 @@ void sensorStreamAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastS
     sendFilteredFloat(degrees, lastSentAngle, lastSendTime, 0.5, 33, Serial1); // Enviar angulo filtrado por UART
 }
 
-// ⚠️ No muy exato:
-// si un valor se desvia mucho por ruido el promedio es inexacto
-// por otra parte si la lectura esta entre el 0° y 360°
-// entonces el promedio da un valor muy fuera del rango
-// float sensorHomingOffset()
-// {
-//     const uint8_t samples = 30;
-//     float sum = 0;
-//     for (uint8_t i = 0; i < samples; i++)
-//     {
-//         sum += sensorReadAngle(Wire);
-//         delay(2); // para evitar saturar el I2C
-//     }
-//     float average = sum / samples;
-
-//     return average;
-// }
-
 // Si alguna vez tu homing mecanico cae cerca del 0 digital del sensor:
 // entonces el promedio normal se rompe
 // Mejor solucion:
 // 30 lecturas + corrección si cruza 0° + promedio 👀💡
-
 //         0°
 //    330°     30°
 //  300°         60°
@@ -108,16 +95,15 @@ void sensorStreamAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastS
 //  240°        120°
 //   210°      150°
 //         180°
-
-float sensorHomingOffset()
+float sensorHomingOffset(TwoWire &wire)
 {
     const uint8_t samples = 30;
     float sum = 0;
-    float firstAngle = sensorReadAngle(Wire);
+    float firstAngle = rawToDegrees(sensorReadAngle(wire));
 
     for (uint8_t i = 0; i < samples; i++)
     {
-        float angle = sensorReadAngle(Wire);
+        float angle = rawToDegrees(sensorReadAngle(wire));
         // corregir salto 0° / 360°
         // fabs -> valor absoluto |angle - firstAngle|
         // Si la diferencia es mayor que 180°,
@@ -133,17 +119,28 @@ float sensorHomingOffset()
         }
         sum += angle;
     }
-
     // Normalizar el angulo si el promedio queda fuera del rango
     // Eso solo mueve el número al rango correcto
     // Si un cálculo da 361° eso en realidad es lo mismo que 1°
     // si pasa de 360 → restar 360, si es menor que 0 → sumar 360
-    float avg = sum / samples;
+    float offset = sum / samples;
 
-    if (avg >= 360)
-        avg -= 360;
-    if (avg < 0)
-        avg += 360;
+    if (offset >= 360)
+        offset -= 360;
+    if (offset < 0)
+        offset += 360;
 
-    return avg;
+    return offset;
+}
+
+float sensorCorrectedAngle(TwoWire &wire, float offset)
+{
+    float angle = rawToDegrees(sensorReadAngle(wire)) - offset;
+
+    if (angle >= 360)
+        angle -= 360;
+    if (angle < 0)
+        angle += 360;
+
+    return angle;
 }
