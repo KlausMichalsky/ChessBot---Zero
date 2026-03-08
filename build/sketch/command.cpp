@@ -130,23 +130,23 @@ Command parseCommand(const String &cmd)
         return Command::STATUS;
     if (cmd == "RESET")
         return Command::RESET;
-    if (cmd == "HOME-MOTOR1")
+    if (cmd == "HOME1")
         return Command::HOME1;
-    if (cmd == "HOME-MOTOR2")
+    if (cmd == "HOME2")
         return Command::HOME2;
-    if (cmd == "HOME-MOTOR3")
+    if (cmd == "HOME3")
         return Command::HOME3;
     if (cmd == "HOME-ALL")
         return Command::HOME_ALL;
-    if (cmd == "GET-ANGLE1")
+    if (cmd == "ANGLE1")
         return Command::ANGLE1;
-    if (cmd == "GET-ANGLE1-START")
+    if (cmd == "ANGLE1-STREAM")
         return Command::ANGLE1_STREAM;
-    if (cmd == "GET-ANGLE2")
+    if (cmd == "ANGLE2")
         return Command::ANGLE2;
-    if (cmd == "GET-ANGLE2-START")
+    if (cmd == "ANGLE2-STREAM")
         return Command::ANGLE2_STREAM;
-    if (cmd == "GET-ANGLE-STOP")
+    if (cmd == "STOP-STREAM")
         return Command::STOP_STREAM;
     return Command::UNKNOWN;
 }

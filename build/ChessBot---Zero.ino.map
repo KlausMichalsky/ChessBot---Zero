@@ -4638,117 +4638,118 @@ LOAD /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0
 .iplt           0x10013a84        0x0
  .iplt          0x10013a84        0x0 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/thumb/crtbegin.o
 
-.rodata         0x10013a88      0xf00
+.rodata         0x10013a88      0xee0
  *(EXCLUDE_FILE(*libm.a: *libc.a:*lib_a-mem*.o *libgcc.a:) .rodata* .big_const*)
  .rodata._Z19commandStatusReportv.str1.1
-                0x10013a88      0x3d5 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/command.cpp.o
+                0x10013a88      0x3b2 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/command.cpp.o
                                  0x8a (size before relaxing)
  .rodata._Z12parseCommandRKN7arduino6StringE.str1.1
-                0x10013e5d       0x81 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/command.cpp.o
+                0x10013e3a       0x5e /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/command.cpp.o
  .rodata._Z14processCommandRKN7arduino6StringE.str1.1
-                0x10013e5d       0x7e /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/command.cpp.o
- *fill*         0x10013e5d        0x3 
+                0x10013e3a       0x7e /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/command.cpp.o
+ *fill*         0x10013e3a        0x2 
  .rodata.motor3Config
-                0x10013e60       0x28 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/command.cpp.o
-                0x10013e60                motor3Config
+                0x10013e3c       0x28 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/command.cpp.o
+                0x10013e3c                motor3Config
  .rodata.motor2Config
-                0x10013e88       0x28 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/command.cpp.o
-                0x10013e88                motor2Config
+                0x10013e64       0x28 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/command.cpp.o
+                0x10013e64                motor2Config
  .rodata.motor1Config
-                0x10013eb0       0x28 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/command.cpp.o
-                0x10013eb0                motor1Config
+                0x10013e8c       0x28 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/command.cpp.o
+                0x10013e8c                motor1Config
  .rodata._Z19coreHomeSingleMotorv.str1.1
-                0x10013ed8       0x33 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/core.cpp.o
+                0x10013eb4       0x33 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/core.cpp.o
  .rodata._Z15sensorSendAngleR7TwoWire.str1.1
-                0x10013ed8        0x2 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/sensors.cpp.o
+                0x10013eb4        0x2 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/sketch/sensors.cpp.o
  .rodata._ZTV7TwoWire
-                0x10013ed8       0x50 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/libraries/Wire/Wire.a(Wire.cpp.o)
-                0x10013ed8                _ZTV7TwoWire
- .rodata        0x10013f28      0x1e0 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/libraries/Wire/Wire.a(Wire.cpp.o)
+                0x10013eb4       0x50 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/libraries/Wire/Wire.a(Wire.cpp.o)
+                0x10013eb4                _ZTV7TwoWire
+ *fill*         0x10013f04        0x4 
+ .rodata        0x10013f08      0x1e0 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/libraries/Wire/Wire.a(Wire.cpp.o)
  .rodata._ZTV12AccelStepper
-                0x10014108       0x40 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/libraries/AccelStepper/AccelStepper.cpp.o
-                0x10014108                _ZTV12AccelStepper
+                0x100140e8       0x40 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/libraries/AccelStepper/AccelStepper.cpp.o
+                0x100140e8                _ZTV12AccelStepper
  .rodata._ZN10SerialUART5setRXEh.str1.1
-                0x10014148       0x6a /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(SerialUART.cpp.o)
+                0x10014128       0x6a /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(SerialUART.cpp.o)
  .rodata._ZN10SerialUART5setTXEh.str1.1
-                0x10014148       0x6a /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(SerialUART.cpp.o)
+                0x10014128       0x6a /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(SerialUART.cpp.o)
  .rodata._ZTV10SerialUART
-                0x10014148       0x34 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(SerialUART.cpp.o)
-                0x10014148                _ZTV10SerialUART
- *fill*         0x1001417c        0x4 
- .rodata        0x10014180       0x40 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(SerialUART.cpp.o)
+                0x10014128       0x34 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(SerialUART.cpp.o)
+                0x10014128                _ZTV10SerialUART
+ *fill*         0x1001415c        0x4 
+ .rodata        0x10014160       0x40 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(SerialUART.cpp.o)
  .rodata._ZN9SerialUSB5beginEm.str1.1
-                0x100141c0        0xc /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(SerialUSB.cpp.o)
+                0x100141a0        0xc /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(SerialUSB.cpp.o)
  .rodata._ZTV9SerialUSB
-                0x100141c0       0x34 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(SerialUSB.cpp.o)
-                0x100141c0                _ZTV9SerialUSB
+                0x100141a0       0x34 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(SerialUSB.cpp.o)
+                0x100141a0                _ZTV9SerialUSB
  .rodata._ZN8USBClass14registerStringEPKc.str1.1
-                0x100141f4        0x1 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(USB.cpp.o)
+                0x100141d4        0x1 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(USB.cpp.o)
  .rodata._ZN8USBClass24tud_descriptor_device_cbEv.str1.1
-                0x100141f4       0x16 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(USB.cpp.o)
+                0x100141d4       0x16 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(USB.cpp.o)
  .rodata._ZN7arduino5Print7printlnEv.str1.1
-                0x100141f4        0x3 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(Print.cpp.o)
+                0x100141d4        0x3 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(Print.cpp.o)
  .rodata._ZN7arduino5Print10printFloatEdi.str1.1
-                0x100141f4        0xe /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(Print.cpp.o)
+                0x100141d4        0xe /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(Print.cpp.o)
  .rodata._GLOBAL__sub_I_rp2040.str1.1
-                0x100141f4        0x1 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(main.cpp.o)
+                0x100141d4        0x1 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(main.cpp.o)
  .rodata.main.str1.1
-                0x100141f4       0x32 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(main.cpp.o)
+                0x100141d4       0x32 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(main.cpp.o)
  .rodata.noInterrupts.str1.1
-                0x100141f4       0x13 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(wiring_private.cpp.o)
+                0x100141d4       0x13 /Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/build/core/core.a(wiring_private.cpp.o)
  .rodata.panic.str1.1
-                0x100141f4       0x12 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/libpico.a(panic.c.o)
+                0x100141d4       0x12 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/libpico.a(panic.c.o)
  .rodata.spin_lock_claim_unused.str1.1
-                0x100141f4       0x1b /Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/libpico.a(sync.c.o)
+                0x100141d4       0x1b /Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/libpico.a(sync.c.o)
  .rodata.user_irq_claim_unused.str1.1
-                0x100141f4       0x1b /Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/libpico.a(irq.c.o)
+                0x100141d4       0x1b /Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/libpico.a(irq.c.o)
  .rodata.timer_hardware_alarm_claim.str1.1
-                0x100141f4       0x22 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/libpico.a(timer.c.o)
+                0x100141d4       0x22 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/libpico.a(timer.c.o)
  .rodata.hard_assertion_failure.str1.1
-                0x100141f4        0xc /Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/libpico.a(runtime.c.o)
+                0x100141d4        0xc /Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/libpico.a(runtime.c.o)
  .rodata._usbd_driver
-                0x100141f4       0x80 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/libpico.a(usbd.c.o)
+                0x100141d4       0x80 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/libpico.a(usbd.c.o)
  .rodata.str1.1
-                0x10014274       0x14 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/libpico.a(dcd_rp2040.c.o)
+                0x10014254       0x14 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/libpico.a(dcd_rp2040.c.o)
  .rodata.str1.1
-                0x10014274       0x46 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/libpico.a(rp2040_usb.c.o)
+                0x10014254       0x46 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/libpico.a(rp2040_usb.c.o)
  .rodata.str1.4
-                0x10014274      0x133 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-assert.o)
+                0x10014254      0x133 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-assert.o)
                                  0x43 (size before relaxing)
  .rodata.str1.4
-                0x100143a7        0x2 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-puts.o)
+                0x10014387        0x2 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-puts.o)
  .rodata.str1.4
-                0x100143a7       0x12 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-locale.o)
+                0x10014387       0x12 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-locale.o)
  .rodata.str1.4
-                0x100143a7       0x6d /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-dtoa.o)
- *fill*         0x100143a7        0x1 
- .rodata        0x100143a8      0x101 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-ctype_.o)
-                0x100143a8                _ctype_
+                0x10014387       0x6d /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-dtoa.o)
+ *fill*         0x10014387        0x1 
+ .rodata        0x10014388      0x101 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-ctype_.o)
+                0x10014388                _ctype_
  .rodata.str1.4
-                0x100144a9       0x59 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-mprec.o)
- *fill*         0x100144a9        0x7 
- .rodata        0x100144b0      0x128 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-mprec.o)
-                0x100144c0                __mprec_tinytens
-                0x100144e8                __mprec_bigtens
-                0x10014510                __mprec_tens
+                0x10014489       0x59 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-mprec.o)
+ *fill*         0x10014489        0x7 
+ .rodata        0x10014490      0x128 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-mprec.o)
+                0x100144a0                __mprec_tinytens
+                0x100144c8                __mprec_bigtens
+                0x100144f0                __mprec_tens
  .rodata.str1.4
-                0x100145d8       0x42 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-vfprintf.o)
- .rodata        0x100145d8      0x224 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-vfprintf.o)
+                0x100145b8       0x42 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-vfprintf.o)
+ .rodata        0x100145b8      0x224 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-vfprintf.o)
  .rodata.str1.4
-                0x100147fc       0x2f /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-vfiprintf.o)
- .rodata        0x100147fc      0x18c /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-vfiprintf.o)
-                0x10014988                        . = ALIGN (0x4)
+                0x100147dc       0x2f /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-vfiprintf.o)
+ .rodata        0x100147dc      0x18c /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/libc.a(libc_a-vfiprintf.o)
+                0x10014968                        . = ALIGN (0x4)
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.flashdata*)))
-                0x10014988                        . = ALIGN (0x4)
+                0x10014968                        . = ALIGN (0x4)
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x10014988                        __exidx_start = .
+                0x10014968                        __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x10014988                        __exidx_end = .
-                0x10014988                        . = ALIGN (0x4)
+                0x10014968                        __exidx_end = .
+                0x10014968                        . = ALIGN (0x4)
 
 .ram_vector_table
                 0x20000000       0xc0
@@ -4757,7 +4758,7 @@ LOAD /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0
                 0x20000000       0xc0 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/hardware/rp2040/5.4.3/lib/rp2040/libpico.a(runtime_init.c.o)
                 0x20000000                ram_vector_table
 
-.data           0x200000c0     0x12ac load address 0x10014988
+.data           0x200000c0     0x12ac load address 0x10014968
                 0x200000c0                        __data_start__ = .
  *(vtable)
  *(.time_critical*)
@@ -4937,23 +4938,23 @@ LOAD /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0
                 0x2000136c                        . = ALIGN (0x4)
 
 .tm_clone_table
-                0x2000136c        0x0 load address 0x10015c34
+                0x2000136c        0x0 load address 0x10015c14
  .tm_clone_table
                 0x2000136c        0x0 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/thumb/crtbegin.o
  .tm_clone_table
                 0x2000136c        0x0 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/thumb/crtend.o
 
-.igot.plt       0x2000136c        0x0 load address 0x10015c34
+.igot.plt       0x2000136c        0x0 load address 0x10015c14
  .igot.plt      0x2000136c        0x0 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/thumb/crtbegin.o
 
-.tdata          0x2000136c        0x0 load address 0x10015c34
+.tdata          0x2000136c        0x0 load address 0x10015c14
                 0x2000136c                        . = ALIGN (0x4)
  *(.tdata .tdata.* .gnu.linkonce.td.*)
                 0x2000136c                        __tdata_end = .
                 0x2000136c                        PROVIDE (__data_end__ = .)
-                0x10014988                        __etext = LOADADDR (.data)
+                0x10014968                        __etext = LOADADDR (.data)
 
-.tbss           0x2000136c        0x0 load address 0x10015c34
+.tbss           0x2000136c        0x0 load address 0x10015c14
                 0x2000136c                        . = ALIGN (0x4)
                 0x2000136c                        __bss_start__ = .
                 0x2000136c                        __tls_base = .
@@ -4961,7 +4962,7 @@ LOAD /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0
  *(.tcommon)
                 0x2000136c                        __tls_end = .
 
-.bss            0x20001370     0x16d4 load address 0x10015c34
+.bss            0x20001370     0x16d4 load address 0x10015c14
                 0x20001370                        . = ALIGN (0x4)
                 0x20001370                        __tbss_end = .
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.bss*)))
@@ -5174,19 +5175,19 @@ LOAD /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0
  *fill*         0x20003244    0x3cdbc 
                 0x20040000                        __HeapLimit = .
 
-.scratch_x      0x20040000        0x0 load address 0x10015c34
+.scratch_x      0x20040000        0x0 load address 0x10015c14
                 0x20040000                        __scratch_x_start__ = .
  *(.scratch_x.*)
                 0x20040000                        . = ALIGN (0x4)
                 0x20040000                        __scratch_x_end__ = .
-                0x10015c34                        __scratch_x_source__ = LOADADDR (.scratch_x)
+                0x10015c14                        __scratch_x_source__ = LOADADDR (.scratch_x)
 
-.scratch_y      0x20041000        0x0 load address 0x10015c34
+.scratch_y      0x20041000        0x0 load address 0x10015c14
                 0x20041000                        __scratch_y_start__ = .
  *(.scratch_y.*)
                 0x20041000                        . = ALIGN (0x4)
                 0x20041000                        __scratch_y_end__ = .
-                0x10015c34                        __scratch_y_source__ = LOADADDR (.scratch_y)
+                0x10015c14                        __scratch_y_source__ = LOADADDR (.scratch_y)
 
 .stack1_dummy   0x20040000      0x800
  *(.stack1*)
@@ -5199,7 +5200,7 @@ LOAD /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0
 .rel.dyn        0x20041800        0x0
  .rel.iplt      0x20041800        0x0 /Users/klausmichalsky/Library/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/thumb/crtbegin.o
 
-.flash_end      0x10015c34        0x0
+.flash_end      0x10015c14        0x0
  *(.embedded_end_block*)
                 [!provide]                        PROVIDE (__flash_binary_end = .)
                 0x20040000                        __StackLimit = (ORIGIN (RAM) + LENGTH (RAM))
