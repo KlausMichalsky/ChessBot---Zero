@@ -59,11 +59,7 @@ void coreHomeSingleMotor()
 
     if (motor1Homing.state == HomingStateXY::OK && !reported1)
     {
-        sensor1Offset = sensorHomingOffset(Wire);
-        sensor1Angle = sensorCorrectedAngle(Wire, sensor1Offset);
-        Serial1.print("Angle Sensor1: ");
-        Serial1.println(sensor1Angle);
-        commandSendResponse("HOMING MOTOR1 OK");
+        Serial1.print(commandReport(MotorID::J1));
         reported1 = true; // 👀 esto hace que el if se ejecute solo 1 vez en el loop
     }
     else if (motor1Homing.state != HomingStateXY::OK)
@@ -76,11 +72,7 @@ void coreHomeSingleMotor()
 
     if (motor2Homing.state == HomingStateXY::OK && !reported2)
     {
-        sensor2Offset = sensorHomingOffset(Wire1);
-        sensor2Angle = sensorCorrectedAngle(Wire1, sensor2Offset);
-        Serial1.print("Angle Sensor2: ");
-        Serial1.println(sensor2Angle);
-        commandSendResponse("HOMING MOTOR2 OK");
+        Serial1.print(commandReport(MotorID::J2));
         reported2 = true;
     }
     else if (motor2Homing.state != HomingStateXY::OK)
@@ -93,7 +85,7 @@ void coreHomeSingleMotor()
 
     if (motor3Homing.state == HomingStateZ::OK && !reported3)
     {
-        commandSendResponse("HOMING MOTOR3 OK");
+        Serial1.print(commandReport(MotorID::Z));
         reported3 = true;
     }
     else if (motor3Homing.state != HomingStateZ::OK)

@@ -12,6 +12,8 @@
 
 #include <Arduino.h>
 
+#include "config.h"
+
 #pragma once
 
 bool commandAvailable();
@@ -19,3 +21,4 @@ String commandStatusReport();
 void commandSendResponse(const String &msg);
 void processCommand(const String &command);
 String readCommand();
+String commandReport(MotorID id);

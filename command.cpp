@@ -40,6 +40,74 @@ bool commandAvailable()
 
 // GENERAR RESPUESTA DE STATUS DE TODOS LOS MOTORES
 // -----------------------------------------------------------------------
+String commandReport(MotorID id)
+{
+    String status = "";
+    float angle = 0.0;
+
+    switch (id)
+    {
+    case MotorID::J1:
+        angle = sensorCorrectedAngle(wire1, offset1);
+        switch (motor1Homing.state)
+        {
+        case HomingStateXY::OK:
+            status += "MOTOR1 OK (" + String(angle, 1) + "°); ";
+            break;
+        case HomingStateXY::ERROR:
+            status += "MOTOR1 ERROR; ";
+            break;
+        case HomingStateXY::INACTIVE:
+            break;
+        default:
+            status += "MOTOR1 RUNNING (" + String(angle, 1) + "°); ";
+            break;
+        }
+        break;
+
+    case MotorID::J2:
+        angle = sensorCorrectedAngle(wire2, offset2);
+        switch (motor2Homing.state)
+        {
+        case HomingStateXY::OK:
+            status += "MOTOR2 OK (" + String(angle, 1) + "°); ";
+            break;
+        case HomingStateXY::ERROR:
+            status += "MOTOR2 ERROR; ";
+            break;
+        case HomingStateXY::INACTIVE:
+            break;
+        default:
+            status += "MOTOR2 RUNNING (" + String(angle, 1) + "°); ";
+            break;
+        }
+        break;
+
+    case MotorID::Z:
+        // Para Z usamos reference porque no hay sensor angular
+        switch (motor3Homing.state)
+        {
+        case HomingStateZ::OK:
+            status += "MOTOR3 OK (" + String(motor3Homing.reference) + "); ";
+            break;
+        case HomingStateZ::ERROR:
+            status += "MOTOR3 ERROR; ";
+            break;
+        case HomingStateZ::INACTIVE:
+            break;
+        default:
+            status += "MOTOR3 RUNNING (" + String(motor3Homing.reference) + "); ";
+            break;
+        }
+        break;
+    }
+
+    if (status == "")
+        status = "IDLE";
+
+    return status;
+}
+
 String commandStatusReport()
 {
     String status = "";

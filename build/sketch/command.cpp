@@ -41,6 +41,70 @@ bool commandAvailable()
 
 // GENERAR RESPUESTA DE STATUS DE TODOS LOS MOTORES
 // -----------------------------------------------------------------------
+String commandReport(MotorID id)
+{
+    String status = "";
+
+    switch (id)
+    {
+    case MotorID::J1: // motor1 XY
+        switch (motor1Homing.state)
+        {
+        case HomingStateXY::OK:
+            status += "MOTOR1 OK (" + String(motor1Homing.centerPosition) + "); ";
+            break;
+        case HomingStateXY::ERROR:
+            status += "MOTOR1 ERROR; ";
+            break;
+        case HomingStateXY::INACTIVE:
+            break; // nada que mostrar
+        default:
+            status += "MOTOR1 RUNNING; ";
+            break;
+        }
+        break;
+
+    case MotorID::J2: // motor2 XY
+        switch (motor2Homing.state)
+        {
+        case HomingStateXY::OK:
+            status += "MOTOR2 OK (" + String(motor2Homing.centerPosition) + "); ";
+            break;
+        case HomingStateXY::ERROR:
+            status += "MOTOR2 ERROR; ";
+            break;
+        case HomingStateXY::INACTIVE:
+            break;
+        default:
+            status += "MOTOR2 RUNNING; ";
+            break;
+        }
+        break;
+
+    case MotorID::Z: // motor Z
+        switch (motor3Homing.state)
+        {
+        case HomingStateZ::OK:
+            status += "MOTOR3 OK (" + String(motor3Homing.reference) + "); ";
+            break;
+        case HomingStateZ::ERROR:
+            status += "MOTOR3 ERROR; ";
+            break;
+        case HomingStateZ::INACTIVE:
+            break;
+        default:
+            status += "MOTOR3 RUNNING; ";
+            break;
+        }
+        break;
+    }
+
+    if (status == "")
+        status = "IDLE";
+
+    return status;
+}
+
 String commandStatusReport()
 {
     String status = "";

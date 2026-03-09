@@ -105,12 +105,7 @@ float sensorHomingOffset(TwoWire &wire)
     for (uint8_t i = 0; i < samples; i++)
     {
         float angle = rawToDegrees(sensorReadAngle(wire));
-        // corregir salto 0° / 360°
-        // fabs -> valor absoluto |angle - firstAngle|
-        // Si la diferencia es mayor que 180°,
-        // significa que cruzamos el cero del sensor.
-        // si cruzamos el cero
-        // mover los valores al mismo lado del círculo
+
         if (fabs(angle - firstAngle) > 180)
         {
             if (angle < firstAngle)
@@ -120,10 +115,7 @@ float sensorHomingOffset(TwoWire &wire)
         }
         sum += angle;
     }
-    // Normalizar el angulo si el promedio queda fuera del rango
-    // Eso solo mueve el número al rango correcto
-    // Si un cálculo da 361° eso en realidad es lo mismo que 1°
-    // si pasa de 360 → restar 360, si es menor que 0 → sumar 360
+
     float offset = sum / samples;
 
     if (offset >= 360)
