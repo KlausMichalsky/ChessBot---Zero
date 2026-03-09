@@ -44,31 +44,34 @@ bool commandAvailable()
 String commandReport(MotorID id)
 {
     String status = "";
+    float angle = 0.0;
 
     switch (id)
     {
-    case MotorID::J1: // motor1 XY
+    case MotorID::J1:
+        angle = sensorCorrectedAngle(Wire, sensorHomingOffset(Wire));
         switch (motor1Homing.state)
         {
         case HomingStateXY::OK:
-            status += "MOTOR1 OK (" + String(motor1Homing.centerPosition) + "); ";
+            status += "MOTOR1 OK (" + String(angle, 1) + "°); ";
             break;
         case HomingStateXY::ERROR:
             status += "MOTOR1 ERROR; ";
             break;
         case HomingStateXY::INACTIVE:
-            break; // nada que mostrar
+            break;
         default:
-            status += "MOTOR1 RUNNING; ";
+            status += "MOTOR1 RUNNING (" + String(angle, 1) + "°); ";
             break;
         }
         break;
 
-    case MotorID::J2: // motor2 XY
+    case MotorID::J2:
+        angle = sensorCorrectedAngle(Wire1, sensorHomingOffset(Wire1));
         switch (motor2Homing.state)
         {
         case HomingStateXY::OK:
-            status += "MOTOR2 OK (" + String(motor2Homing.centerPosition) + "); ";
+            status += "MOTOR2 OK (" + String(angle, 1) + "°); ";
             break;
         case HomingStateXY::ERROR:
             status += "MOTOR2 ERROR; ";
@@ -76,12 +79,13 @@ String commandReport(MotorID id)
         case HomingStateXY::INACTIVE:
             break;
         default:
-            status += "MOTOR2 RUNNING; ";
+            status += "MOTOR2 RUNNING (" + String(angle, 1) + "°); ";
             break;
         }
         break;
 
-    case MotorID::Z: // motor Z
+    case MotorID::Z:
+        // Para Z usamos reference porque no hay sensor angular
         switch (motor3Homing.state)
         {
         case HomingStateZ::OK:
@@ -93,7 +97,7 @@ String commandReport(MotorID id)
         case HomingStateZ::INACTIVE:
             break;
         default:
-            status += "MOTOR3 RUNNING; ";
+            status += "MOTOR3 RUNNING (" + String(motor3Homing.reference) + "); ";
             break;
         }
         break;

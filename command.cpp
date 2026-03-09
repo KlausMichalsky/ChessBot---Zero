@@ -48,7 +48,7 @@ String commandReport(MotorID id)
     switch (id)
     {
     case MotorID::J1:
-        angle = sensorCorrectedAngle(wire1, offset1);
+        angle = sensorCorrectedAngle(Wire, sensorHomingOffset(Wire));
         switch (motor1Homing.state)
         {
         case HomingStateXY::OK:
@@ -66,7 +66,7 @@ String commandReport(MotorID id)
         break;
 
     case MotorID::J2:
-        angle = sensorCorrectedAngle(wire2, offset2);
+        angle = sensorCorrectedAngle(Wire1, sensorHomingOffset(Wire1));
         switch (motor2Homing.state)
         {
         case HomingStateXY::OK:
