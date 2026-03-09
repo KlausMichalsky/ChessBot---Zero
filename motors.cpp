@@ -83,3 +83,18 @@ void motorDisableZ()
     digitalWrite(motor3Config.enablePin, ENABLE_INACTIVE);
     motorEnabledZ = false;
 }
+
+const char *motorName(MotorID id)
+{
+    switch (id)
+    {
+    case MotorID::J1:
+        return "J1";
+    case MotorID::J2:
+        return "J2";
+    case MotorID::Z:
+        return "Z";
+    default:
+        return "?"; // devuelve ? si no coincide ningun valor
+    }
+}

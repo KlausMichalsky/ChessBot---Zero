@@ -102,6 +102,13 @@ enum class HomingStateZ
     ERROR
 };
 
+enum class MotorID
+{
+    J1,
+    J2,
+    Z
+};
+
 // ESTRUCTURAS DE CONFIGURACIÓN DE MOTORES
 // -----------------------------------------------------------------------
 struct HomingConfig

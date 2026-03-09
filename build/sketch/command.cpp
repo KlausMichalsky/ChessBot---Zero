@@ -43,21 +43,21 @@ bool commandAvailable()
 // -----------------------------------------------------------------------
 String commandStatusReport()
 {
-    String resp = "";
+    String status = "";
 
     // Motor1
     switch (motor1Homing.state)
     {
     case HomingStateXY::OK:
-        resp += "MOTOR1 OK; ";
+        status += "MOTOR1 OK; ";
         break;
     case HomingStateXY::ERROR:
-        resp += "MOTOR1 ERROR; ";
+        status += "MOTOR1 ERROR; ";
         break;
     case HomingStateXY::INACTIVE:
         break; // nada que mostrar
     default:
-        resp += "MOTOR1 RUNNING; ";
+        status += "MOTOR1 RUNNING; ";
         break;
     }
 
@@ -65,15 +65,15 @@ String commandStatusReport()
     switch (motor2Homing.state)
     {
     case HomingStateXY::OK:
-        resp += "MOTOR2 OK; ";
+        status += "MOTOR2 OK; ";
         break;
     case HomingStateXY::ERROR:
-        resp += "MOTOR2 ERROR; ";
+        status += "MOTOR2 ERROR; ";
         break;
     case HomingStateXY::INACTIVE:
         break;
     default:
-        resp += "MOTOR2 RUNNING; ";
+        status += "MOTOR2 RUNNING; ";
         break;
     }
 
@@ -81,22 +81,22 @@ String commandStatusReport()
     switch (motor3Homing.state)
     {
     case HomingStateZ::OK:
-        resp += "MOTOR3 OK; ";
+        status += "MOTOR3 OK; ";
         break;
     case HomingStateZ::ERROR:
-        resp += "MOTOR3 ERROR; ";
+        status += "MOTOR3 ERROR; ";
         break;
     case HomingStateZ::INACTIVE:
         break;
     default:
-        resp += "MOTOR3 RUNNING; ";
+        status += "MOTOR3 RUNNING; ";
         break;
     }
 
-    if (resp == "")
-        resp = "IDLE"; // si ningún motor tiene actividad
+    if (status == "")
+        status = "IDLE"; // si ningún motor tiene actividad
 
-    return resp;
+    return status;
 }
 
 // LECTURA DE COMANDOS
@@ -178,10 +178,10 @@ void processCommand(const String &cmdStr)
     case Command::RESET:
         motor1Homing.fault = false;
         motor2Homing.fault = false;
-        motor3Homing.fault = false;        // si querés limpiar Z también
-        homingInitXY(motor1Homing);        // reinicia motor1
-        homingInitXY(motor2Homing);        // reinicia motor2
-        homingInitZ(motor3Homing);         // reinicia motor3
+        motor3Homing.fault = false;
+        homingInitXY(motor1Homing);
+        homingInitXY(motor2Homing);
+        homingInitZ(motor3Homing);
         homeAllState = HomeAllState::IDLE; // si estabas en HOME-ALL, cancelalo
         commandSendResponse("RESET");
         break;
