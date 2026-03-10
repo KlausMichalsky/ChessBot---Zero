@@ -123,6 +123,9 @@ void coreHomeAll() {
             }
             break;
 
+        case HomeAllState::DONE:
+            commandShowReport();
+
         default:
             break;
     }

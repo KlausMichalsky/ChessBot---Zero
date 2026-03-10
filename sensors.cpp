@@ -80,17 +80,6 @@ void sensorStreamAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastS
     sendFilteredFloat(degrees, lastSentAngle, lastSendTime, 0.5, 33, Serial1); // Enviar angulo filtrado por UART
 }
 
-// Si alguna vez tu homing mecanico cae cerca del 0 digital del sensor:
-// entonces el promedio normal se rompe
-// Mejor solucion:
-// 30 lecturas + corrección si cruza 0° + promedio 👀💡
-//         0°
-//    330°     30°
-//  300°         60°
-//  270°         90°
-//  240°        120°
-//   210°      150°
-//         180°
 float sensorHomingOffset(TwoWire &wire) {
     const uint8_t samples = 30;
     float sum = 0;
@@ -98,7 +87,6 @@ float sensorHomingOffset(TwoWire &wire) {
 
     for (uint8_t i = 0; i < samples; i++) {
         float angle = rawToDegrees(sensorReadAngle(wire));
-
         if (fabs(angle - firstAngle) > 180) {
             if (angle < firstAngle)
                 angle += 360;
@@ -109,22 +97,18 @@ float sensorHomingOffset(TwoWire &wire) {
     }
 
     float offset = sum / samples;
-
     if (offset >= 360)
         offset -= 360;
     if (offset < 0)
         offset += 360;
-
     return offset;
 }
 
 float sensorCorrectedAngle(TwoWire &wire, float offset) {
     float angle = rawToDegrees(sensorReadAngle(wire)) - offset;
-
     if (angle >= 360)
         angle -= 360;
     if (angle < 0)
         angle += 360;
-
     return angle;
 }

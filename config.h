@@ -98,12 +98,20 @@ enum class HomingStateZ {
     ERROR
 };
 
+// Máquina de estado para HOME_ALL
+enum class HomeAllState {
+    IDLE,
+    MOTOR1,
+    MOTOR2,
+    MOTOR3,
+    DONE
+};
+
 enum class MotorID {
     J1,
     J2,
     Z
 };
-
 // ESTRUCTURAS DE CONFIGURACIÓN DE MOTORES
 // -----------------------------------------------------------------------
 struct HomingConfig {

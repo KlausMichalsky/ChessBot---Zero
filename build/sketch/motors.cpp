@@ -34,8 +34,7 @@ static bool motorEnabledZ = false;
 
 // API PÚBLICA DE MOTORES
 // -----------------------------------------------------------------------
-void motorsInit()
-{
+void motorsInit() {
     // ‼️ Adaptar también en config.h las señales ENABLE_ACTIVE/INACTIVE
     // (DIR, STEP, ENABLE) true = invertir señal. Aqui: LOW=ON HIGH=OFF
     motor1.setPinsInverted(true, false, false);
@@ -59,43 +58,37 @@ void motorsInit()
     motor3.setAcceleration(motor3Config.acceleration);
 }
 
-void motorsEnableXY()
-{
+void motorsEnableXY() {
     digitalWrite(motor1Config.enablePin, ENABLE_ACTIVE);
     digitalWrite(motor2Config.enablePin, ENABLE_ACTIVE);
     motorsEnabledXY = true;
 }
 
-void motorEnableZ()
-{
+void motorEnableZ() {
     digitalWrite(motor3Config.enablePin, ENABLE_ACTIVE);
     motorEnabledZ = true;
 }
 
-void motorsDisableXY()
-{
+void motorsDisableXY() {
     digitalWrite(motor1Config.enablePin, ENABLE_INACTIVE);
     digitalWrite(motor2Config.enablePin, ENABLE_INACTIVE);
     motorsEnabledXY = false;
 }
 
-void motorDisableZ()
-{
+void motorDisableZ() {
     digitalWrite(motor3Config.enablePin, ENABLE_INACTIVE);
     motorEnabledZ = false;
 }
 
-const char *motorName(MotorID id)
-{
-    switch (id)
-    {
-    case MotorID::J1:
-        return "J1";
-    case MotorID::J2:
-        return "J2";
-    case MotorID::Z:
-        return "Z";
-    default:
-        return "?"; // devuelve ? si no coincide ningun valor
+const char *motorName(MotorID id) {
+    switch (id) {
+        case MotorID::J1:
+            return "J1";
+        case MotorID::J2:
+            return "J2";
+        case MotorID::Z:
+            return "Z";
+        default:
+            return "?"; // devuelve ? si no coincide ningun valor
     }
 }

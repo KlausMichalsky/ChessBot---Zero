@@ -39,6 +39,7 @@ def main_loop():
         "SHOW-COMMANDS\n"
     )
 
+    print("Command: ")
     while True:
         # 🔹 1️⃣ Leer UART siempre
         if communication.any():

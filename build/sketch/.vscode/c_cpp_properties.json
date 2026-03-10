@@ -65,9 +65,9 @@
         "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\variants\\waveshare_rp2040_zero",
         "-IC:\\Users\\Benutzer1\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\4.5.2\\libraries\\Wire\\src",
         "-IC:\\Users\\Benutzer1\\Documents\\Arduino\\libraries\\AccelStepper\\src",
-        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\core.cpp",
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\ChessBot---Zero.ino.cpp",
         "-o",
-        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\core.cpp.o"
+        "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\build\\sketch\\ChessBot---Zero.ino.cpp.o"
       ],
       "defines": [
         "USBD_PID=0x0003",

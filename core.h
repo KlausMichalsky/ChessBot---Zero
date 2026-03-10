@@ -16,15 +16,6 @@
 #include "config.h"
 #include "homing.h"
 
-// Máquina de estado para HOME_ALL
-enum class HomeAllState {
-    IDLE,
-    MOTOR1,
-    MOTOR2,
-    MOTOR3,
-    DONE
-};
-
 extern bool dynamicAngle1;
 extern bool dynamicAngle2;
 extern HomingXY motor1Homing;

@@ -30,8 +30,7 @@
 // Se pasa por referencia entre homingInitXY(), homingStartXY(),
 // homingStepXY() y las funciones de consulta.
 // Permite manejar múltiples motores con la misma lógica.
-struct HomingXY
-{
+struct HomingXY {
     HomingStateXY state;     // Estado actual de la máquina de estados de homing// <-- aquí usamos el enum
     unsigned long startTime; // Tiempo (millis) en el que comenzó el homing
     long firstEdge;          // Primer flanco detectado por el sensor
@@ -40,8 +39,7 @@ struct HomingXY
     bool fault;              // Flag de error latcheado, permanece activo hasta que el usuario lo resetea
 };
 
-struct HomingZ
-{
+struct HomingZ {
     HomingStateZ state;      // Estado actual de la máquina de estados de homing// <-- aquí usamos el enum
     unsigned long startTime; // Tiempo (millis) en el que comenzó el homing
     long initialPosition;    // Posición calculada a partir de los flancos -> referencia absoluta

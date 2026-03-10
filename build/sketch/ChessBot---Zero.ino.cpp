@@ -27,11 +27,10 @@
 // -----------------------------------------------------------------------
 #line 27 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void setup();
-#line 43 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 42 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void loop();
 #line 27 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
-void setup()
-{
+void setup() {
     communicationInit();
     coreInit();
     homingInitXY(motor1Homing);
@@ -46,10 +45,8 @@ void setup()
 
 // LOOP
 // -----------------------------------------------------------------------
-void loop()
-{
-    if (commandAvailable())
-    {
+void loop() {
+    if (commandAvailable()) {
         String cmd = readCommand();
         if (cmd.length() > 0) // 🔥 SOLO procesar si hay comando completo.
         {

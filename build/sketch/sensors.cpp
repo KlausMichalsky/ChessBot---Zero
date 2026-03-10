@@ -34,8 +34,7 @@ float sensor2Angle = 0;
 
 // API PÚBLICA DE SENSORES
 // -----------------------------------------------------------------------
-void sensorsInit()
-{
+void sensorsInit() {
     pinMode(HALL_1, INPUT_PULLUP);
     pinMode(HALL_2, INPUT_PULLUP);
     pinMode(HALL_3, INPUT_PULLUP);
@@ -50,8 +49,7 @@ void sensorsInit()
 
 // TwoWire → le decimos “la función va a recibir un objeto de tipo TwoWire”.
 // &wire → le decimos “pasalo por referencia, no por copia”.
-uint16_t sensorReadAngle(TwoWire &wire)
-{
+uint16_t sensorReadAngle(TwoWire &wire) {
     wire.beginTransmission(AS5600_ADDR);
     wire.write(0x0E);
     wire.endTransmission(false);
@@ -66,8 +64,7 @@ uint16_t sensorReadAngle(TwoWire &wire)
     return ((high & 0x0F) << 8) | low;
 }
 
-void sensorSendAngle(TwoWire &wire)
-{
+void sensorSendAngle(TwoWire &wire) {
     uint16_t rawAngle = sensorReadAngle(wire); // Leer sensor AS5600
     float degrees = rawToDegrees(rawAngle);    // Convertir a grados
     degrees = round1Decimal(degrees);          // Redondear a 1 decimal
@@ -77,37 +74,21 @@ void sensorSendAngle(TwoWire &wire)
 
 // ⚠️ Solo para pruebas de lectura de angulo continuo
 // -> El envio continuo bloquea movimiento de motores
-void sensorStreamAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastSendTime)
-{
+void sensorStreamAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastSendTime) {
     uint16_t rawAngle = sensorReadAngle(wire);                                 // Leer sensor AS5600
     float degrees = rawToDegrees(rawAngle);                                    // Convertir a grados
     degrees = round1Decimal(degrees);                                          // Redondear a 1 decimal
     sendFilteredFloat(degrees, lastSentAngle, lastSendTime, 0.5, 33, Serial1); // Enviar angulo filtrado por UART
 }
 
-// Si alguna vez tu homing mecanico cae cerca del 0 digital del sensor:
-// entonces el promedio normal se rompe
-// Mejor solucion:
-// 30 lecturas + corrección si cruza 0° + promedio 👀💡
-//         0°
-//    330°     30°
-//  300°         60°
-//  270°         90°
-//  240°        120°
-//   210°      150°
-//         180°
-float sensorHomingOffset(TwoWire &wire)
-{
+float sensorHomingOffset(TwoWire &wire) {
     const uint8_t samples = 30;
     float sum = 0;
     float firstAngle = rawToDegrees(sensorReadAngle(wire));
 
-    for (uint8_t i = 0; i < samples; i++)
-    {
+    for (uint8_t i = 0; i < samples; i++) {
         float angle = rawToDegrees(sensorReadAngle(wire));
-
-        if (fabs(angle - firstAngle) > 180)
-        {
+        if (fabs(angle - firstAngle) > 180) {
             if (angle < firstAngle)
                 angle += 360;
             else
@@ -117,23 +98,18 @@ float sensorHomingOffset(TwoWire &wire)
     }
 
     float offset = sum / samples;
-
     if (offset >= 360)
         offset -= 360;
     if (offset < 0)
         offset += 360;
-
     return offset;
 }
 
-float sensorCorrectedAngle(TwoWire &wire, float offset)
-{
+float sensorCorrectedAngle(TwoWire &wire, float offset) {
     float angle = rawToDegrees(sensorReadAngle(wire)) - offset;
-
     if (angle >= 360)
         angle -= 360;
     if (angle < 0)
         angle += 360;
-
     return angle;
 }
