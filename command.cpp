@@ -33,73 +33,67 @@ extern bool homeAllActive;
 
 // COMPROBACIÓN DE COMANDOS DISPONIBLES
 // -----------------------------------------------------------------------
-bool commandAvailable()
-{
+bool commandAvailable() {
     return Serial1.available();
 }
 
 // GENERAR RESPUESTA DE STATUS DE TODOS LOS MOTORES
 // -----------------------------------------------------------------------
-String commandReport(MotorID id)
-{
+String commandReport(MotorID id) {
     String status = "";
     float angle = 0.0;
 
-    switch (id)
-    {
-    case MotorID::J1:
-        angle = sensorCorrectedAngle(Wire, sensorHomingOffset(Wire));
-        switch (motor1Homing.state)
-        {
-        case HomingStateXY::OK:
-            status += "MOTOR1 OK (" + String(angle, 1) + "°); ";
+    switch (id) {
+        case MotorID::J1:
+            angle = sensorCorrectedAngle(Wire, sensorHomingOffset(Wire));
+            switch (motor1Homing.state) {
+                case HomingStateXY::OK:
+                    status += "MOTOR1 OK (" + String(angle, 1) + "°); ";
+                    break;
+                case HomingStateXY::ERROR:
+                    status += "MOTOR1 ERROR; ";
+                    break;
+                case HomingStateXY::INACTIVE:
+                    break;
+                default:
+                    status += "MOTOR1 RUNNING (" + String(angle, 1) + "°); ";
+                    break;
+            }
             break;
-        case HomingStateXY::ERROR:
-            status += "MOTOR1 ERROR; ";
-            break;
-        case HomingStateXY::INACTIVE:
-            break;
-        default:
-            status += "MOTOR1 RUNNING (" + String(angle, 1) + "°); ";
-            break;
-        }
-        break;
 
-    case MotorID::J2:
-        angle = sensorCorrectedAngle(Wire1, sensorHomingOffset(Wire1));
-        switch (motor2Homing.state)
-        {
-        case HomingStateXY::OK:
-            status += "MOTOR2 OK (" + String(angle, 1) + "°); ";
+        case MotorID::J2:
+            angle = sensorCorrectedAngle(Wire1, sensorHomingOffset(Wire1));
+            switch (motor2Homing.state) {
+                case HomingStateXY::OK:
+                    status += "MOTOR2 OK (" + String(angle, 1) + "°); ";
+                    break;
+                case HomingStateXY::ERROR:
+                    status += "MOTOR2 ERROR; ";
+                    break;
+                case HomingStateXY::INACTIVE:
+                    break;
+                default:
+                    status += "MOTOR2 RUNNING (" + String(angle, 1) + "°); ";
+                    break;
+            }
             break;
-        case HomingStateXY::ERROR:
-            status += "MOTOR2 ERROR; ";
-            break;
-        case HomingStateXY::INACTIVE:
-            break;
-        default:
-            status += "MOTOR2 RUNNING (" + String(angle, 1) + "°); ";
-            break;
-        }
-        break;
 
-    case MotorID::Z:
-        // Para Z usamos reference porque no hay sensor angular
-        switch (motor3Homing.state)
-        {
-        case HomingStateZ::OK:
-            status += "MOTOR3 OK (" + String(motor3Homing.reference) + "); ";
+        case MotorID::Z:
+            // Para Z usamos reference porque no hay sensor angular
+            switch (motor3Homing.state) {
+                case HomingStateZ::OK:
+                    status += "MOTOR3 OK (" + String(motor3Homing.reference) + "); ";
+                    break;
+                case HomingStateZ::ERROR:
+                    status += "MOTOR3 ERROR; ";
+                    break;
+                case HomingStateZ::INACTIVE:
+                    break;
+                default:
+                    status += "MOTOR3 RUNNING (" + String(motor3Homing.reference) + "); ";
+                    break;
+            }
             break;
-        case HomingStateZ::ERROR:
-            status += "MOTOR3 ERROR; ";
-            break;
-        case HomingStateZ::INACTIVE:
-            break;
-        default:
-            status += "MOTOR3 RUNNING (" + String(motor3Homing.reference) + "); ";
-            break;
-        }
-        break;
     }
 
     if (status == "")
@@ -108,56 +102,51 @@ String commandReport(MotorID id)
     return status;
 }
 
-String commandStatusReport()
-{
+String commandStatusReport() {
     String status = "";
-
     // Motor1
-    switch (motor1Homing.state)
-    {
-    case HomingStateXY::OK:
-        status += "MOTOR1 OK; ";
-        break;
-    case HomingStateXY::ERROR:
-        status += "MOTOR1 ERROR; ";
-        break;
-    case HomingStateXY::INACTIVE:
-        break; // nada que mostrar
-    default:
-        status += "MOTOR1 RUNNING; ";
-        break;
+    switch (motor1Homing.state) {
+        case HomingStateXY::OK:
+            status += "MOTOR1 OK; ";
+            break;
+        case HomingStateXY::ERROR:
+            status += "MOTOR1 ERROR; ";
+            break;
+        case HomingStateXY::INACTIVE:
+            break; // nada que mostrar
+        default:
+            status += "MOTOR1 RUNNING; ";
+            break;
     }
 
     // Motor2
-    switch (motor2Homing.state)
-    {
-    case HomingStateXY::OK:
-        status += "MOTOR2 OK; ";
-        break;
-    case HomingStateXY::ERROR:
-        status += "MOTOR2 ERROR; ";
-        break;
-    case HomingStateXY::INACTIVE:
-        break;
-    default:
-        status += "MOTOR2 RUNNING; ";
-        break;
+    switch (motor2Homing.state) {
+        case HomingStateXY::OK:
+            status += "MOTOR2 OK; ";
+            break;
+        case HomingStateXY::ERROR:
+            status += "MOTOR2 ERROR; ";
+            break;
+        case HomingStateXY::INACTIVE:
+            break;
+        default:
+            status += "MOTOR2 RUNNING; ";
+            break;
     }
 
     // Motor3
-    switch (motor3Homing.state)
-    {
-    case HomingStateZ::OK:
-        status += "MOTOR3 OK; ";
-        break;
-    case HomingStateZ::ERROR:
-        status += "MOTOR3 ERROR; ";
-        break;
-    case HomingStateZ::INACTIVE:
-        break;
-    default:
-        status += "MOTOR3 RUNNING; ";
-        break;
+    switch (motor3Homing.state) {
+        case HomingStateZ::OK:
+            status += "MOTOR3 OK; ";
+            break;
+        case HomingStateZ::ERROR:
+            status += "MOTOR3 ERROR; ";
+            break;
+        case HomingStateZ::INACTIVE:
+            break;
+        default:
+            status += "MOTOR3 RUNNING; ";
+            break;
     }
 
     if (status == "")
@@ -168,21 +157,16 @@ String commandStatusReport()
 
 // LECTURA DE COMANDOS
 // -----------------------------------------------------------------------
-String readCommand()
-{
+String readCommand() {
     static String buffer = "";
-    while (Serial1.available())
-    {
+    while (Serial1.available()) {
         char c = Serial1.read();
-        if (c == '\n')
-        {
+        if (c == '\n') {
             String cmd = buffer;
             buffer = "";
             cmd.trim();
             return cmd;
-        }
-        else
-        {
+        } else {
             buffer += c;
         }
     }
@@ -191,8 +175,7 @@ String readCommand()
 
 // MAPEAR STRING a enum class Command
 // -----------------------------------------------------------------------
-Command parseCommand(const String &cmd)
-{
+Command parseCommand(const String &cmd) {
     if (cmd == "STATUS")
         return Command::STATUS;
     if (cmd == "RESET")
@@ -220,8 +203,7 @@ Command parseCommand(const String &cmd)
 
 // ENVIAR RESPUESTA POR UART
 // -----------------------------------------------------------------------
-void commandSendResponse(const String &msg)
-{
+void commandSendResponse(const String &msg) {
     // while (Serial1.available())              ⚠️
     //     Serial1.read(); // limpiar residuos  ⚠️
     Serial1.println(msg);
@@ -229,77 +211,75 @@ void commandSendResponse(const String &msg)
 
 // PROCESAMIENTO DE COMANDOS
 // -----------------------------------------------------------------------
-void processCommand(const String &cmdStr)
-{
+void processCommand(const String &cmdStr) {
     String trimmedCmd = cmdStr;
     trimmedCmd.trim();
 
     Command cmd = parseCommand(trimmedCmd);
 
-    switch (cmd)
-    {
-    case Command::STATUS:
-        commandSendResponse(commandStatusReport());
-        break;
+    switch (cmd) {
+        case Command::STATUS:
+            commandSendResponse(commandStatusReport());
+            break;
 
-    case Command::RESET:
-        motor1Homing.fault = false;
-        motor2Homing.fault = false;
-        motor3Homing.fault = false;
-        homingInitXY(motor1Homing);
-        homingInitXY(motor2Homing);
-        homingInitZ(motor3Homing);
-        homeAllState = HomeAllState::IDLE; // si estabas en HOME-ALL, cancelalo
-        commandSendResponse("RESET");
-        break;
+        case Command::RESET:
+            motor1Homing.fault = false;
+            motor2Homing.fault = false;
+            motor3Homing.fault = false;
+            homingInitXY(motor1Homing);
+            homingInitXY(motor2Homing);
+            homingInitZ(motor3Homing);
+            homeAllState = HomeAllState::IDLE; // si estabas en HOME-ALL, cancelalo
+            commandSendResponse("RESET");
+            break;
 
-    case Command::HOME1:
-        commandSendResponse("HOMING MOTOR1 STARTED");
-        homingStartXY(motor1, motor1Config, motor1Homing, HALL_1);
-        break;
+        case Command::HOME1:
+            commandSendResponse("HOMING MOTOR1 STARTED");
+            homingStartXY(motor1, motor1Config, motor1Homing, HALL_1);
+            break;
 
-    case Command::HOME2:
-        commandSendResponse("HOMING MOTOR2 STARTED");
-        homingStartXY(motor2, motor2Config, motor2Homing, HALL_2);
-        break;
+        case Command::HOME2:
+            commandSendResponse("HOMING MOTOR2 STARTED");
+            homingStartXY(motor2, motor2Config, motor2Homing, HALL_2);
+            break;
 
-    case Command::HOME3:
-        commandSendResponse("HOMING MOTOR3 STARTED");
-        homingStartZ(motor3, motor3Config, motor3Homing, HALL_3);
-        break;
+        case Command::HOME3:
+            commandSendResponse("HOMING MOTOR3 STARTED");
+            homingStartZ(motor3, motor3Config, motor3Homing, HALL_3);
+            break;
 
-    case Command::HOME_ALL:
-        // 🔹 Inicializa secuencia HOME-ALL
-        homeAllState = HomeAllState::MOTOR1;
-        commandSendResponse("HOME ALL SEQUENCE STARTED");
-        break;
+        case Command::HOME_ALL:
+            // 🔹 Inicializa secuencia HOME-ALL
+            homeAllState = HomeAllState::MOTOR1;
+            commandSendResponse("HOME ALL SEQUENCE STARTED");
+            break;
 
-    case Command::ANGLE1:
-        Serial1.print("ANGLE1: ");
-        sensorSendAngle(Wire); // Leer y enviar ángulo del primer sensor
-        break;
+        case Command::ANGLE1:
+            Serial1.print("ANGLE1: ");
+            sensorSendAngle(Wire); // Leer y enviar ángulo del primer sensor
+            break;
 
-    case Command::ANGLE1_STREAM:
-        dynamicAngle1 = true; // Activar lectura continua
-        break;
+        case Command::ANGLE1_STREAM:
+            dynamicAngle1 = true; // Activar lectura continua
+            break;
 
-    case Command::ANGLE2:
-        Serial1.print("ANGLE2: ");
-        sensorSendAngle(Wire1); // Leer y enviar ángulo del segundo sensor
-        break;
+        case Command::ANGLE2:
+            Serial1.print("ANGLE2: ");
+            sensorSendAngle(Wire1); // Leer y enviar ángulo del segundo sensor
+            break;
 
-    case Command::ANGLE2_STREAM:
-        dynamicAngle2 = true; // Activar lectura continua
-        break;
+        case Command::ANGLE2_STREAM:
+            dynamicAngle2 = true; // Activar lectura continua
+            break;
 
-    case Command::STOP_STREAM:
-        dynamicAngle1 = false;
-        dynamicAngle2 = false;
-        break;
+        case Command::STOP_STREAM:
+            dynamicAngle1 = false;
+            dynamicAngle2 = false;
+            break;
 
-    case Command::UNKNOWN:
-    default:
-        commandSendResponse("UNKNOWN COMMAND");
-        break;
+        case Command::UNKNOWN:
+        default:
+            commandSendResponse("UNKNOWN COMMAND");
+            break;
     }
 }

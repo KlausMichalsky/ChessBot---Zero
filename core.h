@@ -17,8 +17,7 @@
 #include "homing.h"
 
 // Máquina de estado para HOME_ALL
-enum class HomeAllState
-{
+enum class HomeAllState {
     IDLE,
     MOTOR1,
     MOTOR2,

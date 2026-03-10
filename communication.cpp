@@ -18,15 +18,13 @@
 
 // CONFIGURACIÓN DE DEPURACIÓN UART
 // =======================================================================
-void debug(const String &msg)
-{
+void debug(const String &msg) {
 #if DEBUG_UART
     Serial1.println("Comando recibido: " + msg);
 #endif
 }
 
-void communicationInit()
-{
+void communicationInit() {
     // USB para debug (opcional)
     Serial.begin(115200);
 
