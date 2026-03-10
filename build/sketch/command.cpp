@@ -49,12 +49,13 @@ String commandReport(MotorID id) {
             angle = sensorCorrectedAngle(Wire, sensorHomingOffset(Wire));
             switch (motor1Homing.state) {
                 case HomingStateXY::OK:
-                    status += "MOTOR1 OK (" + String(angle, 1) + "°);\n";
+                    status += "MOTOR1 OK (" + String(angle, 1) + "°); ";
                     break;
                 case HomingStateXY::ERROR:
                     status += "MOTOR1 ERROR; ";
                     break;
                 case HomingStateXY::INACTIVE:
+                    status += "MOTOR1 INACTIVE ";
                     break;
                 default:
                     status += "MOTOR1 RUNNING (" + String(angle, 1) + "°); ";
@@ -66,12 +67,13 @@ String commandReport(MotorID id) {
             angle = sensorCorrectedAngle(Wire1, sensorHomingOffset(Wire1));
             switch (motor2Homing.state) {
                 case HomingStateXY::OK:
-                    status += "MOTOR2 OK (" + String(angle, 1) + "°);\n";
+                    status += "MOTOR2 OK (" + String(angle, 1) + "°); ";
                     break;
                 case HomingStateXY::ERROR:
                     status += "MOTOR2 ERROR; ";
                     break;
                 case HomingStateXY::INACTIVE:
+                    status += "MOTOR2 INACTIVE ";
                     break;
                 default:
                     status += "MOTOR2 RUNNING (" + String(angle, 1) + "°); ";
@@ -83,12 +85,13 @@ String commandReport(MotorID id) {
             // Para Z usamos reference porque no hay sensor angular
             switch (motor3Homing.state) {
                 case HomingStateZ::OK:
-                    status += "MOTOR3 OK (" + String(motor3Homing.reference) + ");\n";
+                    status += "MOTOR3 OK (" + String(motor3Homing.reference) + "); ";
                     break;
                 case HomingStateZ::ERROR:
                     status += "MOTOR3 ERROR; ";
                     break;
                 case HomingStateZ::INACTIVE:
+                    status += "MOTOR3 INACTIVE ";
                     break;
                 default:
                     status += "MOTOR3 RUNNING (" + String(motor3Homing.reference) + "); ";
@@ -109,7 +112,7 @@ void commandShowReport() {
     report += commandReport(MotorID::J2) + "\n";
     report += commandReport(MotorID::Z) + "\n";
 
-    Serial.print(report);
+    Serial1.print(report);
 }
 
 String commandStatusReport() {
@@ -225,7 +228,8 @@ void processCommand(const String &cmdStr) {
 
     switch (cmd) {
         case Command::STATUS:
-            Serial1.println(commandStatusReport()); // ❌ cambiar commandStatusReport()
+            commandShowReport();
+            // Serial1.println(commandStatusReport()); // ❌ cambiar commandStatusReport()
             break;
 
         case Command::RESET:
@@ -257,7 +261,6 @@ void processCommand(const String &cmdStr) {
         case Command::HOME_ALL:
             Serial1.println("HOME ALL SEQUENCE STARTED");
             homeAllState = HomeAllState::MOTOR1;
-            commandShowReport();
             break;
 
         case Command::ANGLE1:
