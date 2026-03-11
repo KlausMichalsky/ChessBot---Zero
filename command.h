@@ -21,5 +21,4 @@ String commandStatusReport();
 void commandSendResponse(const String &msg);
 void processCommand(const String &command);
 String readCommand();
-String commandReport(MotorID id);
-void commandShowReport();
+void commandSendStatusReport();

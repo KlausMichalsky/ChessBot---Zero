@@ -63,6 +63,7 @@ uint16_t sensorReadAngle(TwoWire &wire) {
     return ((high & 0x0F) << 8) | low;
 }
 
+// ⚠️ Solo para pruebas de lectura de angulo
 void sensorSendAngle(TwoWire &wire) {
     uint16_t rawAngle = sensorReadAngle(wire); // Leer sensor AS5600
     float degrees = rawToDegrees(rawAngle);    // Convertir a grados
@@ -80,6 +81,8 @@ void sensorStreamAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastS
     sendFilteredFloat(degrees, lastSentAngle, lastSendTime, 0.5, 33, Serial1); // Enviar angulo filtrado por UART
 }
 
+// CALCULO DE OFFSET PARA CODIFICADOR AS5600
+// -----------------------------------------------------------------------
 float sensorHomingOffset(TwoWire &wire) {
     const uint8_t samples = 30;
     float sum = 0;

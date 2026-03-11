@@ -30,4 +30,4 @@ void motorEnableZ();
 void motorsDisableXY();
 void motorDisableZ();
 const char *motorName(MotorID id);
-void logMotorStatus(MotorID id, float angle);
+String motorStatus(MotorID id);
