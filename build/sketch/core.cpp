@@ -125,9 +125,6 @@ void coreHomeAll() {
             }
             break;
 
-            // case HomeAllState::DONE:
-            //     homeAllState = HomeAllState::IDLE;
-
         default:
             break;
     }
