@@ -428,18 +428,8 @@ Discarded input sections
  .bss           0x00000000        0x0 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
  .text._Z14motorsEnableXYv
                 0x00000000       0x14 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
-<<<<<<< HEAD
- .text._Z13motorZ_Enablev
-                0x00000000        0xc C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
-<<<<<<< HEAD
- .text._Z14motorZ_Disablev
-=======
  .text._Z12motorEnableZv
->>>>>>> UART✅HOME_ALL✅STATUS✅-Nomenclature
                 0x00000000        0xc C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
- .text._Z11motorZ_Initv
-                0x00000000       0x3c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
-=======
  .rodata._Z9motorName7MotorID.str1.1
                 0x00000000        0x2 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
  .text._Z9motorName7MotorID
@@ -448,7 +438,6 @@ Discarded input sections
                 0x00000000        0x8 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
  .rodata.CSWTCH.16
                 0x00000000        0xc C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
->>>>>>> UART✅HOME✅STATUS✅REFACTORY✅AngleCenter
  .text          0x00000000        0x0 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\sensors.cpp.o
  .data          0x00000000        0x0 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\sensors.cpp.o
  .bss           0x00000000        0x0 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\sensors.cpp.o

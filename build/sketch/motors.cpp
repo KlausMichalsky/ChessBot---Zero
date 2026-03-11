@@ -46,9 +46,6 @@ void motorsInit() {
     pinMode(motor1Config.enablePin, OUTPUT);
     pinMode(motor2Config.enablePin, OUTPUT);
     pinMode(motor3Config.enablePin, OUTPUT);
-<<<<<<< HEAD
-    motorZ_Disable(); // ‼️ Esto evita movimientos inesperados al encender el sistema
-=======
 
     // ‼️ Esto evita movimientos inesperados al encender el sistema
     motorsDisableXY();
@@ -56,7 +53,6 @@ void motorsInit() {
 
     motor1.setMaxSpeed(motor1Config.fastSpeed);
     motor2.setMaxSpeed(motor2Config.fastSpeed);
->>>>>>> UART✅HOME_ALL✅STATUS✅-Nomenclature
     motor3.setMaxSpeed(motor3Config.fastSpeed);
 
     motor1.setAcceleration(motor1Config.acceleration);
