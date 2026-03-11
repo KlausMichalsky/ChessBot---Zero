@@ -26,18 +26,20 @@ def main_loop():
     print(
         "Comandos disponibles:\n"
         "STATUS\n"
-        "RESET-ERRORS\n"
-        "HOME-MOTOR1\n"
-        "HOME-MOTOR2\n"
-        "HOME-MOTOR3\n"
+        "RESET\n"
+        "HOME1\n"
+        "HOME2\n"
+        "HOME3\n"
         "HOME-ALL\n"
-        "GET-ANGLE1\n"
-        "GET-ANGLE1-START\n"
-        "GET-ANGLE2\n"
-        "GET-ANGLE2-START\n"
-        "GET-ANGLE-STOP\n"
+        "ANGLE1\n"
+        "ANGLE1-STREAM\n"
+        "ANGLE2\n"
+        "ANGLE2-STREAM\n"
+        "STOP-STREAM\n"
+        "SHOW-COMMANDS\n"
     )
 
+    print("Command: ")
     while True:
         # 🔹 1️⃣ Leer UART siempre
         if communication.any():
@@ -72,26 +74,27 @@ def keyboard_input():
         print(f"Input: {cmd}")
         commands.send_command(cmd)
         # aqui limpiar el input para que no quede en la consola
-        if cmd == "GET-ANGLE1-START" or cmd == "GET-ANGLE2-START":
+        if cmd == "ANGLE1-STREAM" or cmd == "ANGLE2-STREAM":
             streaming = True
             print("\n⚡ Streaming iniciado\n")
-        elif cmd == "GET-ANGLE-STOP":
+        elif cmd == "STOP-STREAM":
             streaming = False
             print("\n⏹ Streaming detenido\n")
         elif cmd == "SHOW-COMMANDS":
             print(
                 "Comandos disponibles:\n"
                 "STATUS\n"
-                "RESET-ERRORS\n"
-                "HOME-MOTOR1\n"
-                "HOME-MOTOR2\n"
-                "HOME-MOTOR3\n"
+                "RESET\n"
+                "HOME1\n"
+                "HOME2\n"
+                "HOME3\n"
                 "HOME-ALL\n"
-                "GET-ANGLE1\n"
-                "GET-ANGLE1-START\n"
-                "GET-ANGLE2\n"
-                "GET-ANGLE2-START\n"
-                "GET-ANGLE-STOP\n"
+                "ANGLE1\n"
+                "ANGLE1-STREAM\n"
+                "ANGLE2\n"
+                "ANGLE2-STREAM\n"
+                "STOP-STREAM\n"
+                "SHOW-COMMANDS\n"
             )
     time.sleep_ms(10)  # 10 ms → latencia mínima
 

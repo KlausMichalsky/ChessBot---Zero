@@ -57,25 +57,23 @@ constexpr bool ENABLE_INACTIVE = HIGH;
 // TIPOS DE DATOS
 // -----------------------------------------------------------------------
 // Comandos recibidos por UART
-enum class Command
-{
+enum class Command {
     STATUS,
     RESET,
-    HOME_MOTOR1,
-    HOME_MOTOR2,
-    HOME_MOTOR3,
+    HOME1,
+    HOME2,
+    HOME3,
     HOME_ALL,
-    GET_ANGLE1,
-    GET_ANGLE1_START,
-    GET_ANGLE2,
-    GET_ANGLE2_START,
-    GET_ANGLE_STOP,
+    ANGLE1,
+    ANGLE1_STREAM,
+    ANGLE2,
+    ANGLE2_STREAM,
+    STOP_STREAM,
     UNKNOWN
 };
 
 // Estados de homing, motor1-2 (CW = ClockWise, CCW = CounterClockWise)
-enum class HomingStateXY
-{
+enum class HomingStateXY {
     INACTIVE,
     FIND_FIRST_EDGE_CW,
     FIND_SECOND_EDGE_CW,
@@ -92,8 +90,7 @@ enum class HomingStateXY
 };
 
 // Estados de homing, motor3
-enum class HomingStateZ
-{
+enum class HomingStateZ {
     INACTIVE,
     FIND_EDGE_DOWNWARD,
     FIND_EDGE_UPWARD,
@@ -102,10 +99,23 @@ enum class HomingStateZ
     ERROR
 };
 
+// Máquina de estado para HOME_ALL
+enum class HomeAllState {
+    IDLE,
+    MOTOR1,
+    MOTOR2,
+    MOTOR3,
+    DONE
+};
+
+enum class MotorID {
+    J1,
+    J2,
+    Z
+};
 // ESTRUCTURAS DE CONFIGURACIÓN DE MOTORES
 // -----------------------------------------------------------------------
-struct HomingConfig
-{
+struct HomingConfig {
     int microstepping;
     int reduction;
     int stepsPerRevolution;

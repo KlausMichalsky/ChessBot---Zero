@@ -30,8 +30,7 @@
 // Se pasa por referencia entre homingInitXY(), homingStartXY(),
 // homingStepXY() y las funciones de consulta.
 // Permite manejar múltiples motores con la misma lógica.
-struct HomingXY
-{
+struct HomingXY {
     HomingStateXY state;     // Estado actual de la máquina de estados de homing// <-- aquí usamos el enum
     unsigned long startTime; // Tiempo (millis) en el que comenzó el homing
     long firstEdge;          // Primer flanco detectado por el sensor
@@ -40,8 +39,7 @@ struct HomingXY
     bool fault;              // Flag de error latcheado, permanece activo hasta que el usuario lo resetea
 };
 
-struct HomingZ
-{
+struct HomingZ {
     HomingStateZ state;      // Estado actual de la máquina de estados de homing// <-- aquí usamos el enum
     unsigned long startTime; // Tiempo (millis) en el que comenzó el homing
     long initialPosition;    // Posición calculada a partir de los flancos -> referencia absoluta
@@ -50,42 +48,40 @@ struct HomingZ
     bool fault;              // Flag de error latcheado, permanece activo hasta que el
 };
 
-// API PÚBLICA PLANO XY
+// API PÚBLICA PLANO
 // -----------------------------------------------------------------------
 void homingInitXY(HomingXY &st);
+
+void homingInitZ(HomingZ &st);
 
 void homingStartXY(AccelStepper &motor,
                    const HomingConfig &cfg,
                    HomingXY &st,
                    int hallPin);
 
-bool homingXY_IsActive(const HomingXY &st);
+void homingStartZ(AccelStepper &motor,
+                  const HomingConfig &cfg,
+                  HomingZ &st,
+                  int hallPin);
+
+bool homingXYisActive(const HomingXY &st);
+
+bool homingZisActive(const HomingZ &st);
 
 void homingStepXY(AccelStepper &motor,
                   const HomingConfig &cfg,
                   HomingXY &st,
                   int hallPin);
 
-bool homingXY_HasError(const HomingXY &st);
-
-HomingStateXY homingXY_GetState(const HomingXY &st);
-
-// API PÚBLICA EJE Z
-// -----------------------------------------------------------------------
-void homingInitZ(HomingZ &st);
-
-void homingStartZ(AccelStepper &motor,
-                  const HomingConfig &cfg,
-                  HomingZ &st,
-                  int hallPin);
-
-bool homingZ_IsActive(const HomingZ &st);
-
 void homingStepZ(AccelStepper &motor,
                  const HomingConfig &cfg,
                  HomingZ &st,
                  int hallPin);
 
-bool homingZ_HasError(const HomingZ &st);
+bool homingXYhasError(const HomingXY &st);
 
-HomingStateZ homingZ_GetState(const HomingZ &st);
+bool homingZhasError(const HomingZ &st);
+
+HomingStateXY homingGetStateXY(const HomingXY &st);
+
+HomingStateZ homingGetStateZ(const HomingZ &st);

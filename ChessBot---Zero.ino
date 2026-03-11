@@ -24,8 +24,7 @@
 
 // SETUP
 // -----------------------------------------------------------------------
-void setup()
-{
+void setup() {
     communicationInit();
     coreInit();
     homingInitXY(motor1Homing);
@@ -40,10 +39,8 @@ void setup()
 
 // LOOP
 // -----------------------------------------------------------------------
-void loop()
-{
-    if (commandAvailable())
-    {
+void loop() {
+    if (commandAvailable()) {
         String cmd = readCommand();
         if (cmd.length() > 0) // 🔥 SOLO procesar si hay comando completo.
         {

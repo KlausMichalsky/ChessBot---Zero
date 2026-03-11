@@ -33,88 +33,33 @@ extern bool homeAllActive;
 
 // COMPROBACIÓN DE COMANDOS DISPONIBLES
 // -----------------------------------------------------------------------
-bool commandAvailable()
-{
+bool commandAvailable() {
     return Serial1.available();
 }
 
-// GENERAR RESPUESTA DE STATUS DE TODOS LOS MOTORES
+// MANDAR RESPUESTA DE STATUS DE TODOS LOS MOTORES Y SENSORES
 // -----------------------------------------------------------------------
-String commandStatusReport()
-{
-    String resp = "";
+void commandSendStatusReport() {
+    String report = "";
+    report += motorStatus(MotorID::J1) + "\n";
+    report += motorStatus(MotorID::J2) + "\n";
+    report += motorStatus(MotorID::Z) + "\n";
 
-    // Motor1
-    switch (motor1Homing.state)
-    {
-    case HomingStateXY::OK:
-        resp += "MOTOR1 OK; ";
-        break;
-    case HomingStateXY::ERROR:
-        resp += "MOTOR1 ERROR; ";
-        break;
-    case HomingStateXY::INACTIVE:
-        break; // nada que mostrar
-    default:
-        resp += "MOTOR1 RUNNING; ";
-        break;
-    }
-
-    // Motor2
-    switch (motor2Homing.state)
-    {
-    case HomingStateXY::OK:
-        resp += "MOTOR2 OK; ";
-        break;
-    case HomingStateXY::ERROR:
-        resp += "MOTOR2 ERROR; ";
-        break;
-    case HomingStateXY::INACTIVE:
-        break;
-    default:
-        resp += "MOTOR2 RUNNING; ";
-        break;
-    }
-
-    // Motor3
-    switch (motor3Homing.state)
-    {
-    case HomingStateZ::OK:
-        resp += "MOTOR3 OK; ";
-        break;
-    case HomingStateZ::ERROR:
-        resp += "MOTOR3 ERROR; ";
-        break;
-    case HomingStateZ::INACTIVE:
-        break;
-    default:
-        resp += "MOTOR3 RUNNING; ";
-        break;
-    }
-
-    if (resp == "")
-        resp = "IDLE"; // si ningún motor tiene actividad
-
-    return resp;
+    Serial1.print(report);
 }
 
 // LECTURA DE COMANDOS
 // -----------------------------------------------------------------------
-String readCommand()
-{
+String readCommand() {
     static String buffer = "";
-    while (Serial1.available())
-    {
+    while (Serial1.available()) {
         char c = Serial1.read();
-        if (c == '\n')
-        {
+        if (c == '\n') {
             String cmd = buffer;
             buffer = "";
             cmd.trim();
             return cmd;
-        }
-        else
-        {
+        } else {
             buffer += c;
         }
     }
@@ -123,115 +68,102 @@ String readCommand()
 
 // MAPEAR STRING a enum class Command
 // -----------------------------------------------------------------------
-Command parseCommand(const String &cmd)
-{
+Command parseCommand(const String &cmd) {
     if (cmd == "STATUS")
         return Command::STATUS;
     if (cmd == "RESET")
         return Command::RESET;
-    if (cmd == "HOME-MOTOR1")
-        return Command::HOME_MOTOR1;
-    if (cmd == "HOME-MOTOR2")
-        return Command::HOME_MOTOR2;
-    if (cmd == "HOME-MOTOR3")
-        return Command::HOME_MOTOR3;
+    if (cmd == "HOME1")
+        return Command::HOME1;
+    if (cmd == "HOME2")
+        return Command::HOME2;
+    if (cmd == "HOME3")
+        return Command::HOME3;
     if (cmd == "HOME-ALL")
         return Command::HOME_ALL;
-    if (cmd == "GET-ANGLE1")
-        return Command::GET_ANGLE1;
-    if (cmd == "GET-ANGLE1-START")
-        return Command::GET_ANGLE1_START;
-    if (cmd == "GET-ANGLE2")
-        return Command::GET_ANGLE2;
-    if (cmd == "GET-ANGLE2-START")
-        return Command::GET_ANGLE2_START;
-    if (cmd == "GET-ANGLE-STOP")
-        return Command::GET_ANGLE_STOP;
+    if (cmd == "ANGLE1")
+        return Command::ANGLE1;
+    if (cmd == "ANGLE1-STREAM")
+        return Command::ANGLE1_STREAM;
+    if (cmd == "ANGLE2")
+        return Command::ANGLE2;
+    if (cmd == "ANGLE2-STREAM")
+        return Command::ANGLE2_STREAM;
+    if (cmd == "STOP-STREAM")
+        return Command::STOP_STREAM;
     return Command::UNKNOWN;
-}
-
-// ENVIAR RESPUESTA POR UART
-// -----------------------------------------------------------------------
-void commandSendResponse(const String &msg)
-{
-    // while (Serial1.available())              ⚠️
-    //     Serial1.read(); // limpiar residuos  ⚠️
-    Serial1.println(msg);
 }
 
 // PROCESAMIENTO DE COMANDOS
 // -----------------------------------------------------------------------
-void processCommand(const String &cmdStr)
-{
+void processCommand(const String &cmdStr) {
     String trimmedCmd = cmdStr;
     trimmedCmd.trim();
 
     Command cmd = parseCommand(trimmedCmd);
 
-    switch (cmd)
-    {
-    case Command::STATUS:
-        commandSendResponse(commandStatusReport());
-        break;
+    switch (cmd) {
+        case Command::STATUS:
+            commandSendStatusReport();
+            break;
 
-    case Command::RESET:
-        motor1Homing.fault = false;
-        motor2Homing.fault = false;
-        motor3Homing.fault = false;        // si querés limpiar Z también
-        homingInitXY(motor1Homing);        // reinicia motor1
-        homingInitXY(motor2Homing);        // reinicia motor2
-        homingInitZ(motor3Homing);         // reinicia motor3
-        homeAllState = HomeAllState::IDLE; // si estabas en HOME-ALL, cancelalo
-        commandSendResponse("RESET");
-        break;
+        case Command::RESET:
+            motor1Homing.fault = false;
+            motor2Homing.fault = false;
+            motor3Homing.fault = false;
+            homingInitXY(motor1Homing);
+            homingInitXY(motor2Homing);
+            homingInitZ(motor3Homing);
+            homeAllState = HomeAllState::IDLE; // si estabas en HOME-ALL, cancelalo
+            Serial1.println("SYSTEM RESET");
+            break;
 
-    case Command::HOME_MOTOR1:
-        commandSendResponse("HOMING MOTOR1 STARTED");
-        homingStartXY(motor1, motor1Config, motor1Homing, HALL_1);
-        break;
+        case Command::HOME1:
+            Serial1.println("HOMING MOTOR1 STARTED");
+            homingStartXY(motor1, motor1Config, motor1Homing, HALL_1);
+            break;
 
-    case Command::HOME_MOTOR2:
-        commandSendResponse("HOMING MOTOR2 STARTED");
-        homingStartXY(motor2, motor2Config, motor2Homing, HALL_2);
-        break;
+        case Command::HOME2:
+            Serial1.println("HOMING MOTOR2 STARTED");
+            homingStartXY(motor2, motor2Config, motor2Homing, HALL_2);
+            break;
 
-    case Command::HOME_MOTOR3:
-        commandSendResponse("HOMING MOTOR3 STARTED");
-        homingStartZ(motor3, motor3Config, motor3Homing, HALL_3);
-        break;
+        case Command::HOME3:
+            Serial1.println("HOMING MOTOR3 STARTED");
+            homingStartZ(motor3, motor3Config, motor3Homing, HALL_3);
+            break;
 
-    case Command::HOME_ALL:
-        // 🔹 Inicializa secuencia HOME-ALL
-        homeAllState = HomeAllState::MOTOR1;
-        commandSendResponse("HOME ALL SEQUENCE STARTED");
-        break;
+        case Command::HOME_ALL:
+            Serial1.println("HOME ALL SEQUENCE STARTED");
+            homeAllState = HomeAllState::MOTOR1;
+            break;
 
-    case Command::GET_ANGLE1:
-        Serial1.print("ANGLE1: ");
-        sendStaticAngle(Wire); // Leer y enviar ángulo del primer sensor
-        break;
+        case Command::ANGLE1:
+            Serial1.print("ANGLE1: ");
+            sensorSendAngle(Wire); // Leer y enviar ángulo del primer sensor
+            break;
 
-    case Command::GET_ANGLE1_START:
-        dynamicAngle1 = true; // Activar lectura continua
-        break;
+        case Command::ANGLE1_STREAM:
+            dynamicAngle1 = true; // Activar lectura continua
+            break;
 
-    case Command::GET_ANGLE2:
-        Serial1.print("ANGLE2: ");
-        sendStaticAngle(Wire1); // Leer y enviar ángulo del segundo sensor
-        break;
+        case Command::ANGLE2:
+            Serial1.print("ANGLE2: ");
+            sensorSendAngle(Wire1); // Leer y enviar ángulo del segundo sensor
+            break;
 
-    case Command::GET_ANGLE2_START:
-        dynamicAngle2 = true; // Activar lectura continua
-        break;
+        case Command::ANGLE2_STREAM:
+            dynamicAngle2 = true; // Activar lectura continua
+            break;
 
-    case Command::GET_ANGLE_STOP:
-        dynamicAngle1 = false;
-        dynamicAngle2 = false;
-        break;
+        case Command::STOP_STREAM:
+            dynamicAngle1 = false;
+            dynamicAngle2 = false;
+            break;
 
-    case Command::UNKNOWN:
-    default:
-        commandSendResponse("UNKNOWN COMMAND");
-        break;
+        case Command::UNKNOWN:
+        default:
+            Serial1.println("UNKNOWN COMMAND");
+            break;
     }
 }

@@ -140,8 +140,8 @@ C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sket
  C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/4.5.2/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/i2c.h \
  C:\Users\Benutzer1\Documents\Arduino\libraries\AccelStepper\src/AccelStepper.h \
  C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\command.h \
- C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\communication.h \
  C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\config.h \
+ C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\communication.h \
  C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\core.h \
  C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\homing.h \
  C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\motors.h \

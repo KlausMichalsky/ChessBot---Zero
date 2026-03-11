@@ -19,7 +19,9 @@
 #include <AccelStepper.h>
 
 #include "config.h"
+#include "core.h"
 #include "motors.h"
+#include "sensors.h"
 
 // INSTANCIAS DE MOTORES
 // -----------------------------------------------------------------------
@@ -34,8 +36,7 @@ static bool motorEnabledZ = false;
 
 // API PÚBLICA DE MOTORES
 // -----------------------------------------------------------------------
-void motorsInit()
-{
+void motorsInit() {
     // ‼️ Adaptar también en config.h las señales ENABLE_ACTIVE/INACTIVE
     // (DIR, STEP, ENABLE) true = invertir señal. Aqui: LOW=ON HIGH=OFF
     motor1.setPinsInverted(true, false, false);
@@ -63,28 +64,107 @@ void motorsInit()
     motor3.setAcceleration(motor3Config.acceleration);
 }
 
-void motorsEnableXY()
-{
+void motorsEnableXY() {
     digitalWrite(motor1Config.enablePin, ENABLE_ACTIVE);
     digitalWrite(motor2Config.enablePin, ENABLE_ACTIVE);
     motorsEnabledXY = true;
 }
 
-void motorEnableZ()
-{
+void motorEnableZ() {
     digitalWrite(motor3Config.enablePin, ENABLE_ACTIVE);
     motorEnabledZ = true;
 }
 
-void motorsDisableXY()
-{
+void motorsDisableXY() {
     digitalWrite(motor1Config.enablePin, ENABLE_INACTIVE);
     digitalWrite(motor2Config.enablePin, ENABLE_INACTIVE);
     motorsEnabledXY = false;
 }
 
-void motorDisableZ()
-{
+void motorDisableZ() {
     digitalWrite(motor3Config.enablePin, ENABLE_INACTIVE);
     motorEnabledZ = false;
+}
+
+// MAPEO DE NOMBRE PARA LOS MOTORES
+// -----------------------------------------------------------------------
+const char *motorName(MotorID id) {
+    switch (id) {
+        case MotorID::J1:
+            return "J1";
+        case MotorID::J2:
+            return "J2";
+        case MotorID::Z:
+            return "Z";
+        default:
+            return "?"; // devuelve ? si no coincide ningun valor
+    }
+}
+
+// STATUS DE MOTORES Y CODIFICADORES
+// -----------------------------------------------------------------------
+String motorStatus(MotorID id) {
+    String status = "";
+    float angle = 0.0;
+
+    switch (id) {
+        case MotorID::J1:
+            angle = sensorCorrectedAngle(Wire, sensorHomingOffset(Wire));
+            switch (motor1Homing.state) {
+                case HomingStateXY::OK:
+                    status += "MOTOR1 OK (" + String(angle, 1) + "°); ";
+                    break;
+                case HomingStateXY::ERROR:
+                    status += "MOTOR1 ERROR; ";
+                    break;
+                case HomingStateXY::INACTIVE:
+                    status += "MOTOR1 INACTIVE ";
+                    break;
+                default:
+                    status += "MOTOR1 RUNNING (" + String(angle, 1) + "°); ";
+                    break;
+            }
+            break;
+
+        case MotorID::J2:
+            angle = sensorCorrectedAngle(Wire1, sensorHomingOffset(Wire1));
+            switch (motor2Homing.state) {
+                case HomingStateXY::OK:
+                    status += "MOTOR2 OK (" + String(angle, 1) + "°); ";
+                    break;
+                case HomingStateXY::ERROR:
+                    status += "MOTOR2 ERROR; ";
+                    break;
+                case HomingStateXY::INACTIVE:
+                    status += "MOTOR2 INACTIVE ";
+                    break;
+                default:
+                    status += "MOTOR2 RUNNING (" + String(angle, 1) + "°); ";
+                    break;
+            }
+            break;
+
+        case MotorID::Z:
+            // Para Z usamos reference porque no hay sensor angular
+            switch (motor3Homing.state) {
+                case HomingStateZ::OK:
+                    status += "MOTOR3 OK (" + String(motor3Homing.reference) + "); ";
+                    break;
+                case HomingStateZ::ERROR:
+                    status += "MOTOR3 ERROR; ";
+                    break;
+                case HomingStateZ::INACTIVE:
+                    status += "MOTOR3 INACTIVE ";
+                    break;
+                default:
+                    status += "MOTOR3 RUNNING (" + String(motor3Homing.reference) + "); ";
+                    break;
+            }
+            break;
+    }
+
+    if (status == "")
+        status = "IDLE";
+
+    return status;
 }

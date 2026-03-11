@@ -25,10 +25,15 @@ float lastSentAngle_1 = -1000.0f; // Guarda el último ángulo enviado
 unsigned long lastSendTime_2 = 0;
 float lastSentAngle_2 = -1000.0f;
 
+float sensor1Offset = 0;
+float sensor2Offset = 0;
+
+float sensor1Angle = 0;
+float sensor2Angle = 0;
+
 // API PÚBLICA DE SENSORES
 // -----------------------------------------------------------------------
-void sensorsInit()
-{
+void sensorsInit() {
     pinMode(HALL_1, INPUT_PULLUP);
     pinMode(HALL_2, INPUT_PULLUP);
     pinMode(HALL_3, INPUT_PULLUP);
@@ -43,8 +48,7 @@ void sensorsInit()
 
 // TwoWire → le decimos “la función va a recibir un objeto de tipo TwoWire”.
 // &wire → le decimos “pasalo por referencia, no por copia”.
-uint16_t readAngle(TwoWire &wire)
-{
+uint16_t sensorReadAngle(TwoWire &wire) {
     wire.beginTransmission(AS5600_ADDR);
     wire.write(0x0E);
     wire.endTransmission(false);
@@ -59,21 +63,55 @@ uint16_t readAngle(TwoWire &wire)
     return ((high & 0x0F) << 8) | low;
 }
 
-void sendStaticAngle(TwoWire &wire)
-{
-    uint16_t rawAngle = readAngle(wire);    // Leer sensor AS5600
-    float degrees = rawToDegrees(rawAngle); // Convertir a grados
-    degrees = round1Decimal(degrees);       // Redondear a 1 decimal
-    Serial1.print(degrees, 1);              // Enviar por UART
+// ⚠️ Solo para pruebas de lectura de angulo
+void sensorSendAngle(TwoWire &wire) {
+    uint16_t rawAngle = sensorReadAngle(wire); // Leer sensor AS5600
+    float degrees = rawToDegrees(rawAngle);    // Convertir a grados
+    degrees = round1Decimal(degrees);          // Redondear a 1 decimal
+    Serial1.print(degrees, 1);                 // Asegurar envio de solo 1 decimal
     Serial1.print("\n");
 }
 
 // ⚠️ Solo para pruebas de lectura de angulo continuo
 // -> El envio continuo bloquea movimiento de motores
-void sendDynamicAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastSendTime)
-{
-    uint16_t rawAngle = readAngle(wire);                                       // Leer sensor AS5600
+void sensorStreamAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastSendTime) {
+    uint16_t rawAngle = sensorReadAngle(wire);                                 // Leer sensor AS5600
     float degrees = rawToDegrees(rawAngle);                                    // Convertir a grados
     degrees = round1Decimal(degrees);                                          // Redondear a 1 decimal
     sendFilteredFloat(degrees, lastSentAngle, lastSendTime, 0.5, 33, Serial1); // Enviar angulo filtrado por UART
+}
+
+// CALCULO DE OFFSET PARA CODIFICADOR AS5600
+// -----------------------------------------------------------------------
+float sensorHomingOffset(TwoWire &wire) {
+    const uint8_t samples = 30;
+    float sum = 0;
+    float firstAngle = rawToDegrees(sensorReadAngle(wire));
+
+    for (uint8_t i = 0; i < samples; i++) {
+        float angle = rawToDegrees(sensorReadAngle(wire));
+        if (fabs(angle - firstAngle) > 180) {
+            if (angle < firstAngle)
+                angle += 360;
+            else
+                angle -= 360;
+        }
+        sum += angle;
+    }
+
+    float offset = sum / samples;
+    if (offset >= 360)
+        offset -= 360;
+    if (offset < 0)
+        offset += 360;
+    return offset;
+}
+
+float sensorCorrectedAngle(TwoWire &wire, float offset) {
+    float angle = rawToDegrees(sensorReadAngle(wire)) - offset;
+    if (angle >= 360)
+        angle -= 360;
+    if (angle < 0)
+        angle += 360;
+    return angle;
 }

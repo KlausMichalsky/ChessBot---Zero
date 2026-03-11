@@ -29,3 +29,5 @@ void motorsEnableXY();
 void motorEnableZ();
 void motorsDisableXY();
 void motorDisableZ();
+const char *motorName(MotorID id);
+String motorStatus(MotorID id);
