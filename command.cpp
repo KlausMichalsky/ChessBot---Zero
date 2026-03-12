@@ -14,6 +14,7 @@
 
 #include <AccelStepper.h>
 
+#include "Z_Axis.h"
 #include "command.h"
 #include "config.h"
 #include "core.h"
@@ -91,6 +92,8 @@ Command parseCommand(const String &cmd) {
         return Command::ANGLE2_STREAM;
     if (cmd == "STOP-STREAM")
         return Command::STOP_STREAM;
+    if (cmd == "PICK")
+        return Command::PICK;
     return Command::UNKNOWN;
 }
 
@@ -120,16 +123,19 @@ void processCommand(const String &cmdStr) {
 
         case Command::HOME1:
             Serial1.println("HOMING MOTOR1 STARTED");
+            homeSingleState = HomeSingleState::RUNNING;
             homingStartXY(motor1, motor1Config, motor1Homing, HALL_1);
             break;
 
         case Command::HOME2:
             Serial1.println("HOMING MOTOR2 STARTED");
+            homeSingleState = HomeSingleState::RUNNING;
             homingStartXY(motor2, motor2Config, motor2Homing, HALL_2);
             break;
 
         case Command::HOME3:
             Serial1.println("HOMING MOTOR3 STARTED");
+            homeSingleState = HomeSingleState::RUNNING;
             homingStartZ(motor3, motor3Config, motor3Homing, HALL_3);
             break;
 
@@ -154,6 +160,10 @@ void processCommand(const String &cmdStr) {
 
         case Command::ANGLE2_STREAM:
             dynamicAngle2 = true; // Activar lectura continua
+            break;
+
+        case Command::PICK:
+            Serial1.println("PICKING PIECE!");
             break;
 
         case Command::STOP_STREAM:

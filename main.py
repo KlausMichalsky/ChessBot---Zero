@@ -83,17 +83,18 @@ def keyboard_input():
         elif cmd == "SHOW-COMMANDS":
             print(
                 "Comandos disponibles:\n"
-                "STATUS\n"
-                "RESET\n"
-                "HOME1\n"
-                "HOME2\n"
-                "HOME3\n"
-                "HOME-ALL\n"
                 "ANGLE1\n"
                 "ANGLE1-STREAM\n"
                 "ANGLE2\n"
                 "ANGLE2-STREAM\n"
+                "HOME1\n"
+                "HOME2\n"
+                "HOME3\n"
+                "HOME-ALL\n"
+                "RESET\n"
+                "STATUS\n"
                 "STOP-STREAM\n"
+                "Z-PICK\n"
                 "SHOW-COMMANDS\n"
             )
     time.sleep_ms(10)  # 10 ms → latencia mínima

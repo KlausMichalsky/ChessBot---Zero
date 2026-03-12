@@ -24,12 +24,6 @@
 bool dynamicAngle1 = false;
 bool dynamicAngle2 = false;
 
-HomingXY motor1Homing;
-HomingXY motor2Homing;
-HomingZ motor3Homing;
-
-HomeAllState homeAllState = HomeAllState::IDLE;
-
 // -----------------------------------------------------------------------
 void coreInit() {
     homeAllState = HomeAllState::IDLE;
@@ -39,7 +33,7 @@ void coreInit() {
 void coreUpdate() {
     if (homeAllState != HomeAllState::IDLE) {
         coreHomeAll();
-    } else {
+    } else if (homeSingleState != HomeSingleState::IDLE) {
         coreHomeSingleMotor();
     }
 }
@@ -48,22 +42,24 @@ void coreUpdate() {
 void coreHomeSingleMotor() {
     // Homing Motor1
     static bool reported1 = false; // Flag para ejecutar el loop solo una vez
-    if (homingXYisActive(motor1Homing))
+    if (homingXYisActive(motor1Homing)) {
         homingStepXY(motor1, motor1Config, motor1Homing, HALL_1);
-
+    }
     if (motor1Homing.state == HomingStateXY::OK && !reported1) {
         Serial1.print(motorStatus(MotorID::J1));
+        homeSingleState = HomeSingleState::DONE;
         reported1 = true; // 👀 esto hace que el if se ejecute solo 1 vez en el loop
     } else if (motor1Homing.state != HomingStateXY::OK)
         reported1 = false;
 
     // Homing Motor2
     static bool reported2 = false;
-    if (homingXYisActive(motor2Homing))
+    if (homingXYisActive(motor2Homing)) {
         homingStepXY(motor2, motor2Config, motor2Homing, HALL_2);
-
+    }
     if (motor2Homing.state == HomingStateXY::OK && !reported2) {
         Serial1.print(motorStatus(MotorID::J2));
+        homeSingleState = HomeSingleState::DONE;
         reported2 = true;
     } else if (motor2Homing.state != HomingStateXY::OK)
         reported2 = false;
@@ -75,6 +71,7 @@ void coreHomeSingleMotor() {
 
     if (motor3Homing.state == HomingStateZ::OK && !reported3) {
         Serial1.print(motorStatus(MotorID::Z));
+        homeSingleState = HomeSingleState::DONE;
         reported3 = true;
     } else if (motor3Homing.state != HomingStateZ::OK)
         reported3 = false;

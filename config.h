@@ -42,11 +42,16 @@
 #define LED 2
 #define IMAN 28
 
-// PARAMETROS DE CONFIGURACIÓN
+// PARAMETROS DE CONFIGURACIÓN PLANO XY
 // -----------------------------------------------------------------------
 #define AS5600_ADDR 0x36
 #define SEND_INTERVAL 33 // ms -> ~30Hz
 #define DELTA_DEG 0.5f   // Enviar si el ángulo cambia más de DELTA_DEG
+
+// PARAMETROS DE CONFIGURACIÓN EJE Z
+// -----------------------------------------------------------------------
+#define Z_STEPS_DOWN 2000 // cantidad de pasos para bajar
+#define Z_DELAY 400       // delay entre movimientos para darle tiempo al iman
 
 // NIVELES LÓGICOS DE ENABLE DEL TMC2209
 // -----------------------------------------------------------------------
@@ -67,6 +72,7 @@ enum class Command {
     ANGLE1_STREAM,
     ANGLE2,
     ANGLE2_STREAM,
+    PICK,
     STOP_STREAM,
     UNKNOWN
 };
@@ -107,7 +113,15 @@ enum class HomeAllState {
     DONE
 };
 
+// Maquina de estado para Motores individuales
+enum class HomeSingleState {
+    IDLE,
+    RUNNING,
+    DONE
+};
+
 enum class MotorID {
+    NONE,
     J1,
     J2,
     Z

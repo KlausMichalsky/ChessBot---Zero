@@ -1,26 +1,37 @@
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\Z_Axis.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
-//  Archivo    : core.h
+//  Archivo    : ZAxis.cpp
 //  Autor      : Klaus Michalsky
-//  Fecha      : Mar-2026
+//  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      - Declaración de funciones centrales del robot.
+//      - Definicion de las funciones para controlar el eje Z
 // =======================================================================
-
-#pragma once
 
 #include <Arduino.h>
 
+#include "Z_Axis.h"
 #include "config.h"
 #include "homing.h"
 
-extern bool dynamicAngle1;
-extern bool dynamicAngle2;
+void zDown() {
+}
 
-void coreInit();
-void coreHomeAll();
-void coreHomeSingleMotor();
-void coreStreamAngles();
-void coreUpdate();
+void zUp() {
+}
+
+void zPick() {
+    zDown();
+    delay(Z_DELAY);
+    magnetON();
+    zUp();
+}
+
+void zPlace() {
+    zDown();
+    delay(Z_DELAY);
+    magnetOFF();
+    zUp();
+}
