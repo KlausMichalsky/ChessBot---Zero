@@ -51,7 +51,7 @@
 
 // PARAMETROS DE CONFIGURACIÓN EJE Z
 // -----------------------------------------------------------------------
-#define Z_STEPS_DOWN 2000 // cantidad de pasos para bajar
+#define Z_STEPS_DOWN 5000 // cantidad de pasos para bajar
 #define Z_DELAY 400       // delay entre movimientos para darle tiempo al iman
 
 // NIVELES LÓGICOS DE ENABLE DEL TMC2209
@@ -74,6 +74,7 @@ enum class Command {
     ANGLE2,
     ANGLE2_STREAM,
     PICK,
+    PLACE,
     STOP_STREAM,
     UNKNOWN
 };

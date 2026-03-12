@@ -36,6 +36,8 @@ def main_loop():
         "ANGLE2\n"
         "ANGLE2-STREAM\n"
         "STOP-STREAM\n"
+        "PICK\n"
+        "PLACE\n"
         "SHOW-COMMANDS\n"
     )
 
@@ -94,7 +96,8 @@ def keyboard_input():
                 "RESET\n"
                 "STATUS\n"
                 "STOP-STREAM\n"
-                "Z-PICK\n"
+                "PICK\n"
+                "PLACE\n"
                 "SHOW-COMMANDS\n"
             )
     time.sleep_ms(10)  # 10 ms → latencia mínima

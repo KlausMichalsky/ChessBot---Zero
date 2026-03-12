@@ -95,6 +95,8 @@ Command parseCommand(const String &cmd) {
         return Command::STOP_STREAM;
     if (cmd == "PICK")
         return Command::PICK;
+    if (cmd == "PLACE")
+        return Command::PLACE;
     return Command::UNKNOWN;
 }
 
@@ -165,6 +167,13 @@ void processCommand(const String &cmdStr) {
 
         case Command::PICK:
             Serial1.println("PICKING PIECE!");
+            zPick(); // bloqueante: sube/baja Z y activa imán
+                     // después de esto, XY puede moverse sin problemas
+            break;
+
+        case Command::PLACE:
+            Serial1.println("PLACING PIECE!");
+            zPlace();
             break;
 
         case Command::STOP_STREAM:
@@ -173,6 +182,7 @@ void processCommand(const String &cmdStr) {
             break;
 
         case Command::UNKNOWN:
+
         default:
             Serial1.println("UNKNOWN COMMAND");
             break;

@@ -29,5 +29,6 @@ struct PickPlaceZ {
 void zDown();
 void zUp();
 void zPick();
+void zPlace();
 void magnetON();
 void magnetOFF();

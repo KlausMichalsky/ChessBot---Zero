@@ -135,4 +135,5 @@ C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sket
  C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\Z_Axis.h \
  C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\config.h \
  C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\homing.h \
- C:\Users\Benutzer1\Documents\Arduino\libraries\AccelStepper\src/AccelStepper.h
+ C:\Users\Benutzer1\Documents\Arduino\libraries\AccelStepper\src/AccelStepper.h \
+ C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\sketch\motors.h
