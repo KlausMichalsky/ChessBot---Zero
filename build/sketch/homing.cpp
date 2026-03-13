@@ -29,6 +29,16 @@ static const int8_t CW = 1;   // ClockWise plano XY
 static const int8_t CCW = -1; // Counter-ClockWise plano XY
 static const int8_t dir = 1;  // Dirección inicial eje Z
 
+// VARIABLES INTERNAS DEL MODULO
+// -----------------------------------------------------------------------
+HomingXY motor1Homing;
+HomingXY motor2Homing;
+HomingZ motor3Homing;
+
+HomeAllState homeAllState = HomeAllState::IDLE;
+HomeSingleState homeSingleState = HomeSingleState::IDLE;
+MotorID motorToHome = MotorID::NONE;
+
 // INICIALIZACIÓN DEL ESTADO DE HOMING
 // -----------------------------------------------------------------------
 void homingInitXY(HomingXY &st) {
@@ -43,6 +53,7 @@ void homingInitXY(HomingXY &st) {
 void homingInitZ(HomingZ &st) {
     st.state = HomingStateZ::INACTIVE;
     st.startTime = 0;
+    st.initialPosition = 0;
     st.edge = 0;      // flanco de salida
     st.reference = 0; // referencia calculada
     st.fault = false;
@@ -116,7 +127,7 @@ HomingStateZ homingGetStateZ(const HomingZ &st) {
 bool homingXYhasError(const HomingXY &st) {
     return st.fault; // devuelve true si hubo error
 }
-bool homingZHasError(const HomingZ &st) {
+bool homingZhasError(const HomingZ &st) {
     return st.fault;
 }
 

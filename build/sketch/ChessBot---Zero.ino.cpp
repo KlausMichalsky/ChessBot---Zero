@@ -27,7 +27,7 @@
 // -----------------------------------------------------------------------
 #line 27 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void setup();
-#line 42 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 43 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void loop();
 #line 27 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\ChessBot---Zero.ino"
 void setup() {
@@ -39,7 +39,8 @@ void setup() {
     motorsInit();
     sensorsInit();
 
-    pinMode(IMAN, INPUT_PULLUP);
+    pinMode(MAGNET, OUTPUT);
+    digitalWrite(MAGNET, LOW);
     pinMode(LED, OUTPUT);
 }
 

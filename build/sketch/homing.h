@@ -45,8 +45,17 @@ struct HomingZ {
     long initialPosition;    // Posición calculada a partir de los flancos -> referencia absoluta
     long edge;               // Flanco de salida detectado por el sensor
     long reference;          // Posiciónde homing calculada
-    bool fault;              // Flag de error latcheado, permanece activo hasta que el
+    bool fault;              // Flag de error latcheado, permanece activo hasta que se resetee
 };
+
+extern HomingXY motor1Homing;
+extern HomingXY motor2Homing;
+extern HomingZ motor3Homing;
+
+extern HomeAllState homeAllState;
+extern HomeSingleState homeSingleState;
+extern MotorID motorToHome;
+extern bool homeAllActive;
 
 // API PÚBLICA PLANO
 // -----------------------------------------------------------------------

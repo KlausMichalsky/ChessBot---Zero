@@ -33,7 +33,8 @@ void setup() {
     motorsInit();
     sensorsInit();
 
-    pinMode(IMAN, INPUT_PULLUP);
+    pinMode(MAGNET, OUTPUT);
+    digitalWrite(MAGNET, LOW);
     pinMode(LED, OUTPUT);
 }
 

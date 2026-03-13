@@ -1,26 +1,21 @@
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
-//  Archivo    : core.h
+//  Archivo    : ZAxis.cpp
 //  Autor      : Klaus Michalsky
-//  Fecha      : Mar-2026
+//  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      - Declaración de funciones centrales del robot.
+//      - Declaracion de funciones para mover el eje Z
 // =======================================================================
-
-#pragma once
 
 #include <Arduino.h>
 
-#include "config.h"
-#include "homing.h"
+#pragma once
 
-extern bool dynamicAngle1;
-extern bool dynamicAngle2;
-
-void coreInit();
-void coreHomeAll();
-void coreHomeSingleMotor();
-void coreStreamAngles();
-void coreUpdate();
+void zMoveDown();
+void zMoveUp();
+void magnetON();
+void magnetOFF();
+void zPick();
+void zPlace();

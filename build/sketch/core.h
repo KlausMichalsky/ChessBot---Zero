@@ -19,11 +19,6 @@
 
 extern bool dynamicAngle1;
 extern bool dynamicAngle2;
-extern HomingXY motor1Homing;
-extern HomingXY motor2Homing;
-extern HomingZ motor3Homing;
-extern HomeAllState homeAllState;
-extern bool homeAllActive;
 
 void coreInit();
 void coreHomeAll();

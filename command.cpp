@@ -14,6 +14,7 @@
 
 #include <AccelStepper.h>
 
+#include "Z_Axis.h"
 #include "command.h"
 #include "config.h"
 #include "core.h"
@@ -91,6 +92,10 @@ Command parseCommand(const String &cmd) {
         return Command::ANGLE2_STREAM;
     if (cmd == "STOP-STREAM")
         return Command::STOP_STREAM;
+    if (cmd == "PICK")
+        return Command::PICK;
+    if (cmd == "PLACE")
+        return Command::PLACE;
     return Command::UNKNOWN;
 }
 
@@ -120,16 +125,19 @@ void processCommand(const String &cmdStr) {
 
         case Command::HOME1:
             Serial1.println("HOMING MOTOR1 STARTED");
+            homeSingleState = HomeSingleState::RUNNING;
             homingStartXY(motor1, motor1Config, motor1Homing, HALL_1);
             break;
 
         case Command::HOME2:
             Serial1.println("HOMING MOTOR2 STARTED");
+            homeSingleState = HomeSingleState::RUNNING;
             homingStartXY(motor2, motor2Config, motor2Homing, HALL_2);
             break;
 
         case Command::HOME3:
             Serial1.println("HOMING MOTOR3 STARTED");
+            homeSingleState = HomeSingleState::RUNNING;
             homingStartZ(motor3, motor3Config, motor3Homing, HALL_3);
             break;
 
@@ -156,12 +164,24 @@ void processCommand(const String &cmdStr) {
             dynamicAngle2 = true; // Activar lectura continua
             break;
 
+        case Command::PICK:
+            Serial1.println("PICKING PIECE!");
+            zPick(); // bloqueante: sube/baja Z y activa imán
+                     // después de esto, XY puede moverse sin problemas
+            break;
+
+        case Command::PLACE:
+            Serial1.println("PLACING PIECE!");
+            zPlace();
+            break;
+
         case Command::STOP_STREAM:
             dynamicAngle1 = false;
             dynamicAngle2 = false;
             break;
 
         case Command::UNKNOWN:
+
         default:
             Serial1.println("UNKNOWN COMMAND");
             break;
