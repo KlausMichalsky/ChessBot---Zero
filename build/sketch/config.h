@@ -41,7 +41,7 @@
 #define MOTOR3_STEP 11
 // Pines de LEDs y electroimán
 #define LED 2
-#define IMAN 28
+#define MAGNET 28
 
 // PARAMETROS DE CONFIGURACIÓN PLANO XY
 // -----------------------------------------------------------------------
@@ -51,8 +51,8 @@
 
 // PARAMETROS DE CONFIGURACIÓN EJE Z
 // -----------------------------------------------------------------------
-#define Z_STEPS_DOWN 5000 // cantidad de pasos para bajar
-#define Z_DELAY 400       // delay entre movimientos para darle tiempo al iman
+#define Z_STEPS_DOWN 11600 // cantidad de pasos para bajar
+#define Z_DELAY 100        // delay entre movimientos para darle tiempo al iman
 
 // NIVELES LÓGICOS DE ENABLE DEL TMC2209
 // -----------------------------------------------------------------------
