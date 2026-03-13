@@ -7,8 +7,7 @@
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      - Control del eje Z para subir y bajar
-//      - Ejecutar ciclo completo de pick
+//      - Declaracion de funciones para mover el eje Z
 // =======================================================================
 
 #include <Arduino.h>

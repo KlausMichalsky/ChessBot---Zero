@@ -24,20 +24,20 @@ streaming = False
 def main_loop():
     global streaming
     print(
-        "Comandos disponibles:\n"
-        "STATUS\n"
-        "RESET\n"
-        "HOME1\n"
-        "HOME2\n"
-        "HOME3\n"
-        "HOME-ALL\n"
-        "ANGLE1\n"
-        "ANGLE1-STREAM\n"
-        "ANGLE2\n"
-        "ANGLE2-STREAM\n"
-        "STOP-STREAM\n"
-        "PICK\n"
-        "PLACE\n"
+        "Available commands:\n"
+        "STATUS\n"          # Muestra el estatus de motores y sensores
+        "RESET\n"           # Resetea el sistema
+        "HOME1\n"           # Homing del motor1 + status
+        "HOME2\n"           # Homing del motor2 + status
+        "HOME3\n"           # Homing del motor3 + status
+        "HOME-ALL\n"        # Homing de todos los motores 1-2-3 + status
+        "ANGLE1\n"          # Muestra el angulo original del sensor1
+        "ANGLE1-STREAM\n"   # Muestra el angulo original del sensor1 continuamente
+        "ANGLE2\n"          # Muestra el angulo original del sensor2
+        "ANGLE2-STREAM\n"   # Muestra el angulo original del sensor2 continuamente
+        "STOP-STREAM\n"     # Detiene la muestra continua del angulo
+        "PICK\n"            # Mueve Z hacia abajo, agarra pieza y sube
+        "PLACE\n"           # Mueve Z hacia abajo, suelta pieza y sube
         "SHOW-COMMANDS\n"
     )
 

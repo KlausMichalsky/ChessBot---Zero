@@ -26,55 +26,100 @@ bool dynamicAngle2 = false;
 // -----------------------------------------------------------------------
 void coreInit() {
     homeAllState = HomeAllState::IDLE;
+    homeSingleState = HomeSingleState::IDLE;
 }
 
 // -----------------------------------------------------------------------
 void coreUpdate() {
     if (homeAllState != HomeAllState::IDLE) {
         coreHomeAll();
-    } else if (homeSingleState != HomeSingleState::IDLE) {
+        return;
+    }
+    if (homeSingleState != HomeSingleState::IDLE) {
         coreHomeSingleMotor();
+        return;
+    }
+}
+
+void coreHomeSingleMotor() {
+    // Motor 1
+    if (homingXYisActive(motor1Homing)) {
+        homingStepXY(motor1, motor1Config, motor1Homing, HALL_1);
+    }
+    if (motor1Homing.state == HomingStateXY::OK) {
+        Serial1.print(motorStatus(MotorID::J1));
+        homeSingleState = HomeSingleState::DONE;
+        homingInitXY(motor1Homing);
+        return;
+    }
+
+    // Motor 2
+    if (homingXYisActive(motor2Homing)) {
+        homingStepXY(motor2, motor2Config, motor2Homing, HALL_2);
+    }
+    if (motor2Homing.state == HomingStateXY::OK) {
+        Serial1.print(motorStatus(MotorID::J2));
+        homeSingleState = HomeSingleState::DONE;
+        homingInitXY(motor2Homing);
+        return;
+    }
+
+    // Motor 3
+    if (homingZisActive(motor3Homing)) {
+        homingStepZ(motor3, motor3Config, motor3Homing, HALL_3);
+    }
+    if (motor3Homing.state == HomingStateZ::OK) {
+        Serial1.print(motorStatus(MotorID::Z));
+        homeSingleState = HomeSingleState::DONE;
+        homingInitZ(motor3Homing);
+        return;
     }
 }
 
 // -----------------------------------------------------------------------
-void coreHomeSingleMotor() {
-    // Homing Motor1
-    static bool reported1 = false; // Flag para ejecutar el loop solo una vez
-    if (homingXYisActive(motor1Homing)) {
-        homingStepXY(motor1, motor1Config, motor1Homing, HALL_1);
-    }
-    if (motor1Homing.state == HomingStateXY::OK && !reported1) {
-        Serial1.print(motorStatus(MotorID::J1));
-        homeSingleState = HomeSingleState::DONE;
-        reported1 = true; // 👀 esto hace que el if se ejecute solo 1 vez en el loop
-    } else if (motor1Homing.state != HomingStateXY::OK)
-        reported1 = false;
+// void coreHomeSingleMotor() {
+//     // Homing Motor1
+//     static bool reported1 = false; // Flag para ejecutar el loop solo una vez
+//     if (homingXYisActive(motor1Homing)) {
+//         homingStepXY(motor1, motor1Config, motor1Homing, HALL_1);
+//     }
+//     if (motor1Homing.state == HomingStateXY::OK && !reported1) {
+//         Serial1.print(motorStatus(MotorID::J1));
+//         homeSingleState = HomeSingleState::DONE;
+//         reported1 = true; // 👀 esto hace que el if se ejecute solo 1 vez en el loop
+//         homingInitXY(motor1Homing);
+//     } else if (motor1Homing.state != HomingStateXY::OK) {
+//         reported1 = false;
+//     }
 
-    // Homing Motor2
-    static bool reported2 = false;
-    if (homingXYisActive(motor2Homing)) {
-        homingStepXY(motor2, motor2Config, motor2Homing, HALL_2);
-    }
-    if (motor2Homing.state == HomingStateXY::OK && !reported2) {
-        Serial1.print(motorStatus(MotorID::J2));
-        homeSingleState = HomeSingleState::DONE;
-        reported2 = true;
-    } else if (motor2Homing.state != HomingStateXY::OK)
-        reported2 = false;
+//     // Homing Motor2
+//     static bool reported2 = false;
+//     if (homingXYisActive(motor2Homing)) {
+//         homingStepXY(motor2, motor2Config, motor2Homing, HALL_2);
+//     }
+//     if (motor2Homing.state == HomingStateXY::OK && !reported2) {
+//         Serial1.print(motorStatus(MotorID::J2));
+//         homeSingleState = HomeSingleState::DONE;
+//         reported2 = true;
+//         homingInitXY(motor2Homing);
+//     } else if (motor2Homing.state != HomingStateXY::OK) {
+//         reported2 = false;
+//     }
 
-    // Homing Motor3
-    static bool reported3 = false;
-    if (homingZisActive(motor3Homing))
-        homingStepZ(motor3, motor3Config, motor3Homing, HALL_3);
-
-    if (motor3Homing.state == HomingStateZ::OK && !reported3) {
-        Serial1.print(motorStatus(MotorID::Z));
-        homeSingleState = HomeSingleState::DONE;
-        reported3 = true;
-    } else if (motor3Homing.state != HomingStateZ::OK)
-        reported3 = false;
-}
+//     // Homing Motor3
+//     static bool reported3 = false;
+//     if (homingZisActive(motor3Homing)) {
+//         homingStepZ(motor3, motor3Config, motor3Homing, HALL_3);
+//     }
+//     if (motor3Homing.state == HomingStateZ::OK && !reported3) {
+//         Serial1.print(motorStatus(MotorID::Z));
+//         homeSingleState = HomeSingleState::DONE;
+//         reported3 = true;
+//         homingInitZ(motor3Homing);
+//     } else if (motor3Homing.state != HomingStateZ::OK) {
+//         reported3 = false;
+//     }
+// }
 
 // ⚠️ Solo para pruebas de lectura de angulo continuo
 // -> El envio continuo bloquea movimiento de motores
@@ -118,7 +163,14 @@ void coreHomeAll() {
             if (motor3Homing.state == HomingStateZ::OK) {
                 homeAllState = HomeAllState::DONE;
                 commandSendStatusReport();
+                homingInitXY(motor1Homing);
+                homingInitXY(motor2Homing);
+                homingInitZ(motor3Homing);
             }
+            break;
+
+        case HomeAllState::DONE:
+            homeAllState = HomeAllState::IDLE;
             break;
 
         default:
