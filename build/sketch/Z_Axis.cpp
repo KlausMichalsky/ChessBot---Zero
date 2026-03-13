@@ -20,26 +20,6 @@
 static bool zMoving = false;
 static long zTarget = 0;
 
-// Baja Z un número fijo de pasos definido en config.h
-void zDown() {
-    motor3.setMaxSpeed(6000);
-    motor3.setAcceleration(15000);
-    motor3.setCurrentPosition(0);
-    motorEnableZ();
-    zTarget = Z_STEPS_DOWN;
-    motor3.moveTo(zTarget); // solo indica a donde ir
-    zMoving = true;         // activa zMoving para que zStep() lo ejecute.
-}
-
-void zUp() {
-    motor3.setMaxSpeed(6000);
-    motor3.setAcceleration(15000);
-    motorEnableZ();
-    zTarget = 0;
-    motor3.moveTo(zTarget);
-    zMoving = true;
-}
-
 void zStep() {
     if (zMoving) {
         motor3.run(); // AccelStepper mueve y maneja aceleración
@@ -47,6 +27,28 @@ void zStep() {
             zMoving = false;
         }
     }
+}
+
+// Baja Z un número Z_STEPS_DOWN de pasos definido en config.h
+void zMoveDown() {
+    motor3.setMaxSpeed(6000);
+    motor3.setAcceleration(15000);
+    motor3.setCurrentPosition(0);
+    zTarget = Z_STEPS_DOWN;
+    motor3.moveTo(zTarget); // solo indica a donde ir
+    zMoving = true;         // activa zMoving para que zStep() lo ejecute.
+    while (zMoving)
+        zStep();
+}
+
+void zMoveUp() {
+    motor3.setMaxSpeed(6000);
+    motor3.setAcceleration(15000);
+    zTarget = 0;
+    motor3.moveTo(zTarget);
+    zMoving = true;
+    while (zMoving)
+        zStep();
 }
 
 void magnetON() {
@@ -59,27 +61,22 @@ void magnetOFF() {
 
 // Z es bloqueante y se ejecuta desde command.cpp
 void zPick() {
+    motorEnableZ();
     magnetOFF();
-    zDown();
-    while (zMoving)
-        zStep();
-    delay(Z_DELAY);
+    zMoveDown();
+    delay(Z_DELAY); // para mejorar controal al agarrar y soltar
     magnetON();
     delay(Z_DELAY);
-    zUp();
-    while (zMoving)
-        zStep();
+    zMoveUp();
+    motorDisableZ();
 }
 
 void zPlace() {
-    zDown();
-    while (zMoving)
-        zStep();
+    motorEnableZ();
+    zMoveDown();
     delay(Z_DELAY);
     magnetOFF();
-    // delay(20); // para mejor control al soltar la pieza
     delay(Z_DELAY);
-    zUp();
-    while (zMoving)
-        zStep();
+    zMoveUp();
+    motorDisableZ();
 }

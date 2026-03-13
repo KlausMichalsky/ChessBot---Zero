@@ -15,20 +15,9 @@
 
 #pragma once
 
-// ESTRUCTURA DE ESTADO DE PICK AND PLACE
-// -----------------------------------------------------------------------
-struct PickPlaceZ {
-    // HomingStateZ state;      // Estado actual de la máquina de estados de homing// <-- aquí usamos el enum
-    // unsigned long startTime; // Tiempo (millis) en el que comenzó el homing
-    // long initialPosition;    // Posición calculada a partir de los flancos -> referencia absoluta
-    // long edge;               // Flanco de salida detectado por el sensor
-    // long reference;          // Posiciónde homing calculada
-    // bool fault;              // Flag de error latcheado, permanece activo hasta que el
-};
-
-void zDown();
-void zUp();
-void zPick();
-void zPlace();
+void zMoveDown();
+void zMoveUp();
 void magnetON();
 void magnetOFF();
+void zPick();
+void zPlace();
