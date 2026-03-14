@@ -39,6 +39,7 @@ def main_loop():
         "STOP-STREAM\n"     # Detiene la muestra continua del angulo
         "PICK\n"            # Mueve Z hacia abajo, agarra pieza y sube
         "PLACE\n"           # Mueve Z hacia abajo, suelta pieza y sube
+        "MOVE\n"            # Mueve motores 1 y 2 a angulos ingresados
         "SHOW-COMMANDS\n"
     )
 
@@ -99,16 +100,18 @@ def keyboard_input():
                 "STOP-STREAM\n"
                 "PICK\n"
                 "PLACE\n"
+                "MOVE\n"
                 "SHOW-COMMANDS\n"
             )
         elif cmd == "MOVE":
             print("Enter the target angle for the shoulder: ")
             shoulder = input().strip()
-            print(f"Target angle for the shoulder: {shoulder}\n")
+            print(f"Target angle for the shoulder: {shoulder}")
             print("Enter the angle for the elbow: ")
             elbow = input().strip()
-            print(f"Target angle for the elbow: {elbow}\n")
-            commands.send_sommand(f"MOVE {shoulder} {elbow}")
+            print(f"Target angle for the elbow: {elbow}")
+            commands.send_command(f"MOVE {float(shoulder)} {float(elbow)}")
+
     time.sleep_ms(10)  # 10 ms → latencia mínima
 
 

@@ -42,23 +42,18 @@ bool xyIsMoving() {
 }
 
 void moveToAngles(float targetShoulder, float targetElbow) {
-    // Evitar enviar un nuevo movimiento mientras otro está activo
     if (xyMoving)
         return;
 
     // Convertir a pasos absolutos para AccelStepper
-    long shoulderSteps =
-        targetShoulder * motor1Config.reduction *
-        motor1Config.stepsPerRevolution / 360.0;
-
-    long elbowSteps =
-        targetElbow * motor2Config.reduction *
-        motor2Config.stepsPerRevolution / 360.0;
+    long shoulderSteps = targetShoulder * motor1Config.reduction * motor1Config.stepsPerRevolution / 360.0;
+    long elbowSteps = targetElbow * motor2Config.reduction * motor2Config.stepsPerRevolution / 360.0;
 
     motorsEnableXY();
 
-    motor1.moveTo(targetShoulder);
-    motor2.moveTo(targetElbow);
+    // Usar los pasos calculados, no los grados
+    motor1.moveTo(shoulderSteps);
+    motor2.moveTo(elbowSteps);
 
     xyMoving = true;
 }

@@ -106,7 +106,8 @@ Command parseCommand(const String &cmd) {
 // -----------------------------------------------------------------------
 void processCommand(const String &cmdStr) {
     String trimmedCmd = cmdStr;
-    trimmedCmd.trim();
+    trimmedCmd.trim(); // eliminar espacios al iniciofinal,
+                       // justo después de crear trimmedCmd
 
     Command cmd = parseCommand(trimmedCmd);
 
@@ -184,23 +185,36 @@ void processCommand(const String &cmdStr) {
             break;
 
         case Command::MOVE: {
-            // El cmdStr completo llega como "MOVE 90.5 30.25"
-            int firstSpace = trimmedCmd.indexOf(' ');
-            int secondSpace = trimmedCmd.indexOf(' ', firstSpace + 1);
+            float shoulderAngle = 0.0f;
+            float elbowAngle = 0.0f;
 
-            if (firstSpace != -1 && secondSpace != -1) {
-                float shoulderAngle = trimmedCmd.substring(firstSpace + 1, secondSpace).toFloat();
-                float elbowAngle = trimmedCmd.substring(secondSpace + 1).toFloat();
+            // 1️⃣ Quitar "MOVE" del inicio
+            String args = trimmedCmd.substring(4); // todo después de "MOVE"
+            args.trim();                           // elimina espacios y \r\n
 
-                Serial1.print("MOVING Shoulder to: ");
-                Serial1.println(shoulderAngle);
-                Serial1.print("MOVING Elbow to: ");
-                Serial1.println(elbowAngle);
-
-                moveToAngles(shoulderAngle, elbowAngle); // tu función que acepte float
-            } else {
+            // 2️⃣ Separar por el primer espacio
+            int spaceIndex = args.indexOf(' ');
+            if (spaceIndex == -1) {
                 Serial1.println("ERROR: MOVE command requires two angles");
+                break;
             }
+
+            String sShoulder = args.substring(0, spaceIndex);
+            String sElbow = args.substring(spaceIndex + 1);
+            sShoulder.trim();
+            sElbow.trim();
+
+            // 3️⃣ Convertir a float
+            shoulderAngle = sShoulder.toFloat();
+            elbowAngle = sElbow.toFloat();
+
+            Serial1.print("MOVING Shoulder to: ");
+            Serial1.println(shoulderAngle, 2);
+            Serial1.print("MOVING Elbow to: ");
+            Serial1.println(elbowAngle, 2);
+
+            // 4️⃣ Mover motores usando tu función existente
+            moveToAngles(shoulderAngle, elbowAngle);
             break;
         }
 
