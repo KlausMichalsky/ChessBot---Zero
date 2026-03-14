@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\command.h"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/command.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -18,8 +18,6 @@
 #include "config.h"
 
 bool commandAvailable();
-String commandStatusReport();
-void commandSendResponse(const String &msg);
 void processCommand(const String &command);
 String readCommand();
 void commandSendStatusReport();

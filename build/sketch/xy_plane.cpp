@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\xy_plane.cpp"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/xy_plane.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -22,7 +22,7 @@
 #include "xy_plane.h"
 
 // Flag de movimiento
-bool xyMoving = false;
+static bool xyMoving = false;
 
 MotorAngles readXYAngles() {
     MotorAngles angles;
@@ -38,22 +38,29 @@ MotorAngles readXYAngles() {
     return angles;
 }
 
-void moveToAngles() {
-    // Leer ángulos actuales del brazo
-    MotorAngles a = readXYAngles();
+bool xyIsMoving() {
+    return xyMoving;
+}
+
+void moveToAngles(float targetShoulder, float targetElbow) {
+    // Evitar enviar un nuevo movimiento mientras otro está activo
+    if (xyMoving)
+        return;
 
     // Convertir a pasos absolutos para AccelStepper
-    long shoulderSteps = a.shoulder * motor1Config.reduction * motor1Config.stepsPerRevolution / 360.0;
-    long elbowSteps = a.elbow * motor2Config.reduction * motor2Config.stepsPerRevolution / 360.0;
+    long shoulderSteps =
+        targetShoulder * motor1Config.reduction *
+        motor1Config.stepsPerRevolution / 360.0;
 
-    // Activar motores
+    long elbowSteps =
+        targetElbow * motor2Config.reduction *
+        motor2Config.stepsPerRevolution / 360.0;
+
     motorsEnableXY();
 
-    // Mover motores
-    motor1.moveTo(shoulderSteps);
-    motor2.moveTo(elbowSteps);
+    motor1.moveTo(targetShoulder);
+    motor2.moveTo(targetElbow);
 
-    // Indicar que hay movimiento en curso
     xyMoving = true;
 }
 

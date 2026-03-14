@@ -22,6 +22,7 @@
 #include "motors.h"
 #include "sensors.h"
 #include "utils.h"
+#include "xy_plane.h"
 
 // VARIABLES EXTERNAS
 // -----------------------------------------------------------------------
@@ -96,6 +97,8 @@ Command parseCommand(const String &cmd) {
         return Command::PICK;
     if (cmd == "PLACE")
         return Command::PLACE;
+    if (cmd.startsWith("MOVE"))
+        return Command::MOVE;
     return Command::UNKNOWN;
 }
 
@@ -179,6 +182,27 @@ void processCommand(const String &cmdStr) {
             dynamicAngle1 = false;
             dynamicAngle2 = false;
             break;
+
+        case Command::MOVE: {
+            // El cmdStr completo llega como "MOVE 90.5 30.25"
+            int firstSpace = trimmedCmd.indexOf(' ');
+            int secondSpace = trimmedCmd.indexOf(' ', firstSpace + 1);
+
+            if (firstSpace != -1 && secondSpace != -1) {
+                float shoulderAngle = trimmedCmd.substring(firstSpace + 1, secondSpace).toFloat();
+                float elbowAngle = trimmedCmd.substring(secondSpace + 1).toFloat();
+
+                Serial1.print("MOVING Shoulder to: ");
+                Serial1.println(shoulderAngle);
+                Serial1.print("MOVING Elbow to: ");
+                Serial1.println(elbowAngle);
+
+                moveToAngles(shoulderAngle, elbowAngle); // tu función que acepte float
+            } else {
+                Serial1.println("ERROR: MOVE command requires two angles");
+            }
+            break;
+        }
 
         case Command::UNKNOWN:
 

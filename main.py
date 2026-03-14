@@ -23,6 +23,7 @@ streaming = False
 
 def main_loop():
     global streaming
+    global shoulder, elbow
     print(
         "Available commands:\n"
         "STATUS\n"          # Muestra el estatus de motores y sensores
@@ -100,6 +101,14 @@ def keyboard_input():
                 "PLACE\n"
                 "SHOW-COMMANDS\n"
             )
+        elif cmd == "MOVE":
+            print("Enter the target angle for the shoulder: ")
+            shoulder = input().strip()
+            print(f"Target angle for the shoulder: {shoulder}\n")
+            print("Enter the angle for the elbow: ")
+            elbow = input().strip()
+            print(f"Target angle for the elbow: {elbow}\n")
+            commands.send_sommand(f"MOVE {shoulder} {elbow}")
     time.sleep_ms(10)  # 10 ms → latencia mínima
 
 

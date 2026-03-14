@@ -22,8 +22,7 @@ struct MotorAngles {
     float elbow;         // ángulo del brazo
 };
 
-extern bool xyMoving; // solo necesario para que otros archivos puedan leer el estado de movimiento
-
 MotorAngles readXYAngles();
-void moveToAngles(float shoulder, float elbow);
+void moveToAngles(float targetShoulder, float targetElbow);
 void updateXY();
+bool xyIsMoving();

@@ -17,8 +17,6 @@
 #include "config.h"
 
 bool commandAvailable();
-String commandStatusReport();
-void commandSendResponse(const String &msg);
 void processCommand(const String &command);
 String readCommand();
 void commandSendStatusReport();
