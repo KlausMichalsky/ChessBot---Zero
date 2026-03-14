@@ -17,6 +17,7 @@
 #include "homing.h"
 #include "motors.h"
 #include "sensors.h"
+#include "xy_plane.h"
 
 // FLAGS Y VARIABLES GLOBALES
 // -----------------------------------------------------------------------
@@ -39,6 +40,9 @@ void coreUpdate() {
         coreHomeSingleMotor();
         return;
     }
+    updateXY();
+
+    // Otros procesos...
 }
 
 // -----------------------------------------------------------------------

@@ -14,9 +14,9 @@
 //      - Centralizar parámetros mecánicos dependientes del hardware.
 // =======================================================================
 
-#include <Arduino.h>
-
 #pragma once
+
+#include <Arduino.h>
 
 // PINES DE CONFIGURACIÓN
 // -----------------------------------------------------------------------

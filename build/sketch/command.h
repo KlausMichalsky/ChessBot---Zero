@@ -11,11 +11,11 @@
 //        recibidos por UART
 // =======================================================================
 
+#pragma once
+
 #include <Arduino.h>
 
 #include "config.h"
-
-#pragma once
 
 bool commandAvailable();
 String commandStatusReport();
