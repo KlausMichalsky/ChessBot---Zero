@@ -81,6 +81,7 @@ enum class Command {
     STOP_STREAM,
     MOVE,
     MOVE_FEEDBACK,
+    SHOW_COMMANDS,
     UNKNOWN
 };
 

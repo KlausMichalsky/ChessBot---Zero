@@ -103,7 +103,7 @@ def keyboard_input():
                 "PICK\n"
                 "PLACE\n"
                 "MOVE\n"
-                "MOVE-FEEDBACK"
+                "MOVE-FEEDBACK\n"
                 "SHOW-COMMANDS\n"
             )
         elif cmd == "MOVE" or cmd == "MOVE-FEEDBACK":

@@ -74,35 +74,38 @@ String readCommand() {
 Command parseCommand(const String &cmd) {
     if (cmd == "STATUS")
         return Command::STATUS;
-    if (cmd == "RESET")
+    else if (cmd == "RESET")
         return Command::RESET;
-    if (cmd == "HOME1")
+    else if (cmd == "HOME1")
         return Command::HOME1;
-    if (cmd == "HOME2")
+    else if (cmd == "HOME2")
         return Command::HOME2;
-    if (cmd == "HOME3")
+    else if (cmd == "HOME3")
         return Command::HOME3;
-    if (cmd == "HOME-ALL")
+    else if (cmd == "HOME-ALL")
         return Command::HOME_ALL;
-    if (cmd == "ANGLE1")
+    else if (cmd == "ANGLE1")
         return Command::ANGLE1;
-    if (cmd == "ANGLE1-STREAM")
+    else if (cmd == "ANGLE1-STREAM")
         return Command::ANGLE1_STREAM;
-    if (cmd == "ANGLE2")
+    else if (cmd == "ANGLE2")
         return Command::ANGLE2;
-    if (cmd == "ANGLE2-STREAM")
+    else if (cmd == "ANGLE2-STREAM")
         return Command::ANGLE2_STREAM;
-    if (cmd == "STOP-STREAM")
+    else if (cmd == "STOP-STREAM")
         return Command::STOP_STREAM;
-    if (cmd == "PICK")
+    else if (cmd == "PICK")
         return Command::PICK;
-    if (cmd == "PLACE")
+    else if (cmd == "PLACE")
         return Command::PLACE;
-    if (cmd.startsWith("MOVE"))
+    else if (cmd.startsWith("MOVE_FEEDBACK"))
+        return Command::MOVE_FEEDBACK; // ‼️Este va antes de MOVE, en processCommand() se usa startsWith
+    else if (cmd.startsWith("MOVE"))
         return Command::MOVE;
-    if (cmd.startsWith("MOVE_FEEDBACK"))
-        return Command::MOVE_FEEDBACK;
-    return Command::UNKNOWN;
+    else if (cmd == "SHOW-COMMANDS")
+        return Command::SHOW_COMMANDS;
+    else
+        return Command::UNKNOWN;
 }
 
 // PROCESAMIENTO DE COMANDOS
@@ -223,7 +226,8 @@ void processCommand(const String &cmdStr) {
             break;
         }
 
-        case Command::UNKNOWN:
+        case Command::SHOW_COMMANDS:
+            break;
 
         default:
             Serial1.println("UNKNOWN COMMAND");
