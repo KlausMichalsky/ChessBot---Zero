@@ -62,7 +62,7 @@ void homingInitZ(HomingZ &st) {
 // INICIO DEL PROCESO DE HOMING
 // -----------------------------------------------------------------------
 void homingStartXY(AccelStepper &motor,
-                   const HomingConfig &cfg,
+                   const MotorConfig &cfg,
                    HomingXY &st,
                    int hallPin) {
     // Evita reentradas: si el homing ya está activo, no hace nada
@@ -85,7 +85,7 @@ void homingStartXY(AccelStepper &motor,
 }
 
 void homingStartZ(AccelStepper &motor,
-                  const HomingConfig &cfg,
+                  const MotorConfig &cfg,
                   HomingZ &st,
                   int hallPin) {
     if (st.state != HomingStateZ::INACTIVE)
@@ -134,7 +134,7 @@ bool homingZhasError(const HomingZ &st) {
 // MÁQUINA DE ESTADOS DE HOMING
 // -----------------------------------------------------------------------
 void homingStepXY(AccelStepper &motor,
-                  const HomingConfig &cfg,
+                  const MotorConfig &cfg,
                   HomingXY &st,
                   int hallPin) {
     // Invierte la logica del HAll (imán presente = LOW)
@@ -255,7 +255,7 @@ void homingStepXY(AccelStepper &motor,
 }
 
 void homingStepZ(AccelStepper &motor,
-                 const HomingConfig &cfg,
+                 const MotorConfig &cfg,
                  HomingZ &st,
                  int hallPin) {
     // Invierte la logica del HAll (imán presente = LOW)

@@ -14,7 +14,28 @@
 #include <math.h>
 
 #include "communication.h"
+#include "config.h"
 #include "utils.h"
+
+// Convierte el angulo a pasos para cada motor
+long angleToStep(float angle, MotorID id) {
+    switch (id) {
+        case MotorID::J1:
+            return (angle / 360.0) *
+                   motor1Config.microstepping *
+                   motor1Config.reduction *
+                   motor1Config.stepsPerRevolution;
+        case MotorID::J2:
+            return (angle / 360.0) *
+                   motor2Config.microstepping *
+                   motor2Config.reduction *
+                   motor2Config.stepsPerRevolution;
+        default:
+            // Por si llega un MotorID inválido
+            Serial1.println("ERROR: MotorID inválido en angleToStep");
+            return 0;
+    }
+}
 
 // Convierte valor bruto 12 bits del AS5600 (0-4095) a grados
 float rawToDegrees(uint16_t rawAngle) {
@@ -40,13 +61,12 @@ void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime,
     }
 }
 
-/*
-// Convierte coordenadas XY a ángulo relativo al eje (0-360°) ------------
-float XYtoAngle(float x, float y)
-{
-    float angle = atan2(y, x) * 180.0 / PI; // atan2 devuelve en radianes, convertimos a grados
-    if (angle < 0)
-        angle += 360.0; // normalizamos a 0-360°
+// Normaliza ángulos entre -180 y +180
+// se aplica al error para evitar el wrap 0°/360°
+float normalizeAngle(float angle) {
+    while (angle > 180.0f)
+        angle -= 360.0f;
+    while (angle < -180.0f)
+        angle += 360.0f;
     return angle;
 }
-*/

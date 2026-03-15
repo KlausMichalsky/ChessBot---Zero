@@ -23,6 +23,7 @@ streaming = False
 
 def main_loop():
     global streaming
+    global shoulder, elbow
     print(
         "Available commands:\n"
         "STATUS\n"          # Muestra el estatus de motores y sensores
@@ -38,6 +39,9 @@ def main_loop():
         "STOP-STREAM\n"     # Detiene la muestra continua del angulo
         "PICK\n"            # Mueve Z hacia abajo, agarra pieza y sube
         "PLACE\n"           # Mueve Z hacia abajo, suelta pieza y sube
+        "MOVE\n"            # Mueve motores 1 y 2 a angulos ingresados
+        "MOVE-FEEDBACK\n"   # Mueve motores 1 y 2 a angulos ingresados y corrige error
+                            # usando el AS5600
         "SHOW-COMMANDS\n"
     )
 
@@ -98,8 +102,19 @@ def keyboard_input():
                 "STOP-STREAM\n"
                 "PICK\n"
                 "PLACE\n"
+                "MOVE\n"
+                "MOVE-FEEDBACK\n"
                 "SHOW-COMMANDS\n"
             )
+        elif cmd == "MOVE" or cmd == "MOVE-FEEDBACK":
+            shoulder = input(
+                "Enter the target angle for the shoulder: ").strip()
+            print(f"Target angle for the shoulder: {shoulder}")
+            elbow = input(
+                "Enter the target angle for the elbow: ").strip()
+            print(f"Target angle for the elbow: {elbow}")
+            commands.send_command(f"MOVE {float(shoulder)} {float(elbow)}")
+
     time.sleep_ms(10)  # 10 ms → latencia mínima
 
 

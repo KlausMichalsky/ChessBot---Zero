@@ -1,7 +1,7 @@
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
-//  Archivo    : ZAxis.cpp
+//  Archivo    : z_axis.cpp
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
@@ -11,10 +11,10 @@
 
 #include <Arduino.h>
 
-#include "Z_Axis.h"
 #include "config.h"
 #include "homing.h"
 #include "motors.h"
+#include "z_axis.h"
 
 static bool zMoving = false;
 static long zTarget = 0;
