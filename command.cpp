@@ -188,32 +188,14 @@ void processCommand(const String &cmdStr) {
             float shoulderAngle = 0.0f;
             float elbowAngle = 0.0f;
 
-            // 1️⃣ Quitar "MOVE" del inicio
-            String args = trimmedCmd.substring(4); // todo después de "MOVE"
-            args.trim();                           // elimina espacios y \r\n
-
-            // 2️⃣ Separar por el primer espacio
-            int spaceIndex = args.indexOf(' ');
-            if (spaceIndex == -1) {
-                Serial1.println("ERROR: MOVE command requires two angles");
-                break;
-            }
-
-            String sShoulder = args.substring(0, spaceIndex);
-            String sElbow = args.substring(spaceIndex + 1);
-            sShoulder.trim();
-            sElbow.trim();
-
-            // 3️⃣ Convertir a float
-            shoulderAngle = sShoulder.toFloat();
-            elbowAngle = sElbow.toFloat();
+            // Parsear con sscanf o como ya tenías
+            sscanf(trimmedCmd.c_str(), "MOVE %f %f", &shoulderAngle, &elbowAngle);
 
             Serial1.print("MOVING Shoulder to: ");
             Serial1.println(shoulderAngle, 2);
             Serial1.print("MOVING Elbow to: ");
             Serial1.println(elbowAngle, 2);
 
-            // 4️⃣ Mover motores usando tu función existente
             moveToAngles(shoulderAngle, elbowAngle);
             break;
         }
