@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\utils.cpp"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/utils.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -14,7 +14,28 @@
 #include <math.h>
 
 #include "communication.h"
+#include "config.h"
 #include "utils.h"
+
+// Convierte el angulo a pasos para cada motor
+long angleToStep(float angle, MotorID id) {
+    switch (id) {
+        case MotorID::J1:
+            return (angle / 360.0) *
+                   motor1Config.microstepping *
+                   motor1Config.reduction *
+                   motor1Config.stepsPerRevolution;
+        case MotorID::J2:
+            return (angle / 360.0) *
+                   motor2Config.microstepping *
+                   motor2Config.reduction *
+                   motor2Config.stepsPerRevolution;
+        default:
+            // Por si llega un MotorID inválido
+            Serial1.println("ERROR: MotorID inválido en angleToStep");
+            return 0;
+    }
+}
 
 // Convierte valor bruto 12 bits del AS5600 (0-4095) a grados
 float rawToDegrees(uint16_t rawAngle) {

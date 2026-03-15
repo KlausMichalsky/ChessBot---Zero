@@ -18,11 +18,13 @@
 #include "config.h"
 #include "motors.h"
 #include "sensors.h"
+#include "utils.h"
 #include "xy_plane.h"
 
 // Flag de movimiento
 static bool xyMoving = false;
 
+// readXYAngles() devuelve un MotorAngles completo, con los cuatro valores a la vez.
 MotorAngles readXYAngles() {
     MotorAngles angles;
 
@@ -41,19 +43,45 @@ bool xyIsMoving() {
     return xyMoving;
 }
 
-void moveToAngles(float targetShoulder, float targetElbow) {
+void moveToAngles(float targetShoulderAngle, float targetElbowAngle) {
     if (xyMoving)
         return;
 
-    // Convertir a pasos absolutos para AccelStepper
-    long shoulderSteps = targetShoulder * motor1Config.reduction * motor1Config.stepsPerRevolution / 360.0;
-    long elbowSteps = targetElbow * motor2Config.reduction * motor2Config.stepsPerRevolution / 360.0;
-
     motorsEnableXY();
 
+    // Convertir a pasos absolutos para AccelStepper
+    long targetShoulderSteps = angleToStep(targetShoulderAngle, MotorID::J1);
+    long targetElbowSteps = angleToStep(targetElbowAngle, MotorID::J2);
+
+    // Calcular la relación entre motor1 y 2
+    long delta1 = abs(targetShoulderSteps - motor1.currentPosition());
+    long delta2 = abs(targetElbowSteps - motor2.currentPosition());
+
+    long maxDelta = max(delta1, delta2);
+
+    float ratio1, ratio2;
+
+    // Evitar división por cero
+    if (maxDelta == 0) {
+        ratio1 = ratio2 = 1.0;
+    } else {
+        ratio1 = (float)delta1 / maxDelta;
+        ratio2 = (float)delta2 / maxDelta;
+    }
+
+    // Limitar ratio mínimo para que los motores no queden demasiado lentos
+    ratio1 = max(ratio1, 0.2f); // mínimo 20% de velocidad
+    ratio2 = max(ratio2, 0.2f);
+
+    motor1.setMaxSpeed(motor1Config.baseSpeed * ratio1);
+    motor2.setMaxSpeed(motor2Config.baseSpeed * ratio2);
+
+    motor1.setAcceleration(motor1Config.acceleration * ratio1);
+    motor2.setAcceleration(motor2Config.acceleration * ratio2);
+
     // Usar los pasos calculados, no los grados
-    motor1.moveTo(shoulderSteps);
-    motor2.moveTo(elbowSteps);
+    motor1.moveTo(targetShoulderSteps);
+    motor2.moveTo(targetElbowSteps);
 
     xyMoving = true;
 }

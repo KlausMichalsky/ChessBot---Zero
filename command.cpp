@@ -185,18 +185,22 @@ void processCommand(const String &cmdStr) {
             break;
 
         case Command::MOVE: {
-            float shoulderAngle = 0.0f;
-            float elbowAngle = 0.0f;
+            float targetShoulderAngle = 0.0f;
+            float targetElbowAngle = 0.0f;
 
-            // Parsear con sscanf o como ya tenías
-            sscanf(trimmedCmd.c_str(), "MOVE %f %f", &shoulderAngle, &elbowAngle);
+            // Parsear con sscanf ejemplo:
+            // const char* texto = "123 456";
+            // int a, b;
+            // sscanf(texto, "%d %d", &a, &b);
+            // // Ahora a = 123, b = 456
+            sscanf(trimmedCmd.c_str(), "MOVE %f %f", &targetShoulderAngle, &targetElbowAngle);
 
             Serial1.print("MOVING Shoulder to: ");
-            Serial1.println(shoulderAngle, 2);
+            Serial1.println(targetShoulderAngle, 2);
             Serial1.print("MOVING Elbow to: ");
-            Serial1.println(elbowAngle, 2);
+            Serial1.println(targetElbowAngle, 2);
 
-            moveToAngles(shoulderAngle, elbowAngle);
+            moveToAngles(targetShoulderAngle, targetElbowAngle);
             break;
         }
 
