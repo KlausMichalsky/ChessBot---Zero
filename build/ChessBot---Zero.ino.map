@@ -419,11 +419,11 @@ Discarded input sections
  .text._Z16coreStreamAnglesv
                 0x00000000       0x48 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\core.cpp.o
  .rodata.motor3Config
-                0x00000000       0x28 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\core.cpp.o
+                0x00000000       0x2c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\core.cpp.o
  .rodata.motor2Config
-                0x00000000       0x28 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\core.cpp.o
+                0x00000000       0x2c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\core.cpp.o
  .rodata.motor1Config
-                0x00000000       0x28 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\core.cpp.o
+                0x00000000       0x2c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\core.cpp.o
  .text          0x00000000        0x0 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
  .data          0x00000000        0x0 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
  .bss           0x00000000        0x0 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
@@ -2722,24 +2722,24 @@ LOAD C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.
  .text._Z11homingInitZR7HomingZ
                 0x10003928       0x10 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
                 0x10003928                _Z11homingInitZR7HomingZ
- .text._Z13homingStartXYR12AccelStepperRK12HomingConfigR8HomingXYi
+ .text._Z13homingStartXYR12AccelStepperRK11MotorConfigR8HomingXYi
                 0x10003938       0x50 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
-                0x10003938                _Z13homingStartXYR12AccelStepperRK12HomingConfigR8HomingXYi
- .text._Z12homingStartZR12AccelStepperRK12HomingConfigR7HomingZi
+                0x10003938                _Z13homingStartXYR12AccelStepperRK11MotorConfigR8HomingXYi
+ .text._Z12homingStartZR12AccelStepperRK11MotorConfigR7HomingZi
                 0x10003988       0x50 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
-                0x10003988                _Z12homingStartZR12AccelStepperRK12HomingConfigR7HomingZi
+                0x10003988                _Z12homingStartZR12AccelStepperRK11MotorConfigR7HomingZi
  .text._Z16homingXYisActiveRK8HomingXY
                 0x100039d8        0xa C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
                 0x100039d8                _Z16homingXYisActiveRK8HomingXY
  .text._Z15homingZisActiveRK7HomingZ
                 0x100039e2        0xa C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
                 0x100039e2                _Z15homingZisActiveRK7HomingZ
- .text._Z12homingStepXYR12AccelStepperRK12HomingConfigR8HomingXYi
+ .text._Z12homingStepXYR12AccelStepperRK11MotorConfigR8HomingXYi
                 0x100039ec      0x19c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
-                0x100039ec                _Z12homingStepXYR12AccelStepperRK12HomingConfigR8HomingXYi
- .text._Z11homingStepZR12AccelStepperRK12HomingConfigR7HomingZi
+                0x100039ec                _Z12homingStepXYR12AccelStepperRK11MotorConfigR8HomingXYi
+ .text._Z11homingStepZR12AccelStepperRK11MotorConfigR7HomingZi
                 0x10003b88       0xfe C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
-                0x10003b88                _Z11homingStepZR12AccelStepperRK12HomingConfigR7HomingZi
+                0x10003b88                _Z11homingStepZR12AccelStepperRK11MotorConfigR7HomingZi
  .text._Z14motorsEnableXYv
                 0x10003c86       0x14 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
                 0x10003c86                _Z14motorsEnableXYv
@@ -4636,7 +4636,7 @@ LOAD C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.
 .iplt           0x1001554c        0x0
  .iplt          0x1001554c        0x0 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb/crtbegin.o
 
-.rodata         0x10015550     0x14d8
+.rodata         0x10015550     0x14e0
  *(EXCLUDE_FILE(*libm.a: *libc.a:*lib_a-mem*.o *libgcc.a:) .rodata* .big_const*)
  .rodata._Z23commandSendStatusReportv.str1.1
                 0x10015550      0x4fc C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\command.cpp.o
@@ -4646,140 +4646,139 @@ LOAD C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.
  .rodata._Z14processCommandRKN7arduino6StringE.str1.1
                 0x10015a4c       0xdb C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\command.cpp.o
  .rodata.motor3Config
-                0x10015a4c       0x28 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\command.cpp.o
+                0x10015a4c       0x2c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\command.cpp.o
                 0x10015a4c                motor3Config
  .rodata.motor2Config
-                0x10015a74       0x28 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\command.cpp.o
-                0x10015a74                motor2Config
+                0x10015a78       0x2c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\command.cpp.o
+                0x10015a78                motor2Config
  .rodata.motor1Config
-                0x10015a9c       0x28 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\command.cpp.o
-                0x10015a9c                motor1Config
+                0x10015aa4       0x2c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\command.cpp.o
+                0x10015aa4                motor1Config
  .rodata._Z11motorStatus7MotorID.str1.1
-                0x10015ac4       0xc7 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
+                0x10015ad0       0xc7 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
  .rodata._Z15sensorSendAngleR7TwoWire.str1.1
-                0x10015ac4        0x2 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\sensors.cpp.o
+                0x10015ad0        0x2 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\sensors.cpp.o
  .rodata._ZTV7TwoWire
-                0x10015ac4       0x50 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
-                0x10015ac4                _ZTV7TwoWire
- *fill*         0x10015b14        0x4 
- .rodata        0x10015b18      0x1e0 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
+                0x10015ad0       0x50 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
+                0x10015ad0                _ZTV7TwoWire
+ .rodata        0x10015b20      0x1e0 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
  .rodata._ZTV12AccelStepper
-                0x10015cf8       0x40 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
-                0x10015cf8                _ZTV12AccelStepper
+                0x10015d00       0x40 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
+                0x10015d00                _ZTV12AccelStepper
  .rodata._ZN10SerialUART5setRXEh.str1.1
-                0x10015d38       0x6a C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(SerialUART.cpp.o)
+                0x10015d40       0x6a C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(SerialUART.cpp.o)
  .rodata._ZN10SerialUART5setTXEh.str1.1
-                0x10015d38       0x6a C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(SerialUART.cpp.o)
+                0x10015d40       0x6a C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(SerialUART.cpp.o)
  .rodata._ZTV10SerialUART
-                0x10015d38       0x34 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(SerialUART.cpp.o)
-                0x10015d38                _ZTV10SerialUART
- *fill*         0x10015d6c        0x4 
- .rodata        0x10015d70       0x40 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(SerialUART.cpp.o)
+                0x10015d40       0x34 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(SerialUART.cpp.o)
+                0x10015d40                _ZTV10SerialUART
+ *fill*         0x10015d74        0x4 
+ .rodata        0x10015d78       0x40 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(SerialUART.cpp.o)
  .rodata._ZTV9SerialUSB
-                0x10015db0       0x34 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(SerialUSB.cpp.o)
-                0x10015db0                _ZTV9SerialUSB
+                0x10015db8       0x34 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(SerialUSB.cpp.o)
+                0x10015db8                _ZTV9SerialUSB
  .rodata._ZN7arduino5Print7printlnEv.str1.1
-                0x10015de4        0x3 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(Print.cpp.o)
+                0x10015dec        0x3 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(Print.cpp.o)
  .rodata._ZN7arduino5Print10printFloatEdi.str1.1
-                0x10015de4        0xe C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(Print.cpp.o)
+                0x10015dec        0xe C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(Print.cpp.o)
  .rodata._GLOBAL__sub_I_rp2040.str1.1
-                0x10015de4        0x1 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(main.cpp.o)
+                0x10015dec        0x1 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(main.cpp.o)
  .rodata.main.str1.1
-                0x10015de4       0x32 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(main.cpp.o)
+                0x10015dec       0x32 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(main.cpp.o)
  .rodata._ZL14ccount_program
-                0x10015de4        0x8 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(main.cpp.o)
+                0x10015dec        0x8 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(main.cpp.o)
  .rodata._ZL27ccount_program_instructions
-                0x10015dec        0x4 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(main.cpp.o)
+                0x10015df4        0x4 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(main.cpp.o)
  .rodata.dtostrf.str1.1
-                0x10015df0        0x8 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(stdlib_noniso.cpp.o)
+                0x10015df8        0x8 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(stdlib_noniso.cpp.o)
  .rodata.noInterrupts.str1.1
-                0x10015df0       0x13 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(wiring_private.cpp.o)
+                0x10015df8       0x13 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(wiring_private.cpp.o)
  .rodata._ZN10PIOProgram7prepareEPP8pio_hw_tPiS3_ii.str1.1
-                0x10015df0       0xbb C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(PIOProgram.cpp.o)
+                0x10015df8       0xbb C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(PIOProgram.cpp.o)
  .rodata.str1.1
-                0x10015df0       0x21 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(RP2040USB.cpp.o)
+                0x10015df8       0x21 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(RP2040USB.cpp.o)
  .rodata._ZZ24tud_descriptor_string_cbE13usbd_desc_str
-                0x10015df0       0x14 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(RP2040USB.cpp.o)
- .rodata        0x10015e04      0x1dc C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(RP2040USB.cpp.o)
+                0x10015df8       0x14 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(RP2040USB.cpp.o)
+ .rodata        0x10015e0c      0x1dc C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(RP2040USB.cpp.o)
  .rodata.panic.str1.1
-                0x10015fe0       0x12 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(panic.c.o)
+                0x10015fe8       0x12 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(panic.c.o)
  .rodata.spin_lock_claim_unused.str1.1
-                0x10015fe0       0x1b C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(sync.c.o)
+                0x10015fe8       0x1b C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(sync.c.o)
  .rodata.user_irq_claim_unused.str1.1
-                0x10015fe0       0x1b C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(irq.c.o)
+                0x10015fe8       0x1b C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(irq.c.o)
  .rodata.timer_hardware_alarm_claim.str1.1
-                0x10015fe0       0x22 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(timer.c.o)
+                0x10015fe8       0x22 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(timer.c.o)
  .rodata.pio_claim_unused_sm.str1.1
-                0x10015fe0       0x24 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(pio.c.o)
+                0x10015fe8       0x24 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(pio.c.o)
  .rodata.hard_assertion_failure.str1.1
-                0x10015fe0        0xc C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(runtime.c.o)
+                0x10015fe8        0xc C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(runtime.c.o)
  .rodata._usbd_driver
-                0x10015fe0       0x60 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(usbd.c.o)
+                0x10015fe8       0x60 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(usbd.c.o)
  .rodata.str1.1
-                0x10016040       0x14 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(dcd_rp2040.c.o)
+                0x10016048       0x14 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(dcd_rp2040.c.o)
  .rodata.str1.1
-                0x10016040       0x46 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(rp2040_usb.c.o)
+                0x10016048       0x46 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(rp2040_usb.c.o)
  .rodata.str1.4
-                0x10016040      0x1d7 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-assert.o)
+                0x10016048      0x1d7 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-assert.o)
                                  0x43 (size before relaxing)
  .rodata.str1.4
-                0x10016217       0x15 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtod.o)
- *fill*         0x10016217        0x1 
- .rodata        0x10016218      0x120 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtod.o)
+                0x1001621f       0x15 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtod.o)
+ *fill*         0x1001621f        0x1 
+ .rodata        0x10016220      0x120 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtod.o)
  .rodata.str1.4
-                0x10016338       0x13 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-svfprintf.o)
+                0x10016340       0x13 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-svfprintf.o)
  .rodata.str1.4
-                0x10016338       0x4f C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-gethex.o)
- .rodata        0x10016338      0x100 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-gethex.o)
-                0x10016338                __hexdig
+                0x10016340       0x4f C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-gethex.o)
+ .rodata        0x10016340      0x100 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-gethex.o)
+                0x10016340                __hexdig
  .rodata.str1.4
-                0x10016438        0x2 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-puts.o)
+                0x10016440        0x2 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-puts.o)
  .rodata.str1.4
-                0x10016438       0x25 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-utoa.o)
+                0x10016440       0x25 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-utoa.o)
  .rodata.str1.4
-                0x10016438       0x12 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf_float.o)
+                0x10016440       0x12 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf_float.o)
  .rodata.str1.4
-                0x10016438       0x6d C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-dtoa.o)
+                0x10016440       0x6d C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-dtoa.o)
  .rodata.str1.4
-                0x10016438        0x9 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfscanf_float.o)
- .rodata        0x10016438      0x13c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfscanf_float.o)
+                0x10016440        0x9 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfscanf_float.o)
+ .rodata        0x10016440      0x13c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfscanf_float.o)
  .rodata.str1.4
-                0x10016574       0x25 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf_i.o)
- .rodata        0x10016574       0x98 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf_i.o)
+                0x1001657c       0x25 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf_i.o)
+ .rodata        0x1001657c       0x98 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf_i.o)
  .rodata.str1.4
-                0x1001660c       0x12 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-locale.o)
- .rodata        0x1001660c      0x101 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-ctype_.o)
-                0x1001660c                _ctype_
+                0x10016614       0x12 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-locale.o)
+ .rodata        0x10016614      0x101 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-ctype_.o)
+                0x10016614                _ctype_
  .rodata.str1.4
-                0x1001670d       0x13 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf.o)
+                0x10016715       0x13 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf.o)
  .rodata.str1.4
-                0x1001670d       0x59 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mprec.o)
- *fill*         0x1001670d        0x3 
- .rodata        0x10016710      0x128 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mprec.o)
-                0x10016720                __mprec_tinytens
-                0x10016748                __mprec_bigtens
-                0x10016770                __mprec_tens
+                0x10016715       0x59 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mprec.o)
+ *fill*         0x10016715        0x3 
+ .rodata        0x10016718      0x128 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mprec.o)
+                0x10016728                __mprec_tinytens
+                0x10016750                __mprec_bigtens
+                0x10016778                __mprec_tens
  .rodata.str1.4
-                0x10016838        0x4 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-svfscanf.o)
- .rodata        0x10016838      0x1e4 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-svfscanf.o)
+                0x10016840        0x4 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-svfscanf.o)
+ .rodata        0x10016840      0x1e4 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-svfscanf.o)
  .rodata.str1.4
-                0x10016a1c       0x1f C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfscanf_i.o)
- .rodata        0x10016a1c        0xc C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfscanf_i.o)
-                0x10016a3c                        . = ALIGN (0x4)
+                0x10016a24       0x1f C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfscanf_i.o)
+ .rodata        0x10016a24        0xc C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfscanf_i.o)
+                0x10016a44                        . = ALIGN (0x4)
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.flashdata*)))
-                0x10016a3c                        . = ALIGN (0x4)
+                0x10016a44                        . = ALIGN (0x4)
 
-.rel.dyn        0x10016a28        0x0
- .rel.iplt      0x10016a28        0x0 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb/crtbegin.o
+.rel.dyn        0x10016a30        0x0
+ .rel.iplt      0x10016a30        0x0 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb/crtbegin.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x10016a28                        __exidx_start = .
+                0x10016a30                        __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x10016a28                        __exidx_end = .
-                0x10016a28                        . = ALIGN (0x4)
+                0x10016a30                        __exidx_end = .
+                0x10016a30                        . = ALIGN (0x4)
 
 .ram_vector_table
                 0x20000000       0xc0
@@ -4788,7 +4787,7 @@ LOAD C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.
                 0x20000000       0xc0 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(runtime_init.c.o)
                 0x20000000                ram_vector_table
 
-.data           0x200000c0     0x1228 load address 0x10016a28
+.data           0x200000c0     0x1228 load address 0x10016a30
                 0x200000c0                        __data_start__ = .
  *(vtable)
  *(.time_critical*)
@@ -4964,23 +4963,23 @@ LOAD C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.
                 0x200012e8                        . = ALIGN (0x4)
 
 .tm_clone_table
-                0x200012e8        0x0 load address 0x10017c50
+                0x200012e8        0x0 load address 0x10017c58
  .tm_clone_table
                 0x200012e8        0x0 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb/crtbegin.o
  .tm_clone_table
                 0x200012e8        0x0 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb/crtend.o
 
-.igot.plt       0x200012e8        0x0 load address 0x10017c50
+.igot.plt       0x200012e8        0x0 load address 0x10017c58
  .igot.plt      0x200012e8        0x0 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb/crtbegin.o
 
-.tdata          0x200012e8        0x0 load address 0x10017c50
+.tdata          0x200012e8        0x0 load address 0x10017c58
                 0x200012e8                        . = ALIGN (0x4)
  *(.tdata .tdata.* .gnu.linkonce.td.*)
                 0x200012e8                        __tdata_end = .
                 0x200012e8                        PROVIDE (__data_end__ = .)
-                0x10016a28                        __etext = LOADADDR (.data)
+                0x10016a30                        __etext = LOADADDR (.data)
 
-.tbss           0x200012e8        0x0 load address 0x10017c50
+.tbss           0x200012e8        0x0 load address 0x10017c58
                 0x200012e8                        . = ALIGN (0x4)
                 0x200012e8                        __bss_start__ = .
                 0x200012e8                        __tls_base = .
@@ -4988,7 +4987,7 @@ LOAD C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.
  *(.tcommon)
                 0x200012e8                        __tls_end = .
 
-.bss            0x200012e8     0x1810 load address 0x10017c50
+.bss            0x200012e8     0x1810 load address 0x10017c58
                 0x200012e8                        . = ALIGN (0x4)
                 0x200012e8                        __tbss_end = .
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.bss*)))
@@ -5233,19 +5232,19 @@ LOAD C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.
  *fill*         0x200032f8    0x3cd08 
                 0x20040000                        __HeapLimit = .
 
-.scratch_x      0x20040000        0x0 load address 0x10017c50
+.scratch_x      0x20040000        0x0 load address 0x10017c58
                 0x20040000                        __scratch_x_start__ = .
  *(.scratch_x.*)
                 0x20040000                        . = ALIGN (0x4)
                 0x20040000                        __scratch_x_end__ = .
-                0x10017c50                        __scratch_x_source__ = LOADADDR (.scratch_x)
+                0x10017c58                        __scratch_x_source__ = LOADADDR (.scratch_x)
 
-.scratch_y      0x20041000        0x0 load address 0x10017c50
+.scratch_y      0x20041000        0x0 load address 0x10017c58
                 0x20041000                        __scratch_y_start__ = .
  *(.scratch_y.*)
                 0x20041000                        . = ALIGN (0x4)
                 0x20041000                        __scratch_y_end__ = .
-                0x10017c50                        __scratch_y_source__ = LOADADDR (.scratch_y)
+                0x10017c58                        __scratch_y_source__ = LOADADDR (.scratch_y)
 
 .stack1_dummy   0x20040000      0x800
  *(.stack1*)
@@ -5255,7 +5254,7 @@ LOAD C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.
  *(.stack*)
  .stack         0x20041000      0x800 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(crt0.S.o)
 
-.flash_end      0x10017c50        0x0
+.flash_end      0x10017c58        0x0
  *(.embedded_end_block*)
                 [!provide]                        PROVIDE (__flash_binary_end = .)
                 0x20040000                        __StackLimit = (ORIGIN (RAM) + LENGTH (RAM))
@@ -5820,177 +5819,177 @@ LOAD linker stubs
  .comment       0x00000012       0x13 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(newlib_interface.c.o)
  .comment       0x00000012       0x13 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb/crtend.o
 
-.debug_info     0x00000000    0xd50b3
+.debug_info     0x00000000    0xd50da
  .debug_info    0x00000000     0x3a7d C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\ChessBot---Zero.ino.cpp.o
- .debug_info    0x00003a7d     0x4cb9 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\command.cpp.o
- .debug_info    0x00008736     0x38d2 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\communication.cpp.o
- .debug_info    0x0000c008     0x3eb7 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\core.cpp.o
- .debug_info    0x0000febf     0x456a C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
- .debug_info    0x00014429     0x4a59 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
- .debug_info    0x00018e82     0x3f6f C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\sensors.cpp.o
- .debug_info    0x0001cdf1     0x38da C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\utils.cpp.o
- .debug_info    0x000206cb     0x39b2 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\xy_plane.cpp.o
- .debug_info    0x0002407d     0x3a73 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\z_Axis.cpp.o
- .debug_info    0x00027af0     0x7cfe C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
- .debug_info    0x0002f7ee     0x52c3 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
- .debug_info    0x00034ab1     0x5b9e C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(SerialUART.cpp.o)
- .debug_info    0x0003a64f     0x4f6c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(SerialUSB.cpp.o)
- .debug_info    0x0003f5bb     0x4ddc C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(Print.cpp.o)
- .debug_info    0x00044397     0x4561 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(String.cpp.o)
- .debug_info    0x000488f8      0x312 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(delay.cpp.o)
- .debug_info    0x00048c0a     0x69da C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(main.cpp.o)
- .debug_info    0x0004f5e4     0x408c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(malloc-lock.cpp.o)
- .debug_info    0x00053670     0x2290 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(stdlib_noniso.cpp.o)
- .debug_info    0x00055900     0x4285 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(wiring_digital.cpp.o)
- .debug_info    0x00059b85     0x401a C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(wiring_private.cpp.o)
- .debug_info    0x0005db9f     0x3b3b C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(CoreMutex.cpp.o)
- .debug_info    0x000616da     0x96ea C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(PIOProgram.cpp.o)
- .debug_info    0x0006adc4     0x536f C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(RP2040USB.cpp.o)
- .debug_info    0x00070133     0x3829 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(_freertos.cpp.o)
- .debug_info    0x0007395c     0x4c3d C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(wiring_analog.cpp.o)
- .debug_info    0x00078599      0x1b4 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(panic.c.o)
- .debug_info    0x0007874d      0x41e C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(sync.c.o)
- .debug_info    0x00078b6b     0x1baa C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(gpio.c.o)
- .debug_info    0x0007a715     0x1e8f C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(irq.c.o)
- .debug_info    0x0007c5a4     0x1b0b C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(mutex.c.o)
- .debug_info    0x0007e0af     0x314c C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(time.c.o)
- .debug_info    0x000811fb     0x1a41 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(timer.c.o)
- .debug_info    0x00082c3c     0x10b3 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(queue.c.o)
- .debug_info    0x00083cef     0x14b0 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(clocks.c.o)
- .debug_info    0x0008519f      0x518 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(pll.c.o)
- .debug_info    0x000856b7      0x26c C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(vreg.c.o)
- .debug_info    0x00085923      0x485 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(bootrom.c.o)
- .debug_info    0x00085da8      0x9b8 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(dma.c.o)
- .debug_info    0x00086760      0x698 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(exception.c.o)
- .debug_info    0x00086df8     0x1a28 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(i2c.c.o)
- .debug_info    0x00088820     0x277a C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(pio.c.o)
- .debug_info    0x0008af9a     0x1263 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(uart.c.o)
- .debug_info    0x0008c1fd       0x23 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(bit_ops_aeabi.S.o)
- .debug_info    0x0008c220       0x23 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(divider_hardware.S.o)
- .debug_info    0x0008c243       0x23 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(double_aeabi_rp2040.S.o)
- .debug_info    0x0008c266      0x286 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(double_init_rom_rp2040.c.o)
- .debug_info    0x0008c4ec       0x23 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(double_v1_rom_shim_rp2040.S.o)
- .debug_info    0x0008c50f       0x23 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(float_aeabi_rp2040.S.o)
- .debug_info    0x0008c532      0x27e C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(float_init_rom_rp2040.c.o)
- .debug_info    0x0008c7b0       0x23 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(float_v1_rom_shim_rp2040.S.o)
- .debug_info    0x0008c7d3       0x24 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(pico_int64_ops_aeabi.S.o)
- .debug_info    0x0008c7f7       0x23 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(mem_ops_aeabi.S.o)
- .debug_info    0x0008c81a     0x195f C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(multicore.c.o)
- .debug_info    0x0008e179      0x1fd C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(unique_id.c.o)
- .debug_info    0x0008e376      0x21a C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(runtime.c.o)
- .debug_info    0x0008e590      0x795 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(runtime_init.c.o)
- .debug_info    0x0008ed25      0x794 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(runtime_init_clocks.c.o)
- .debug_info    0x0008f4b9       0x23 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(crt0.S.o)
- .debug_info    0x0008f4dc     0x3f3b C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(usbd.c.o)
- .debug_info    0x00093417      0xa03 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(usbd_control.c.o)
- .debug_info    0x00093e1a     0x1e95 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(cdc_device.c.o)
- .debug_info    0x00095caf     0x1a0b C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(hid_device.c.o)
- .debug_info    0x000976ba     0x2d48 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(msc_device.c.o)
- .debug_info    0x0009a402     0x1c6f C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(tusb.c.o)
- .debug_info    0x0009c071     0x222a C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(tusb_fifo.c.o)
- .debug_info    0x0009e29b      0x5cb C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(claim.c.o)
- .debug_info    0x0009e866      0x245 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(sync_spin_lock.c.o)
- .debug_info    0x0009eaab      0x15f C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(lock_core.c.o)
- .debug_info    0x0009ec0a      0x28d C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(critical_section.c.o)
- .debug_info    0x0009ee97      0x699 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(timeout_helper.c.o)
- .debug_info    0x0009f530      0x248 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(ticks.c.o)
- .debug_info    0x0009f778      0x1d0 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(xosc.c.o)
- .debug_info    0x0009f948     0x126c C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(flash.c.o)
- .debug_info    0x000a0bb4     0x27b8 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(dcd_rp2040.c.o)
- .debug_info    0x000a336c     0x1145 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(rp2040_usb.c.o)
- .debug_info    0x000a44b1      0x129 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(platform.c.o)
- .debug_info    0x000a45da       0xaf C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(del_ops.o)
- .debug_info    0x000a4689       0x96 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(del_opv.o)
- .debug_info    0x000a471f      0x541 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(guard.o)
- .debug_info    0x000a4c60      0x669 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(new_op.o)
- .debug_info    0x000a52c9       0xaf C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(new_opv.o)
- .debug_info    0x000a5378      0xbaf C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(tree.o)
- .debug_info    0x000a5f27      0x5b3 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(del_op.o)
- .debug_info    0x000a64da      0x814 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(new_handler.o)
- .debug_info    0x000a6cee      0x84e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-assert.o)
- .debug_info    0x000a753c      0x1fa C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-itoa.o)
- .debug_info    0x000a7736       0x33 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strcmp.o)
- .debug_info    0x000a7769     0x1e60 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtod.o)
- .debug_info    0x000a95c9     0x10bb C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-svfprintf.o)
- .debug_info    0x000aa684     0x123b C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-gethex.o)
- .debug_info    0x000ab8bf      0x719 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-errno.o)
- .debug_info    0x000abfd8       0xc5 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-isspace.o)
- .debug_info    0x000ac09d      0x907 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sscanf.o)
- .debug_info    0x000ac9a4      0x95d C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-puts.o)
- .debug_info    0x000ad301      0x779 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-calloc.o)
- .debug_info    0x000ada7a     0x1132 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-findfp.o)
- .debug_info    0x000aebac       0xd8 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-abort.o)
- .debug_info    0x000aec84      0x1d2 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-utoa.o)
- .debug_info    0x000aee56      0x8f0 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-callocr.o)
- .debug_info    0x000af746      0x779 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-realloc.o)
- .debug_info    0x000afebf     0x1417 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf_float.o)
- .debug_info    0x000b12d6      0xa24 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-localeconv.o)
- .debug_info    0x000b1cfa      0x108 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strncmp.o)
- .debug_info    0x000b1e02      0x840 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-vprintf.o)
- .debug_info    0x000b2642      0xcce C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mallocr.o)
- .debug_info    0x000b3310     0x1a97 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-dtoa.o)
- .debug_info    0x000b4da7      0xb4f C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-freer.o)
- .debug_info    0x000b58f6      0xd8b C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtol.o)
- .debug_info    0x000b6681      0x7e2 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fwalk.o)
- .debug_info    0x000b6e63       0xeb C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strlen-stub.o)
- .debug_info    0x000b6f4e      0x7b4 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-malloc.o)
- .debug_info    0x000b7702      0xdc1 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfscanf_float.o)
- .debug_info    0x000b84c3      0x872 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fprintf.o)
- .debug_info    0x000b8d35       0xc1 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sysconf.o)
- .debug_info    0x000b8df6      0x725 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-impure.o)
- .debug_info    0x000b951b      0xbaf C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-reallocr.o)
- .debug_info    0x000ba0ca      0xde9 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf_i.o)
- .debug_info    0x000baeb3      0x78c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mlock.o)
- .debug_info    0x000bb63f      0xbd6 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-locale.o)
- .debug_info    0x000bc215       0xc3 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strcpy.o)
- .debug_info    0x000bc2d8      0x10a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-exit.o)
- .debug_info    0x000bc3e2      0x148 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-memmove.o)
- .debug_info    0x000bc52a       0xb9 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-ctype_.o)
- .debug_info    0x000bc5e3      0x11e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-atexit.o)
- .debug_info    0x000bc701      0x3d2 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-hexnan.o)
- .debug_info    0x000bcad3     0x116d C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf.o)
- .debug_info    0x000bdc40      0x878 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wbuf.o)
- .debug_info    0x000be4b8       0xd3 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libm_a-s_nan.o)
- .debug_info    0x000be58b       0xcf C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libm_a-sf_nan.o)
- .debug_info    0x000be65a      0x896 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sprintf.o)
- .debug_info    0x000beef0     0x1f3a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mprec.o)
- .debug_info    0x000c0e2a      0xa8c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-stdio.o)
- .debug_info    0x000c18b6      0x14a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-memchr-stub.o)
- .debug_info    0x000c1a00      0xb5c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-signal.o)
- .debug_info    0x000c255c      0x792 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sbrkr.o)
- .debug_info    0x000c2cee      0x91c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fclose.o)
- .debug_info    0x000c360a      0xb3f C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fvwrite.o)
- .debug_info    0x000c4149      0xacb C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mbtowc_r.o)
- .debug_info    0x000c4c14      0xf0c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-svfscanf.o)
- .debug_info    0x000c5b20      0xa4c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fputwc.o)
- .debug_info    0x000c656c      0x7d4 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wsetup.o)
- .debug_info    0x000c6d40      0xb2d C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wcrtomb.o)
- .debug_info    0x000c786d      0xdcb C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfscanf_i.o)
- .debug_info    0x000c8638      0x86c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-reent.o)
- .debug_info    0x000c8ea4      0xa32 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fflush.o)
- .debug_info    0x000c98d6      0x7cf C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-readr.o)
- .debug_info    0x000ca0a5      0x76c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-closer.o)
- .debug_info    0x000ca811      0xa85 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wctomb_r.o)
- .debug_info    0x000cb296      0x2a2 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-__call_atexit.o)
- .debug_info    0x000cb538      0x7fd C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-signalr.o)
- .debug_info    0x000cbd35      0x2b8 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-__atexit.o)
- .debug_info    0x000cbfed      0x10e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sccl.o)
- .debug_info    0x000cc0fb      0xc00 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-makebuf.o)
- .debug_info    0x000cccfb      0x9d0 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-ungetc.o)
- .debug_info    0x000cd6cb      0x98d C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fstatr.o)
- .debug_info    0x000ce058      0x7b8 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-lseekr.o)
- .debug_info    0x000ce810      0x7d5 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-writer.o)
- .debug_info    0x000cefe5      0xd23 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtoul.o)
- .debug_info    0x000cfd08      0x76c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-isattyr.o)
- .debug_info    0x000d0474      0xac1 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(lock.cpp.o)
- .debug_info    0x000d0f35     0x3e2d C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(posix.cpp.o)
- .debug_info    0x000d4d62      0x215 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(newlib_interface.c.o)
- .debug_info    0x000d4f77       0x31 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_thumb1_case_sqi.o)
- .debug_info    0x000d4fa8       0x31 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_thumb1_case_uqi.o)
- .debug_info    0x000d4fd9       0x31 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_thumb1_case_shi.o)
- .debug_info    0x000d500a       0x31 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_thumb1_case_uhi.o)
- .debug_info    0x000d503b       0x3c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_dvmd_tls.o)
- .debug_info    0x000d5077       0x3c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_ashldi3.o)
+ .debug_info    0x00003a7d     0x4cc6 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\command.cpp.o
+ .debug_info    0x00008743     0x38d2 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\communication.cpp.o
+ .debug_info    0x0000c015     0x3ec4 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\core.cpp.o
+ .debug_info    0x0000fed9     0x4577 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
+ .debug_info    0x00014450     0x4a59 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
+ .debug_info    0x00018ea9     0x3f6f C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\sensors.cpp.o
+ .debug_info    0x0001ce18     0x38da C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\utils.cpp.o
+ .debug_info    0x000206f2     0x39b2 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\xy_plane.cpp.o
+ .debug_info    0x000240a4     0x3a73 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\z_Axis.cpp.o
+ .debug_info    0x00027b17     0x7cfe C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
+ .debug_info    0x0002f815     0x52c3 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
+ .debug_info    0x00034ad8     0x5b9e C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(SerialUART.cpp.o)
+ .debug_info    0x0003a676     0x4f6c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(SerialUSB.cpp.o)
+ .debug_info    0x0003f5e2     0x4ddc C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(Print.cpp.o)
+ .debug_info    0x000443be     0x4561 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(String.cpp.o)
+ .debug_info    0x0004891f      0x312 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(delay.cpp.o)
+ .debug_info    0x00048c31     0x69da C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(main.cpp.o)
+ .debug_info    0x0004f60b     0x408c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(malloc-lock.cpp.o)
+ .debug_info    0x00053697     0x2290 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(stdlib_noniso.cpp.o)
+ .debug_info    0x00055927     0x4285 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(wiring_digital.cpp.o)
+ .debug_info    0x00059bac     0x401a C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(wiring_private.cpp.o)
+ .debug_info    0x0005dbc6     0x3b3b C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(CoreMutex.cpp.o)
+ .debug_info    0x00061701     0x96ea C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(PIOProgram.cpp.o)
+ .debug_info    0x0006adeb     0x536f C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(RP2040USB.cpp.o)
+ .debug_info    0x0007015a     0x3829 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(_freertos.cpp.o)
+ .debug_info    0x00073983     0x4c3d C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(wiring_analog.cpp.o)
+ .debug_info    0x000785c0      0x1b4 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(panic.c.o)
+ .debug_info    0x00078774      0x41e C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(sync.c.o)
+ .debug_info    0x00078b92     0x1baa C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(gpio.c.o)
+ .debug_info    0x0007a73c     0x1e8f C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(irq.c.o)
+ .debug_info    0x0007c5cb     0x1b0b C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(mutex.c.o)
+ .debug_info    0x0007e0d6     0x314c C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(time.c.o)
+ .debug_info    0x00081222     0x1a41 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(timer.c.o)
+ .debug_info    0x00082c63     0x10b3 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(queue.c.o)
+ .debug_info    0x00083d16     0x14b0 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(clocks.c.o)
+ .debug_info    0x000851c6      0x518 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(pll.c.o)
+ .debug_info    0x000856de      0x26c C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(vreg.c.o)
+ .debug_info    0x0008594a      0x485 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(bootrom.c.o)
+ .debug_info    0x00085dcf      0x9b8 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(dma.c.o)
+ .debug_info    0x00086787      0x698 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(exception.c.o)
+ .debug_info    0x00086e1f     0x1a28 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(i2c.c.o)
+ .debug_info    0x00088847     0x277a C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(pio.c.o)
+ .debug_info    0x0008afc1     0x1263 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(uart.c.o)
+ .debug_info    0x0008c224       0x23 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(bit_ops_aeabi.S.o)
+ .debug_info    0x0008c247       0x23 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(divider_hardware.S.o)
+ .debug_info    0x0008c26a       0x23 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(double_aeabi_rp2040.S.o)
+ .debug_info    0x0008c28d      0x286 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(double_init_rom_rp2040.c.o)
+ .debug_info    0x0008c513       0x23 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(double_v1_rom_shim_rp2040.S.o)
+ .debug_info    0x0008c536       0x23 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(float_aeabi_rp2040.S.o)
+ .debug_info    0x0008c559      0x27e C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(float_init_rom_rp2040.c.o)
+ .debug_info    0x0008c7d7       0x23 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(float_v1_rom_shim_rp2040.S.o)
+ .debug_info    0x0008c7fa       0x24 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(pico_int64_ops_aeabi.S.o)
+ .debug_info    0x0008c81e       0x23 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(mem_ops_aeabi.S.o)
+ .debug_info    0x0008c841     0x195f C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(multicore.c.o)
+ .debug_info    0x0008e1a0      0x1fd C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(unique_id.c.o)
+ .debug_info    0x0008e39d      0x21a C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(runtime.c.o)
+ .debug_info    0x0008e5b7      0x795 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(runtime_init.c.o)
+ .debug_info    0x0008ed4c      0x794 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(runtime_init_clocks.c.o)
+ .debug_info    0x0008f4e0       0x23 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(crt0.S.o)
+ .debug_info    0x0008f503     0x3f3b C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(usbd.c.o)
+ .debug_info    0x0009343e      0xa03 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(usbd_control.c.o)
+ .debug_info    0x00093e41     0x1e95 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(cdc_device.c.o)
+ .debug_info    0x00095cd6     0x1a0b C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(hid_device.c.o)
+ .debug_info    0x000976e1     0x2d48 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(msc_device.c.o)
+ .debug_info    0x0009a429     0x1c6f C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(tusb.c.o)
+ .debug_info    0x0009c098     0x222a C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(tusb_fifo.c.o)
+ .debug_info    0x0009e2c2      0x5cb C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(claim.c.o)
+ .debug_info    0x0009e88d      0x245 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(sync_spin_lock.c.o)
+ .debug_info    0x0009ead2      0x15f C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(lock_core.c.o)
+ .debug_info    0x0009ec31      0x28d C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(critical_section.c.o)
+ .debug_info    0x0009eebe      0x699 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(timeout_helper.c.o)
+ .debug_info    0x0009f557      0x248 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(ticks.c.o)
+ .debug_info    0x0009f79f      0x1d0 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(xosc.c.o)
+ .debug_info    0x0009f96f     0x126c C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(flash.c.o)
+ .debug_info    0x000a0bdb     0x27b8 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(dcd_rp2040.c.o)
+ .debug_info    0x000a3393     0x1145 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(rp2040_usb.c.o)
+ .debug_info    0x000a44d8      0x129 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(platform.c.o)
+ .debug_info    0x000a4601       0xaf C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(del_ops.o)
+ .debug_info    0x000a46b0       0x96 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(del_opv.o)
+ .debug_info    0x000a4746      0x541 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(guard.o)
+ .debug_info    0x000a4c87      0x669 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(new_op.o)
+ .debug_info    0x000a52f0       0xaf C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(new_opv.o)
+ .debug_info    0x000a539f      0xbaf C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(tree.o)
+ .debug_info    0x000a5f4e      0x5b3 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(del_op.o)
+ .debug_info    0x000a6501      0x814 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(new_handler.o)
+ .debug_info    0x000a6d15      0x84e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-assert.o)
+ .debug_info    0x000a7563      0x1fa C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-itoa.o)
+ .debug_info    0x000a775d       0x33 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strcmp.o)
+ .debug_info    0x000a7790     0x1e60 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtod.o)
+ .debug_info    0x000a95f0     0x10bb C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-svfprintf.o)
+ .debug_info    0x000aa6ab     0x123b C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-gethex.o)
+ .debug_info    0x000ab8e6      0x719 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-errno.o)
+ .debug_info    0x000abfff       0xc5 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-isspace.o)
+ .debug_info    0x000ac0c4      0x907 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sscanf.o)
+ .debug_info    0x000ac9cb      0x95d C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-puts.o)
+ .debug_info    0x000ad328      0x779 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-calloc.o)
+ .debug_info    0x000adaa1     0x1132 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-findfp.o)
+ .debug_info    0x000aebd3       0xd8 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-abort.o)
+ .debug_info    0x000aecab      0x1d2 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-utoa.o)
+ .debug_info    0x000aee7d      0x8f0 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-callocr.o)
+ .debug_info    0x000af76d      0x779 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-realloc.o)
+ .debug_info    0x000afee6     0x1417 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf_float.o)
+ .debug_info    0x000b12fd      0xa24 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-localeconv.o)
+ .debug_info    0x000b1d21      0x108 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strncmp.o)
+ .debug_info    0x000b1e29      0x840 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-vprintf.o)
+ .debug_info    0x000b2669      0xcce C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mallocr.o)
+ .debug_info    0x000b3337     0x1a97 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-dtoa.o)
+ .debug_info    0x000b4dce      0xb4f C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-freer.o)
+ .debug_info    0x000b591d      0xd8b C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtol.o)
+ .debug_info    0x000b66a8      0x7e2 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fwalk.o)
+ .debug_info    0x000b6e8a       0xeb C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strlen-stub.o)
+ .debug_info    0x000b6f75      0x7b4 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-malloc.o)
+ .debug_info    0x000b7729      0xdc1 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfscanf_float.o)
+ .debug_info    0x000b84ea      0x872 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fprintf.o)
+ .debug_info    0x000b8d5c       0xc1 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sysconf.o)
+ .debug_info    0x000b8e1d      0x725 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-impure.o)
+ .debug_info    0x000b9542      0xbaf C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-reallocr.o)
+ .debug_info    0x000ba0f1      0xde9 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf_i.o)
+ .debug_info    0x000baeda      0x78c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mlock.o)
+ .debug_info    0x000bb666      0xbd6 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-locale.o)
+ .debug_info    0x000bc23c       0xc3 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strcpy.o)
+ .debug_info    0x000bc2ff      0x10a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-exit.o)
+ .debug_info    0x000bc409      0x148 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-memmove.o)
+ .debug_info    0x000bc551       0xb9 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-ctype_.o)
+ .debug_info    0x000bc60a      0x11e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-atexit.o)
+ .debug_info    0x000bc728      0x3d2 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-hexnan.o)
+ .debug_info    0x000bcafa     0x116d C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf.o)
+ .debug_info    0x000bdc67      0x878 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wbuf.o)
+ .debug_info    0x000be4df       0xd3 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libm_a-s_nan.o)
+ .debug_info    0x000be5b2       0xcf C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libm_a-sf_nan.o)
+ .debug_info    0x000be681      0x896 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sprintf.o)
+ .debug_info    0x000bef17     0x1f3a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mprec.o)
+ .debug_info    0x000c0e51      0xa8c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-stdio.o)
+ .debug_info    0x000c18dd      0x14a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-memchr-stub.o)
+ .debug_info    0x000c1a27      0xb5c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-signal.o)
+ .debug_info    0x000c2583      0x792 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sbrkr.o)
+ .debug_info    0x000c2d15      0x91c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fclose.o)
+ .debug_info    0x000c3631      0xb3f C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fvwrite.o)
+ .debug_info    0x000c4170      0xacb C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mbtowc_r.o)
+ .debug_info    0x000c4c3b      0xf0c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-svfscanf.o)
+ .debug_info    0x000c5b47      0xa4c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fputwc.o)
+ .debug_info    0x000c6593      0x7d4 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wsetup.o)
+ .debug_info    0x000c6d67      0xb2d C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wcrtomb.o)
+ .debug_info    0x000c7894      0xdcb C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfscanf_i.o)
+ .debug_info    0x000c865f      0x86c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-reent.o)
+ .debug_info    0x000c8ecb      0xa32 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fflush.o)
+ .debug_info    0x000c98fd      0x7cf C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-readr.o)
+ .debug_info    0x000ca0cc      0x76c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-closer.o)
+ .debug_info    0x000ca838      0xa85 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wctomb_r.o)
+ .debug_info    0x000cb2bd      0x2a2 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-__call_atexit.o)
+ .debug_info    0x000cb55f      0x7fd C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-signalr.o)
+ .debug_info    0x000cbd5c      0x2b8 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-__atexit.o)
+ .debug_info    0x000cc014      0x10e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sccl.o)
+ .debug_info    0x000cc122      0xc00 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-makebuf.o)
+ .debug_info    0x000ccd22      0x9d0 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-ungetc.o)
+ .debug_info    0x000cd6f2      0x98d C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fstatr.o)
+ .debug_info    0x000ce07f      0x7b8 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-lseekr.o)
+ .debug_info    0x000ce837      0x7d5 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-writer.o)
+ .debug_info    0x000cf00c      0xd23 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtoul.o)
+ .debug_info    0x000cfd2f      0x76c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-isattyr.o)
+ .debug_info    0x000d049b      0xac1 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(lock.cpp.o)
+ .debug_info    0x000d0f5c     0x3e2d C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(posix.cpp.o)
+ .debug_info    0x000d4d89      0x215 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(newlib_interface.c.o)
+ .debug_info    0x000d4f9e       0x31 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_thumb1_case_sqi.o)
+ .debug_info    0x000d4fcf       0x31 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_thumb1_case_uqi.o)
+ .debug_info    0x000d5000       0x31 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_thumb1_case_shi.o)
+ .debug_info    0x000d5031       0x31 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_thumb1_case_uhi.o)
+ .debug_info    0x000d5062       0x3c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_dvmd_tls.o)
+ .debug_info    0x000d509e       0x3c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_ashldi3.o)
 
 .debug_abbrev   0x00000000    0x207d6
  .debug_abbrev  0x00000000      0x674 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\ChessBot---Zero.ino.cpp.o
@@ -7214,178 +7213,178 @@ LOAD linker stubs
  .debug_line    0x0004e1c5       0x4a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_dvmd_tls.o)
  .debug_line    0x0004e20f       0x55 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_ashldi3.o)
 
-.debug_str      0x00000000    0x2016a
- .debug_str     0x00000000    0x2016a C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\ChessBot---Zero.ino.cpp.o
+.debug_str      0x00000000    0x2016f
+ .debug_str     0x00000000    0x2016f C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\ChessBot---Zero.ino.cpp.o
                                0x28f8 (size before relaxing)
- .debug_str     0x0002016a     0x2ef6 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\command.cpp.o
- .debug_str     0x0002016a     0x2649 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\communication.cpp.o
- .debug_str     0x0002016a     0x2bb2 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\core.cpp.o
- .debug_str     0x0002016a     0x2d05 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
- .debug_str     0x0002016a     0x305c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
- .debug_str     0x0002016a     0x2927 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\sensors.cpp.o
- .debug_str     0x0002016a     0x266e C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\utils.cpp.o
- .debug_str     0x0002016a     0x2730 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\xy_plane.cpp.o
- .debug_str     0x0002016a     0x2796 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\z_Axis.cpp.o
- .debug_str     0x0002016a     0x435b C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
- .debug_str     0x0002016a     0x30d7 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
- .debug_str     0x0002016a     0x32b1 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(SerialUART.cpp.o)
- .debug_str     0x0002016a     0x2ed0 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(SerialUSB.cpp.o)
- .debug_str     0x0002016a     0x223b C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(Print.cpp.o)
- .debug_str     0x0002016a     0x1742 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(String.cpp.o)
- .debug_str     0x0002016a      0x2cc C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(delay.cpp.o)
- .debug_str     0x0002016a     0x426f C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(main.cpp.o)
- .debug_str     0x0002016a     0x2958 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(malloc-lock.cpp.o)
- .debug_str     0x0002016a      0xef3 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(stdlib_noniso.cpp.o)
- .debug_str     0x0002016a     0x2a21 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(wiring_digital.cpp.o)
- .debug_str     0x0002016a     0x28cb C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(wiring_private.cpp.o)
- .debug_str     0x0002016a     0x278c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(CoreMutex.cpp.o)
- .debug_str     0x0002016a     0xb818 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(PIOProgram.cpp.o)
- .debug_str     0x0002016a     0x5194 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(RP2040USB.cpp.o)
- .debug_str     0x0002016a     0x262f C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(_freertos.cpp.o)
- .debug_str     0x0002016a     0x3026 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(wiring_analog.cpp.o)
- .debug_str     0x0002016a      0x211 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(panic.c.o)
- .debug_str     0x0002016a      0x34c C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(sync.c.o)
- .debug_str     0x0002016a      0xca2 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(gpio.c.o)
- .debug_str     0x0002016a      0xa93 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(irq.c.o)
- .debug_str     0x0002016a      0x7be C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(mutex.c.o)
- .debug_str     0x0002016a     0x11b4 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(time.c.o)
- .debug_str     0x0002016a      0xa06 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(timer.c.o)
- .debug_str     0x0002016a      0x4a2 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(queue.c.o)
- .debug_str     0x0002016a      0x9bb C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(clocks.c.o)
- .debug_str     0x0002016a      0x47e C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(pll.c.o)
- .debug_str     0x0002016a      0x385 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(vreg.c.o)
- .debug_str     0x0002016a      0x372 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(bootrom.c.o)
- .debug_str     0x0002016a      0x5ff C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(dma.c.o)
- .debug_str     0x0002016a      0x4c5 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(exception.c.o)
- .debug_str     0x0002016a     0x101b C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(i2c.c.o)
- .debug_str     0x0002016a     0x10fc C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(pio.c.o)
- .debug_str     0x0002016a      0xc15 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(uart.c.o)
- .debug_str     0x0002016a       0xb0 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(bit_ops_aeabi.S.o)
- .debug_str     0x0002016a       0xb3 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(divider_hardware.S.o)
- .debug_str     0x0002016a       0xb5 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(double_aeabi_rp2040.S.o)
- .debug_str     0x0002016a      0x2db C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(double_init_rom_rp2040.c.o)
- .debug_str     0x0002016a       0xbb C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(double_v1_rom_shim_rp2040.S.o)
- .debug_str     0x0002016a       0xb3 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(float_aeabi_rp2040.S.o)
- .debug_str     0x0002016a      0x2c0 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(float_init_rom_rp2040.c.o)
- .debug_str     0x0002016a       0xb9 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(float_v1_rom_shim_rp2040.S.o)
- .debug_str     0x0002016a       0xb9 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(pico_int64_ops_aeabi.S.o)
- .debug_str     0x0002016a       0xb0 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(mem_ops_aeabi.S.o)
- .debug_str     0x0002016a      0xcf2 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(multicore.c.o)
- .debug_str     0x0002016a      0x291 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(unique_id.c.o)
- .debug_str     0x0002016a      0x2b2 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(runtime.c.o)
- .debug_str     0x0002016a      0x7a6 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(runtime_init.c.o)
- .debug_str     0x0002016a      0x4ba C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(runtime_init_clocks.c.o)
- .debug_str     0x0002016a       0xa4 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(crt0.S.o)
- .debug_str     0x0002016a     0x1b97 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(usbd.c.o)
- .debug_str     0x0002016a      0x6b4 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(usbd_control.c.o)
- .debug_str     0x0002016a     0x1743 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(cdc_device.c.o)
- .debug_str     0x0002016a     0x1097 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(hid_device.c.o)
- .debug_str     0x0002016a     0x18a0 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(msc_device.c.o)
- .debug_str     0x0002016a      0xdf5 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(tusb.c.o)
- .debug_str     0x0002016a      0x649 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(tusb_fifo.c.o)
- .debug_str     0x0002016a      0x3a3 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(claim.c.o)
- .debug_str     0x0002016a      0x25f C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(sync_spin_lock.c.o)
- .debug_str     0x0002016a      0x22b C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(lock_core.c.o)
- .debug_str     0x0002016a      0x2eb C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(critical_section.c.o)
- .debug_str     0x0002016a      0x40c C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(timeout_helper.c.o)
- .debug_str     0x0002016a      0x2ad C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(ticks.c.o)
- .debug_str     0x0002016a      0x262 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(xosc.c.o)
- .debug_str     0x0002016a      0x6eb C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(flash.c.o)
- .debug_str     0x0002016a     0x120c C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(dcd_rp2040.c.o)
- .debug_str     0x0002016a      0xa10 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(rp2040_usb.c.o)
- .debug_str     0x0002016a      0x219 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(platform.c.o)
- .debug_str     0x0002016a      0x18f C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(del_ops.o)
- .debug_str     0x0002016a      0x19a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(del_opv.o)
- .debug_str     0x0002016a      0x6a5 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(guard.o)
- .debug_str     0x0002016a      0x372 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(new_op.o)
- .debug_str     0x0002016a      0x199 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(new_opv.o)
- .debug_str     0x0002016a      0x6d1 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(tree.o)
- .debug_str     0x0002016a      0x319 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(del_op.o)
- .debug_str     0x0002016a      0x947 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(new_handler.o)
- .debug_str     0x0002016a      0x4c8 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-assert.o)
- .debug_str     0x0002016a      0x18d C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-itoa.o)
- .debug_str     0x0002016a       0x97 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strcmp.o)
- .debug_str     0x0002016a      0xa60 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtod.o)
- .debug_str     0x0002016a      0x7d9 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-svfprintf.o)
- .debug_str     0x0002016a      0x88a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-gethex.o)
- .debug_str     0x0002016a      0x489 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-errno.o)
- .debug_str     0x0002016a      0x17a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-isspace.o)
- .debug_str     0x0002016a      0x4e5 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sscanf.o)
- .debug_str     0x0002016a      0x554 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-puts.o)
- .debug_str     0x0002016a      0x4a0 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-calloc.o)
- .debug_str     0x0002016a      0x71b C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-findfp.o)
- .debug_str     0x0002016a      0x17b C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-abort.o)
- .debug_str     0x0002016a      0x1a1 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-utoa.o)
- .debug_str     0x0002016a      0x4e2 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-callocr.o)
- .debug_str     0x0002016a      0x4a5 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-realloc.o)
- .debug_str     0x0002016a      0x84b C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf_float.o)
- .debug_str     0x0002016a      0x6d6 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-localeconv.o)
- .debug_str     0x0002016a      0x17a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strncmp.o)
- .debug_str     0x0002016a      0x4d3 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-vprintf.o)
- .debug_str     0x0002016a      0x6b8 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mallocr.o)
- .debug_str     0x0002016a      0x87d C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-dtoa.o)
- .debug_str     0x0002016a      0x60e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-freer.o)
- .debug_str     0x0002016a      0x721 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtol.o)
- .debug_str     0x0002016a      0x4a0 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fwalk.o)
- .debug_str     0x0002016a      0x195 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strlen-stub.o)
- .debug_str     0x0002016a      0x4b4 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-malloc.o)
- .debug_str     0x0002016a      0x793 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfscanf_float.o)
- .debug_str     0x0002016a      0x4cd C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fprintf.o)
- .debug_str     0x0002016a      0x181 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sysconf.o)
- .debug_str     0x0002016a      0x490 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-impure.o)
- .debug_str     0x0002016a      0x583 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-reallocr.o)
- .debug_str     0x0002016a      0x778 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf_i.o)
- .debug_str     0x0002016a      0x51a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mlock.o)
- .debug_str     0x0002016a      0x70e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-locale.o)
- .debug_str     0x0002016a      0x176 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strcpy.o)
- .debug_str     0x0002016a      0x19e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-exit.o)
- .debug_str     0x0002016a      0x1ab C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-memmove.o)
- .debug_str     0x0002016a      0x171 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-ctype_.o)
- .debug_str     0x0002016a      0x1b5 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-atexit.o)
- .debug_str     0x0002016a      0x2b3 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-hexnan.o)
- .debug_str     0x0002016a      0x852 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf.o)
- .debug_str     0x0002016a      0x4c5 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wbuf.o)
- .debug_str     0x0002016a      0x18a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libm_a-s_nan.o)
- .debug_str     0x0002016a      0x190 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libm_a-sf_nan.o)
- .debug_str     0x0002016a      0x4ce C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sprintf.o)
- .debug_str     0x0002016a      0x7ba C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mprec.o)
- .debug_str     0x0002016a      0x4fd C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-stdio.o)
- .debug_str     0x0002016a      0x19c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-memchr-stub.o)
- .debug_str     0x0002016a      0x516 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-signal.o)
- .debug_str     0x0002016a      0x499 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sbrkr.o)
- .debug_str     0x0002016a      0x55a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fclose.o)
- .debug_str     0x0002016a      0x541 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fvwrite.o)
- .debug_str     0x0002016a      0x6b6 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mbtowc_r.o)
- .debug_str     0x0002016a      0x7bb C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-svfscanf.o)
- .debug_str     0x0002016a      0x55c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fputwc.o)
- .debug_str     0x0002016a      0x4c0 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wsetup.o)
- .debug_str     0x0002016a      0x6bb C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wcrtomb.o)
- .debug_str     0x0002016a      0x788 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfscanf_i.o)
- .debug_str     0x0002016a      0x4af C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-reent.o)
- .debug_str     0x0002016a      0x562 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fflush.o)
- .debug_str     0x0002016a      0x494 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-readr.o)
- .debug_str     0x0002016a      0x486 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-closer.o)
- .debug_str     0x0002016a      0x6bd C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wctomb_r.o)
- .debug_str     0x0002016a      0x294 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-__call_atexit.o)
- .debug_str     0x0002016a      0x4ac C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-signalr.o)
- .debug_str     0x0002016a      0x2b4 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-__atexit.o)
- .debug_str     0x0002016a      0x17e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sccl.o)
- .debug_str     0x0002016a      0x623 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-makebuf.o)
- .debug_str     0x0002016a      0x538 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-ungetc.o)
- .debug_str     0x0002016a      0x5d8 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fstatr.o)
- .debug_str     0x0002016a      0x494 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-lseekr.o)
- .debug_str     0x0002016a      0x496 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-writer.o)
- .debug_str     0x0002016a      0x72c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtoul.o)
- .debug_str     0x0002016a      0x490 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-isattyr.o)
- .debug_str     0x0002016a      0x993 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(lock.cpp.o)
- .debug_str     0x0002016a     0x27a5 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(posix.cpp.o)
- .debug_str     0x0002016a      0x29c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(newlib_interface.c.o)
- .debug_str     0x0002016a       0x9e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_thumb1_case_sqi.o)
- .debug_str     0x0002016a       0x9e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_thumb1_case_uqi.o)
- .debug_str     0x0002016a       0x9e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_thumb1_case_shi.o)
- .debug_str     0x0002016a       0x9e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_thumb1_case_uhi.o)
- .debug_str     0x0002016a       0xa4 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_dvmd_tls.o)
- .debug_str     0x0002016a       0x9f C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_ashldi3.o)
+ .debug_str     0x0002016f     0x2efd C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\command.cpp.o
+ .debug_str     0x0002016f     0x2649 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\communication.cpp.o
+ .debug_str     0x0002016f     0x2bb7 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\core.cpp.o
+ .debug_str     0x0002016f     0x2d0a C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
+ .debug_str     0x0002016f     0x305c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
+ .debug_str     0x0002016f     0x2927 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\sensors.cpp.o
+ .debug_str     0x0002016f     0x266e C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\utils.cpp.o
+ .debug_str     0x0002016f     0x2730 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\xy_plane.cpp.o
+ .debug_str     0x0002016f     0x2796 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\z_Axis.cpp.o
+ .debug_str     0x0002016f     0x435b C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
+ .debug_str     0x0002016f     0x30d7 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
+ .debug_str     0x0002016f     0x32b1 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(SerialUART.cpp.o)
+ .debug_str     0x0002016f     0x2ed0 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(SerialUSB.cpp.o)
+ .debug_str     0x0002016f     0x223b C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(Print.cpp.o)
+ .debug_str     0x0002016f     0x1742 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(String.cpp.o)
+ .debug_str     0x0002016f      0x2cc C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(delay.cpp.o)
+ .debug_str     0x0002016f     0x426f C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(main.cpp.o)
+ .debug_str     0x0002016f     0x2958 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(malloc-lock.cpp.o)
+ .debug_str     0x0002016f      0xef3 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(stdlib_noniso.cpp.o)
+ .debug_str     0x0002016f     0x2a21 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(wiring_digital.cpp.o)
+ .debug_str     0x0002016f     0x28cb C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(wiring_private.cpp.o)
+ .debug_str     0x0002016f     0x278c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(CoreMutex.cpp.o)
+ .debug_str     0x0002016f     0xb818 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(PIOProgram.cpp.o)
+ .debug_str     0x0002016f     0x5194 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(RP2040USB.cpp.o)
+ .debug_str     0x0002016f     0x262f C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(_freertos.cpp.o)
+ .debug_str     0x0002016f     0x3026 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(wiring_analog.cpp.o)
+ .debug_str     0x0002016f      0x211 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(panic.c.o)
+ .debug_str     0x0002016f      0x34c C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(sync.c.o)
+ .debug_str     0x0002016f      0xca2 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(gpio.c.o)
+ .debug_str     0x0002016f      0xa93 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(irq.c.o)
+ .debug_str     0x0002016f      0x7be C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(mutex.c.o)
+ .debug_str     0x0002016f     0x11b4 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(time.c.o)
+ .debug_str     0x0002016f      0xa06 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(timer.c.o)
+ .debug_str     0x0002016f      0x4a2 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(queue.c.o)
+ .debug_str     0x0002016f      0x9bb C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(clocks.c.o)
+ .debug_str     0x0002016f      0x47e C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(pll.c.o)
+ .debug_str     0x0002016f      0x385 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(vreg.c.o)
+ .debug_str     0x0002016f      0x372 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(bootrom.c.o)
+ .debug_str     0x0002016f      0x5ff C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(dma.c.o)
+ .debug_str     0x0002016f      0x4c5 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(exception.c.o)
+ .debug_str     0x0002016f     0x101b C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(i2c.c.o)
+ .debug_str     0x0002016f     0x10fc C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(pio.c.o)
+ .debug_str     0x0002016f      0xc15 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(uart.c.o)
+ .debug_str     0x0002016f       0xb0 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(bit_ops_aeabi.S.o)
+ .debug_str     0x0002016f       0xb3 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(divider_hardware.S.o)
+ .debug_str     0x0002016f       0xb5 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(double_aeabi_rp2040.S.o)
+ .debug_str     0x0002016f      0x2db C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(double_init_rom_rp2040.c.o)
+ .debug_str     0x0002016f       0xbb C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(double_v1_rom_shim_rp2040.S.o)
+ .debug_str     0x0002016f       0xb3 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(float_aeabi_rp2040.S.o)
+ .debug_str     0x0002016f      0x2c0 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(float_init_rom_rp2040.c.o)
+ .debug_str     0x0002016f       0xb9 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(float_v1_rom_shim_rp2040.S.o)
+ .debug_str     0x0002016f       0xb9 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(pico_int64_ops_aeabi.S.o)
+ .debug_str     0x0002016f       0xb0 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(mem_ops_aeabi.S.o)
+ .debug_str     0x0002016f      0xcf2 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(multicore.c.o)
+ .debug_str     0x0002016f      0x291 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(unique_id.c.o)
+ .debug_str     0x0002016f      0x2b2 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(runtime.c.o)
+ .debug_str     0x0002016f      0x7a6 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(runtime_init.c.o)
+ .debug_str     0x0002016f      0x4ba C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(runtime_init_clocks.c.o)
+ .debug_str     0x0002016f       0xa4 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(crt0.S.o)
+ .debug_str     0x0002016f     0x1b97 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(usbd.c.o)
+ .debug_str     0x0002016f      0x6b4 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(usbd_control.c.o)
+ .debug_str     0x0002016f     0x1743 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(cdc_device.c.o)
+ .debug_str     0x0002016f     0x1097 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(hid_device.c.o)
+ .debug_str     0x0002016f     0x18a0 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(msc_device.c.o)
+ .debug_str     0x0002016f      0xdf5 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(tusb.c.o)
+ .debug_str     0x0002016f      0x649 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(tusb_fifo.c.o)
+ .debug_str     0x0002016f      0x3a3 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(claim.c.o)
+ .debug_str     0x0002016f      0x25f C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(sync_spin_lock.c.o)
+ .debug_str     0x0002016f      0x22b C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(lock_core.c.o)
+ .debug_str     0x0002016f      0x2eb C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(critical_section.c.o)
+ .debug_str     0x0002016f      0x40c C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(timeout_helper.c.o)
+ .debug_str     0x0002016f      0x2ad C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(ticks.c.o)
+ .debug_str     0x0002016f      0x262 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(xosc.c.o)
+ .debug_str     0x0002016f      0x6eb C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(flash.c.o)
+ .debug_str     0x0002016f     0x120c C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(dcd_rp2040.c.o)
+ .debug_str     0x0002016f      0xa10 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(rp2040_usb.c.o)
+ .debug_str     0x0002016f      0x219 C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2/lib/rp2040/libpico.a(platform.c.o)
+ .debug_str     0x0002016f      0x18f C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(del_ops.o)
+ .debug_str     0x0002016f      0x19a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(del_opv.o)
+ .debug_str     0x0002016f      0x6a5 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(guard.o)
+ .debug_str     0x0002016f      0x372 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(new_op.o)
+ .debug_str     0x0002016f      0x199 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(new_opv.o)
+ .debug_str     0x0002016f      0x6d1 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(tree.o)
+ .debug_str     0x0002016f      0x319 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(del_op.o)
+ .debug_str     0x0002016f      0x947 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(new_handler.o)
+ .debug_str     0x0002016f      0x4c8 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-assert.o)
+ .debug_str     0x0002016f      0x18d C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-itoa.o)
+ .debug_str     0x0002016f       0x97 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strcmp.o)
+ .debug_str     0x0002016f      0xa60 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtod.o)
+ .debug_str     0x0002016f      0x7d9 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-svfprintf.o)
+ .debug_str     0x0002016f      0x88a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-gethex.o)
+ .debug_str     0x0002016f      0x489 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-errno.o)
+ .debug_str     0x0002016f      0x17a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-isspace.o)
+ .debug_str     0x0002016f      0x4e5 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sscanf.o)
+ .debug_str     0x0002016f      0x554 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-puts.o)
+ .debug_str     0x0002016f      0x4a0 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-calloc.o)
+ .debug_str     0x0002016f      0x71b C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-findfp.o)
+ .debug_str     0x0002016f      0x17b C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-abort.o)
+ .debug_str     0x0002016f      0x1a1 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-utoa.o)
+ .debug_str     0x0002016f      0x4e2 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-callocr.o)
+ .debug_str     0x0002016f      0x4a5 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-realloc.o)
+ .debug_str     0x0002016f      0x84b C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf_float.o)
+ .debug_str     0x0002016f      0x6d6 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-localeconv.o)
+ .debug_str     0x0002016f      0x17a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strncmp.o)
+ .debug_str     0x0002016f      0x4d3 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-vprintf.o)
+ .debug_str     0x0002016f      0x6b8 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mallocr.o)
+ .debug_str     0x0002016f      0x87d C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-dtoa.o)
+ .debug_str     0x0002016f      0x60e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-freer.o)
+ .debug_str     0x0002016f      0x721 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtol.o)
+ .debug_str     0x0002016f      0x4a0 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fwalk.o)
+ .debug_str     0x0002016f      0x195 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strlen-stub.o)
+ .debug_str     0x0002016f      0x4b4 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-malloc.o)
+ .debug_str     0x0002016f      0x793 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfscanf_float.o)
+ .debug_str     0x0002016f      0x4cd C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fprintf.o)
+ .debug_str     0x0002016f      0x181 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sysconf.o)
+ .debug_str     0x0002016f      0x490 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-impure.o)
+ .debug_str     0x0002016f      0x583 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-reallocr.o)
+ .debug_str     0x0002016f      0x778 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf_i.o)
+ .debug_str     0x0002016f      0x51a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mlock.o)
+ .debug_str     0x0002016f      0x70e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-locale.o)
+ .debug_str     0x0002016f      0x176 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strcpy.o)
+ .debug_str     0x0002016f      0x19e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-exit.o)
+ .debug_str     0x0002016f      0x1ab C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-memmove.o)
+ .debug_str     0x0002016f      0x171 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-ctype_.o)
+ .debug_str     0x0002016f      0x1b5 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-atexit.o)
+ .debug_str     0x0002016f      0x2b3 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-hexnan.o)
+ .debug_str     0x0002016f      0x852 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfprintf.o)
+ .debug_str     0x0002016f      0x4c5 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wbuf.o)
+ .debug_str     0x0002016f      0x18a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libm_a-s_nan.o)
+ .debug_str     0x0002016f      0x190 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libm_a-sf_nan.o)
+ .debug_str     0x0002016f      0x4ce C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sprintf.o)
+ .debug_str     0x0002016f      0x7ba C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mprec.o)
+ .debug_str     0x0002016f      0x4fd C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-stdio.o)
+ .debug_str     0x0002016f      0x19c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-memchr-stub.o)
+ .debug_str     0x0002016f      0x516 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-signal.o)
+ .debug_str     0x0002016f      0x499 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sbrkr.o)
+ .debug_str     0x0002016f      0x55a C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fclose.o)
+ .debug_str     0x0002016f      0x541 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fvwrite.o)
+ .debug_str     0x0002016f      0x6b6 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mbtowc_r.o)
+ .debug_str     0x0002016f      0x7bb C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-svfscanf.o)
+ .debug_str     0x0002016f      0x55c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fputwc.o)
+ .debug_str     0x0002016f      0x4c0 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wsetup.o)
+ .debug_str     0x0002016f      0x6bb C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wcrtomb.o)
+ .debug_str     0x0002016f      0x788 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-nano-vfscanf_i.o)
+ .debug_str     0x0002016f      0x4af C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-reent.o)
+ .debug_str     0x0002016f      0x562 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fflush.o)
+ .debug_str     0x0002016f      0x494 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-readr.o)
+ .debug_str     0x0002016f      0x486 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-closer.o)
+ .debug_str     0x0002016f      0x6bd C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wctomb_r.o)
+ .debug_str     0x0002016f      0x294 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-__call_atexit.o)
+ .debug_str     0x0002016f      0x4ac C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-signalr.o)
+ .debug_str     0x0002016f      0x2b4 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-__atexit.o)
+ .debug_str     0x0002016f      0x17e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sccl.o)
+ .debug_str     0x0002016f      0x623 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-makebuf.o)
+ .debug_str     0x0002016f      0x538 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-ungetc.o)
+ .debug_str     0x0002016f      0x5d8 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fstatr.o)
+ .debug_str     0x0002016f      0x494 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-lseekr.o)
+ .debug_str     0x0002016f      0x496 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-writer.o)
+ .debug_str     0x0002016f      0x72c C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtoul.o)
+ .debug_str     0x0002016f      0x490 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-isattyr.o)
+ .debug_str     0x0002016f      0x993 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(lock.cpp.o)
+ .debug_str     0x0002016f     0x27a5 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(posix.cpp.o)
+ .debug_str     0x0002016f      0x29c C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(newlib_interface.c.o)
+ .debug_str     0x0002016f       0x9e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_thumb1_case_sqi.o)
+ .debug_str     0x0002016f       0x9e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_thumb1_case_uqi.o)
+ .debug_str     0x0002016f       0x9e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_thumb1_case_shi.o)
+ .debug_str     0x0002016f       0x9e C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_thumb1_case_uhi.o)
+ .debug_str     0x0002016f       0xa4 C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_dvmd_tls.o)
+ .debug_str     0x0002016f       0x9f C:/Users/Benutzer1/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.0.1-8ec9d6f/bin/../lib/gcc/arm-none-eabi/14.2.0/thumb\libgcc.a(_ashldi3.o)
 
 .debug_frame    0x00000000     0x7890
  .debug_frame   0x00000000       0x48 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\ChessBot---Zero.ino.cpp.o
@@ -7625,7 +7624,7 @@ _Z11homingInitZR7HomingZ                          C:\Users\Benutzer1\Documents\#
                                                   C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\core.cpp.o
                                                   C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\command.cpp.o
                                                   C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\ChessBot---Zero.ino.cpp.o
-_Z11homingStepZR12AccelStepperRK12HomingConfigR7HomingZi C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
+_Z11homingStepZR12AccelStepperRK11MotorConfigR7HomingZi C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
                                                   C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\core.cpp.o
 _Z11motorStatus7MotorID                           C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
                                                   C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\core.cpp.o
@@ -7639,10 +7638,10 @@ _Z12homingInitXYR8HomingXY                        C:\Users\Benutzer1\Documents\#
                                                   C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\core.cpp.o
                                                   C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\command.cpp.o
                                                   C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\ChessBot---Zero.ino.cpp.o
-_Z12homingStartZR12AccelStepperRK12HomingConfigR7HomingZi C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
+_Z12homingStartZR12AccelStepperRK11MotorConfigR7HomingZi C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
                                                   C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\core.cpp.o
                                                   C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\command.cpp.o
-_Z12homingStepXYR12AccelStepperRK12HomingConfigR8HomingXYi C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
+_Z12homingStepXYR12AccelStepperRK11MotorConfigR8HomingXYi C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
                                                   C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\core.cpp.o
 _Z12initFreeRTOSv                                 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(main.cpp.o)
 _Z12motorEnableZv                                 C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o
@@ -7658,7 +7657,7 @@ _Z12serialEvent2v                                 C:\Users\Benutzer1\Documents\#
 _Z13__USBHIDReadyv                                C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(RP2040USB.cpp.o)
 _Z13__clearADCPinh                                C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(wiring_analog.cpp.o)
                                                   C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build/core\core.a(wiring_digital.cpp.o)
-_Z13homingStartXYR12AccelStepperRK12HomingConfigR8HomingXYi C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
+_Z13homingStartXYR12AccelStepperRK11MotorConfigR8HomingXYi C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\homing.cpp.o
                                                   C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\core.cpp.o
                                                   C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\command.cpp.o
 _Z13motorDisableZv                                C:\Users\Benutzer1\Documents\# Github repositories\ChessBot---Zero\build\sketch\motors.cpp.o

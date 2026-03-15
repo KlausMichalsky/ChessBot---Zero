@@ -64,12 +64,12 @@ void homingInitXY(HomingXY &st);
 void homingInitZ(HomingZ &st);
 
 void homingStartXY(AccelStepper &motor,
-                   const HomingConfig &cfg,
+                   const MotorConfig &cfg,
                    HomingXY &st,
                    int hallPin);
 
 void homingStartZ(AccelStepper &motor,
-                  const HomingConfig &cfg,
+                  const MotorConfig &cfg,
                   HomingZ &st,
                   int hallPin);
 
@@ -78,12 +78,12 @@ bool homingXYisActive(const HomingXY &st);
 bool homingZisActive(const HomingZ &st);
 
 void homingStepXY(AccelStepper &motor,
-                  const HomingConfig &cfg,
+                  const MotorConfig &cfg,
                   HomingXY &st,
                   int hallPin);
 
 void homingStepZ(AccelStepper &motor,
-                 const HomingConfig &cfg,
+                 const MotorConfig &cfg,
                  HomingZ &st,
                  int hallPin);
 

@@ -47,6 +47,10 @@
 #define AS5600_ADDR 0x36
 #define SEND_INTERVAL 33 // ms -> ~30Hz
 #define DELTA_DEG 0.5f   // Enviar si el ángulo cambia más de DELTA_DEG
+#define BASE_SPEED 1500  // usada para igualar tiempo de llegada de motor1 y 2
+// BASE_SPEED: velocidad máxima que tendrá el motor que recorre la mayor distancia
+// ✔ suficientemente alta para que el movimiento no sea lento
+// ✔ suficientemente baja para que ningún motor pierda pasos
 
 // PARAMETROS DE CONFIGURACIÓN EJE Z
 // -----------------------------------------------------------------------
@@ -130,51 +134,63 @@ enum class MotorID {
 };
 // ESTRUCTURAS DE CONFIGURACIÓN DE MOTORES
 // -----------------------------------------------------------------------
-struct HomingConfig {
-    int microstepping;
-    int reduction;
-    int stepsPerRevolution;
+struct MotorConfig {
+    // Mecanica
+    int microstepping;      // Microstepping del driver
+    int reduction;          // Relación de reducción mecánica
+    int stepsPerRevolution; // Pasos por revolución del motor
 
-    float fastSpeed;
-    float slowSpeed;
-    float acceleration;
+    // Homing
+    float slowSpeed;       // Velocidad lenta durante homing
+    float fastSpeed;       // Velocidad rápida durante homing
+    long steps90Deg;       // Pasos equivalentes a 90°
+    long stepsLimit;       // Límite máximo de pasos
+    unsigned long timeout; // Tiempo máximo permitido en homing
 
-    long steps90Deg;
-    long stepsLimit;
-    unsigned long timeout;
+    // Movimiento a coordenadas
+    float baseSpeed;    // Velocidad máxima de referencia
+    float acceleration; // Aceleración máxima
+
+    // Pines
     int enablePin;
 };
 
 // Configuracion de Homing para cada motor, con parámetros mecánicos específicos
-inline const HomingConfig motor1Config = {
+inline const MotorConfig motor1Config = {
     .microstepping = 16,
     .reduction = 9,
     .stepsPerRevolution = 200,
-    .fastSpeed = 1500.0,
     .slowSpeed = 800.0,
-    .acceleration = 1000.0,
+    .fastSpeed = 1500.0,
     .steps90Deg = motor1Config.microstepping * motor1Config.stepsPerRevolution / 4,
+    .stepsLimit = 0, // no existe para motor1
     .timeout = 15000,
+    .baseSpeed = BASE_SPEED,
+    .acceleration = 1000.0,
     .enablePin = MOTOR1_ENABLE};
 
-inline const HomingConfig motor2Config = {
+inline const MotorConfig motor2Config = {
     .microstepping = 16,
     .reduction = 6,
     .stepsPerRevolution = 200,
-    .fastSpeed = 1000.0,
     .slowSpeed = 533.0,
-    .acceleration = 1000.0,
+    .fastSpeed = 1000.0,
     .steps90Deg = motor2Config.microstepping * motor2Config.stepsPerRevolution / 4,
+    .stepsLimit = 0, // no existe para motor2
     .timeout = 15000,
+    .baseSpeed = BASE_SPEED,
+    .acceleration = 1000.0,
     .enablePin = MOTOR2_ENABLE};
 
-inline const HomingConfig motor3Config = {
+inline const MotorConfig motor3Config = {
     .microstepping = 8,
     .reduction = 1,
     .stepsPerRevolution = 200,
-    .fastSpeed = 4000.0,
     .slowSpeed = 2500.0,
-    .acceleration = 1000.0,
-    .stepsLimit = -100, // pasos máximos si arranca fuera del imán
+    .fastSpeed = 4000.0,
+    .steps90Deg = 0,    // no existe para motor3
+    .stepsLimit = -100, // pasos máximos si arranca fuera del imán (solo motor3)
     .timeout = 12000,
+    .baseSpeed = BASE_SPEED,
+    .acceleration = 1000.0,
     .enablePin = MOTOR3_ENABLE};
