@@ -33,8 +33,8 @@ MotorAngles readXYAngles() {
     angles.motorElbow = sensorCorrectedAngle(Wire1, sensorHomingOffset(Wire1));
 
     // Angulo del brazo
-    angles.shoulder = angles.motorShoulder / motor1Config.reduction;
-    angles.elbow = angles.motorElbow / motor2Config.reduction;
+    angles.robotShoulder = angles.motorShoulder / motor1Config.reduction;
+    angles.robotElbow = angles.motorElbow / motor2Config.reduction;
 
     return angles;
 }
@@ -84,6 +84,30 @@ void moveToAngles(float targetShoulderAngle, float targetElbowAngle) {
     motor2.moveTo(targetElbowSteps);
 
     xyMoving = true;
+}
+
+/* moveToAnglesFeedBack: mueve el brazo y corrige el error del AS5600 */
+void moveToAnglesFeedBack(float targetShoulderAngle, float targetElbowAngle) {
+    // --- Mover motores al objetivo inicial ---
+    moveToAngles(targetShoulderAngle, targetElbowAngle);
+
+    // --- Leer ángulos reales luego del movimiento ---
+    MotorAngles endAngles = readXYAngles();
+
+    // --- Calcular error normalizado ---
+    float errorShoulder = normalizeAngle(targetShoulderAngle - endAngles.robotShoulder);
+    float errorElbow = normalizeAngle(targetElbowAngle - endAngles.robotElbow);
+
+    const float threshold = 0.1f; // en grados
+
+    // --- Corregir si el error supera el threshold ---
+    if (abs(errorShoulder) > threshold || abs(errorElbow) > threshold) {
+        float correctedShoulder = endAngles.robotShoulder + errorShoulder;
+        float correctedElbow = endAngles.robotElbow + errorElbow;
+
+        // Segunda llamada para ajustar
+        moveToAngles(correctedShoulder, correctedElbow);
+    }
 }
 
 void updateXY() {

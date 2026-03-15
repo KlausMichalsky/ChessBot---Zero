@@ -23,3 +23,5 @@ float round1Decimal(float value);
 
 void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime,
                        float delta, unsigned long interval, HardwareSerial &uart);
+
+float normalizeAngle(float angle);

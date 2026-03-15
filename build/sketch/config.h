@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/config.h"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\config.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -77,10 +77,11 @@ enum class Command {
     ANGLE1_STREAM,
     ANGLE2,
     ANGLE2_STREAM,
-    MOVE,
     PICK,
     PLACE,
     STOP_STREAM,
+    MOVE,
+    MOVE_FEEDBACK,
     UNKNOWN
 };
 

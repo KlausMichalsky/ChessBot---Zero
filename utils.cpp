@@ -60,13 +60,12 @@ void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime,
     }
 }
 
-/*
-// Convierte coordenadas XY a ángulo relativo al eje (0-360°) ------------
-float XYtoAngle(float x, float y)
-{
-    float angle = atan2(y, x) * 180.0 / PI; // atan2 devuelve en radianes, convertimos a grados
-    if (angle < 0)
-        angle += 360.0; // normalizamos a 0-360°
+// Normaliza ángulos entre -180 y +180
+// se aplica al error para evitar el wrap 0°/360°
+float normalizeAngle(float angle) {
+    while (angle > 180.0f)
+        angle -= 360.0f;
+    while (angle < -180.0f)
+        angle += 360.0f;
     return angle;
 }
-*/

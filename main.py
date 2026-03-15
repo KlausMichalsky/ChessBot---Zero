@@ -40,6 +40,8 @@ def main_loop():
         "PICK\n"            # Mueve Z hacia abajo, agarra pieza y sube
         "PLACE\n"           # Mueve Z hacia abajo, suelta pieza y sube
         "MOVE\n"            # Mueve motores 1 y 2 a angulos ingresados
+        "MOVE-FEEDBACK\n"   # Mueve motores 1 y 2 a angulos ingresados y corrige error
+                            # usando el AS5600
         "SHOW-COMMANDS\n"
     )
 
@@ -101,9 +103,10 @@ def keyboard_input():
                 "PICK\n"
                 "PLACE\n"
                 "MOVE\n"
+                "MOVE-FEEDBACK"
                 "SHOW-COMMANDS\n"
             )
-        elif cmd == "MOVE":
+        elif cmd == "MOVE" or cmd == "MOVE-FEEDBACK":
             shoulder = input(
                 "Enter the target angle for the shoulder: ").strip()
             print(f"Target angle for the shoulder: {shoulder}")

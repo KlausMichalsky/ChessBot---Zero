@@ -76,10 +76,11 @@ enum class Command {
     ANGLE1_STREAM,
     ANGLE2,
     ANGLE2_STREAM,
-    MOVE,
     PICK,
     PLACE,
     STOP_STREAM,
+    MOVE,
+    MOVE_FEEDBACK,
     UNKNOWN
 };
 

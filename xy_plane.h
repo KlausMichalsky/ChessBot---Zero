@@ -21,11 +21,12 @@
 struct MotorAngles {
     float motorShoulder; // ángulo del sensor
     float motorElbow;    // ángulo del sensor
-    float shoulder;      // ángulo del brazo
-    float elbow;         // ángulo del brazo
+    float robotShoulder; // ángulo del brazo
+    float robotElbow;    // ángulo del brazo
 };
 
 MotorAngles readXYAngles();
 void moveToAngles(float targetShoulder, float targetElbow);
+void moveToAnglesFeedBack(float targetShoulderAngle, float targetElbowAngle);
 void updateXY();
 bool xyIsMoving();

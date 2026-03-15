@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/xy_plane.h"
+#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\xy_plane.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -16,14 +16,18 @@
 
 // HomingXY motor1Homing; → “esta es mi caja donde guardo datos de homing del motor 1”.
 // MotorAngles readXYAngles(); → “dame una caja nueva con los ángulos actuales del motor y brazo”.
+// float solo puede devolver un número decimal.
+// Vos querés devolver varios ángulos a la vez: el ángulo del motor (motorShoulder, motorElbow) y el ángulo del brazo (shoulder, elbow).
+// Por eso se usa un struct llamado MotorAngles que contiene todos esos campos:
 struct MotorAngles {
     float motorShoulder; // ángulo del sensor
     float motorElbow;    // ángulo del sensor
-    float shoulder;      // ángulo del brazo
-    float elbow;         // ángulo del brazo
+    float robotShoulder; // ángulo del brazo
+    float robotElbow;    // ángulo del brazo
 };
 
 MotorAngles readXYAngles();
 void moveToAngles(float targetShoulder, float targetElbow);
+void moveToAnglesFeedBack(float targetShoulderAngle, float targetElbowAngle);
 void updateXY();
 bool xyIsMoving();
