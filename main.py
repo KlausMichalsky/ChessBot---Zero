@@ -21,6 +21,7 @@ import communication
 streaming = False
 
 
+
 def main_loop():
     global streaming
     global shoulder, elbow
