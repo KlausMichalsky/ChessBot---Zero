@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\ChessBot---Zero\\README.md"
+#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\README.md"
 # ♟️ ChessBot---Zero
 
 Sistema de control para un robot de ajedrez basado en RP2040,

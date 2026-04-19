@@ -45,16 +45,16 @@
 // PARAMETROS DE CONFIGURACIÓN PLANO XY
 // -----------------------------------------------------------------------
 #define AS5600_ADDR 0x36
-#define SEND_INTERVAL 33 // ms -> ~30Hz
-#define DELTA_DEG 0.5f   // Enviar si el ángulo cambia más de DELTA_DEG
-#define BASE_SPEED 1500  // usada para igualar tiempo de llegada de motor1 y 2
+#define SEND_INTERVAL 33    // ms -> ~30Hz
+#define DELTA_DEG 0.5f      // Enviar si el ángulo cambia más de DELTA_DEG
+#define BASE_SPEED 2 * 1500 // usada para igualar tiempo de llegada de motor1 y 2
 // BASE_SPEED: velocidad máxima que tendrá el motor que recorre la mayor distancia
 // ✔ suficientemente alta para que el movimiento no sea lento
 // ✔ suficientemente baja para que ningún motor pierda pasos
 
 // PARAMETROS DE CONFIGURACIÓN EJE Z
 // -----------------------------------------------------------------------
-#define Z_STEPS_DOWN 11600 // cantidad de pasos para bajar
+#define Z_STEPS_DOWN 12600 // cantidad de pasos para bajar
 #define Z_DELAY 100        // delay entre movimientos para darle tiempo al iman
 
 // NIVELES LÓGICOS DE ENABLE DEL TMC2209
@@ -162,26 +162,26 @@ inline const MotorConfig motor1Config = {
     .microstepping = 16,
     .reduction = 9,
     .stepsPerRevolution = 200,
-    .slowSpeed = 800.0,
-    .fastSpeed = 1500.0,
+    .slowSpeed = 2 * 800.0,
+    .fastSpeed = 2 * 1500.0,
     .steps90Deg = motor1Config.microstepping * motor1Config.stepsPerRevolution / 4,
     .stepsLimit = 0, // no existe para motor1
     .timeout = 15000,
     .baseSpeed = BASE_SPEED,
-    .acceleration = 1000.0,
+    .acceleration = 2 * 1000.0,
     .enablePin = MOTOR1_ENABLE};
 
 inline const MotorConfig motor2Config = {
     .microstepping = 16,
     .reduction = 6,
     .stepsPerRevolution = 200,
-    .slowSpeed = 533.0,
-    .fastSpeed = 1000.0,
+    .slowSpeed = 2 * 533.0,
+    .fastSpeed = 2 * 1000.0,
     .steps90Deg = motor2Config.microstepping * motor2Config.stepsPerRevolution / 4,
     .stepsLimit = 0, // no existe para motor2
     .timeout = 15000,
     .baseSpeed = BASE_SPEED,
-    .acceleration = 1000.0,
+    .acceleration = 2 * 1000.0,
     .enablePin = MOTOR2_ENABLE};
 
 inline const MotorConfig motor3Config = {

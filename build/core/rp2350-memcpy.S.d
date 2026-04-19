@@ -1,2 +1,2 @@
-C:\Users\Benutzer1\Documents\\#\ Github\ repositories\ChessBot---Zero\build\core\rp2350-memcpy.S.o: \
- C:\Users\Benutzer1\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\4.5.2\cores\rp2040\rp2350-memcpy.S
+C:\Users\Klaus\Documents\ChessBot---Zero\build\core\rp2350-memcpy.S.o: \
+ C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.5.1\cores\rp2040\rp2350-memcpy.S
