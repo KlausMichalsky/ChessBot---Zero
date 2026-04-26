@@ -173,13 +173,14 @@ bool inverseKinematics(float x, float y, float &theta1, float &theta2) {
         cos_theta2 = -1.0f;
 
     // convierte coseno → ángulo real
-    theta2 = acos(cos_theta2);
+    // 🔥 RADIANES (NO convertir aquí)
+    float theta2_rad = acos(cos_theta2);
 
     // esto simplifica el cálculo del hombro
     // k1 = componente horizontal del brazo
     // k2 = componente vertical del segundo segmento
-    float k1 = L1 + L2 * cos(theta2);
-    float k2 = L2 * sin(theta2);
+    float k1 = L1 + L2 * cos(theta2_rad);
+    float k2 = L2 * sin(theta2_rad);
 
     // Cálculo de theta1 (ángulo del hombro)
     // atan2(y, x) ángulo directo hacia el punto
@@ -187,7 +188,11 @@ bool inverseKinematics(float x, float y, float &theta1, float &theta2) {
     // corrección por la forma del brazo
     // resultado final:
     // “hacia dónde apuntar menos cómo está doblado el brazo”
-    theta1 = atan2(y, x) - atan2(k2, k1);
+    float theta1_rad = atan2(y, x) - atan2(k2, k1);
+
+    // 🔥 SOLO AQUÍ conviertes a grados
+    theta1 = theta1_rad * 180.0f / M_PI;
+    theta2 = theta2_rad * 180.0f / M_PI;
 
     // todo funcionó, el punto es alcanzable
     return true;

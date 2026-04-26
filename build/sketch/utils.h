@@ -28,3 +28,5 @@ void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime,
 float normalizeAngle(float angle);
 
 bool boardToXY(const char *square, float &x, float &y);
+
+bool inverseKinematics(float x, float y, float &theta1, float &theta2);
