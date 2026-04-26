@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\config.h"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/config.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -42,6 +42,15 @@
 // Pines de LEDs y electroimán
 #define LED 2
 #define MAGNET 28
+
+// PARAMETROS DE CONFIGURACIÓN DEL TABLERO
+// -----------------------------------------------------------------------
+// Tamaño de cada casilla en mm (MEDIR en tu tablero real)
+#define SQUARE_SIZE 25.0f
+// Offset del origen (a1) en mm (ajustar en calibración)
+// a1 está en el centro de la casilla inferior izquierda
+#define ORIGIN_X 12.5f
+#define ORIGIN_Y 12.5f
 
 // PARAMETROS DE CONFIGURACIÓN PLANO XY
 // -----------------------------------------------------------------------

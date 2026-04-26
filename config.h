@@ -42,6 +42,15 @@
 #define LED 2
 #define MAGNET 28
 
+// PARAMETROS DE CONFIGURACIÓN DEL TABLERO
+// -----------------------------------------------------------------------
+// Tamaño de cada casilla en mm (MEDIR en tu tablero real)
+#define SQUARE_SIZE 25.0f
+// Offset del origen (a1) en mm (ajustar en calibración)
+// a1 está en el centro de la casilla inferior izquierda
+#define ORIGIN_X 12.5f
+#define ORIGIN_Y 12.5f
+
 // PARAMETROS DE CONFIGURACIÓN PLANO XY
 // -----------------------------------------------------------------------
 #define AS5600_ADDR 0x36

@@ -25,3 +25,5 @@ void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime,
                        float delta, unsigned long interval, HardwareSerial &uart);
 
 float normalizeAngle(float angle);
+
+bool boardToXY(const char *square, float &x, float &y);

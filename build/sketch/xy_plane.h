@@ -1,8 +1,8 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\xy_plane.h"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/xy_plane.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
-//  Archivo    : xy_axis.h
+//  Archivo    : xy_plane.h
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------

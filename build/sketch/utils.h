@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\utils.h"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/utils.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -26,3 +26,5 @@ void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime,
                        float delta, unsigned long interval, HardwareSerial &uart);
 
 float normalizeAngle(float angle);
+
+bool boardToXY(const char *square, float &x, float &y);
