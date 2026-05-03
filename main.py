@@ -84,11 +84,11 @@ def keyboard_input():
 
         # 🔥 COMANDOS QUE NECESITAN INPUT EXTRA
         if cmd == "MOVE":
-            shoulder = input("Enter the target angle for the shoulder: ").strip()
-            print(f"Target angle for the shoulder: {shoulder}")
+            shoulder = input("Enter shoulder-angle: ").strip()
+            print(f"Target shoulder: {shoulder}")
 
-            elbow = input("Enter the target angle for the elbow: ").strip()
-            print(f"Target angle for the elbow: {elbow}")
+            elbow = input("Enter elbow-angle: ").strip()
+            print(f"Target elbow: {elbow}")
 
             commands.send_command(f"MOVE {float(shoulder)} {float(elbow)}")
             return  # 🔥 IMPORTANTE

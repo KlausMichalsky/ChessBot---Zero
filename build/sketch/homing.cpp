@@ -243,19 +243,6 @@ void homingStepXY(AccelStepper &motor,
             break;
 
         case HomingStateXY::OK:
-            digitalWrite(LED, HIGH);
-            digitalWrite(cfg.enablePin, ENABLE_INACTIVE);
-
-            // 🔥 GUARDAR OFFSET SOLO UNA VEZ
-            if (&st == &motor1Homing) {
-                delay(200);
-                sensor1Offset = rawToDegrees(sensorReadAngle(Wire));
-            }
-
-            if (&st == &motor2Homing) {
-                delay(200);
-                sensor2Offset = rawToDegrees(sensorReadAngle(Wire1));
-            }
             break;
 
         case HomingStateXY::ERROR:

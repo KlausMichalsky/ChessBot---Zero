@@ -30,9 +30,6 @@ MotorAngles readXYAngles() {
 
     a.motorShoulder = sensorCorrectedAngle(Wire, sensor1Offset) - SHOULDER_OFFSET;
     a.motorElbow = sensorCorrectedAngle(Wire1, sensor2Offset);
-    // RAW SENSOR + OFFSET
-    // a.motorShoulder = sensorCorrectedAngle(Wire, sensorHomingOffset(Wire));
-    // a.motorElbow = sensorCorrectedAngle(Wire1, sensorHomingOffset(Wire1));
 
     // normalización simple 0–360
     while (a.motorShoulder < 0)
@@ -44,15 +41,6 @@ MotorAngles readXYAngles() {
         a.motorElbow += 360;
     while (a.motorElbow >= 360)
         a.motorElbow -= 360;
-    // if (a.motorShoulder < 0)
-    //     a.motorShoulder += 360;
-    // if (a.motorShoulder >= 360)
-    //     a.motorShoulder -= 360;
-
-    // if (a.motorElbow < 0)
-    //     a.motorElbow += 360;
-    // if (a.motorElbow >= 360)
-    //     a.motorElbow -= 360;
 
     float fullStepsPerRev1 = motor1Config.microstepping * motor1Config.stepsPerRevolution * motor1Config.reduction;
     float fullStepsPerRev2 = motor2Config.microstepping * motor2Config.stepsPerRevolution * motor2Config.reduction;
@@ -118,6 +106,7 @@ void printError() {
     Serial1.print("Elbow error: ");
     Serial1.println(errorElbow, 3);
     Serial1.println("========================");
+    motorsDisableXY();
 }
 
 // =============================================================

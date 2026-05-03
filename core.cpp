@@ -24,6 +24,31 @@
 bool dynamicAngle1 = false;
 bool dynamicAngle2 = false;
 
+// esta funcion esta en
+// case HomeAllState::DONE:
+// case Command::MOVE:
+void showDebug() {
+    Serial1.print("SENSOR ANGLE1: ");
+    sensorSendAngle(Wire); // Leer y enviar ángulo del primer sensor
+    Serial1.print("SENSOR ANGLE2: ");
+    sensorSendAngle(Wire1); // Leer y enviar ángulo del segundo sensor
+
+    Serial1.print("HOMING OFFSET ANGLE1: ");
+    Serial1.println(sensorHomingOffset(Wire), 1);
+    Serial1.print("HOMING OFFSET ANGLE2: ");
+    Serial1.println(sensorHomingOffset(Wire1), 1);
+
+    Serial1.print("CORRECTED ANGLE1: ");
+    Serial1.println(sensorCorrectedAngle(Wire, sensorHomingOffset(Wire)), 1);
+    Serial1.print("CORRECTED ANGLE2: ");
+    Serial1.println(sensorCorrectedAngle(Wire1, sensorHomingOffset(Wire1)), 1);
+
+    Serial1.print("CORRECTED ANGLE1 using sensor1Offset: ");
+    Serial1.println(sensorCorrectedAngle(Wire, sensor1Offset), 1);
+    Serial1.print("CORRECTED ANGLE2 using sensor2Offset: ");
+    Serial1.println(sensorCorrectedAngle(Wire1, sensor2Offset), 1);
+}
+
 // -----------------------------------------------------------------------
 void coreInit() {
     homeAllState = HomeAllState::IDLE;
@@ -124,14 +149,30 @@ void coreHomeAll() {
             if (motor3Homing.state == HomingStateZ::OK) {
                 homeAllState = HomeAllState::DONE;
                 commandSendStatusReport();
+                delay(100);
                 homingInitXY(motor1Homing);
                 homingInitXY(motor2Homing);
                 homingInitZ(motor3Homing);
+
+                digitalWrite(LED, HIGH);
+
+                // 🔥 GUARDAR OFFSET SOLO UNA VEZ
+                delay(200);
+                sensor1Offset = sensorHomingOffset(Wire);
+                Serial1.print("sensor1Offset: ");
+                Serial1.println(sensor1Offset, 1);
+                delay(200);
+                sensor2Offset = sensorHomingOffset(Wire1);
+                Serial1.print("sensor2Offset: ");
+                Serial1.println(sensor2Offset, 1);
             }
             break;
 
         case HomeAllState::DONE:
             homeAllState = HomeAllState::IDLE;
+
+            showDebug();
+
             break;
 
         default:

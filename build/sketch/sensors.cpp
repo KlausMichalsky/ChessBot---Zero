@@ -29,8 +29,8 @@ float lastSentAngle_2 = -1000.0f;
 float sensor1Offset = 0;
 float sensor2Offset = 0;
 
-float sensor1Angle = 0;
-float sensor2Angle = 0;
+// float sensor1Angle = 0;
+// float sensor2Angle = 0;
 
 // API PÚBLICA DE SENSORES
 // -----------------------------------------------------------------------
@@ -84,6 +84,7 @@ void sensorStreamAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastS
 
 // CALCULO DE OFFSET PARA CODIFICADOR AS5600
 // -----------------------------------------------------------------------
+// Calcula un promedio para reducir el ruido
 float sensorHomingOffset(TwoWire &wire) {
     const uint8_t samples = 30;
     float sum = 0;
