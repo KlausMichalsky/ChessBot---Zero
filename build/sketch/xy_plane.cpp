@@ -2,17 +2,6 @@
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
-//  Archivo    : z_axis.cpp
-//  Autor      : Klaus Michalsky
-//  Fecha      : Feb-2026
-// -----------------------------------------------------------------------
-//  ▫️ DESCRIPCIÓN
-//      - Definicion de las funciones
-//      - Mover motor 1 (shoulder)
-//      - Mover motor 2 (elbow)
-//      - Recibir ángulos como input y usar feedback del AS5600
-//      - Movimiento simultáneo no bloqueante
-// =======================================================================
 
 #include <Arduino.h>
 
@@ -22,103 +11,131 @@
 #include "utils.h"
 #include "xy_plane.h"
 
-// Flag de movimiento
+// =============================================================
+// FLAGS
+// =============================================================
 static bool xyMoving = false;
+static float targetShoulder = 0;
+static float targetElbow = 0;
 
-// readXYAngles() devuelve un MotorAngles completo, con los cuatro valores a la vez.
+// =============================================================
+// LECTURA REAL DE SENSORES (SIN COSAS RARAS)
+// =============================================================
 MotorAngles readXYAngles() {
-    MotorAngles angles;
+    MotorAngles a;
 
-    // Angulo de motores
-    angles.motorShoulder = sensorCorrectedAngle(Wire, sensorHomingOffset(Wire));
-    angles.motorElbow = sensorCorrectedAngle(Wire1, sensorHomingOffset(Wire1));
+    extern float sensor1Offset;
+    extern float sensor2Offset;
+    const float SHOULDER_OFFSET = -67.0f;
+    // const float ELBOW_OFFSET = -89.0f;
 
-    // Angulo del brazo
-    angles.robotShoulder = angles.motorShoulder / motor1Config.reduction;
-    angles.robotElbow = angles.motorElbow / motor2Config.reduction;
+    a.motorShoulder = sensorCorrectedAngle(Wire, sensor1Offset) - SHOULDER_OFFSET;
+    a.motorElbow = sensorCorrectedAngle(Wire1, sensor2Offset);
+    // RAW SENSOR + OFFSET
+    // a.motorShoulder = sensorCorrectedAngle(Wire, sensorHomingOffset(Wire));
+    // a.motorElbow = sensorCorrectedAngle(Wire1, sensorHomingOffset(Wire1));
 
-    return angles;
+    // normalización simple 0–360
+    while (a.motorShoulder < 0)
+        a.motorShoulder += 360;
+    while (a.motorShoulder >= 360)
+        a.motorShoulder -= 360;
+
+    while (a.motorElbow < 0)
+        a.motorElbow += 360;
+    while (a.motorElbow >= 360)
+        a.motorElbow -= 360;
+    // if (a.motorShoulder < 0)
+    //     a.motorShoulder += 360;
+    // if (a.motorShoulder >= 360)
+    //     a.motorShoulder -= 360;
+
+    // if (a.motorElbow < 0)
+    //     a.motorElbow += 360;
+    // if (a.motorElbow >= 360)
+    //     a.motorElbow -= 360;
+
+    float fullStepsPerRev1 = motor1Config.microstepping * motor1Config.stepsPerRevolution * motor1Config.reduction;
+    float fullStepsPerRev2 = motor2Config.microstepping * motor2Config.stepsPerRevolution * motor2Config.reduction;
+
+    a.robotShoulder = (a.motorShoulder / 360.0f) * 360.0f;
+    a.robotElbow = (a.motorElbow / 360.0f) * 360.0f;
+
+    return a;
 }
 
+// =============================================================
+// ESTADO
+// =============================================================
 bool xyIsMoving() {
     return xyMoving;
 }
 
-void moveToAngles(float targetShoulderAngle, float targetElbowAngle) {
+// =============================================================
+// MOVE SIMPLE (SIN FEEDBACK)
+// =============================================================
+void moveToAngles(float shoulder, float elbow) {
     if (xyMoving)
         return;
 
     motorsEnableXY();
 
-    // Convertir a pasos absolutos para AccelStepper
-    long targetShoulderSteps = angleToStep(targetShoulderAngle, MotorID::J1);
-    long targetElbowSteps = angleToStep(targetElbowAngle, MotorID::J2);
+    targetShoulder = shoulder;
+    targetElbow = elbow;
 
-    // Calcular la relación entre motor1 y 2
-    long delta1 = abs(targetShoulderSteps - motor1.currentPosition());
-    long delta2 = abs(targetElbowSteps - motor2.currentPosition());
+    long sSteps = angleToStep(shoulder, MotorID::J1);
+    long eSteps = angleToStep(elbow, MotorID::J2);
 
-    long maxDelta = max(delta1, delta2);
-
-    float ratio1, ratio2;
-
-    // Evitar división por cero
-    if (maxDelta == 0) {
-        ratio1 = ratio2 = 1.0;
-    } else {
-        ratio1 = (float)delta1 / maxDelta;
-        ratio2 = (float)delta2 / maxDelta;
-    }
-
-    // Limitar ratio mínimo para que los motores no queden demasiado lentos
-    ratio1 = max(ratio1, 0.2f); // mínimo 20% de velocidad
-    ratio2 = max(ratio2, 0.2f);
-
-    motor1.setMaxSpeed(motor1Config.baseSpeed * ratio1);
-    motor2.setMaxSpeed(motor2Config.baseSpeed * ratio2);
-
-    motor1.setAcceleration(motor1Config.acceleration * ratio1);
-    motor2.setAcceleration(motor2Config.acceleration * ratio2);
-
-    // Usar los pasos calculados, no los grados
-    motor1.moveTo(targetShoulderSteps);
-    motor2.moveTo(targetElbowSteps);
+    motor1.moveTo(sSteps);
+    motor2.moveTo(eSteps);
 
     xyMoving = true;
 }
 
-/* moveToAnglesFeedBack: mueve el brazo y corrige el error del AS5600 */
-void moveToAnglesFeedBack(float targetShoulderAngle, float targetElbowAngle) {
-    // --- Mover motores al objetivo inicial ---
-    moveToAngles(targetShoulderAngle, targetElbowAngle);
+// =============================================================
+// PRINT ERROR (SOLO DIAGNÓSTICO)
+// =============================================================
+void printError() {
+    MotorAngles a = readXYAngles();
 
-    // --- Leer ángulos reales luego del movimiento ---
-    MotorAngles endAngles = readXYAngles();
+    float errorShoulder = targetShoulder - a.robotShoulder;
+    float errorElbow = targetElbow - a.robotElbow;
 
-    // --- Calcular error normalizado ---
-    float errorShoulder = normalizeAngle(targetShoulderAngle - endAngles.robotShoulder);
-    float errorElbow = normalizeAngle(targetElbowAngle - endAngles.robotElbow);
+    // wrap simple [-180, 180]
+    if (errorShoulder > 180)
+        errorShoulder -= 360;
+    if (errorShoulder < -180)
+        errorShoulder += 360;
 
-    const float threshold = 0.1f; // en grados
+    if (errorElbow > 180)
+        errorElbow -= 360;
+    if (errorElbow < -180)
+        errorElbow += 360;
 
-    // --- Corregir si el error supera el threshold ---
-    if (abs(errorShoulder) > threshold || abs(errorElbow) > threshold) {
-        float correctedShoulder = endAngles.robotShoulder + errorShoulder;
-        float correctedElbow = endAngles.robotElbow + errorElbow;
+    Serial1.println("===== ERROR REPORT =====");
+    Serial1.print("Shoulder error: ");
+    Serial1.println(errorShoulder, 3);
 
-        // Segunda llamada para ajustar
-        moveToAngles(correctedShoulder, correctedElbow);
-    }
+    Serial1.print("Elbow error: ");
+    Serial1.println(errorElbow, 3);
+    Serial1.println("========================");
 }
 
+// =============================================================
+// UPDATE LOOP
+// =============================================================
 void updateXY() {
     if (!xyMoving)
         return;
 
-    bool m1 = motor1.run(); // Devuelve true si todavía no llegó a la posición objetivo
+    bool m1 = motor1.run();
     bool m2 = motor2.run();
 
-    if (!m1 && !m2) { // ambos motores llegaron
+    if (!m1 && !m2) {
         xyMoving = false;
+
+        delay(20); // estabilización mecánica mínima
+
+        printError();
     }
 }
