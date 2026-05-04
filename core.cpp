@@ -29,12 +29,6 @@ bool dynamicAngle2 = false;
 // case HomeAllState::DONE:
 // case Command::MOVE:
 void showDebug() {
-    Serial1.println();
-    Serial1.print("SENSOR ACTUAL ANGLE1: ");
-    sensorSendAngle(Wire); // Leer y enviar ángulo del primer sensor
-    Serial1.print("SENSOR ACTUAL ANGLE2: ");
-    sensorSendAngle(Wire1); // Leer y enviar ángulo del segundo sensor
-
     Serial1.print("HOMING OFFSET ANGLE1: ");
     Serial1.println(sensor1Offset, 1);
     Serial1.print("HOMING OFFSET ANGLE2: ");
