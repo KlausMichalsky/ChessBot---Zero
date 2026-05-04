@@ -17,12 +17,30 @@
 #include "homing.h"
 #include "motors.h"
 #include "sensors.h"
+#include "utils.h"
 #include "xy_plane.h"
 
 // FLAGS Y VARIABLES GLOBALES
 // -----------------------------------------------------------------------
 bool dynamicAngle1 = false;
 bool dynamicAngle2 = false;
+
+// esta funcion esta en
+// case HomeAllState::DONE:
+// case Command::MOVE:
+void showDebug() {
+    Serial1.println();
+    Serial1.print("SENSOR ACTUAL ANGLE1: ");
+    sensorSendAngle(Wire); // Leer y enviar ángulo del primer sensor
+    Serial1.print("SENSOR ACTUAL ANGLE2: ");
+    sensorSendAngle(Wire1); // Leer y enviar ángulo del segundo sensor
+
+    Serial1.print("HOMING OFFSET ANGLE1: ");
+    Serial1.println(sensor1Offset, 1);
+    Serial1.print("HOMING OFFSET ANGLE2: ");
+    Serial1.println(sensor2Offset, 1);
+    Serial1.println();
+}
 
 // -----------------------------------------------------------------------
 void coreInit() {
@@ -124,14 +142,26 @@ void coreHomeAll() {
             if (motor3Homing.state == HomingStateZ::OK) {
                 homeAllState = HomeAllState::DONE;
                 commandSendStatusReport();
+                delay(100);
                 homingInitXY(motor1Homing);
                 homingInitXY(motor2Homing);
                 homingInitZ(motor3Homing);
+
+                digitalWrite(LED, HIGH);
+
+                // 🔥 GUARDAR OFFSET SOLO UNA VEZ
+                delay(200);
+                sensor1Offset = sensorHomingOffset(Wire);
+                delay(200);
+                sensor2Offset = sensorHomingOffset(Wire1);
             }
             break;
 
         case HomeAllState::DONE:
             homeAllState = HomeAllState::IDLE;
+
+            showDebug();
+
             break;
 
         default:

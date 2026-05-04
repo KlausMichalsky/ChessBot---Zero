@@ -190,37 +190,27 @@ void processCommand(const String &cmdStr) {
             break;
 
         case Command::MOVE: {
-            float targetShoulderAngle = 0.0f;
-            float targetElbowAngle = 0.0f;
+            float targetShoulderAngle;
+            float targetElbowAngle;
 
-            // Parsear con sscanf ejemplo:
-            // const char* texto = "123 456";
-            // int a, b;
-            // sscanf(texto, "%d %d", &a, &b);
-            // // Ahora a = 123, b = 456
-            sscanf(trimmedCmd.c_str(), "MOVE %f %f", &targetShoulderAngle, &targetElbowAngle);
+            int parsed = sscanf(trimmedCmd.c_str(), "MOVE %f %f",
+                                &targetShoulderAngle,
+                                &targetElbowAngle);
+
+            if (parsed != 2) {
+                Serial1.println("ERROR: MOVE format invalid");
+                break;
+            }
 
             Serial1.print("MOVING Shoulder to: ");
             Serial1.println(targetShoulderAngle, 2);
+
             Serial1.print("MOVING Elbow to: ");
             Serial1.println(targetElbowAngle, 2);
 
             moveToAngles(targetShoulderAngle, targetElbowAngle);
-            break;
-        }
 
-        case Command::MOVE_FEEDBACK: {
-            float targetShoulderAngle = 0.0f;
-            float targetElbowAngle = 0.0f;
-
-            sscanf(trimmedCmd.c_str(), "MOVE_FEEDBACK %f %f", &targetShoulderAngle, &targetElbowAngle);
-
-            Serial1.print("MOVING Shoulder to: ");
-            Serial1.println(targetShoulderAngle, 2);
-            Serial1.print("MOVING Elbow to: ");
-            Serial1.println(targetElbowAngle, 2);
-
-            moveToAnglesFeedBack(targetShoulderAngle, targetElbowAngle);
+            showDebug();
 
             break;
         }

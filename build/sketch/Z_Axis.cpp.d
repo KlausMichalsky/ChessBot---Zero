@@ -1,5 +1,5 @@
-C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\Z_Axis.cpp.o: \
- C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\Z_Axis.cpp \
+C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\z_Axis.cpp.o: \
+ C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\z_Axis.cpp \
  C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.5.1\cores\rp2040/Arduino.h \
  C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.5.1\cores\rp2040/stdlib_noniso.h \
  C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.5.1\cores\rp2040/RP2040Version.h \

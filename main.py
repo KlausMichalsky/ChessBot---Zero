@@ -74,19 +74,48 @@ def readUart():
 
 
 def keyboard_input():
+    global streaming
+
     # 🔹 2️⃣ Revisar si hay input de teclado sin bloquear
     rlist, _, _ = select.select([sys.stdin], [], [], 0)
     if rlist:
         cmd = sys.stdin.readline().strip()
         print(f"Input: {cmd}")
+
+        # 🔥 COMANDOS QUE NECESITAN INPUT EXTRA
+        if cmd == "MOVE":
+            shoulder = input("Enter shoulder-angle: ").strip()
+            print(f"Target shoulder: {shoulder}")
+
+            elbow = input("Enter elbow-angle: ").strip()
+            print(f"Target elbow: {elbow}")
+
+            commands.send_command(f"MOVE {float(shoulder)} {float(elbow)}")
+            return  # 🔥 IMPORTANTE
+
+        # 👉 (si luego reactivás feedback, lo ponés aquí)
+        elif cmd == "MOVE-FEEDBACK":
+            shoulder = input("Enter the target angle for the shoulder: ").strip()
+            print(f"Target angle for the shoulder: {shoulder}")
+
+            elbow = input("Enter the target angle for the elbow: ").strip()
+            print(f"Target angle for the elbow: {elbow}")
+
+            commands.send_command(f"MOVE_FEEDBACK {float(shoulder)} {float(elbow)}")
+            return  # 🔥 IMPORTANTE
+
+        # 🔥 TODOS LOS DEMÁS COMANDOS SE MANDAN NORMAL
         commands.send_command(cmd)
-        # aqui limpiar el input para que no quede en la consola
+
+        # LOGICA LOCAL
         if cmd == "ANGLE1-STREAM" or cmd == "ANGLE2-STREAM":
             streaming = True
             print("\n⚡ Streaming iniciado\n")
+
         elif cmd == "STOP-STREAM":
             streaming = False
             print("\n⏹ Streaming detenido\n")
+
         elif cmd == "SHOW-COMMANDS":
             print(
                 "Comandos disponibles:\n"
@@ -107,17 +136,8 @@ def keyboard_input():
                 "MOVE-FEEDBACK\n"
                 "SHOW-COMMANDS\n"
             )
-        elif cmd == "MOVE" or cmd == "MOVE-FEEDBACK":
-            shoulder = input(
-                "Enter the target angle for the shoulder: ").strip()
-            print(f"Target angle for the shoulder: {shoulder}")
-            elbow = input(
-                "Enter the target angle for the elbow: ").strip()
-            print(f"Target angle for the elbow: {elbow}")
-            commands.send_command(f"MOVE {float(shoulder)} {float(elbow)}")
 
-    time.sleep_ms(10)  # 10 ms → latencia mínima
-
+    time.sleep_ms(10)
 
 if __name__ == "__main__":
     main_loop()

@@ -14,6 +14,7 @@
 
 #include "communication.h"
 #include "config.h"
+#include "sensors.h"
 #include "utils.h"
 
 // Convierte el angulo a pasos para cada motor
@@ -68,4 +69,14 @@ float normalizeAngle(float angle) {
     while (angle < -180.0f)
         angle += 360.0f;
     return angle;
+}
+
+float calculateJointAngle(float target, float offset, float reduction) {
+    float result = (target * reduction) + offset;
+
+    float finalAngle = fmod(result, 360.0f);
+    if (finalAngle < 0)
+        finalAngle += 360.0f;
+
+    return finalAngle;
 }

@@ -28,8 +28,8 @@ float lastSentAngle_2 = -1000.0f;
 float sensor1Offset = 0;
 float sensor2Offset = 0;
 
-float sensor1Angle = 0;
-float sensor2Angle = 0;
+// float sensor1Angle = 0;
+// float sensor2Angle = 0;
 
 // API PÚBLICA DE SENSORES
 // -----------------------------------------------------------------------
@@ -67,8 +67,8 @@ uint16_t sensorReadAngle(TwoWire &wire) {
 void sensorSendAngle(TwoWire &wire) {
     uint16_t rawAngle = sensorReadAngle(wire); // Leer sensor AS5600
     float degrees = rawToDegrees(rawAngle);    // Convertir a grados
-    degrees = round1Decimal(degrees);          // Redondear a 1 decimal
-    Serial1.print(degrees, 1);                 // Asegurar envio de solo 1 decimal
+    // degrees = round1Decimal(degrees);          // Redondear a 1 decimal
+    Serial1.print(degrees, 1); // Asegurar envio de solo 1 decimal
     Serial1.print("\n");
 }
 
@@ -83,6 +83,7 @@ void sensorStreamAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastS
 
 // CALCULO DE OFFSET PARA CODIFICADOR AS5600
 // -----------------------------------------------------------------------
+// Calcula un promedio para reducir el ruido
 float sensorHomingOffset(TwoWire &wire) {
     const uint8_t samples = 30;
     float sum = 0;
