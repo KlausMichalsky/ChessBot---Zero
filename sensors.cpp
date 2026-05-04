@@ -67,8 +67,8 @@ uint16_t sensorReadAngle(TwoWire &wire) {
 void sensorSendAngle(TwoWire &wire) {
     uint16_t rawAngle = sensorReadAngle(wire); // Leer sensor AS5600
     float degrees = rawToDegrees(rawAngle);    // Convertir a grados
-    degrees = round1Decimal(degrees);          // Redondear a 1 decimal
-    Serial1.print(degrees, 1);                 // Asegurar envio de solo 1 decimal
+    // degrees = round1Decimal(degrees);          // Redondear a 1 decimal
+    Serial1.print(degrees, 1); // Asegurar envio de solo 1 decimal
     Serial1.print("\n");
 }
 

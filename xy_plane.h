@@ -13,6 +13,9 @@
 
 #include <Arduino.h>
 
+extern float sensor1Offset;
+extern float sensor2Offset;
+
 // HomingXY motor1Homing; → “esta es mi caja donde guardo datos de homing del motor 1”.
 // MotorAngles readXYAngles(); → “dame una caja nueva con los ángulos actuales del motor y brazo”.
 // float solo puede devolver un número decimal.

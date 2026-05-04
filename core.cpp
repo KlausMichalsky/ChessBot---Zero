@@ -17,6 +17,7 @@
 #include "homing.h"
 #include "motors.h"
 #include "sensors.h"
+#include "utils.h"
 #include "xy_plane.h"
 
 // FLAGS Y VARIABLES GLOBALES
@@ -28,25 +29,17 @@ bool dynamicAngle2 = false;
 // case HomeAllState::DONE:
 // case Command::MOVE:
 void showDebug() {
-    Serial1.print("SENSOR ANGLE1: ");
+    Serial1.println();
+    Serial1.print("SENSOR ACTUAL ANGLE1: ");
     sensorSendAngle(Wire); // Leer y enviar ángulo del primer sensor
-    Serial1.print("SENSOR ANGLE2: ");
+    Serial1.print("SENSOR ACTUAL ANGLE2: ");
     sensorSendAngle(Wire1); // Leer y enviar ángulo del segundo sensor
 
     Serial1.print("HOMING OFFSET ANGLE1: ");
-    Serial1.println(sensorHomingOffset(Wire), 1);
+    Serial1.println(sensor1Offset, 1);
     Serial1.print("HOMING OFFSET ANGLE2: ");
-    Serial1.println(sensorHomingOffset(Wire1), 1);
-
-    Serial1.print("CORRECTED ANGLE1: ");
-    Serial1.println(sensorCorrectedAngle(Wire, sensorHomingOffset(Wire)), 1);
-    Serial1.print("CORRECTED ANGLE2: ");
-    Serial1.println(sensorCorrectedAngle(Wire1, sensorHomingOffset(Wire1)), 1);
-
-    Serial1.print("CORRECTED ANGLE1 using sensor1Offset: ");
-    Serial1.println(sensorCorrectedAngle(Wire, sensor1Offset), 1);
-    Serial1.print("CORRECTED ANGLE2 using sensor2Offset: ");
-    Serial1.println(sensorCorrectedAngle(Wire1, sensor2Offset), 1);
+    Serial1.println(sensor2Offset, 1);
+    Serial1.println();
 }
 
 // -----------------------------------------------------------------------
@@ -159,12 +152,8 @@ void coreHomeAll() {
                 // 🔥 GUARDAR OFFSET SOLO UNA VEZ
                 delay(200);
                 sensor1Offset = sensorHomingOffset(Wire);
-                Serial1.print("sensor1Offset: ");
-                Serial1.println(sensor1Offset, 1);
                 delay(200);
                 sensor2Offset = sensorHomingOffset(Wire1);
-                Serial1.print("sensor2Offset: ");
-                Serial1.println(sensor2Offset, 1);
             }
             break;
 

@@ -136,4 +136,11 @@ C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\utils.cpp.o: \
  C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.5.1/pico-sdk/src/rp2_common/pico_stdio/include/pico/stdio.h \
  C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\communication.h \
  C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\config.h \
+ C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\sensors.h \
+ C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.5.1\libraries\Wire\src/Wire.h \
+ C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.5.1\cores\rp2040/api/HardwareI2C.h \
+ C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.5.1/ArduinoCore-API/api/HardwareI2C.h \
+ C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.5.1/pico-sdk/src/rp2_common/hardware_i2c/include/hardware/i2c.h \
+ C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.5.1/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/i2c.h \
+ C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.5.1/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/i2c.h \
  C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\utils.h

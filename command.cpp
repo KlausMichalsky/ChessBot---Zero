@@ -209,6 +209,7 @@ void processCommand(const String &cmdStr) {
             Serial1.println(targetElbowAngle, 2);
 
             moveToAngles(targetShoulderAngle, targetElbowAngle);
+
             showDebug();
 
             break;

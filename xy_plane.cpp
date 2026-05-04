@@ -18,38 +18,10 @@ static float targetShoulder = 0;
 static float targetElbow = 0;
 
 // =============================================================
-// LECTURA REAL DE SENSORES (SIN COSAS RARAS)
+// LECTURA REAL DE SENSORES
 // =============================================================
-MotorAngles readXYAngles() {
-    MotorAngles a;
-
-    extern float sensor1Offset;
-    extern float sensor2Offset;
-    const float SHOULDER_OFFSET = -67.0f;
-    // const float ELBOW_OFFSET = -89.0f;
-
-    a.motorShoulder = sensorCorrectedAngle(Wire, sensor1Offset) - SHOULDER_OFFSET;
-    a.motorElbow = sensorCorrectedAngle(Wire1, sensor2Offset);
-
-    // normalización simple 0–360
-    while (a.motorShoulder < 0)
-        a.motorShoulder += 360;
-    while (a.motorShoulder >= 360)
-        a.motorShoulder -= 360;
-
-    while (a.motorElbow < 0)
-        a.motorElbow += 360;
-    while (a.motorElbow >= 360)
-        a.motorElbow -= 360;
-
-    float fullStepsPerRev1 = motor1Config.microstepping * motor1Config.stepsPerRevolution * motor1Config.reduction;
-    float fullStepsPerRev2 = motor2Config.microstepping * motor2Config.stepsPerRevolution * motor2Config.reduction;
-
-    a.robotShoulder = (a.motorShoulder / 360.0f) * 360.0f;
-    a.robotElbow = (a.motorElbow / 360.0f) * 360.0f;
-
-    return a;
-}
+// MotorAngles readXYAngles() {
+// }
 
 // =============================================================
 // ESTADO
@@ -83,29 +55,20 @@ void moveToAngles(float shoulder, float elbow) {
 // PRINT ERROR (SOLO DIAGNÓSTICO)
 // =============================================================
 void printError() {
-    MotorAngles a = readXYAngles();
+    delay(200);
+    Serial1.print("JointAngle1: ");
+    delay(10);
+    Serial1.println(calculateJointAngle(targetShoulder, sensor1Offset, motor1Config.reduction), 1);
 
-    float errorShoulder = targetShoulder - a.robotShoulder;
-    float errorElbow = targetElbow - a.robotElbow;
+    delay(200);
+    Serial1.print("JointAngle2: ");
+    delay(10);
+    Serial1.println(calculateJointAngle(targetElbow, sensor2Offset, motor2Config.reduction), 1);
 
-    // wrap simple [-180, 180]
-    if (errorShoulder > 180)
-        errorShoulder -= 360;
-    if (errorShoulder < -180)
-        errorShoulder += 360;
+    sensorSendAngle(Wire);  // Leer y enviar ángulo del segundo sensor
+    sensorSendAngle(Wire1); // Leer y enviar ángulo del segundo sensor
 
-    if (errorElbow > 180)
-        errorElbow -= 360;
-    if (errorElbow < -180)
-        errorElbow += 360;
-
-    Serial1.println("===== ERROR REPORT =====");
-    Serial1.print("Shoulder error: ");
-    Serial1.println(errorShoulder, 3);
-
-    Serial1.print("Elbow error: ");
-    Serial1.println(errorElbow, 3);
-    Serial1.println("========================");
+    Serial1.println();
     motorsDisableXY();
 }
 

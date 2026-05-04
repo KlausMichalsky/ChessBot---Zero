@@ -14,6 +14,7 @@
 #pragma once
 
 #include <Arduino.h>
+#include <Wire.h>
 
 long angleToStep(float angle, MotorID id);
 
@@ -25,3 +26,5 @@ void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime,
                        float delta, unsigned long interval, HardwareSerial &uart);
 
 float normalizeAngle(float angle);
+
+float calculateJointAngle(float target, float offset, float reduction);
