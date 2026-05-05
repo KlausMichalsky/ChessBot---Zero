@@ -55,19 +55,25 @@ void moveToAngles(float shoulder, float elbow) {
 // PRINT ERROR (SOLO DIAGNÓSTICO)
 // =============================================================
 void printError() {
-    delay(200);
     Serial1.print("JointAngle1: ");
-    delay(10);
     Serial1.println(calculateJointAngle(targetShoulder, sensor1Offset, motor1Config.reduction), 1);
 
-    delay(200);
     Serial1.print("JointAngle2: ");
-    delay(10);
     Serial1.println(calculateJointAngle(targetElbow, sensor2Offset, motor2Config.reduction), 1);
 
-    sensorSendAngle(Wire);  // Leer y enviar ángulo del segundo sensor
+    delay(100);
+    Serial1.print("ActualAngle1: ");
+    sensorSendAngle(Wire); // Leer y enviar ángulo del segundo sensor
+    Serial1.print("ActualAngle2: ");
     sensorSendAngle(Wire1); // Leer y enviar ángulo del segundo sensor
 
+    delay(100);
+    Serial1.print("Error1: ");
+    Serial1.println(angleError(targetShoulder, sensor1Offset, motor1Config.reduction, Wire), 1);
+    delay(100);
+    Serial1.print("Error2: ");
+    Serial1.println(angleError(targetElbow, sensor2Offset, motor2Config.reduction, Wire1), 1);
+    delay(500);
     Serial1.println();
     motorsDisableXY();
 }

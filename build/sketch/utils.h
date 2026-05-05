@@ -29,3 +29,4 @@ void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime,
 float normalizeAngle(float angle);
 
 float calculateJointAngle(float target, float offset, float reduction);
+float angleError(float target, float offset, float reduction, TwoWire &wire);

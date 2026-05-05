@@ -71,6 +71,11 @@ float normalizeAngle(float angle) {
     return angle;
 }
 
+// Calcula la posicion estimada del sensor posicion teorica
+// osea por ejemplo:
+// targetAngle es 30° entonces
+// 30°*reduccion el motor da varias vueltas y el sensor queda siempre en un
+// angulo entre 0 y 360 y a ese angulo hay que sumarle el offset del homing
 float calculateJointAngle(float target, float offset, float reduction) {
     float result = (target * reduction) + offset;
 
@@ -80,3 +85,32 @@ float calculateJointAngle(float target, float offset, float reduction) {
 
     return finalAngle;
 }
+
+float angleError(float target, float offset, float reduction, TwoWire &wire) {
+    float estimated = calculateJointAngle(target, offset, reduction);
+    float actual = rawToDegrees(sensorReadAngle(wire));
+
+    float error = actual - estimated;
+
+    // normalizar a rango [-180, 180]
+    while (error > 180.0f)
+        error -= 360.0f;
+    while (error < -180.0f)
+        error += 360.0f;
+
+    return error;
+}
+
+// float angleError(float target, float offset, float reduction, TwoWire &wire) {
+//     float estimated = calculateJointAngle(target, offset, reduction);
+//     float actual = sensorCorrectedAngle(wire, offset);
+
+//     float error = actual - estimated;
+
+//     while (error > 180.0f)
+//         error -= 360.0f;
+//     while (error < -180.0f)
+//         error += 360.0f;
+
+//     return error;
+// }
