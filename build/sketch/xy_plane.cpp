@@ -70,10 +70,10 @@ void printError() {
 
     delay(100);
     Serial1.print("Error1: ");
-    Serial1.println(angleError(targetShoulder, sensor1Offset, motor1Config.reduction, Wire));
+    Serial1.println(angleError(targetShoulder, sensor1Offset, motor1Config.reduction, Wire), 1);
     delay(100);
     Serial1.print("Error2: ");
-    Serial1.println(angleError(targetElbow, sensor2Offset, motor2Config.reduction, Wire1));
+    Serial1.println(angleError(targetElbow, sensor2Offset, motor2Config.reduction, Wire1), 1);
     delay(500);
     Serial1.println();
     motorsDisableXY();
