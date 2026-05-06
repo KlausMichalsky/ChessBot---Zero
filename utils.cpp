@@ -100,17 +100,3 @@ float angleError(float target, float offset, float reduction, TwoWire &wire) {
 
     return error;
 }
-
-// float angleError(float target, float offset, float reduction, TwoWire &wire) {
-//     float estimated = calculateJointAngle(target, offset, reduction);
-//     float actual = sensorCorrectedAngle(wire, offset);
-
-//     float error = actual - estimated;
-
-//     while (error > 180.0f)
-//         error -= 360.0f;
-//     while (error < -180.0f)
-//         error += 360.0f;
-
-//     return error;
-// }

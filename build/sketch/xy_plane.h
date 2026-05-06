@@ -31,6 +31,6 @@ struct MotorAngles {
 
 MotorAngles readXYAngles();
 void moveToAngles(float targetShoulder, float targetElbow);
-void moveToAnglesFeedBack(float targetShoulderAngle, float targetElbowAngle);
+void moveFeedback(float errorShoulder, float errorElbow);
 void updateXY();
 bool xyIsMoving();

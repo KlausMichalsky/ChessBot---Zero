@@ -17,6 +17,8 @@
 static bool xyMoving = false;
 static float targetShoulder = 0;
 static float targetElbow = 0;
+static float errorShoulder = 0;
+static float errorElbow = 0;
 
 // =============================================================
 // LECTURA REAL DE SENSORES
@@ -32,7 +34,7 @@ bool xyIsMoving() {
 }
 
 // =============================================================
-// MOVE SIMPLE (SIN FEEDBACK)
+// MOVER SIMPLE (SIN FEEDBACK)
 // =============================================================
 void moveToAngles(float shoulder, float elbow) {
     if (xyMoving)
@@ -53,6 +55,27 @@ void moveToAngles(float shoulder, float elbow) {
 }
 
 // =============================================================
+// CORREGIR ERROR (MOVIMIENTO DE FEEDBACK)
+// =============================================================
+void moveFeedback(float errorShoulder, float errorElbow) {
+    motorsEnableXY();
+
+    errorShoulder = angleError(targetShoulder, sensor1Offset, motor1Config.reduction, Wire);
+    errorElbow = angleError(targetElbow, sensor2Offset, motor2Config.reduction, Wire1);
+
+    Serial1.print("errorShoulder: ");
+    Serial1.println(errorShoulder, 1);
+    Serial1.print("errorElbow: ");
+    Serial1.println(errorElbow, 1);
+
+    long sTarget = motor1.currentPosition() + angleToStep(errorShoulder, MotorID::J1);
+    long eTarget = motor2.currentPosition() + angleToStep(errorElbow, MotorID::J2);
+
+    motor1.moveTo(sTarget);
+    motor2.moveTo(eTarget);
+}
+
+// =============================================================
 // PRINT ERROR (SOLO DIAGNÓSTICO)
 // =============================================================
 void printError() {
@@ -70,12 +93,17 @@ void printError() {
 
     delay(100);
     Serial1.print("Error1: ");
-    Serial1.println(angleError(targetShoulder, sensor1Offset, motor1Config.reduction, Wire));
+    Serial1.println(angleError(targetShoulder, sensor1Offset, motor1Config.reduction, Wire), 1);
     delay(100);
     Serial1.print("Error2: ");
-    Serial1.println(angleError(targetElbow, sensor2Offset, motor2Config.reduction, Wire1));
+    Serial1.println(angleError(targetElbow, sensor2Offset, motor2Config.reduction, Wire1), 1);
     delay(500);
     Serial1.println();
+
+    delay(2000);
+
+    moveFeedback(errorShoulder, errorElbow);
+
     motorsDisableXY();
 }
 
