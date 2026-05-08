@@ -23,13 +23,14 @@
 #include "sensors.h"
 #include "utils.h"
 
+// -----------------------------------------------------------------------
 // SETUP
 // -----------------------------------------------------------------------
-#line 27 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 28 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\ChessBot---Zero.ino"
 void setup();
-#line 43 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 45 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\ChessBot---Zero.ino"
 void loop();
-#line 27 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 28 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\ChessBot---Zero.ino"
 void setup() {
     communicationInit();
     coreInit();
@@ -44,6 +45,7 @@ void setup() {
     pinMode(LED, OUTPUT);
 }
 
+// -----------------------------------------------------------------------
 // LOOP
 // -----------------------------------------------------------------------
 void loop() {

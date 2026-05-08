@@ -20,14 +20,9 @@
 #include "utils.h"
 #include "xy_plane.h"
 
-// FLAGS Y VARIABLES GLOBALES
-// -----------------------------------------------------------------------
-bool dynamicAngle1 = false;
-bool dynamicAngle2 = false;
-
 // esta funcion esta en
-// case HomeAllState::DONE:
-// case Command::MOVE:
+// case core.cpp -> coreHomeAll() -> HomeAllState::DONE:
+// case command.cpp -> Command::MOVE:
 void showDebug() {
     Serial1.print("HOMING OFFSET ANGLE1: ");
     Serial1.println(sensor1Offset, 1);
@@ -94,16 +89,6 @@ void coreHomeSingleMotor() {
 }
 
 // -----------------------------------------------------------------------
-// ⚠️ Solo para pruebas de lectura de angulo continuo
-// -> El envio continuo bloquea movimiento de motores
-void coreStreamAngles() {
-    if (dynamicAngle1)
-        sensorStreamAngle(Wire, lastSentAngle_1, lastSendTime_1);
-    if (dynamicAngle2)
-        sensorStreamAngle(Wire1, lastSentAngle_2, lastSendTime_2);
-}
-
-// -----------------------------------------------------------------------
 void coreHomeAll() {
     // Ejecutar homings normalmente
     switch (homeAllState) {
@@ -154,7 +139,7 @@ void coreHomeAll() {
         case HomeAllState::DONE:
             homeAllState = HomeAllState::IDLE;
 
-            showDebug();
+            showDebug(); // 👀⁉️
 
             break;
 

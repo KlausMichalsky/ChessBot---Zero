@@ -68,8 +68,8 @@ void moveFeedback(float errorShoulder, float errorElbow) {
     Serial1.print("errorElbow: ");
     Serial1.println(errorElbow, 1);
 
-    long sTarget = motor1.currentPosition() + angleToStep(errorShoulder, MotorID::J1);
-    long eTarget = motor2.currentPosition() + angleToStep(errorElbow, MotorID::J2);
+    long sTarget = motor1.currentPosition() + motor1Config.reduction * angleToStep(errorShoulder, MotorID::J1);
+    long eTarget = motor2.currentPosition() + motor2Config.reduction * angleToStep(errorElbow, MotorID::J2);
 
     motor1.moveTo(sTarget);
     motor2.moveTo(eTarget);

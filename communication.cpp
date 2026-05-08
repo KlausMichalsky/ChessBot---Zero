@@ -16,8 +16,9 @@
 #include "communication.h"
 #include "config.h"
 
+// -----------------------------------------------------------------------
 // CONFIGURACIÓN DE DEPURACIÓN UART
-// =======================================================================
+// -----------------------------------------------------------------------
 void debug(const String &msg) {
 #if DEBUG_UART
     Serial1.println("Comando recibido: " + msg);

@@ -25,6 +25,7 @@
 #include "utils.h"
 #include "xy_plane.h"
 
+// -----------------------------------------------------------------------
 // VARIABLES EXTERNAS
 // -----------------------------------------------------------------------
 extern HomingXY motor1Homing;
@@ -34,12 +35,14 @@ extern bool dynamicAngle1;
 extern bool dynamicAngle2;
 extern bool homeAllActive;
 
+// -----------------------------------------------------------------------
 // COMPROBACIÓN DE COMANDOS DISPONIBLES
 // -----------------------------------------------------------------------
 bool commandAvailable() {
     return Serial1.available();
 }
 
+// -----------------------------------------------------------------------
 // MANDAR RESPUESTA DE STATUS DE TODOS LOS MOTORES Y SENSORES
 // -----------------------------------------------------------------------
 void commandSendStatusReport() {
@@ -51,6 +54,7 @@ void commandSendStatusReport() {
     Serial1.print(report);
 }
 
+// -----------------------------------------------------------------------
 // LECTURA DE COMANDOS
 // -----------------------------------------------------------------------
 String readCommand() {
@@ -69,6 +73,7 @@ String readCommand() {
     return ""; // no hay comando completo todavía
 }
 
+// -----------------------------------------------------------------------
 // MAPEAR STRING a enum class Command
 // -----------------------------------------------------------------------
 Command parseCommand(const String &cmd) {
@@ -86,20 +91,15 @@ Command parseCommand(const String &cmd) {
         return Command::HOME_ALL;
     else if (cmd == "ANGLE1")
         return Command::ANGLE1;
-    else if (cmd == "ANGLE1-STREAM")
-        return Command::ANGLE1_STREAM;
     else if (cmd == "ANGLE2")
         return Command::ANGLE2;
-    else if (cmd == "ANGLE2-STREAM")
-        return Command::ANGLE2_STREAM;
-    else if (cmd == "STOP-STREAM")
-        return Command::STOP_STREAM;
     else if (cmd == "PICK")
         return Command::PICK;
     else if (cmd == "PLACE")
         return Command::PLACE;
-    else if (cmd.startsWith("MOVE_FEEDBACK"))
-        return Command::MOVE_FEEDBACK; // ‼️Este va antes de MOVE, en processCommand() se usa startsWith
+    // ⚠️ Este va antes de MOVE, en processCommand() se usa startsWith
+    // else if (cmd.startsWith("MOVE_FEEDBACK"))
+    //     return Command::MOVE_FEEDBACK;
     else if (cmd.startsWith("MOVE"))
         return Command::MOVE;
     else if (cmd == "SHOW-COMMANDS")
@@ -108,6 +108,7 @@ Command parseCommand(const String &cmd) {
         return Command::UNKNOWN;
 }
 
+// -----------------------------------------------------------------------
 // PROCESAMIENTO DE COMANDOS
 // -----------------------------------------------------------------------
 void processCommand(const String &cmdStr) {
@@ -161,17 +162,9 @@ void processCommand(const String &cmdStr) {
             sensorSendAngle(Wire); // Leer y enviar ángulo del primer sensor
             break;
 
-        case Command::ANGLE1_STREAM:
-            dynamicAngle1 = true; // Activar lectura continua
-            break;
-
         case Command::ANGLE2:
             Serial1.print("ANGLE2: ");
             sensorSendAngle(Wire1); // Leer y enviar ángulo del segundo sensor
-            break;
-
-        case Command::ANGLE2_STREAM:
-            dynamicAngle2 = true; // Activar lectura continua
             break;
 
         case Command::PICK:
@@ -183,11 +176,6 @@ void processCommand(const String &cmdStr) {
         case Command::PLACE:
             Serial1.println("PLACING PIECE!");
             zPlace();
-            break;
-
-        case Command::STOP_STREAM:
-            dynamicAngle1 = false;
-            dynamicAngle2 = false;
             break;
 
         case Command::MOVE: {
@@ -211,7 +199,7 @@ void processCommand(const String &cmdStr) {
 
             moveToAngles(targetShoulderAngle, targetElbowAngle);
 
-            showDebug();
+            showDebug(); // 👀⁉️
 
             break;
         }

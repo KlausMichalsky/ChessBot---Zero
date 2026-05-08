@@ -34,14 +34,10 @@ def main_loop():
         "HOME3\n"           # Homing del motor3 + status
         "HOME-ALL\n"        # Homing de todos los motores 1-2-3 + status
         "ANGLE1\n"          # Muestra el angulo original del sensor1
-        "ANGLE1-STREAM\n"   # Muestra el angulo original del sensor1 continuamente
         "ANGLE2\n"          # Muestra el angulo original del sensor2
-        "ANGLE2-STREAM\n"   # Muestra el angulo original del sensor2 continuamente
-        "STOP-STREAM\n"     # Detiene la muestra continua del angulo
         "PICK\n"            # Mueve Z hacia abajo, agarra pieza y sube
         "PLACE\n"           # Mueve Z hacia abajo, suelta pieza y sube
         "MOVE\n"            # Mueve motores 1 y 2 a angulos ingresados
-        "MOVE-FEEDBACK\n"   # Mueve motores 1 y 2 a angulos ingresados y corrige error
                             # usando el AS5600
         "SHOW-COMMANDS\n"
     )
@@ -93,16 +89,16 @@ def keyboard_input():
             commands.send_command(f"MOVE {float(shoulder)} {float(elbow)}")
             return  # 🔥 IMPORTANTE
 
-        # 👉 (si luego reactivás feedback, lo ponés aquí)
-        elif cmd == "MOVE-FEEDBACK":
-            shoulder = input("Enter the target angle for the shoulder: ").strip()
-            print(f"Target angle for the shoulder: {shoulder}")
+        # # 👉 (si luego reactivás feedback, lo ponés aquí)
+        # elif cmd == "MOVE_FEEDBACK":
+        #     shoulder = input("Enter the target angle for the shoulder: ").strip()
+        #     print(f"Target angle for the shoulder: {shoulder}")
 
-            elbow = input("Enter the target angle for the elbow: ").strip()
-            print(f"Target angle for the elbow: {elbow}")
+        #     elbow = input("Enter the target angle for the elbow: ").strip()
+        #     print(f"Target angle for the elbow: {elbow}")
 
-            commands.send_command(f"MOVE_FEEDBACK {float(shoulder)} {float(elbow)}")
-            return  # 🔥 IMPORTANTE
+        #     commands.send_command(f"MOVE_FEEDBACK {float(shoulder)} {float(elbow)}")
+        #     return  # 🔥 IMPORTANTE
 
         # 🔥 TODOS LOS DEMÁS COMANDOS SE MANDAN NORMAL
         commands.send_command(cmd)
@@ -120,20 +116,16 @@ def keyboard_input():
             print(
                 "Comandos disponibles:\n"
                 "ANGLE1\n"
-                "ANGLE1-STREAM\n"
                 "ANGLE2\n"
-                "ANGLE2-STREAM\n"
                 "HOME1\n"
                 "HOME2\n"
                 "HOME3\n"
                 "HOME-ALL\n"
                 "RESET\n"
                 "STATUS\n"
-                "STOP-STREAM\n"
                 "PICK\n"
                 "PLACE\n"
                 "MOVE\n"
-                "MOVE-FEEDBACK\n"
                 "SHOW-COMMANDS\n"
             )
 
