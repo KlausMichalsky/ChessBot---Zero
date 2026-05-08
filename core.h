@@ -25,5 +25,4 @@ void showDebug();
 void coreInit();
 void coreHomeAll();
 void coreHomeSingleMotor();
-void coreStreamAngles();
 void coreUpdate();
