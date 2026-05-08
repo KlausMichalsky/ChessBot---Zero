@@ -33,6 +33,6 @@ extern float sensor2Offset;
 void sensorsInit();
 uint16_t sensorReadAngle(TwoWire &wire);
 void sensorStreamAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastSendTime);
-float sensorAngleDegrees(TwoWire &wire);
+void sensorSendAngle(TwoWire &wire);
 float sensorHomingOffset(TwoWire &wire);
 float sensorCorrectedAngle(TwoWire &wire, float offset);

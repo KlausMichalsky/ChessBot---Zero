@@ -51,16 +51,16 @@ float round1Decimal(float value) {
 // Filtra y envía un valor por UART solo si cambia suficiente y respeta intervalo
 // ⚠️ Solo para pruebas de lectura de angulo continuo
 // -> El envio continuo bloquea movimiento de motores
-void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime,
-                       float delta, unsigned long interval, HardwareSerial &uart) {
-    unsigned long now = millis();
-    if (abs(value - lastValue) >= delta && now - lastTime >= interval) {
-        uart.print(value, 1); // enviar valor redondeado
-        uart.print("\n");
-        lastValue = value;
-        lastTime = now;
-    }
-}
+// void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime,
+//                        float delta, unsigned long interval, HardwareSerial &uart) {
+//     unsigned long now = millis();
+//     if (abs(value - lastValue) >= delta && now - lastTime >= interval) {
+//         uart.print(value, 1); // enviar valor redondeado
+//         uart.print("\n");
+//         lastValue = value;
+//         lastTime = now;
+//     }
+// }
 
 // Normaliza ángulos entre -180 y +180
 // se aplica al error para evitar el wrap 0°/360°

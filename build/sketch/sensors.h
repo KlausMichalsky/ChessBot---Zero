@@ -31,10 +31,6 @@ extern unsigned long lastSendTime_2;
 extern float sensor1Offset;
 extern float sensor2Offset;
 
-// Ángulos ya corregidos con el offset
-extern float sensor1Angle;
-extern float sensor2Angle;
-
 void sensorsInit();
 uint16_t sensorReadAngle(TwoWire &wire);
 void sensorStreamAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastSendTime);

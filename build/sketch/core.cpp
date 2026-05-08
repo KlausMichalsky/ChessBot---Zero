@@ -24,7 +24,7 @@
 // esta funcion esta en
 // case core.cpp -> coreHomeAll() -> HomeAllState::DONE:
 // case command.cpp -> Command::MOVE:
-void showDebug() {
+void printDebugHoming() {
     Serial1.print("HOMING OFFSET ANGLE1: ");
     Serial1.println(sensor1Offset, 1);
     Serial1.print("HOMING OFFSET ANGLE2: ");
@@ -140,7 +140,7 @@ void coreHomeAll() {
         case HomeAllState::DONE:
             homeAllState = HomeAllState::IDLE;
 
-            showDebug(); // 👀⁉️
+            printDebugHoming(); // 👀⁉️
 
             break;
 

@@ -43,7 +43,6 @@ void sensorsInit() {
     Wire1.begin();
 }
 
-// Lectura de angulos valores crudos
 // TwoWire → le decimos “la función va a recibir un objeto de tipo TwoWire”.
 // &wire → le decimos “pasalo por referencia, no por copia”.
 uint16_t sensorReadAngle(TwoWire &wire) {
@@ -59,13 +58,6 @@ uint16_t sensorReadAngle(TwoWire &wire) {
     uint8_t low = wire.read();
 
     return ((high & 0x0F) << 8) | low;
-}
-
-// Lectura del angulo en grados
-float sensorAngleDegrees(TwoWire &wire) {
-    uint16_t rawAngle = sensorReadAngle(wire); // Leer sensor AS5600
-    float degrees = rawToDegrees(rawAngle);    // Convertir a grados
-    return degrees
 }
 
 // CALCULO DE OFFSET PARA CODIFICADOR AS5600
@@ -102,4 +94,13 @@ float sensorCorrectedAngle(TwoWire &wire, float offset) {
     if (angle < 0)
         angle += 360;
     return angle;
+}
+
+// ⚠️ Manda angulo en grados al Serial solo para DEBUG 👀⁉️
+void sensorSendAngle(TwoWire &wire) {
+    uint16_t rawAngle = sensorReadAngle(wire); // Leer sensor AS5600
+    float degrees = rawToDegrees(rawAngle);    // Convertir a grados
+    // degrees = round1Decimal(degrees);          // Redondear a 1 decimal
+    Serial1.print(degrees, 1); // Asegurar envio de solo 1 decimal
+    Serial1.print("\n");
 }

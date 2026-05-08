@@ -31,8 +31,8 @@
 extern HomingXY motor1Homing;
 extern HomingXY motor2Homing;
 extern HomingZ motor3Homing;
-extern bool dynamicAngle1;
-extern bool dynamicAngle2;
+// extern bool dynamicAngle1;
+// extern bool dynamicAngle2;
 extern bool homeAllActive;
 
 // -----------------------------------------------------------------------
@@ -199,7 +199,7 @@ void processCommand(const String &cmdStr) {
 
             moveToAngles(targetShoulderAngle, targetElbowAngle);
 
-            showDebug(); // 👀⁉️
+            printDebugHoming(); // 👀⁉️
 
             break;
         }

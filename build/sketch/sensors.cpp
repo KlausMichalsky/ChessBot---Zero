@@ -29,9 +29,6 @@ float lastSentAngle_2 = -1000.0f;
 float sensor1Offset = 0;
 float sensor2Offset = 0;
 
-// float sensor1Angle = 0;
-// float sensor2Angle = 0;
-
 // API PÚBLICA DE SENSORES
 // -----------------------------------------------------------------------
 void sensorsInit() {
@@ -62,24 +59,6 @@ uint16_t sensorReadAngle(TwoWire &wire) {
     uint8_t low = wire.read();
 
     return ((high & 0x0F) << 8) | low;
-}
-
-// ⚠️ Solo para pruebas de lectura de angulo
-void sensorSendAngle(TwoWire &wire) {
-    uint16_t rawAngle = sensorReadAngle(wire); // Leer sensor AS5600
-    float degrees = rawToDegrees(rawAngle);    // Convertir a grados
-    // degrees = round1Decimal(degrees);          // Redondear a 1 decimal
-    Serial1.print(degrees, 1); // Asegurar envio de solo 1 decimal
-    Serial1.print("\n");
-}
-
-// ⚠️ Solo para pruebas de lectura de angulo continuo
-// -> El envio continuo bloquea movimiento de motores
-void sensorStreamAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastSendTime) {
-    uint16_t rawAngle = sensorReadAngle(wire);                                 // Leer sensor AS5600
-    float degrees = rawToDegrees(rawAngle);                                    // Convertir a grados
-    degrees = round1Decimal(degrees);                                          // Redondear a 1 decimal
-    sendFilteredFloat(degrees, lastSentAngle, lastSendTime, 0.5, 33, Serial1); // Enviar angulo filtrado por UART
 }
 
 // CALCULO DE OFFSET PARA CODIFICADOR AS5600
@@ -116,4 +95,13 @@ float sensorCorrectedAngle(TwoWire &wire, float offset) {
     if (angle < 0)
         angle += 360;
     return angle;
+}
+
+// ⚠️ Manda angulo en grados al Serial solo para DEBUG 👀⁉️
+void sensorSendAngle(TwoWire &wire) {
+    uint16_t rawAngle = sensorReadAngle(wire); // Leer sensor AS5600
+    float degrees = rawToDegrees(rawAngle);    // Convertir a grados
+    // degrees = round1Decimal(degrees);          // Redondear a 1 decimal
+    Serial1.print(degrees, 1); // Asegurar envio de solo 1 decimal
+    Serial1.print("\n");
 }
