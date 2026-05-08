@@ -24,10 +24,12 @@
 // case core.cpp -> coreHomeAll() -> HomeAllState::DONE:
 // case command.cpp -> Command::MOVE:
 void printDebugHoming() {
-    Serial1.print("HOMING OFFSET ANGLE1: ");
+    Serial1.print("Homing offset1: ");
     Serial1.println(sensor1Offset, 1);
-    Serial1.print("HOMING OFFSET ANGLE2: ");
+
+    Serial1.print("Homing offset2: ");
     Serial1.println(sensor2Offset, 1);
+
     Serial1.println();
 }
 
@@ -47,9 +49,8 @@ void coreUpdate() {
         coreHomeSingleMotor();
         return;
     }
-    updateXY();
-
-    // Otros procesos...
+    // updateSensors(); // lento pero separado
+    updateXY(); // rápido (solo motores)
 }
 
 // -----------------------------------------------------------------------

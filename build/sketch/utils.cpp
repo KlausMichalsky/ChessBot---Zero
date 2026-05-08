@@ -89,7 +89,7 @@ float calculateJointAngle(float target, float offset, float reduction) {
 
 float angleError(float target, float offset, float reduction, TwoWire &wire) {
     float estimated = calculateJointAngle(target, offset, reduction);
-    float actual = rawToDegrees(sensorReadAngle(wire));
+    float actual = rawToDegrees(sensorReadRawAngle(wire));
 
     float error = actual - estimated;
 

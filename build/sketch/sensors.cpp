@@ -18,19 +18,21 @@
 #include "sensors.h"
 #include "utils.h"
 
-// VARIABLES INTERNAS DEL MÓDULO ❌ Mover estas variables a core❓
-// -----------------------------------------------------------------------
-// -1000 es solo un valor de “inicio imposible” para asegurar que el primer envío siempre se haga
-unsigned long lastSendTime_1 = 0; // Guarda el momento en milisegundos del último envío
-float lastSentAngle_1 = -1000.0f; // Guarda el último ángulo enviado
-unsigned long lastSendTime_2 = 0;
-float lastSentAngle_2 = -1000.0f;
-
+// =============================================================
+// OFFSETS (globales del sistema)
+// =============================================================
 float sensor1Offset = 0;
 float sensor2Offset = 0;
 
-// API PÚBLICA DE SENSORES
-// -----------------------------------------------------------------------
+float motor1Angle = 0;
+float motor2Angle = 0;
+
+float shoulderAngle = 0;
+float elbowAngle = 0;
+
+// =============================================================
+// INIT SENSORES
+// =============================================================
 void sensorsInit() {
     pinMode(HALL_1, INPUT_PULLUP);
     pinMode(HALL_2, INPUT_PULLUP);
@@ -39,14 +41,16 @@ void sensorsInit() {
     Wire.setSDA(AS5600_1_SDA);
     Wire.setSCL(AS5600_1_SCL);
     Wire.begin();
+
     Wire1.setSDA(AS5600_2_SDA);
     Wire1.setSCL(AS5600_2_SCL);
     Wire1.begin();
 }
 
-// TwoWire → le decimos “la función va a recibir un objeto de tipo TwoWire”.
-// &wire → le decimos “pasalo por referencia, no por copia”.
-uint16_t sensorReadAngle(TwoWire &wire) {
+// =============================================================
+// RAW READ
+// =============================================================
+uint16_t sensorReadRawAngle(TwoWire &wire) {
     wire.beginTransmission(AS5600_ADDR);
     wire.write(0x0E);
     wire.endTransmission(false);
@@ -61,47 +65,94 @@ uint16_t sensorReadAngle(TwoWire &wire) {
     return ((high & 0x0F) << 8) | low;
 }
 
-// CALCULO DE OFFSET PARA CODIFICADOR AS5600
-// -----------------------------------------------------------------------
-// Calcula un promedio para reducir el ruido
+// =============================================================
+// HOMING OFFSET (CALIBRACIÓN)
+// =============================================================
 float sensorHomingOffset(TwoWire &wire) {
     const uint8_t samples = 30;
     float sum = 0;
-    float firstAngle = rawToDegrees(sensorReadAngle(wire));
+
+    float firstAngle = rawToDegrees(sensorReadRawAngle(wire));
 
     for (uint8_t i = 0; i < samples; i++) {
-        float angle = rawToDegrees(sensorReadAngle(wire));
+        float angle = rawToDegrees(sensorReadRawAngle(wire));
+
+        // corrección de salto 0/360
         if (fabs(angle - firstAngle) > 180) {
             if (angle < firstAngle)
                 angle += 360;
             else
                 angle -= 360;
         }
+
         sum += angle;
     }
 
     float offset = sum / samples;
+
     if (offset >= 360)
         offset -= 360;
     if (offset < 0)
         offset += 360;
+
     return offset;
 }
 
+// =============================================================
+// CORRECTED ANGLE (0–360)
+// =============================================================
 float sensorCorrectedAngle(TwoWire &wire, float offset) {
-    float angle = rawToDegrees(sensorReadAngle(wire)) - offset;
+    float angle = rawToDegrees(sensorReadRawAngle(wire)) - offset;
+
     if (angle >= 360)
         angle -= 360;
     if (angle < 0)
         angle += 360;
+
     return angle;
 }
 
-// ⚠️ Manda angulo en grados al Serial solo para DEBUG 👀⁉️
-void sensorSendAngle(TwoWire &wire) {
-    uint16_t rawAngle = sensorReadAngle(wire); // Leer sensor AS5600
-    float degrees = rawToDegrees(rawAngle);    // Convertir a grados
-    // degrees = round1Decimal(degrees);          // Redondear a 1 decimal
-    Serial1.print(degrees, 1); // Asegurar envio de solo 1 decimal
-    Serial1.print("\n");
+// =============================================================
+// MULTI TURN (CLAVE DEL SISTEMA)
+// =============================================================
+float sensorMultiTurnAngle(TwoWire &wire, float offset) {
+    static float lastAngle1 = 0;
+    static float lastAngle2 = 0;
+
+    static int turns1 = 0;
+    static int turns2 = 0;
+
+    float angle = sensorCorrectedAngle(wire, offset);
+
+    float *lastAngle;
+    int *turns;
+
+    if (&wire == &Wire) {
+        lastAngle = &lastAngle1;
+        turns = &turns1;
+    } else {
+        lastAngle = &lastAngle2;
+        turns = &turns2;
+    }
+
+    float delta = angle - *lastAngle;
+
+    if (delta > 180)
+        (*turns)--;
+    if (delta < -180)
+        (*turns)++;
+
+    *lastAngle = angle;
+
+    return angle + (*turns) * 360.0f;
+}
+
+void updateSensors() {
+    // 🔥 lectura multivuelta (solo sensores aquí)
+    motor1Angle = sensorMultiTurnAngle(Wire, sensor1Offset);
+    motor2Angle = sensorMultiTurnAngle(Wire1, sensor2Offset);
+
+    // 🔥 conversión a ángulo de brazo (cinemática básica)
+    shoulderAngle = motor1Angle / motor1Config.reduction;
+    elbowAngle = motor2Angle / motor2Config.reduction;
 }

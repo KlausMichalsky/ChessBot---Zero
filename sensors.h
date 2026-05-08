@@ -19,20 +19,15 @@
 #include <Arduino.h>
 #include <Wire.h>
 
-// DECLARACIONES DE VARIABLES GLOBALES (extern -> sin duplicar instancias)
-// -----------------------------------------------------------------------
-extern float lastSentAngle_1;
-extern unsigned long lastSendTime_1;
-extern float lastSentAngle_2;
-extern unsigned long lastSendTime_2;
+extern float motor1Angle;
+extern float motor2Angle;
 
-// Offsets calculados durante homing
-extern float sensor1Offset;
-extern float sensor2Offset;
+extern float shoulderAngle;
+extern float elbowAngle;
 
 void sensorsInit();
-uint16_t sensorReadAngle(TwoWire &wire);
-void sensorStreamAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastSendTime);
-void sensorSendAngle(TwoWire &wire);
+uint16_t sensorReadRawAngle(TwoWire &wire);
 float sensorHomingOffset(TwoWire &wire);
 float sensorCorrectedAngle(TwoWire &wire, float offset);
+float sensorMultiTurnAngle(TwoWire &wire, float offset);
+void updateSensors();

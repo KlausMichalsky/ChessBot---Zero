@@ -74,44 +74,56 @@ def keyboard_input():
 
     # 🔹 2️⃣ Revisar si hay input de teclado sin bloquear
     rlist, _, _ = select.select([sys.stdin], [], [], 0)
+
     if rlist:
         cmd = sys.stdin.readline().strip()
         print(f"Input: {cmd}")
 
-        # 🔥 COMANDOS QUE NECESITAN INPUT EXTRA
+        # 🔥 MOVE
         if cmd == "MOVE":
-            shoulder = input("Enter shoulder-angle: ").strip()
-            print(f"Target shoulder: {shoulder}")
 
-            elbow = input("Enter elbow-angle: ").strip()
-            print(f"Target elbow: {elbow}")
+            while True:
+                try:
+                    shoulder = float(input("Enter shoulder-angle: ").strip())
+                    # print(f"Target shoulder: {shoulder}")
+                    break
+                except ValueError:
+                    print("Invalid value. Enter a valid number.")
 
-            commands.send_command(f"MOVE {float(shoulder)} {float(elbow)}")
-            return  # 🔥 IMPORTANTE
+            while True:
+                try:
+                    elbow = float(input("Enter elbow-angle: ").strip())
+                    # print(f"Target elbow: {elbow}")
+                    break
+                except ValueError:
+                    print("Invalid value. Enter a valid number.")
 
-        # # 👉 (si luego reactivás feedback, lo ponés aquí)
-        # elif cmd == "MOVE_FEEDBACK":
-        #     shoulder = input("Enter the target angle for the shoulder: ").strip()
-        #     print(f"Target angle for the shoulder: {shoulder}")
+            commands.send_command(f"MOVE {shoulder} {elbow}")
+            return
 
-        #     elbow = input("Enter the target angle for the elbow: ").strip()
-        #     print(f"Target angle for the elbow: {elbow}")
+        # 🔥 MOVE_FEEDBACK
+        elif cmd == "MOVE_FEEDBACK":
 
-        #     commands.send_command(f"MOVE_FEEDBACK {float(shoulder)} {float(elbow)}")
-        #     return  # 🔥 IMPORTANTE
+            while True:
+                try:
+                    shoulder = float(input("Enter the target angle for the shoulder: ").strip())
+                    print(f"Target angle for the shoulder: {shoulder}")
+                    break
+                except ValueError:
+                    print("Invalid value. Enter a valid number.")
 
-        # 🔥 TODOS LOS DEMÁS COMANDOS SE MANDAN NORMAL
-        commands.send_command(cmd)
+            while True:
+                try:
+                    elbow = float(input("Enter the target angle for the elbow: ").strip())
+                    print(f"Target angle for the elbow: {elbow}")
+                    break
+                except ValueError:
+                    print("Invalid value. Enter a valid number.")
 
-        # LOGICA LOCAL
-        if cmd == "ANGLE1-STREAM" or cmd == "ANGLE2-STREAM":
-            streaming = True
-            print("\n⚡ Streaming iniciado\n")
+            commands.send_command(f"MOVE_FEEDBACK {shoulder} {elbow}")
+            return
 
-        elif cmd == "STOP-STREAM":
-            streaming = False
-            print("\n⏹ Streaming detenido\n")
-
+        # 🔥 SHOW-COMMANDS
         elif cmd == "SHOW-COMMANDS":
             print(
                 "Comandos disponibles:\n"
@@ -128,6 +140,10 @@ def keyboard_input():
                 "MOVE\n"
                 "SHOW-COMMANDS\n"
             )
+
+        # 🔥 TODOS LOS DEMÁS
+        else:
+            commands.send_command(cmd)
 
     time.sleep_ms(10)
 

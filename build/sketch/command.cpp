@@ -159,12 +159,12 @@ void processCommand(const String &cmdStr) {
 
         case Command::ANGLE1:
             Serial1.print("ANGLE1: ");
-            sensorSendAngle(Wire); // Leer y enviar ángulo del primer sensor
+            Serial1.println(rawToDegrees(sensorReadRawAngle(Wire))); // Leer y enviar ángulo del primer sensor
             break;
 
         case Command::ANGLE2:
             Serial1.print("ANGLE2: ");
-            sensorSendAngle(Wire1); // Leer y enviar ángulo del segundo sensor
+            Serial1.println(rawToDegrees(sensorReadRawAngle(Wire1))); // Leer y enviar ángulo del segundo sensor
             break;
 
         case Command::PICK:
@@ -191,11 +191,11 @@ void processCommand(const String &cmdStr) {
                 break;
             }
 
-            Serial1.print("MOVING Shoulder to: ");
-            Serial1.println(targetShoulderAngle, 2);
+            // Serial1.print("MOVING Shoulder to: ");
+            // Serial1.println(targetShoulderAngle, 2);
 
-            Serial1.print("MOVING Elbow to: ");
-            Serial1.println(targetElbowAngle, 2);
+            // Serial1.print("MOVING Elbow to: ");
+            // Serial1.println(targetElbowAngle, 2);
 
             moveToAngles(targetShoulderAngle, targetElbowAngle);
 
