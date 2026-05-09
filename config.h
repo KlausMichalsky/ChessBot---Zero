@@ -137,6 +137,16 @@ enum class MotorID {
     J2,
     Z
 };
+
+// Maquina de estados para movimiento XY
+enum class MovingStateXY {
+    IDLE,
+    MOVING_TO_TARGET,
+    SETTLING,
+    CORRECTING,
+    CORRECTION_DONE
+};
+
 // ESTRUCTURAS DE CONFIGURACIÓN DE MOTORES
 // -----------------------------------------------------------------------
 struct MotorConfig {

@@ -12,22 +12,30 @@
 #include "xy_plane.h"
 
 // =============================================================
-static bool xyMoving = false;
-static bool correctionDone = false;
-
+// TARGETS
+// =============================================================
 static float targetShoulderAngle = 0;
 static float targetElbowAngle = 0;
 
+static unsigned long settleStart = 0;
+
+// =============================================================
+// STATE MACHINE
+// =============================================================
+MovingStateXY movingStateXY = MovingStateXY::IDLE;
+
+// =============================================================
+// STATUS
 // =============================================================
 bool xyIsMoving() {
-    return xyMoving;
+    return movingStateXY != MovingStateXY::IDLE;
 }
 
 // =============================================================
-// MOVIMIENTO OBJETIVO
+// MOVE TO TARGET
 // =============================================================
 void moveToAngles(float shoulder, float elbow) {
-    if (xyMoving)
+    if (movingStateXY != MovingStateXY::IDLE)
         return;
 
     motorsEnableXY();
@@ -41,53 +49,99 @@ void moveToAngles(float shoulder, float elbow) {
     motor1.moveTo(sSteps);
     motor2.moveTo(eSteps);
 
-    xyMoving = true;
+    movingStateXY = MovingStateXY::MOVING_TO_TARGET;
 }
 
 // =============================================================
-// UPDATE CINEMÁTICA
+// ERROR CORRECTION (UNA SOLA EJECUCIÓN POR CICLO)
 // =============================================================
-void updateXY() {
-    if (!xyMoving)
-        return;
+void correctErrorOnce() {
+    motorsEnableXY();
 
-    bool m1 = motor1.run();
-    bool m2 = motor2.run();
+    float errorShoulder =
+        calculateError(targetShoulderAngle, Wire, motor1Config, sensor1Offset);
 
-    if (!m1 && !m2) { // Cuando termina el movimiento
-        xyMoving = false;
+    float errorElbow =
+        calculateError(targetElbowAngle, Wire1, motor2Config, sensor2Offset);
 
-        float errorShoulder = calculateError(targetShoulderAngle, Wire, motor1Config, sensor1Offset);
-        float errorElbow = calculateError(targetElbowAngle, Wire1, motor2Config, sensor2Offset);
+    bool needsCorrection = false;
 
-        printDebugMove(motor1Angle, motor2Angle);
+    if (fabs(errorShoulder) > 0.5f) {
+        float correctedShoulder =
+            targetShoulderAngle +
+            (motor1Config.invertMotor *
+             motor1Config.invertSensor *
+             errorShoulder / motor1Config.reduction);
 
-        Serial1.print("Error1: ");
-        Serial1.println(errorShoulder, 1);
-        Serial1.print("Error2: ");
-        Serial1.println(errorElbow, 1);
-        Serial1.println();
+        motor1.moveTo(angleToStep(correctedShoulder, MotorID::J1));
 
-        delay(1000);
+        needsCorrection = true;
+    }
 
-        // 🔥 corrección post-move (solo 1 vez)
-        if (!correctionDone) {
-            correctErrorOnce(errorShoulder, errorElbow);
-            correctionDone = true; // 🔥 SOLO UNA VEZ
-        }
+    if (fabs(errorElbow) > 0.5f) {
+        float correctedElbow =
+            targetElbowAngle +
+            (motor2Config.invertMotor *
+             motor2Config.invertSensor *
+             errorElbow / motor2Config.reduction);
 
-        Serial1.print("post-move Real Sensor Angle1: ");
-        Serial1.println(rawToDegrees(sensorReadRawAngle(Wire)), 1);
-        Serial1.print("post-move Real Sensor Angle2: ");
-        Serial1.println(rawToDegrees(sensorReadRawAngle(Wire1)), 1);
-        Serial1.println();
+        motor2.moveTo(angleToStep(correctedElbow, MotorID::J2));
+
+        needsCorrection = true;
+    }
+
+    if (needsCorrection) {
+        movingStateXY = MovingStateXY::CORRECTING;
+    } else {
+        movingStateXY = MovingStateXY::IDLE;
     }
 }
 
+// =============================================================
+// UPDATE STATE MACHINE
+// =============================================================
+void updateXY() {
+    switch (movingStateXY) {
+        case MovingStateXY::IDLE:
+            break;
+
+        case MovingStateXY::MOVING_TO_TARGET:
+            motor1.run();
+            motor2.run();
+            if (motor1.distanceToGo() == 0 &&
+                motor2.distanceToGo() == 0) {
+                settleStart = millis();
+                delay(1000);
+                Serial1.print("Moved to Target");
+                printDebugMove(targetShoulderAngle, targetElbowAngle);
+                movingStateXY = MovingStateXY::SETTLING;
+            }
+            break;
+
+        case MovingStateXY::SETTLING:
+            if (millis() - settleStart > 100) {
+                movingStateXY = MovingStateXY::CORRECTING;
+                correctErrorOnce();
+            }
+            break;
+
+        case MovingStateXY::CORRECTING:
+            motor1.run();
+            motor2.run();
+            if (motor1.distanceToGo() == 0 &&
+                motor2.distanceToGo() == 0) {
+                settleStart = millis();
+                Serial1.print("Correction Done");
+                movingStateXY = MovingStateXY::IDLE;
+            }
+            break;
+    }
+}
+
+// =============================================================
+// DEBUG
+// =============================================================
 void printDebugMove(float motor1Angle, float motor2Angle) {
-    // ----------------------------
-    // PRINT MOTOR 1
-    // ----------------------------
     Serial1.println();
     Serial1.println("-------- MOTOR 1 --------");
 
@@ -100,14 +154,13 @@ void printDebugMove(float motor1Angle, float motor2Angle) {
 
     Serial1.print("HomingOffset: ");
     Serial1.println(sensor1Offset, 1);
+
     Serial1.print("Estimated Sensor Angle: ");
     Serial1.println(sensor1, 1);
+
     Serial1.print("Real Sensor Angle: ");
     Serial1.println(rawToDegrees(sensorReadRawAngle(Wire)), 1);
 
-    // ----------------------------
-    // PRINT MOTOR 2
-    // ----------------------------
     Serial1.println("-------- MOTOR 2 --------");
 
     float sensor2 = estimateSensorAngle(
@@ -119,36 +172,26 @@ void printDebugMove(float motor1Angle, float motor2Angle) {
 
     Serial1.print("HomingOffset: ");
     Serial1.println(sensor2Offset, 1);
+
     Serial1.print("Estimated Sensor Angle: ");
     Serial1.println(round1Decimal(sensor2), 1);
+
     Serial1.print("Real Sensor Angle: ");
     Serial1.println(rawToDegrees(sensorReadRawAngle(Wire1)), 1);
 
     Serial1.println();
-}
 
-void correctErrorOnce(float errorShoulder, float errorElbow) {
-    // 🔥 SHOULDER
-    if (fabs(errorShoulder) > 0.5f) {
-        float correctedShoulder =
-            targetShoulderAngle + errorShoulder;
+    float errorShoulder =
+        calculateError(targetShoulderAngle, Wire, motor1Config, sensor1Offset);
 
-        long sSteps =
-            angleToStep(correctedShoulder, MotorID::J1);
+    float errorElbow =
+        calculateError(targetElbowAngle, Wire1, motor2Config, sensor2Offset);
 
-        motor1.moveTo(sSteps);
-    }
+    Serial1.print("Error1: ");
+    Serial1.println(errorShoulder, 1);
 
-    // 🔥 ELBOW
-    if (fabs(errorElbow) > 0.5f) {
-        float correctedElbow =
-            targetElbowAngle + errorElbow;
+    Serial1.print("Error2: ");
+    Serial1.println(errorElbow, 1);
 
-        long eSteps =
-            angleToStep(correctedElbow, MotorID::J2);
-
-        motor2.moveTo(eSteps);
-    }
-
-    xyMoving = true;
+    Serial1.println();
 }
