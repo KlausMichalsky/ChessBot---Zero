@@ -125,9 +125,6 @@ float estimateSensorAngle(
     float motorAngle = motorDir * targetAngle * reduction;
     // ejemplo motorAngle = 1 * 300 * 9 = 2700°
 
-    Serial1.print("motorAngle: ");
-    Serial1.println(motorAngle);
-
     // 🔥 normalizar vueltas
     // El operador módulo % o fmod() devuelve el “sobrante”
     float rest = fmod(motorAngle, 360.0f);
