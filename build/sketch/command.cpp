@@ -152,9 +152,9 @@ void processCommand(const String &cmdStr) {
 
         case Command::ANGLES:
             Serial1.print("ANGLE1: ");
-            Serial1.println(rawToDegrees(sensorReadRawAngle(Wire)));
+            Serial1.println(rawToDegrees(sensorReadRawAngle(Wire)), 1);
             Serial1.print("ANGLE2: ");
-            Serial1.println(rawToDegrees(sensorReadRawAngle(Wire1)));
+            Serial1.println(rawToDegrees(sensorReadRawAngle(Wire1)), 1);
             Serial1.println();
             break;
 
