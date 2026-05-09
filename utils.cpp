@@ -50,16 +50,16 @@ float round1Decimal(float value) {
 // Filtra y envía un valor por UART solo si cambia suficiente y respeta intervalo
 // ⚠️ Solo para pruebas de lectura de angulo continuo
 // -> El envio continuo bloquea movimiento de motores
-void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime,
-                       float delta, unsigned long interval, HardwareSerial &uart) {
-    unsigned long now = millis();
-    if (abs(value - lastValue) >= delta && now - lastTime >= interval) {
-        uart.print(value, 1); // enviar valor redondeado
-        uart.print("\n");
-        lastValue = value;
-        lastTime = now;
-    }
-}
+// void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime,
+//                        float delta, unsigned long interval, HardwareSerial &uart) {
+//     unsigned long now = millis();
+//     if (abs(value - lastValue) >= delta && now - lastTime >= interval) {
+//         uart.print(value, 1); // enviar valor redondeado
+//         uart.print("\n");
+//         lastValue = value;
+//         lastTime = now;
+//     }
+// }
 
 // Normaliza ángulos entre -180 y +180
 // se aplica al error para evitar el wrap 0°/360°
@@ -88,7 +88,7 @@ float calculateJointAngle(float target, float offset, float reduction) {
 
 float angleError(float target, float offset, float reduction, TwoWire &wire) {
     float estimated = calculateJointAngle(target, offset, reduction);
-    float actual = rawToDegrees(sensorReadAngle(wire));
+    float actual = rawToDegrees(sensorReadRawAngle(wire));
 
     float error = actual - estimated;
 
@@ -100,17 +100,3 @@ float angleError(float target, float offset, float reduction, TwoWire &wire) {
 
     return error;
 }
-
-// float angleError(float target, float offset, float reduction, TwoWire &wire) {
-//     float estimated = calculateJointAngle(target, offset, reduction);
-//     float actual = sensorCorrectedAngle(wire, offset);
-
-//     float error = actual - estimated;
-
-//     while (error > 180.0f)
-//         error -= 360.0f;
-//     while (error < -180.0f)
-//         error += 360.0f;
-
-//     return error;
-// }

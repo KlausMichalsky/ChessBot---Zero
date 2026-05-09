@@ -18,22 +18,18 @@
 #include "sensors.h"
 #include "utils.h"
 
-// VARIABLES INTERNAS DEL MÓDULO ❌ Mover estas variables a core❓
-// -----------------------------------------------------------------------
-// -1000 es solo un valor de “inicio imposible” para asegurar que el primer envío siempre se haga
-unsigned long lastSendTime_1 = 0; // Guarda el momento en milisegundos del último envío
-float lastSentAngle_1 = -1000.0f; // Guarda el último ángulo enviado
-unsigned long lastSendTime_2 = 0;
-float lastSentAngle_2 = -1000.0f;
-
+// =============================================================
+// Variables (globales del sistema)
+// =============================================================
 float sensor1Offset = 0;
 float sensor2Offset = 0;
 
-// float sensor1Angle = 0;
-// float sensor2Angle = 0;
+float motor1Angle = 0;
+float motor2Angle = 0;
 
-// API PÚBLICA DE SENSORES
-// -----------------------------------------------------------------------
+// =============================================================
+// INIT SENSORES
+// =============================================================
 void sensorsInit() {
     pinMode(HALL_1, INPUT_PULLUP);
     pinMode(HALL_2, INPUT_PULLUP);
@@ -42,14 +38,16 @@ void sensorsInit() {
     Wire.setSDA(AS5600_1_SDA);
     Wire.setSCL(AS5600_1_SCL);
     Wire.begin();
+
     Wire1.setSDA(AS5600_2_SDA);
     Wire1.setSCL(AS5600_2_SCL);
     Wire1.begin();
 }
 
-// TwoWire → le decimos “la función va a recibir un objeto de tipo TwoWire”.
-// &wire → le decimos “pasalo por referencia, no por copia”.
-uint16_t sensorReadAngle(TwoWire &wire) {
+// =============================================================
+// RAW READ
+// =============================================================
+uint16_t sensorReadRawAngle(TwoWire &wire) {
     wire.beginTransmission(AS5600_ADDR);
     wire.write(0x0E);
     wire.endTransmission(false);
@@ -64,56 +62,106 @@ uint16_t sensorReadAngle(TwoWire &wire) {
     return ((high & 0x0F) << 8) | low;
 }
 
-// ⚠️ Solo para pruebas de lectura de angulo
-void sensorSendAngle(TwoWire &wire) {
-    uint16_t rawAngle = sensorReadAngle(wire); // Leer sensor AS5600
-    float degrees = rawToDegrees(rawAngle);    // Convertir a grados
-    // degrees = round1Decimal(degrees);          // Redondear a 1 decimal
-    Serial1.print(degrees, 1); // Asegurar envio de solo 1 decimal
-    Serial1.print("\n");
-}
-
-// ⚠️ Solo para pruebas de lectura de angulo continuo
-// -> El envio continuo bloquea movimiento de motores
-void sensorStreamAngle(TwoWire &wire, float &lastSentAngle, unsigned long &lastSendTime) {
-    uint16_t rawAngle = sensorReadAngle(wire);                                 // Leer sensor AS5600
-    float degrees = rawToDegrees(rawAngle);                                    // Convertir a grados
-    degrees = round1Decimal(degrees);                                          // Redondear a 1 decimal
-    sendFilteredFloat(degrees, lastSentAngle, lastSendTime, 0.5, 33, Serial1); // Enviar angulo filtrado por UART
-}
-
-// CALCULO DE OFFSET PARA CODIFICADOR AS5600
-// -----------------------------------------------------------------------
-// Calcula un promedio para reducir el ruido
+// =============================================================
+// HOMING OFFSET (CALIBRACIÓN)
+// =============================================================
 float sensorHomingOffset(TwoWire &wire) {
     const uint8_t samples = 30;
     float sum = 0;
-    float firstAngle = rawToDegrees(sensorReadAngle(wire));
+
+    float firstAngle = rawToDegrees(sensorReadRawAngle(wire));
 
     for (uint8_t i = 0; i < samples; i++) {
-        float angle = rawToDegrees(sensorReadAngle(wire));
+        float angle = rawToDegrees(sensorReadRawAngle(wire));
+
+        // corrección de salto 0/360
         if (fabs(angle - firstAngle) > 180) {
             if (angle < firstAngle)
                 angle += 360;
             else
                 angle -= 360;
         }
+
         sum += angle;
     }
 
     float offset = sum / samples;
+
     if (offset >= 360)
         offset -= 360;
     if (offset < 0)
         offset += 360;
+
     return offset;
 }
 
+// =============================================================
+// CORRECTED ANGLE (0–360)
+// =============================================================
 float sensorCorrectedAngle(TwoWire &wire, float offset) {
-    float angle = rawToDegrees(sensorReadAngle(wire)) - offset;
+    float angle = rawToDegrees(sensorReadRawAngle(wire)) - offset;
+
     if (angle >= 360)
         angle -= 360;
     if (angle < 0)
         angle += 360;
+
     return angle;
+}
+
+// Recomendacion para la funcion estimateSensorAngle
+// 👉enum Direction {
+//     CW = 1,
+//     CCW = -1
+// };
+
+float estimateSensorAngle(
+    float targetAngle,
+    float reduction,
+    float homingOffset,
+    bool invertMotor,
+    bool invertSensor) {
+    float motorDir = invertMotor ? -1.0f : 1.0f;
+    float sensorDir = invertSensor ? -1.0f : 1.0f;
+    // ejemplo
+    // si invertMotor = true  -> motorDir = -1
+    // si invertMotor = false -> motorDir =  1
+
+    // 🔥 ángulo motor real
+    float motorAngle = motorDir * targetAngle * reduction;
+    // ejemplo motorAngle = 1 * 90 * 30 = 2700°
+
+    Serial1.print("motorAngle: ");
+    Serial1.println(motorAngle);
+
+    // 🔥 normalizar vueltas
+    // El operador módulo % o fmod() devuelve el “sobrante”
+    float rest = fmod(motorAngle, 360.0f);
+    // ejemplo rest = fmod(2700, 360) = 180
+
+    // Serial1.print("rest: ");
+    // Serial1.println(rest);
+
+    // Convierte negativos a rango positivo
+    if (rest < 0)
+        rest += 360.0f;
+
+    // Serial1.print("fmodRest: ");
+    // Serial1.println(rest);
+
+    // 🔥 reconstrucción sensor
+    float estimatedSensorAngle = sensorDir * rest + homingOffset;
+
+    // Serial1.print("estimatedSensorAngle: ");
+    // Serial1.println(estimatedSensorAngle);
+
+    // 🔥 wrap final verifica si pasó de 360° o quedo negativo
+    estimatedSensorAngle = fmod(estimatedSensorAngle, 360.0f);
+    if (estimatedSensorAngle < 0)
+        estimatedSensorAngle += 360.0f;
+
+    // Serial1.print("fmodEstimatedSensorAngle: ");
+    // Serial1.println(estimatedSensorAngle);
+
+    return estimatedSensorAngle;
 }

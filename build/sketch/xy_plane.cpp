@@ -12,27 +12,18 @@
 #include "xy_plane.h"
 
 // =============================================================
-// FLAGS
-// =============================================================
 static bool xyMoving = false;
-static float targetShoulder = 0;
-static float targetElbow = 0;
 
-// =============================================================
-// LECTURA REAL DE SENSORES
-// =============================================================
-// MotorAngles readXYAngles() {
-// }
+static float targetShoulderAngle = 0;
+static float targetElbowAngle = 0;
 
-// =============================================================
-// ESTADO
 // =============================================================
 bool xyIsMoving() {
     return xyMoving;
 }
 
 // =============================================================
-// MOVE SIMPLE (SIN FEEDBACK)
+// MOVIMIENTO OBJETIVO
 // =============================================================
 void moveToAngles(float shoulder, float elbow) {
     if (xyMoving)
@@ -40,8 +31,8 @@ void moveToAngles(float shoulder, float elbow) {
 
     motorsEnableXY();
 
-    targetShoulder = shoulder;
-    targetElbow = elbow;
+    targetShoulderAngle = shoulder;
+    targetElbowAngle = elbow;
 
     long sSteps = angleToStep(shoulder, MotorID::J1);
     long eSteps = angleToStep(elbow, MotorID::J2);
@@ -53,6 +44,7 @@ void moveToAngles(float shoulder, float elbow) {
 }
 
 // =============================================================
+<<<<<<< HEAD
 // PRINT ERROR (SOLO DIAGNÓSTICO)
 // =============================================================
 void printError() {
@@ -81,6 +73,9 @@ void printError() {
 
 // =============================================================
 // UPDATE LOOP
+=======
+// UPDATE CINEMÁTICA
+>>>>>>> KAYRON⚙️
 // =============================================================
 void updateXY() {
     if (!xyMoving)
@@ -89,11 +84,47 @@ void updateXY() {
     bool m1 = motor1.run();
     bool m2 = motor2.run();
 
-    if (!m1 && !m2) {
+    if (!m1 && !m2) { // Cuando termina el movimiento
         xyMoving = false;
-
-        delay(20); // estabilización mecánica mínima
-
-        printError();
+        printDebugMove(motor1Angle, motor2Angle);
     }
+}
+
+void printDebugMove(float motor1Angle, float motor2Angle) {
+    // ----------------------------
+    // PRINT MOTOR 1
+    // ----------------------------
+    Serial1.println();
+    Serial1.println("-------- MOTOR 1 --------");
+
+    float sensor1 = estimateSensorAngle(
+        targetShoulderAngle,
+        motor1Config.reduction,
+        sensor1Offset,
+        true,
+        false);
+
+    Serial1.print("Estimated Sensor Angle: ");
+    Serial1.println(sensor1);
+    Serial1.print("Real Sensor Angle: ");
+    Serial1.println(rawToDegrees(sensorReadRawAngle(Wire)));
+
+    // ----------------------------
+    // PRINT MOTOR 2
+    // ----------------------------
+    Serial1.println("-------- MOTOR 2 --------");
+
+    float sensor2 = estimateSensorAngle(
+        targetElbowAngle,
+        motor2Config.reduction,
+        sensor2Offset,
+        true,
+        true);
+
+    Serial1.print("Estimated Sensor Angle: ");
+    Serial1.println(sensor2);
+    Serial1.print("Real Sensor Angle: ");
+    Serial1.println(rawToDegrees(sensorReadRawAngle(Wire1)));
+
+    Serial1.println();
 }

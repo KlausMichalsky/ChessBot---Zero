@@ -29,8 +29,6 @@
 static const int8_t CW = 1;   // ClockWise plano XY
 static const int8_t CCW = -1; // Counter-ClockWise plano XY
 static const int8_t dir = 1;  // Dirección inicial eje Z
-extern float sensor1Offset;
-extern float sensor2Offset;
 
 // VARIABLES INTERNAS DEL MODULO
 // -----------------------------------------------------------------------

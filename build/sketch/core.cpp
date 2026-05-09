@@ -21,12 +21,8 @@
 #include "utils.h"
 #include "xy_plane.h"
 
-// FLAGS Y VARIABLES GLOBALES
-// -----------------------------------------------------------------------
-bool dynamicAngle1 = false;
-bool dynamicAngle2 = false;
-
 // esta funcion esta en
+<<<<<<< HEAD
 // case HomeAllState::DONE:
 // case Command::MOVE:
 void showDebug() {
@@ -37,9 +33,17 @@ void showDebug() {
     sensorSendAngle(Wire1); // Leer y enviar ángulo del segundo sensor
 
     Serial1.print("HOMING OFFSET ANGLE1: ");
+=======
+// case core.cpp -> coreHomeAll() -> HomeAllState::DONE:
+// case command.cpp -> Command::MOVE:
+void printDebugHoming() {
+    Serial1.print("Homing offset1: ");
+>>>>>>> KAYRON⚙️
     Serial1.println(sensor1Offset, 1);
-    Serial1.print("HOMING OFFSET ANGLE2: ");
+
+    Serial1.print("Homing offset2: ");
     Serial1.println(sensor2Offset, 1);
+
     Serial1.println();
 }
 
@@ -59,9 +63,8 @@ void coreUpdate() {
         coreHomeSingleMotor();
         return;
     }
-    updateXY();
-
-    // Otros procesos...
+    // updateSensors(); // lento pero separado
+    updateXY(); // rápido (solo motores)
 }
 
 // -----------------------------------------------------------------------
@@ -98,16 +101,6 @@ void coreHomeSingleMotor() {
         homingInitZ(motor3Homing);
         return;
     }
-}
-
-// -----------------------------------------------------------------------
-// ⚠️ Solo para pruebas de lectura de angulo continuo
-// -> El envio continuo bloquea movimiento de motores
-void coreStreamAngles() {
-    if (dynamicAngle1)
-        sensorStreamAngle(Wire, lastSentAngle_1, lastSendTime_1);
-    if (dynamicAngle2)
-        sensorStreamAngle(Wire1, lastSentAngle_2, lastSendTime_2);
 }
 
 // -----------------------------------------------------------------------
@@ -161,7 +154,7 @@ void coreHomeAll() {
         case HomeAllState::DONE:
             homeAllState = HomeAllState::IDLE;
 
-            showDebug();
+            printDebugHoming(); // 👀⁉️
 
             break;
 
