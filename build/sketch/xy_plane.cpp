@@ -64,7 +64,7 @@ void printDebugMove(float motor1Angle, float motor2Angle) {
     // PRINT MOTOR 1
     // ----------------------------
     Serial1.println();
-    Serial1.println("---- MOTOR 1 ----");
+    Serial1.println("-------- MOTOR 1 --------");
 
     float sensor1 = estimateSensorAngle(
         targetShoulderAngle,
@@ -75,13 +75,13 @@ void printDebugMove(float motor1Angle, float motor2Angle) {
 
     Serial1.print("Estimated Sensor Angle: ");
     Serial1.println(sensor1);
-    Serial1.print("Real Angle: ");
+    Serial1.print("Real Sensor Angle: ");
     Serial1.println(rawToDegrees(sensorReadRawAngle(Wire)));
 
     // ----------------------------
     // PRINT MOTOR 2
     // ----------------------------
-    Serial1.println("---- MOTOR 2 ----");
+    Serial1.println("-------- MOTOR 2 --------");
 
     float sensor2 = estimateSensorAngle(
         targetElbowAngle,
@@ -92,9 +92,8 @@ void printDebugMove(float motor1Angle, float motor2Angle) {
 
     Serial1.print("Estimated Sensor Angle: ");
     Serial1.println(sensor2);
-    Serial1.print("Real Angle: ");
+    Serial1.print("Real Sensor Angle: ");
     Serial1.println(rawToDegrees(sensorReadRawAngle(Wire1)));
 
-    Serial1.println("--------------------");
     Serial1.println();
 }
