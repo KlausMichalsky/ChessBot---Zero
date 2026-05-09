@@ -26,7 +26,7 @@ float round1Decimal(float value);
 void sendFilteredFloat(float value, float &lastValue, unsigned long &lastTime,
                        float delta, unsigned long interval, HardwareSerial &uart);
 
-float normalizeAngle(float angle);
+// float normalizeAngle(float angle);
 
-float calculateJointAngle(float target, float offset, float reduction);
-float angleError(float target, float offset, float reduction, TwoWire &wire);
+// float calculateJointAngle(float target, float offset, float reduction);
+// float angleError(float target, float offset, float reduction, TwoWire &wire);

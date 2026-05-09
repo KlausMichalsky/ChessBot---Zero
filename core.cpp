@@ -20,32 +20,6 @@
 #include "utils.h"
 #include "xy_plane.h"
 
-// esta funcion esta en
-<<<<<<< HEAD
-// case HomeAllState::DONE:
-// case Command::MOVE:
-void showDebug() {
-    Serial1.println();
-    Serial1.print("SENSOR ACTUAL ANGLE1: ");
-    sensorSendAngle(Wire); // Leer y enviar ángulo del primer sensor
-    Serial1.print("SENSOR ACTUAL ANGLE2: ");
-    sensorSendAngle(Wire1); // Leer y enviar ángulo del segundo sensor
-
-    Serial1.print("HOMING OFFSET ANGLE1: ");
-=======
-// case core.cpp -> coreHomeAll() -> HomeAllState::DONE:
-// case command.cpp -> Command::MOVE:
-void printDebugHoming() {
-    Serial1.print("Homing offset1: ");
->>>>>>> KAYRON⚙️
-    Serial1.println(sensor1Offset, 1);
-
-    Serial1.print("Homing offset2: ");
-    Serial1.println(sensor2Offset, 1);
-
-    Serial1.println();
-}
-
 // -----------------------------------------------------------------------
 void coreInit() {
     homeAllState = HomeAllState::IDLE;
@@ -62,8 +36,8 @@ void coreUpdate() {
         coreHomeSingleMotor();
         return;
     }
-    // updateSensors(); // lento pero separado
-    updateXY(); // rápido (solo motores)
+
+    updateXY();
 }
 
 // -----------------------------------------------------------------------
@@ -152,8 +126,6 @@ void coreHomeAll() {
 
         case HomeAllState::DONE:
             homeAllState = HomeAllState::IDLE;
-
-            printDebugHoming(); // 👀⁉️
 
             break;
 

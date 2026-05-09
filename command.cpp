@@ -30,8 +30,6 @@
 extern HomingXY motor1Homing;
 extern HomingXY motor2Homing;
 extern HomingZ motor3Homing;
-// extern bool dynamicAngle1;
-// extern bool dynamicAngle2;
 extern bool homeAllActive;
 
 // -----------------------------------------------------------------------
@@ -94,9 +92,6 @@ Command parseCommand(const String &cmd) {
         return Command::PICK;
     else if (cmd == "PLACE")
         return Command::PLACE;
-    // ⚠️ Este va antes de MOVE, en processCommand() se usa startsWith
-    // else if (cmd.startsWith("MOVE_FEEDBACK"))
-    //     return Command::MOVE_FEEDBACK;
     else if (cmd.startsWith("MOVE"))
         return Command::MOVE;
     else if (cmd == "SHOW-COMMANDS")
@@ -156,9 +151,9 @@ void processCommand(const String &cmdStr) {
 
         case Command::ANGLES:
             Serial1.print("ANGLE1: ");
-            Serial1.println(rawToDegrees(sensorReadRawAngle(Wire))); // Leer y enviar ángulo del primer sensor
+            Serial1.println(rawToDegrees(sensorReadRawAngle(Wire)));
             Serial1.print("ANGLE2: ");
-            Serial1.println(rawToDegrees(sensorReadRawAngle(Wire1))); // Leer y enviar ángulo del segundo sensor
+            Serial1.println(rawToDegrees(sensorReadRawAngle(Wire1)));
             Serial1.println();
             break;
 
