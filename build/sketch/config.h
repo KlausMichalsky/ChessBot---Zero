@@ -60,8 +60,16 @@
 
 // NIVELES LÓGICOS DE ENABLE DEL TMC2209
 // -----------------------------------------------------------------------
+// constexpr -> es constante Y además el compilador lo conoce desde compile-time
 constexpr bool ENABLE_ACTIVE = LOW; // Nivel lógico (LOW=ON, HIGH=OFF)
 constexpr bool ENABLE_INACTIVE = HIGH;
+
+// CONFIURACION DE STEPS Y MICROSTEPING
+// -----------------------------------------------------------------------
+constexpr int MOTOR_STEPS = 200;
+constexpr int MOTOR1_MICROSTEPPING = 16;
+constexpr int MOTOR2_MICROSTEPPING = 16;
+constexpr int MOTOR3_MICROSTEPPING = 8;
 
 // TIPOS DE DATOS
 // -----------------------------------------------------------------------
@@ -151,37 +159,45 @@ struct MotorConfig {
 
     // Pines
     int enablePin;
+
+    // Sensor
+    bool invertMotor;
+    bool invertSensor;
 };
 
 // Configuracion de Homing para cada motor, con parámetros mecánicos específicos
 inline const MotorConfig motor1Config = {
-    .microstepping = 16,
+    .microstepping = MOTOR1_MICROSTEPPING,
     .reduction = 9,
-    .stepsPerRevolution = 200,
+    .stepsPerRevolution = MOTOR_STEPS,
     .slowSpeed = 2 * 800.0,
     .fastSpeed = 2 * 1500.0,
-    .steps90Deg = motor1Config.microstepping * motor1Config.stepsPerRevolution / 4,
+    .steps90Deg = MOTOR1_MICROSTEPPING * MOTOR_STEPS / 4,
     .stepsLimit = 0, // no existe para motor1
     .timeout = 15000,
     .baseSpeed = BASE_SPEED,
     .acceleration = 2 * 1000.0,
-    .enablePin = MOTOR1_ENABLE};
+    .enablePin = MOTOR1_ENABLE,
+    .invertMotor = true,
+    .invertSensor = false}; // ‼️ poner sensorDir en motor 2 a false si el sensor gira al revez
 
 inline const MotorConfig motor2Config = {
-    .microstepping = 16,
+    .microstepping = MOTOR2_MICROSTEPPING,
     .reduction = 6,
-    .stepsPerRevolution = 200,
+    .stepsPerRevolution = MOTOR_STEPS,
     .slowSpeed = 2 * 533.0,
     .fastSpeed = 2 * 1000.0,
-    .steps90Deg = motor2Config.microstepping * motor2Config.stepsPerRevolution / 4,
+    .steps90Deg = MOTOR2_MICROSTEPPING * MOTOR_STEPS / 4,
     .stepsLimit = 0, // no existe para motor2
     .timeout = 15000,
     .baseSpeed = BASE_SPEED,
     .acceleration = 2 * 1000.0,
-    .enablePin = MOTOR2_ENABLE};
+    .enablePin = MOTOR2_ENABLE,
+    .invertMotor = true,
+    .invertSensor = true};
 
 inline const MotorConfig motor3Config = {
-    .microstepping = 8,
+    .microstepping = MOTOR3_MICROSTEPPING,
     .reduction = 1,
     .stepsPerRevolution = 200,
     .slowSpeed = 2500.0,
@@ -191,4 +207,6 @@ inline const MotorConfig motor3Config = {
     .timeout = 12000,
     .baseSpeed = BASE_SPEED,
     .acceleration = 1000.0,
-    .enablePin = MOTOR3_ENABLE};
+    .enablePin = MOTOR3_ENABLE,
+    .invertMotor = true,
+    .invertSensor = true};

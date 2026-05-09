@@ -54,7 +54,28 @@ void updateXY() {
 
     if (!m1 && !m2) { // Cuando termina el movimiento
         xyMoving = false;
+
+        float error1 =
+            calculateError(
+                targetShoulderAngle,
+                Wire,
+                motor1Config,
+                sensor1Offset);
+
+        float error2 =
+            calculateError(
+                targetElbowAngle,
+                Wire1,
+                motor2Config,
+                sensor2Offset);
+
         printDebugMove(motor1Angle, motor2Angle);
+
+        Serial1.print("Error1: ");
+        Serial1.println(error1, 1);
+        Serial1.print("Error2: ");
+        Serial1.println(error2, 1);
+        Serial1.println();
     }
 }
 
@@ -73,9 +94,9 @@ void printDebugMove(float motor1Angle, float motor2Angle) {
         false);
 
     Serial1.print("Estimated Sensor Angle: ");
-    Serial1.println(sensor1);
+    Serial1.println(sensor1, 1);
     Serial1.print("Real Sensor Angle: ");
-    Serial1.println(rawToDegrees(sensorReadRawAngle(Wire)));
+    Serial1.println(rawToDegrees(sensorReadRawAngle(Wire)), 1);
 
     // ----------------------------
     // PRINT MOTOR 2
@@ -90,9 +111,37 @@ void printDebugMove(float motor1Angle, float motor2Angle) {
         true);
 
     Serial1.print("Estimated Sensor Angle: ");
-    Serial1.println(sensor2);
+    Serial1.println(round1Decimal(sensor2), 1);
     Serial1.print("Real Sensor Angle: ");
-    Serial1.println(rawToDegrees(sensorReadRawAngle(Wire1)));
+    Serial1.println(rawToDegrees(sensorReadRawAngle(Wire1)), 1);
 
     Serial1.println();
+}
+
+void correctErrorOnce(
+    float targetAngle,
+    TwoWire &wire,
+    const MotorConfig &config,
+    float sensorOffset,
+    MotorID id,
+    AccelStepper &motor) {
+    float error = calculateError(
+        targetAngle,
+        wire,
+        config,
+        sensorOffset);
+
+    if (fabs(error) > 0.5f) {
+        float correctedAngle =
+            targetAngle - error;
+
+        long correctedSteps =
+            angleToStep(correctedAngle, id);
+
+        motor.moveTo(correctedSteps);
+
+        while (motor.distanceToGo() != 0) {
+            motor.run();
+        }
+    }
 }

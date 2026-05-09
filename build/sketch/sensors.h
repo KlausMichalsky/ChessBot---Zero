@@ -33,3 +33,8 @@ float estimateSensorAngle(
     float homingOffset,
     bool invertMotor,
     bool invertSensor);
+float calculateError(
+    float targetAngle,
+    TwoWire &wire,
+    const MotorConfig &config,
+    float sensorOffset);

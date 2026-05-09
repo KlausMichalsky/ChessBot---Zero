@@ -109,7 +109,8 @@ float sensorCorrectedAngle(TwoWire &wire, float offset) {
     return angle;
 }
 
-// Recomendacion para la funcion estimateSensorAngle
+// Calcula el angulo teorico del sensor para el angulo del brazo
+// Toma en cuenta la posicion fisica del sensor
 float estimateSensorAngle(
     float targetAngle,
     float reduction,
@@ -118,7 +119,7 @@ float estimateSensorAngle(
     bool invertSensor) {
     float motorDir = invertMotor ? -1.0f : 1.0f;
     float sensorDir = invertSensor ? -1.0f : 1.0f;
-    // ‼️poner sensorDir en motor 2 a false si el sensor gira al revez
+    // ‼️poner sensorDir en motor 2 en config.h a false si el sensor gira al revez
     // es el caso de Kayron por diseño
 
     // 🔥 ángulo motor real
@@ -143,4 +144,31 @@ float estimateSensorAngle(
         estimatedSensorAngle += 360.0f;
 
     return estimatedSensorAngle;
+}
+
+float calculateError(
+    float targetAngle,
+    TwoWire &wire,
+    const MotorConfig &config,
+    float sensorOffset) {
+    float estimatedSensorAngle = estimateSensorAngle(
+        targetAngle,
+        config.reduction,
+        sensorOffset,
+        config.invertMotor,
+        config.invertSensor);
+    estimatedSensorAngle = round1Decimal(estimatedSensorAngle);
+
+    float realSensorAngle = rawToDegrees(sensorReadRawAngle(wire));
+    realSensorAngle = round1Decimal(realSensorAngle);
+
+    float error = estimatedSensorAngle - realSensorAngle;
+
+    if (error > 180.0f)
+        error -= 360.0f;
+
+    if (error < -180.0f)
+        error += 360.0f;
+
+    return error;
 }
