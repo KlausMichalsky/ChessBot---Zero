@@ -71,16 +71,11 @@ enum class Command {
     HOME1,
     HOME2,
     HOME3,
-    HOME_ALL,
-    ANGLE1,
-    ANGLE1_STREAM,
-    ANGLE2,
-    ANGLE2_STREAM,
+    HOME,
+    ANGLES,
     PICK,
     PLACE,
-    STOP_STREAM,
     MOVE,
-    MOVE_FEEDBACK,
     SHOW_COMMANDS,
     UNKNOWN
 };

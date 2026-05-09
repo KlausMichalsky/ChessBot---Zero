@@ -22,12 +22,13 @@
 extern float motor1Angle;
 extern float motor2Angle;
 
-extern float shoulderAngle;
-extern float elbowAngle;
-
 void sensorsInit();
 uint16_t sensorReadRawAngle(TwoWire &wire);
 float sensorHomingOffset(TwoWire &wire);
 float sensorCorrectedAngle(TwoWire &wire, float offset);
-float sensorMultiTurnAngle(TwoWire &wire, float offset);
-void updateSensors();
+float estimateSensorAngle(
+    float targetAngle,
+    float reduction,
+    float homingOffset,
+    bool invertMotor,
+    bool invertSensor);

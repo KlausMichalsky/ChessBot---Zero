@@ -87,12 +87,10 @@ Command parseCommand(const String &cmd) {
         return Command::HOME2;
     else if (cmd == "HOME3")
         return Command::HOME3;
-    else if (cmd == "HOME-ALL")
-        return Command::HOME_ALL;
-    else if (cmd == "ANGLE1")
-        return Command::ANGLE1;
-    else if (cmd == "ANGLE2")
-        return Command::ANGLE2;
+    else if (cmd == "HOME")
+        return Command::HOME;
+    else if (cmd == "ANGLES")
+        return Command::ANGLES;
     else if (cmd == "PICK")
         return Command::PICK;
     else if (cmd == "PLACE")
@@ -152,19 +150,17 @@ void processCommand(const String &cmdStr) {
             homingStartZ(motor3, motor3Config, motor3Homing, HALL_3);
             break;
 
-        case Command::HOME_ALL:
-            Serial1.println("HOME ALL SEQUENCE STARTED");
+        case Command::HOME:
+            Serial1.println("HOME SEQUENCE STARTED");
             homeAllState = HomeAllState::MOTOR1;
             break;
 
-        case Command::ANGLE1:
+        case Command::ANGLES:
             Serial1.print("ANGLE1: ");
             Serial1.println(rawToDegrees(sensorReadRawAngle(Wire))); // Leer y enviar ángulo del primer sensor
-            break;
-
-        case Command::ANGLE2:
             Serial1.print("ANGLE2: ");
             Serial1.println(rawToDegrees(sensorReadRawAngle(Wire1))); // Leer y enviar ángulo del segundo sensor
+            Serial1.println();
             break;
 
         case Command::PICK:
@@ -191,15 +187,7 @@ void processCommand(const String &cmdStr) {
                 break;
             }
 
-            // Serial1.print("MOVING Shoulder to: ");
-            // Serial1.println(targetShoulderAngle, 2);
-
-            // Serial1.print("MOVING Elbow to: ");
-            // Serial1.println(targetElbowAngle, 2);
-
             moveToAngles(targetShoulderAngle, targetElbowAngle);
-
-            printDebugHoming(); // 👀⁉️
 
             break;
         }

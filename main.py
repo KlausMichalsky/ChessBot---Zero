@@ -32,9 +32,8 @@ def main_loop():
         "HOME1\n"           # Homing del motor1 + status
         "HOME2\n"           # Homing del motor2 + status
         "HOME3\n"           # Homing del motor3 + status
-        "HOME-ALL\n"        # Homing de todos los motores 1-2-3 + status
-        "ANGLE1\n"          # Muestra el angulo original del sensor1
-        "ANGLE2\n"          # Muestra el angulo original del sensor2
+        "HOME\n"        # Homing de todos los motores 1-2-3 + status
+        "ANGLES\n"          # Muestra angulos actuales del sensor 1 y 2
         "PICK\n"            # Mueve Z hacia abajo, agarra pieza y sube
         "PLACE\n"           # Mueve Z hacia abajo, suelta pieza y sube
         "MOVE\n"            # Mueve motores 1 y 2 a angulos ingresados
@@ -127,12 +126,11 @@ def keyboard_input():
         elif cmd == "SHOW-COMMANDS":
             print(
                 "Comandos disponibles:\n"
-                "ANGLE1\n"
-                "ANGLE2\n"
+                "ANGLES\n"
                 "HOME1\n"
                 "HOME2\n"
                 "HOME3\n"
-                "HOME-ALL\n"
+                "HOME\n"
                 "RESET\n"
                 "STATUS\n"
                 "PICK\n"

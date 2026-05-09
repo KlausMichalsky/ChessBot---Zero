@@ -18,16 +18,13 @@
 #include "utils.h"
 
 // =============================================================
-// OFFSETS (globales del sistema)
+// Variables (globales del sistema)
 // =============================================================
 float sensor1Offset = 0;
 float sensor2Offset = 0;
 
 float motor1Angle = 0;
 float motor2Angle = 0;
-
-float shoulderAngle = 0;
-float elbowAngle = 0;
 
 // =============================================================
 // INIT SENSORES
@@ -111,47 +108,59 @@ float sensorCorrectedAngle(TwoWire &wire, float offset) {
     return angle;
 }
 
-// =============================================================
-// MULTI TURN (CLAVE DEL SISTEMA)
-// =============================================================
-float sensorMultiTurnAngle(TwoWire &wire, float offset) {
-    static float lastAngle1 = 0;
-    static float lastAngle2 = 0;
+// Recomendacion para la funcion estimateSensorAngle
+// 👉enum Direction {
+//     CW = 1,
+//     CCW = -1
+// };
 
-    static int turns1 = 0;
-    static int turns2 = 0;
+float estimateSensorAngle(
+    float targetAngle,
+    float reduction,
+    float homingOffset,
+    bool invertMotor,
+    bool invertSensor) {
+    float motorDir = invertMotor ? -1.0f : 1.0f;
+    float sensorDir = invertSensor ? -1.0f : 1.0f;
+    // ejemplo
+    // si invertMotor = true  -> motorDir = -1
+    // si invertMotor = false -> motorDir =  1
 
-    float angle = sensorCorrectedAngle(wire, offset);
+    // 🔥 ángulo motor real
+    float motorAngle = motorDir * targetAngle * reduction;
+    // ejemplo motorAngle = 1 * 90 * 30 = 2700°
 
-    float *lastAngle;
-    int *turns;
+    // Serial1.print("motorAngle: ");
+    // Serial1.println(motorAngle);
 
-    if (&wire == &Wire) {
-        lastAngle = &lastAngle1;
-        turns = &turns1;
-    } else {
-        lastAngle = &lastAngle2;
-        turns = &turns2;
-    }
+    // 🔥 normalizar vueltas
+    // El operador módulo % o fmod() devuelve el “sobrante”
+    float rest = fmod(motorAngle, 360.0f);
+    // ejemplo rest = fmod(2700, 360) = 180
 
-    float delta = angle - *lastAngle;
+    // Serial1.print("rest: ");
+    // Serial1.println(rest);
 
-    if (delta > 180)
-        (*turns)--;
-    if (delta < -180)
-        (*turns)++;
+    // Convierte negativos a rango positivo
+    if (rest < 0)
+        rest += 360.0f;
 
-    *lastAngle = angle;
+    // Serial1.print("fmodRest: ");
+    // Serial1.println(rest);
 
-    return angle + (*turns) * 360.0f;
-}
+    // 🔥 reconstrucción sensor
+    float estimatedSensorAngle = sensorDir * rest + homingOffset;
 
-void updateSensors() {
-    // 🔥 lectura multivuelta (solo sensores aquí)
-    motor1Angle = sensorMultiTurnAngle(Wire, sensor1Offset);
-    motor2Angle = sensorMultiTurnAngle(Wire1, sensor2Offset);
+    // Serial1.print("estimatedSensorAngle: ");
+    // Serial1.println(estimatedSensorAngle);
 
-    // 🔥 conversión a ángulo de brazo (cinemática básica)
-    shoulderAngle = motor1Angle / motor1Config.reduction;
-    elbowAngle = motor2Angle / motor2Config.reduction;
+    // 🔥 wrap final verifica si pasó de 360° o quedo negativo
+    estimatedSensorAngle = fmod(estimatedSensorAngle, 360.0f);
+    if (estimatedSensorAngle < 0)
+        estimatedSensorAngle += 360.0f;
+
+    // Serial1.print("fmodEstimatedSensorAngle: ");
+    // Serial1.println(estimatedSensorAngle);
+
+    return estimatedSensorAngle;
 }
