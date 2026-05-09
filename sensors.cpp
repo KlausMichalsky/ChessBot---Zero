@@ -109,11 +109,6 @@ float sensorCorrectedAngle(TwoWire &wire, float offset) {
 }
 
 // Recomendacion para la funcion estimateSensorAngle
-// 👉enum Direction {
-//     CW = 1,
-//     CCW = -1
-// };
-
 float estimateSensorAngle(
     float targetAngle,
     float reduction,
@@ -122,13 +117,12 @@ float estimateSensorAngle(
     bool invertSensor) {
     float motorDir = invertMotor ? -1.0f : 1.0f;
     float sensorDir = invertSensor ? -1.0f : 1.0f;
-    // ejemplo
-    // si invertMotor = true  -> motorDir = -1
-    // si invertMotor = false -> motorDir =  1
+    // ‼️poner sensorDir en motor 2 a false si el sensor gira al revez
+    // es el caso de Kayron por diseño
 
     // 🔥 ángulo motor real
     float motorAngle = motorDir * targetAngle * reduction;
-    // ejemplo motorAngle = 1 * 90 * 30 = 2700°
+    // ejemplo motorAngle = 1 * 300 * 9 = 2700°
 
     Serial1.print("motorAngle: ");
     Serial1.println(motorAngle);
@@ -138,29 +132,17 @@ float estimateSensorAngle(
     float rest = fmod(motorAngle, 360.0f);
     // ejemplo rest = fmod(2700, 360) = 180
 
-    // Serial1.print("rest: ");
-    // Serial1.println(rest);
-
     // Convierte negativos a rango positivo
     if (rest < 0)
         rest += 360.0f;
 
-    // Serial1.print("fmodRest: ");
-    // Serial1.println(rest);
-
     // 🔥 reconstrucción sensor
     float estimatedSensorAngle = sensorDir * rest + homingOffset;
-
-    // Serial1.print("estimatedSensorAngle: ");
-    // Serial1.println(estimatedSensorAngle);
 
     // 🔥 wrap final verifica si pasó de 360° o quedo negativo
     estimatedSensorAngle = fmod(estimatedSensorAngle, 360.0f);
     if (estimatedSensorAngle < 0)
         estimatedSensorAngle += 360.0f;
-
-    // Serial1.print("fmodEstimatedSensorAngle: ");
-    // Serial1.println(estimatedSensorAngle);
 
     return estimatedSensorAngle;
 }
