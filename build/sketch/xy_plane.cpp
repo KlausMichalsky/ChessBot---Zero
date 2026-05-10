@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/xy_plane.cpp"
+#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\xy_plane.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -47,7 +47,8 @@ void moveToAngles(float shoulder, float elbow) {
     movingStateXY = MovingStateXY::MOVING_TO_TARGET;
 }
 
-// ASIGNACION DEL DESTINO DEL ERROR EN GRADOS (UNA SOLA EJECUCIÓN POR CICLO)
+// ASIGNACION DEL DESTINO DEL ERROR EN GRADOS
+// (UNA SOLA EJECUCIÓN POR CICLO, NO MUEVE TODAVIA)
 // -----------------------------------------------------------------------
 void correctErrorOnce() {
     motorsEnableXY();
@@ -137,6 +138,12 @@ void updateXY() {
             }
             break;
     }
+}
+
+// MOVIMIENTO A HOME DEL PLANO XY
+// (NO ES HOMING SOLO REGRESAR A POSICION CERO DESPUES DEL MOVIMIENTO)
+// -----------------------------------------------------------------------
+void moveToHomeXY() {
 }
 
 // DEBUG

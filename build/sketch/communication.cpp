@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/communication.cpp"
+#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\communication.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -17,7 +17,6 @@
 #include "communication.h"
 #include "config.h"
 
-// -----------------------------------------------------------------------
 // CONFIGURACIÓN DE DEPURACIÓN UART
 // -----------------------------------------------------------------------
 void debug(const String &msg) {

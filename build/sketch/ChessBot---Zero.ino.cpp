@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
+#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\ChessBot---Zero.ino"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -26,11 +26,11 @@
 // -----------------------------------------------------------------------
 // SETUP
 // -----------------------------------------------------------------------
-#line 28 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
+#line 28 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\ChessBot---Zero.ino"
 void setup();
-#line 45 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
+#line 45 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\ChessBot---Zero.ino"
 void loop();
-#line 28 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/ChessBot---Zero.ino"
+#line 28 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\ChessBot---Zero.ino"
 void setup() {
     communicationInit();
     coreInit();

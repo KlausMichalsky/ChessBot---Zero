@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/homing.cpp"
+#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\homing.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -132,7 +132,7 @@ bool homingZhasError(const HomingZ &st) {
     return st.fault;
 }
 
-// MÁQUINA DE ESTADOS DE HOMING
+// MÁQUINA DE ESTADOS DE HOMING DEL PLANO XY
 // -----------------------------------------------------------------------
 void homingStepXY(AccelStepper &motor,
                   const MotorConfig &cfg,
@@ -253,6 +253,8 @@ void homingStepXY(AccelStepper &motor,
     }
 }
 
+// MÁQUINA DE ESTADOS DE HOMING DEL EJE Z
+// -----------------------------------------------------------------------
 void homingStepZ(AccelStepper &motor,
                  const MotorConfig &cfg,
                  HomingZ &st,

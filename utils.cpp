@@ -52,5 +52,6 @@ float round1Decimal(float value) {
 
 // CONVERCION DE CASSILA A ANGULOS (CINEMATICA INVERSA)
 // -----------------------------------------------------------------------
-float ToDegrees(const String &cmdStr) {
-}
+// float ToDegrees(const String &cmdStr) {
+//     return;
+// }

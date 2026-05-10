@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/core.cpp"
+#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\core.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -21,12 +21,14 @@
 #include "utils.h"
 #include "xy_plane.h"
 
+// INICIALIZACION DEL CORE
 // -----------------------------------------------------------------------
 void coreInit() {
     homeAllState = HomeAllState::IDLE;
     homeSingleState = HomeSingleState::IDLE;
 }
 
+// CONTROL DE TAREAS EN EL FLUJO
 // -----------------------------------------------------------------------
 void coreUpdate() {
     if (homeAllState != HomeAllState::IDLE) {
@@ -43,6 +45,7 @@ void coreUpdate() {
     // ...otras tareas
 }
 
+// HOMING PARA MOTORES INDEPENDIENTES
 // -----------------------------------------------------------------------
 void coreHomeSingleMotor() {
     // Motor 1
@@ -79,6 +82,7 @@ void coreHomeSingleMotor() {
     }
 }
 
+// HOMING PARA TODOS LOS MOTORES
 // -----------------------------------------------------------------------
 void coreHomeAll() {
     // Ejecutar homings normalmente

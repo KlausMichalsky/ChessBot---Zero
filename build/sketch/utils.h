@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/utils.h"
+#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\utils.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -22,3 +22,5 @@ long angleToStep(float angle, MotorID id);
 float rawToDegrees(uint16_t rawAngle);
 
 float round1Decimal(float value);
+
+// float ToDegrees(const String &cmdStr);

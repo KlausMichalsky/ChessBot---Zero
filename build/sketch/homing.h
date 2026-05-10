@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/homing.h"
+#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\homing.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -57,8 +57,6 @@ extern HomeSingleState homeSingleState;
 extern MotorID motorToHome;
 extern bool homeAllActive;
 
-// API PÚBLICA PLANO
-// -----------------------------------------------------------------------
 void homingInitXY(HomingXY &st);
 
 void homingInitZ(HomingZ &st);
