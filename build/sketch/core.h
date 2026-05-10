@@ -22,7 +22,6 @@ extern bool dynamicAngle2;
 extern float sensor1Offset;
 extern float sensor2Offset;
 
-void printDebugHoming();
 void coreInit();
 void coreHomeAll();
 void coreHomeSingleMotor();

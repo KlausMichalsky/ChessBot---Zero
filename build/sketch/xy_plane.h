@@ -21,3 +21,4 @@ void moveToAngles(float targetShoulder, float targetElbow);
 void updateXY();
 bool xyIsMoving();
 void printDebugMove(float motor1Angle, float motor2Angle);
+void correctErrorOnce(float errorShoulder, float errorElbow);

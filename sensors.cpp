@@ -108,20 +108,16 @@ float sensorCorrectedAngle(TwoWire &wire, float offset) {
     return angle;
 }
 
-// Recomendacion para la funcion estimateSensorAngle
+// Calcula el angulo teorico del sensor para el angulo del brazo
+// Toma en cuenta la posicion fisica del sensor
 float estimateSensorAngle(
     float targetAngle,
     float reduction,
     float homingOffset,
-    bool invertMotor,
-    bool invertSensor) {
-    float motorDir = invertMotor ? -1.0f : 1.0f;
-    float sensorDir = invertSensor ? -1.0f : 1.0f;
-    // ‼️poner sensorDir en motor 2 a false si el sensor gira al revez
-    // es el caso de Kayron por diseño
-
+    int8_t motorDirection,
+    int8_t sensorDirection) {
     // 🔥 ángulo motor real
-    float motorAngle = motorDir * targetAngle * reduction;
+    float motorAngle = motorDirection * targetAngle * reduction;
     // ejemplo motorAngle = 1 * 300 * 9 = 2700°
 
     // 🔥 normalizar vueltas
@@ -134,7 +130,7 @@ float estimateSensorAngle(
         rest += 360.0f;
 
     // 🔥 reconstrucción sensor
-    float estimatedSensorAngle = sensorDir * rest + homingOffset;
+    float estimatedSensorAngle = sensorDirection * rest + homingOffset;
 
     // 🔥 wrap final verifica si pasó de 360° o quedo negativo
     estimatedSensorAngle = fmod(estimatedSensorAngle, 360.0f);
@@ -142,4 +138,31 @@ float estimateSensorAngle(
         estimatedSensorAngle += 360.0f;
 
     return estimatedSensorAngle;
+}
+
+float calculateError(
+    float targetAngle,
+    TwoWire &wire,
+    const MotorConfig &config,
+    float sensorOffset) {
+    float estimatedSensorAngle = estimateSensorAngle(
+        targetAngle,
+        config.reduction,
+        sensorOffset,
+        config.motorDirection,
+        config.sensorDirection);
+    estimatedSensorAngle = round1Decimal(estimatedSensorAngle);
+
+    float realSensorAngle = rawToDegrees(sensorReadRawAngle(wire));
+    realSensorAngle = round1Decimal(realSensorAngle);
+
+    float error = estimatedSensorAngle - realSensorAngle;
+
+    if (error > 180.0f)
+        error -= 360.0f;
+
+    if (error < -180.0f)
+        error += 360.0f;
+
+    return error;
 }
