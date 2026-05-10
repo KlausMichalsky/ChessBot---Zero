@@ -20,12 +20,14 @@
 #include "utils.h"
 #include "xy_plane.h"
 
+// INICIALIZACION DEL CORE
 // -----------------------------------------------------------------------
 void coreInit() {
     homeAllState = HomeAllState::IDLE;
     homeSingleState = HomeSingleState::IDLE;
 }
 
+// CONTROL DE TAREAS EN EL FLUJO
 // -----------------------------------------------------------------------
 void coreUpdate() {
     if (homeAllState != HomeAllState::IDLE) {
@@ -42,6 +44,7 @@ void coreUpdate() {
     // ...otras tareas
 }
 
+// HOMING PARA MOTORES INDEPENDIENTES
 // -----------------------------------------------------------------------
 void coreHomeSingleMotor() {
     // Motor 1
@@ -78,6 +81,7 @@ void coreHomeSingleMotor() {
     }
 }
 
+// HOMING PARA TODOS LOS MOTORES
 // -----------------------------------------------------------------------
 void coreHomeAll() {
     // Ejecutar homings normalmente

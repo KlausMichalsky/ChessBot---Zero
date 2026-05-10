@@ -46,7 +46,8 @@ void moveToAngles(float shoulder, float elbow) {
     movingStateXY = MovingStateXY::MOVING_TO_TARGET;
 }
 
-// ASIGNACION DEL DESTINO DEL ERROR EN GRADOS (UNA SOLA EJECUCIÓN POR CICLO)
+// ASIGNACION DEL DESTINO DEL ERROR EN GRADOS
+// (UNA SOLA EJECUCIÓN POR CICLO, NO MUEVE TODAVIA)
 // -----------------------------------------------------------------------
 void correctErrorOnce() {
     motorsEnableXY();

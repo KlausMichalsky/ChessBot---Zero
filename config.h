@@ -88,7 +88,7 @@ enum class Command {
     UNKNOWN
 };
 
-// Estados de homing, motor1-2 (CW = ClockWise, CCW = CounterClockWise)
+// Maquina de estados de homing, motor1-2 (CW = ClockWise, CCW = CounterClockWise)
 enum class HomingStateXY {
     INACTIVE,
     FIND_FIRST_EDGE_CW,
@@ -105,7 +105,7 @@ enum class HomingStateXY {
     ERROR
 };
 
-// Estados de homing, motor3
+// Maquina de estados para el homing del motor3
 enum class HomingStateZ {
     INACTIVE,
     FIND_EDGE_DOWNWARD,
@@ -115,7 +115,7 @@ enum class HomingStateZ {
     ERROR
 };
 
-// Máquina de estado para HOME_ALL
+// Máquina de estado para Homing de todos los motores
 enum class HomeAllState {
     IDLE,
     MOTOR1,
@@ -124,13 +124,14 @@ enum class HomeAllState {
     DONE
 };
 
-// Maquina de estado para Motores individuales
+// Maquina de estado para Homing de motores individuales
 enum class HomeSingleState {
     IDLE,
     RUNNING,
     DONE
 };
 
+// Asignacion de ID para motores
 enum class MotorID {
     NONE,
     J1,

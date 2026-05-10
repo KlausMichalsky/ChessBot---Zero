@@ -16,7 +16,6 @@
 #include "communication.h"
 #include "config.h"
 
-// -----------------------------------------------------------------------
 // CONFIGURACIÓN DE DEPURACIÓN UART
 // -----------------------------------------------------------------------
 void debug(const String &msg) {

@@ -17,7 +17,8 @@
 #include "sensors.h"
 #include "utils.h"
 
-// Convierte el angulo a pasos para cada motor
+// CONVERCION DE ANGULO A PASOS DE MOTOR
+// -----------------------------------------------------------------------
 long angleToStep(float angle, MotorID id) {
     switch (id) {
         case MotorID::J1:
@@ -37,12 +38,19 @@ long angleToStep(float angle, MotorID id) {
     }
 }
 
-// Convierte valor bruto 12 bits del AS5600 (0-4095) a grados
+// CONVERCION DE VALOR BRUTO DE 12 BITS DEL AS5600 (0-4095) A GRADOS
+// -----------------------------------------------------------------------
 float rawToDegrees(uint16_t rawAngle) {
     return (rawAngle * 360.0) / 4096.0;
 }
 
-// Redondea un float a 1 decimal (ej. 123.456 -> 123.5)
+// REDONDEO DE FLOAT A 1 DECIMAL
+// -----------------------------------------------------------------------
 float round1Decimal(float value) {
     return ((int)(value * 10 + 0.5)) / 10.0;
+}
+
+// CONVERCION DE CASSILA A ANGULOS (CINEMATICA INVERSA)
+// -----------------------------------------------------------------------
+float ToDegrees(const String &cmdStr) {
 }

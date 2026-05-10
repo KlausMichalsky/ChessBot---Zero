@@ -24,7 +24,6 @@
 #include "utils.h"
 #include "xy_plane.h"
 
-// -----------------------------------------------------------------------
 // VARIABLES EXTERNAS
 // -----------------------------------------------------------------------
 extern HomingXY motor1Homing;
@@ -32,15 +31,13 @@ extern HomingXY motor2Homing;
 extern HomingZ motor3Homing;
 extern bool homeAllActive;
 
-// -----------------------------------------------------------------------
 // COMPROBACIÓN DE COMANDOS DISPONIBLES
 // -----------------------------------------------------------------------
 bool commandAvailable() {
     return Serial1.available();
 }
 
-// -----------------------------------------------------------------------
-// MANDAR RESPUESTA DE STATUS DE TODOS LOS MOTORES Y SENSORES
+// ENVIO DE RESPUESTA DE STATUS DE TODOS LOS MOTORES Y SENSORES
 // -----------------------------------------------------------------------
 void commandSendStatusReport() {
     String report = "";
@@ -51,7 +48,6 @@ void commandSendStatusReport() {
     Serial1.print(report);
 }
 
-// -----------------------------------------------------------------------
 // LECTURA DE COMANDOS
 // -----------------------------------------------------------------------
 String readCommand() {
@@ -70,8 +66,7 @@ String readCommand() {
     return ""; // no hay comando completo todavía
 }
 
-// -----------------------------------------------------------------------
-// MAPEAR STRING a enum class Command
+// MAPEO DE STRING A ENUM CLASS COMMAND
 // -----------------------------------------------------------------------
 Command parseCommand(const String &cmd) {
     if (cmd == "STATUS")
@@ -100,7 +95,6 @@ Command parseCommand(const String &cmd) {
         return Command::UNKNOWN;
 }
 
-// -----------------------------------------------------------------------
 // PROCESAMIENTO DE COMANDOS
 // -----------------------------------------------------------------------
 void processCommand(const String &cmdStr) {

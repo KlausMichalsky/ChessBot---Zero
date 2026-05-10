@@ -16,9 +16,13 @@
 #include "motors.h"
 #include "z_axis.h"
 
+// VARIABLES LOCALES
+// -----------------------------------------------------------------------
 static bool zMoving = false;
 static long zTarget = 0;
 
+// MOVIMIENTO DEL EJE Z
+// -----------------------------------------------------------------------
 void zStep() {
     if (zMoving) {
         motor3.run(); // AccelStepper mueve y maneja aceleración
@@ -28,18 +32,21 @@ void zStep() {
     }
 }
 
-// Baja Z un número Z_STEPS_DOWN de pasos definido en config.h
+// ASIGNACION DE DESTINO HACIA ABAJO (NO MUEVE TODAVIA)
+// -----------------------------------------------------------------------
 void zMoveDown() {
     motor3.setMaxSpeed(6000);
     motor3.setAcceleration(15000);
     motor3.setCurrentPosition(0);
-    zTarget = Z_STEPS_DOWN;
-    motor3.moveTo(zTarget); // solo indica a donde ir
-    zMoving = true;         // activa zMoving para que zStep() lo ejecute.
+    zTarget = Z_STEPS_DOWN; // Z_STEPS_DOWN pasos definido en config.h
+    motor3.moveTo(zTarget);
+    zMoving = true; // activa zMoving para que zStep() lo ejecute.
     while (zMoving)
         zStep();
 }
 
+// ASIGNACION DE DESTINO HACIA ARRIBA (NO MUEVE TODAVIA)
+// -----------------------------------------------------------------------
 void zMoveUp() {
     motor3.setMaxSpeed(6000);
     motor3.setAcceleration(15000);
@@ -50,6 +57,8 @@ void zMoveUp() {
         zStep();
 }
 
+// CONTROL DEL IMAN
+// -----------------------------------------------------------------------
 void magnetON() {
     digitalWrite(MAGNET, HIGH);
 }
@@ -58,7 +67,8 @@ void magnetOFF() {
     digitalWrite(MAGNET, LOW);
 }
 
-// Z es bloqueante y se ejecuta desde command.cpp
+// ZPick ZPlace SON BLOQUEANTES Y SE EJECUTAN DESDE COMMAND.CPP
+// -----------------------------------------------------------------------
 void zPick() {
     motorEnableZ();
     magnetOFF();
