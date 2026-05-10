@@ -139,6 +139,12 @@ void updateXY() {
     }
 }
 
+// MOVIMIENTO A HOME DEL PLANO XY
+// (NO ES HOMING SOLO REGRESAR A POSICION CERO DESPUES DEL MOVIMIENTO)
+// -----------------------------------------------------------------------
+void moveToHomeXY() {
+}
+
 // DEBUG
 // -----------------------------------------------------------------------
 void printDebugMove(float motor1Angle, float motor2Angle) {
