@@ -71,6 +71,12 @@ constexpr int MOTOR1_MICROSTEPPING = 16;
 constexpr int MOTOR2_MICROSTEPPING = 16;
 constexpr int MOTOR3_MICROSTEPPING = 8;
 
+// CONFIGURACION DEL TABLERO en MM
+// -----------------------------------------------------------------------
+constexpr float SQUARE_SIZE = 25.0;
+constexpr float BOARD_OFFSET_X = 80.44;
+constexpr float BOARD_OFFSET_Y = 3 * SQUARE_SIZE + SQUARE_SIZE / 2;
+
 // TIPOS DE DATOS
 // -----------------------------------------------------------------------
 // Comandos recibidos por UART
@@ -86,6 +92,7 @@ enum class Command {
     PLACE,
     MOVE,
     SHOW_COMMANDS,
+    PRINT_BOARD,
     UNKNOWN
 };
 

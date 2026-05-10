@@ -19,12 +19,14 @@ import communication
 
 
 streaming = False
+board_done = False
 
 
 
 def main_loop():
     global streaming
     global shoulder, elbow
+
     print(
         "Available commands:\n"
         "STATUS\n"          # Muestra el estatus de motores y sensores
@@ -37,11 +39,12 @@ def main_loop():
         "PICK\n"            # Mueve Z hacia abajo, agarra pieza y sube
         "PLACE\n"           # Mueve Z hacia abajo, suelta pieza y sube
         "MOVE\n"            # Mueve motores 1 y 2 a angulos ingresados
-                            # usando el AS5600
+        "PRINT_BOARD\n"
         "SHOW-COMMANDS\n"
     )
 
     print("Command: ")
+
     while True:
         # 🔹 1️⃣ Leer UART siempre
         if communication.any():
@@ -52,9 +55,9 @@ def main_loop():
                 clean_msg = msg.decode('utf-8', 'ignore').rstrip('\r\n')
                 print(clean_msg)
 
-        # print(msg.decode().strip())
-
         keyboard_input()  # revisar input de teclado sin bloquear
+
+    
 
 
 def readUart():
@@ -100,28 +103,6 @@ def keyboard_input():
             commands.send_command(f"MOVE {shoulder} {elbow}")
             return
 
-        # 🔥 MOVE_FEEDBACK
-        elif cmd == "MOVE_FEEDBACK":
-
-            while True:
-                try:
-                    shoulder = float(input("Enter the target angle for the shoulder: ").strip())
-                    print(f"Target angle for the shoulder: {shoulder}")
-                    break
-                except ValueError:
-                    print("Invalid value. Enter a valid number.")
-
-            while True:
-                try:
-                    elbow = float(input("Enter the target angle for the elbow: ").strip())
-                    print(f"Target angle for the elbow: {elbow}")
-                    break
-                except ValueError:
-                    print("Invalid value. Enter a valid number.")
-
-            commands.send_command(f"MOVE_FEEDBACK {shoulder} {elbow}")
-            return
-
         # 🔥 SHOW-COMMANDS
         elif cmd == "SHOW-COMMANDS":
             print(
@@ -136,6 +117,7 @@ def keyboard_input():
                 "PICK\n"
                 "PLACE\n"
                 "MOVE\n"
+                "PRINT_BOARD\n"
                 "SHOW-COMMANDS\n"
             )
 

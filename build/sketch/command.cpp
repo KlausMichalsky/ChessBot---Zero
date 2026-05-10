@@ -92,6 +92,8 @@ Command parseCommand(const String &cmd) {
         return Command::MOVE;
     else if (cmd == "SHOW-COMMANDS")
         return Command::SHOW_COMMANDS;
+    else if (cmd == "PRINT_BOARD")
+        return Command::PRINT_BOARD;
     else
         return Command::UNKNOWN;
 }
@@ -180,6 +182,9 @@ void processCommand(const String &cmdStr) {
 
             break;
         }
+        case Command::PRINT_BOARD:
+            printBoardXY();
+            break;
 
         case Command::SHOW_COMMANDS:
             break;

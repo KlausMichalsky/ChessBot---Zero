@@ -22,4 +22,14 @@ float rawToDegrees(uint16_t rawAngle);
 
 float round1Decimal(float value);
 
-// float ToDegrees(const String &cmdStr);
+bool chessSquareToXY(
+    const String &square,
+    float &x,
+    float &y);
+
+bool chessSquareToXY(
+    const String &square,
+    float &x,
+    float &y);
+
+void printBoardXY();
