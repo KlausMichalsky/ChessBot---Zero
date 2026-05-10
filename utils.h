@@ -32,4 +32,8 @@ bool chessSquareToXY(
     float &x,
     float &y);
 
+float radToDegrees(float rad);
+
+float degreesToRad(float deg);
+
 void printBoardXY();

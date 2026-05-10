@@ -76,6 +76,11 @@ constexpr float SQUARE_SIZE = 25.0;
 constexpr float BOARD_OFFSET_X = 80.44;
 constexpr float BOARD_OFFSET_Y = 3 * SQUARE_SIZE + SQUARE_SIZE / 2;
 
+// CONFIGURACION DE LOS BRAZOS EN MM
+// -----------------------------------------------------------------------
+constexpr float LINK1 = 175;
+constexpr float LINK2 = 95;
+
 // TIPOS DE DATOS
 // -----------------------------------------------------------------------
 // Comandos recibidos por UART

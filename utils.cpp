@@ -91,12 +91,15 @@ bool chessSquareToXY(
 
 // CONVERSIÓN XY → ANGULOS (CINEMATICA INVERSA)
 // -----------------------------------------------------------------------
-bool xyToIK(
+// “devuelve” theta1 y theta2 porque -> & modifica variables mediante referencias
+// La matemática trigonométrica de C++ usa: sin, cos, atan2, acos TODO en radianes
+// Ejemplo PI rad = 180°
+bool xyToIKRadians(
     float x,
     float y,
     float L1,
     float L2,
-    float &theta1,
+    float &theta1, // El & significa NO crea copias. Modifica directamente las variables originales
     float &theta2) {
     float r2 = x * x + y * y;
     float r = sqrt(r2);
@@ -106,15 +109,30 @@ bool xyToIK(
         return false; // fuera del alcance
     }
 
+    // Ley de cosenos para calcular del ángulo del codo.
     float cosTheta2 = (r2 - L1 * L1 - L2 * L2) / (2 * L1 * L2);
-    theta2 = acos(cosTheta2);
+    theta2 = acos(cosTheta2); // queda en radianes
 
-    float k1 = L1 + L2 * cos(theta2);
-    float k2 = L2 * sin(theta2);
+    // Parte auxiliar para calcular el hombro.
+    float k1 = L1 + L2 * cos(theta2); // Representa la proyección horizontal.
+    float k2 = L2 * sin(theta2);      // Representa la proyección vertical.
 
+    // theta1 = apunta hacia el objetivo - corrige el ángulo porque existe el segundo brazo
     theta1 = atan2(y, x) - atan2(k2, k1);
 
     return true;
+}
+
+// CONVERSION DE RADIANES A GRADOS
+// -----------------------------------------------------------------------
+float radToDegrees(float rad) {
+    return rad * 180.0 / PI;
+}
+
+// CONVERSION DE GRADOS A RADIANES
+// -----------------------------------------------------------------------
+float degreesToRad(float deg) {
+    return deg * PI / 180.0;
 }
 
 // DEBUG
