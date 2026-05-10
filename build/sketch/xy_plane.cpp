@@ -59,21 +59,28 @@ void correctErrorOnce() {
     motorsEnableXY();
 
     float errorShoulder =
-        calculateError(targetShoulderAngle, Wire, motor1Config, sensor1Offset);
+        calculateError(targetShoulderAngle,
+                       Wire,
+                       motor1Config,
+                       sensor1Offset);
 
     float errorElbow =
-        calculateError(targetElbowAngle, Wire1, motor2Config, sensor2Offset);
+        calculateError(targetElbowAngle,
+                       Wire1,
+                       motor2Config,
+                       sensor2Offset);
 
     bool needsCorrection = false;
 
     if (fabs(errorShoulder) > 0.5f) {
         float correctedShoulder =
             targetShoulderAngle +
-            (motor1Config.invertMotor *
-             motor1Config.invertSensor *
+            (motor1Config.motorDirection *
+             motor1Config.sensorDirection *
              errorShoulder / motor1Config.reduction);
 
-        motor1.moveTo(angleToStep(correctedShoulder, MotorID::J1));
+        motor1.moveTo(
+            angleToStep(correctedShoulder, MotorID::J1));
 
         needsCorrection = true;
     }
@@ -81,11 +88,12 @@ void correctErrorOnce() {
     if (fabs(errorElbow) > 0.5f) {
         float correctedElbow =
             targetElbowAngle +
-            (motor2Config.invertMotor *
-             motor2Config.invertSensor *
+            (motor2Config.motorDirection *
+             motor2Config.sensorDirection *
              errorElbow / motor2Config.reduction);
 
-        motor2.moveTo(angleToStep(correctedElbow, MotorID::J2));
+        motor2.moveTo(
+            angleToStep(correctedElbow, MotorID::J2));
 
         needsCorrection = true;
     }
@@ -111,7 +119,7 @@ void updateXY() {
             if (motor1.distanceToGo() == 0 &&
                 motor2.distanceToGo() == 0) {
                 settleStart = millis();
-                delay(1000);
+                delay(100); // estabilizacion mecanica
                 Serial1.print("Moved to Target");
                 printDebugMove(targetShoulderAngle, targetElbowAngle);
                 movingStateXY = MovingStateXY::SETTLING;
@@ -121,6 +129,7 @@ void updateXY() {
         case MovingStateXY::SETTLING:
             if (millis() - settleStart > 100) {
                 movingStateXY = MovingStateXY::CORRECTING;
+                Serial1.print("Correcting Error");
                 correctErrorOnce();
             }
             break;
@@ -149,8 +158,8 @@ void printDebugMove(float motor1Angle, float motor2Angle) {
         targetShoulderAngle,
         motor1Config.reduction,
         sensor1Offset,
-        true,
-        false);
+        motor1Config.motorDirection,
+        motor1Config.sensorDirection);
 
     Serial1.print("HomingOffset: ");
     Serial1.println(sensor1Offset, 1);
@@ -167,8 +176,8 @@ void printDebugMove(float motor1Angle, float motor2Angle) {
         targetElbowAngle,
         motor2Config.reduction,
         sensor2Offset,
-        true,
-        true);
+        motor2Config.motorDirection,
+        motor2Config.sensorDirection);
 
     Serial1.print("HomingOffset: ");
     Serial1.println(sensor2Offset, 1);

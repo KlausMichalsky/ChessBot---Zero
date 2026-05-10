@@ -170,8 +170,8 @@ struct MotorConfig {
     int enablePin;
 
     // Sensor
-    bool invertMotor;
-    bool invertSensor;
+    int8_t motorDirection;
+    int8_t sensorDirection;
 };
 
 // Configuracion de Homing para cada motor, con parámetros mecánicos específicos
@@ -187,8 +187,8 @@ inline const MotorConfig motor1Config = {
     .baseSpeed = BASE_SPEED,
     .acceleration = 2 * 1000.0,
     .enablePin = MOTOR1_ENABLE,
-    .invertMotor = true,
-    .invertSensor = false}; // ‼️ poner sensorDir en motor 2 a false si el sensor gira al revez
+    .motorDirection = 1,
+    .sensorDirection = -1}; // ‼️ -1 porque el sensor esta fisicamente montado al revez
 
 inline const MotorConfig motor2Config = {
     .microstepping = MOTOR2_MICROSTEPPING,
@@ -202,8 +202,8 @@ inline const MotorConfig motor2Config = {
     .baseSpeed = BASE_SPEED,
     .acceleration = 2 * 1000.0,
     .enablePin = MOTOR2_ENABLE,
-    .invertMotor = true,
-    .invertSensor = true};
+    .motorDirection = 1,
+    .sensorDirection = 1};
 
 inline const MotorConfig motor3Config = {
     .microstepping = MOTOR3_MICROSTEPPING,
@@ -217,5 +217,5 @@ inline const MotorConfig motor3Config = {
     .baseSpeed = BASE_SPEED,
     .acceleration = 1000.0,
     .enablePin = MOTOR3_ENABLE,
-    .invertMotor = true,
-    .invertSensor = true};
+    .motorDirection = 1,
+    .sensorDirection = 1};
