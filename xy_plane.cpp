@@ -10,29 +10,24 @@
 #include "utils.h"
 #include "xy_plane.h"
 
-// =============================================================
-// TARGETS
-// =============================================================
+// VARIABLES LOCALES
+// -----------------------------------------------------------------------
 static float targetShoulderAngle = 0;
 static float targetElbowAngle = 0;
-
 static unsigned long settleStart = 0;
 
-// =============================================================
-// STATE MACHINE
-// =============================================================
+// DEFINICION DE MAQUINA DE ESTADOS PARA MOVIMIENTO XY-PLANE
+// -----------------------------------------------------------------------
 MovingStateXY movingStateXY = MovingStateXY::IDLE;
 
-// =============================================================
 // STATUS
-// =============================================================
+// -----------------------------------------------------------------------
 bool xyIsMoving() {
     return movingStateXY != MovingStateXY::IDLE;
 }
 
-// =============================================================
-// MOVE TO TARGET
-// =============================================================
+// ASIGNACION DE DESTINO EN GRADOS (NO MUEVE TODAVIA)
+// -----------------------------------------------------------------------
 void moveToAngles(float shoulder, float elbow) {
     if (movingStateXY != MovingStateXY::IDLE)
         return;
@@ -51,9 +46,8 @@ void moveToAngles(float shoulder, float elbow) {
     movingStateXY = MovingStateXY::MOVING_TO_TARGET;
 }
 
-// =============================================================
-// ERROR CORRECTION (UNA SOLA EJECUCIÓN POR CICLO)
-// =============================================================
+// ASIGNACION DEL DESTINO DEL ERROR EN GRADOS (UNA SOLA EJECUCIÓN POR CICLO)
+// -----------------------------------------------------------------------
 void correctErrorOnce() {
     motorsEnableXY();
 
@@ -75,7 +69,6 @@ void correctErrorOnce() {
         float correctedShoulder =
             targetShoulderAngle +
             (motor1Config.motorDirection *
-             motor1Config.sensorDirection *
              errorShoulder / motor1Config.reduction);
 
         motor1.moveTo(
@@ -88,7 +81,6 @@ void correctErrorOnce() {
         float correctedElbow =
             targetElbowAngle +
             (motor2Config.motorDirection *
-             motor2Config.sensorDirection *
              errorElbow / motor2Config.reduction);
 
         motor2.moveTo(
@@ -104,9 +96,8 @@ void correctErrorOnce() {
     }
 }
 
-// =============================================================
-// UPDATE STATE MACHINE
-// =============================================================
+// MAQUINA DE ESTADOS PARA MOVIMIENTO XY-PLANE (MOVIMIENTO DE MOTORES)
+// -----------------------------------------------------------------------
 void updateXY() {
     switch (movingStateXY) {
         case MovingStateXY::IDLE:
@@ -147,9 +138,8 @@ void updateXY() {
     }
 }
 
-// =============================================================
 // DEBUG
-// =============================================================
+// -----------------------------------------------------------------------
 void printDebugMove(float motor1Angle, float motor2Angle) {
     Serial1.println();
     Serial1.println("-------- MOTOR 1 --------");
@@ -158,8 +148,7 @@ void printDebugMove(float motor1Angle, float motor2Angle) {
         targetShoulderAngle,
         motor1Config.reduction,
         sensor1Offset,
-        motor1Config.motorDirection,
-        motor1Config.sensorDirection);
+        motor1Config.motorDirection);
 
     Serial1.print("HomingOffset: ");
     Serial1.println(sensor1Offset, 1);
@@ -176,8 +165,7 @@ void printDebugMove(float motor1Angle, float motor2Angle) {
         targetElbowAngle,
         motor2Config.reduction,
         sensor2Offset,
-        motor2Config.motorDirection,
-        motor2Config.sensorDirection);
+        motor2Config.motorDirection);
 
     Serial1.print("HomingOffset: ");
     Serial1.println(sensor2Offset, 1);

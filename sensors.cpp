@@ -17,18 +17,13 @@
 #include "sensors.h"
 #include "utils.h"
 
-// =============================================================
-// Variables (globales del sistema)
-// =============================================================
+// VARIABLES GLOBALES DEL SISTEMA
+// -----------------------------------------------------------------------
 float sensor1Offset = 0;
 float sensor2Offset = 0;
 
-float motor1Angle = 0;
-float motor2Angle = 0;
-
-// =============================================================
-// INIT SENSORES
-// =============================================================
+// INICIALIZACION DE SENSORES
+// -----------------------------------------------------------------------
 void sensorsInit() {
     pinMode(HALL_1, INPUT_PULLUP);
     pinMode(HALL_2, INPUT_PULLUP);
@@ -42,10 +37,8 @@ void sensorsInit() {
     Wire1.setSCL(AS5600_2_SCL);
     Wire1.begin();
 }
-
-// =============================================================
-// RAW READ
-// =============================================================
+// LECTURA DE ANGULO CRUDO
+// -----------------------------------------------------------------------
 uint16_t sensorReadRawAngle(TwoWire &wire) {
     wire.beginTransmission(AS5600_ADDR);
     wire.write(0x0E);
@@ -61,9 +54,8 @@ uint16_t sensorReadRawAngle(TwoWire &wire) {
     return ((high & 0x0F) << 8) | low;
 }
 
-// =============================================================
-// HOMING OFFSET (CALIBRACIÓN)
-// =============================================================
+// OFFSET DE HOMING
+// -----------------------------------------------------------------------
 float sensorHomingOffset(TwoWire &wire) {
     const uint8_t samples = 30;
     float sum = 0;
@@ -94,9 +86,8 @@ float sensorHomingOffset(TwoWire &wire) {
     return offset;
 }
 
-// =============================================================
-// CORRECTED ANGLE (0–360)
-// =============================================================
+// CORRECTURA DEL OFFSET DE HOMING EN EL SENSOR (ANGULO 0–360)
+// -----------------------------------------------------------------------
 float sensorCorrectedAngle(TwoWire &wire, float offset) {
     float angle = rawToDegrees(sensorReadRawAngle(wire)) - offset;
 
@@ -108,31 +99,26 @@ float sensorCorrectedAngle(TwoWire &wire, float offset) {
     return angle;
 }
 
-// Calcula el angulo teorico del sensor para el angulo del brazo
-// Toma en cuenta la posicion fisica del sensor
+// CALCULO DE ANGULO TOERICO (INCLUYENDO ALINEACION FISICA DEL SENSOR)
+// -----------------------------------------------------------------------
 float estimateSensorAngle(
     float targetAngle,
     float reduction,
     float homingOffset,
-    int8_t motorDirection,
-    int8_t sensorDirection) {
-    // 🔥 ángulo motor real
-    float motorAngle = motorDirection * targetAngle * reduction;
-    // ejemplo motorAngle = 1 * 300 * 9 = 2700°
+    int8_t motorDirection) {
+    float motorAngle = targetAngle * reduction;
 
-    // 🔥 normalizar vueltas
-    // El operador módulo % o fmod() devuelve el “sobrante”
-    float rest = fmod(motorAngle, 360.0f);
+    // Normalizar vueltas, el operador módulo % o fmod() devuelve el “sobrante”
     // ejemplo rest = fmod(2700, 360) = 180
+    float rest = fmod(motorAngle, 360.0f);
 
     // Convierte negativos a rango positivo
     if (rest < 0)
         rest += 360.0f;
 
-    // 🔥 reconstrucción sensor
-    float estimatedSensorAngle = sensorDirection * rest + homingOffset;
+    float estimatedSensorAngle = motorDirection * rest + homingOffset;
 
-    // 🔥 wrap final verifica si pasó de 360° o quedo negativo
+    // Wrap final verifica si pasó de 360° o quedo negativo
     estimatedSensorAngle = fmod(estimatedSensorAngle, 360.0f);
     if (estimatedSensorAngle < 0)
         estimatedSensorAngle += 360.0f;
@@ -140,6 +126,8 @@ float estimateSensorAngle(
     return estimatedSensorAngle;
 }
 
+// CALCULO DEL ERROR = ANGULO TEORICO - ANGULO REAL
+// -----------------------------------------------------------------------
 float calculateError(
     float targetAngle,
     TwoWire &wire,
@@ -149,8 +137,7 @@ float calculateError(
         targetAngle,
         config.reduction,
         sensorOffset,
-        config.motorDirection,
-        config.sensorDirection);
+        config.motorDirection);
     estimatedSensorAngle = round1Decimal(estimatedSensorAngle);
 
     float realSensorAngle = rawToDegrees(sensorReadRawAngle(wire));

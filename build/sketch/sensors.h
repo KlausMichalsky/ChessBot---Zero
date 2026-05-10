@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\sensors.h"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/sensors.h"
 // =======================================================================
 //                    🔹 P I C O   —   C H E S S 🔹
 // =======================================================================
@@ -31,8 +31,7 @@ float estimateSensorAngle(
     float targetAngle,
     float reduction,
     float homingOffset,
-    int8_t motorDirection,
-    int8_t sensorDirection);
+    int8_t motorDirection);
 float calculateError(
     float targetAngle,
     TwoWire &wire,

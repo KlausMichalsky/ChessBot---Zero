@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\xy_plane.h"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/xy_plane.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -21,4 +21,4 @@ void moveToAngles(float targetShoulder, float targetElbow);
 void updateXY();
 bool xyIsMoving();
 void printDebugMove(float motor1Angle, float motor2Angle);
-void correctErrorOnce(float errorShoulder, float errorElbow);
+void correctErrorOnce();

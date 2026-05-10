@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\#Archiv\\filtro.cpp"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/#Archiv/filtro.cpp"
 #include <Arduino.h>
 #include "filtro.h"
 
