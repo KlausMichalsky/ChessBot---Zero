@@ -89,7 +89,7 @@ enum class Command {
     UNKNOWN
 };
 
-// Estados de homing, motor1-2 (CW = ClockWise, CCW = CounterClockWise)
+// Maquina de estados de homing, motor1-2 (CW = ClockWise, CCW = CounterClockWise)
 enum class HomingStateXY {
     INACTIVE,
     FIND_FIRST_EDGE_CW,
@@ -106,7 +106,7 @@ enum class HomingStateXY {
     ERROR
 };
 
-// Estados de homing, motor3
+// Maquina de estados para el homing del motor3
 enum class HomingStateZ {
     INACTIVE,
     FIND_EDGE_DOWNWARD,
@@ -116,7 +116,7 @@ enum class HomingStateZ {
     ERROR
 };
 
-// Máquina de estado para HOME_ALL
+// Máquina de estado para Homing de todos los motores
 enum class HomeAllState {
     IDLE,
     MOTOR1,
@@ -125,13 +125,14 @@ enum class HomeAllState {
     DONE
 };
 
-// Maquina de estado para Motores individuales
+// Maquina de estado para Homing de motores individuales
 enum class HomeSingleState {
     IDLE,
     RUNNING,
     DONE
 };
 
+// Asignacion de ID para motores
 enum class MotorID {
     NONE,
     J1,
@@ -155,6 +156,7 @@ struct MotorConfig {
     int microstepping;      // Microstepping del driver
     int reduction;          // Relación de reducción mecánica
     int stepsPerRevolution; // Pasos por revolución del motor
+    int8_t motorDirection;  // Dirección fisica del motor/sensor / alineación del montaje
 
     // Homing
     float slowSpeed;       // Velocidad lenta durante homing
@@ -169,10 +171,6 @@ struct MotorConfig {
 
     // Pines
     int enablePin;
-
-    // Sensor
-    int8_t motorDirection;
-    int8_t sensorDirection;
 };
 
 // Configuracion de Homing para cada motor, con parámetros mecánicos específicos
@@ -180,6 +178,7 @@ inline const MotorConfig motor1Config = {
     .microstepping = MOTOR1_MICROSTEPPING,
     .reduction = 9,
     .stepsPerRevolution = MOTOR_STEPS,
+    .motorDirection = -1, // ‼️ -1 porque el motor/sensor esta fisicamente montado al revez
     .slowSpeed = 2 * 800.0,
     .fastSpeed = 2 * 1500.0,
     .steps90Deg = MOTOR1_MICROSTEPPING * MOTOR_STEPS / 4,
@@ -187,14 +186,13 @@ inline const MotorConfig motor1Config = {
     .timeout = 15000,
     .baseSpeed = BASE_SPEED,
     .acceleration = 2 * 1000.0,
-    .enablePin = MOTOR1_ENABLE,
-    .motorDirection = 1,
-    .sensorDirection = -1}; // ‼️ -1 porque el sensor esta fisicamente montado al revez
+    .enablePin = MOTOR1_ENABLE};
 
 inline const MotorConfig motor2Config = {
     .microstepping = MOTOR2_MICROSTEPPING,
     .reduction = 6,
     .stepsPerRevolution = MOTOR_STEPS,
+    .motorDirection = 1,
     .slowSpeed = 2 * 533.0,
     .fastSpeed = 2 * 1000.0,
     .steps90Deg = MOTOR2_MICROSTEPPING * MOTOR_STEPS / 4,
@@ -202,14 +200,13 @@ inline const MotorConfig motor2Config = {
     .timeout = 15000,
     .baseSpeed = BASE_SPEED,
     .acceleration = 2 * 1000.0,
-    .enablePin = MOTOR2_ENABLE,
-    .motorDirection = 1,
-    .sensorDirection = 1};
+    .enablePin = MOTOR2_ENABLE};
 
 inline const MotorConfig motor3Config = {
     .microstepping = MOTOR3_MICROSTEPPING,
     .reduction = 1,
     .stepsPerRevolution = 200,
+    .motorDirection = 1,
     .slowSpeed = 2500.0,
     .fastSpeed = 4000.0,
     .steps90Deg = 0,    // no existe para motor3
@@ -217,6 +214,4 @@ inline const MotorConfig motor3Config = {
     .timeout = 12000,
     .baseSpeed = BASE_SPEED,
     .acceleration = 1000.0,
-    .enablePin = MOTOR3_ENABLE,
-    .motorDirection = 1,
-    .sensorDirection = 1};
+    .enablePin = MOTOR3_ENABLE};

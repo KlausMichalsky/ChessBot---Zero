@@ -132,7 +132,7 @@ bool homingZhasError(const HomingZ &st) {
     return st.fault;
 }
 
-// MÁQUINA DE ESTADOS DE HOMING
+// MÁQUINA DE ESTADOS DE HOMING DEL PLANO XY
 // -----------------------------------------------------------------------
 void homingStepXY(AccelStepper &motor,
                   const MotorConfig &cfg,
@@ -253,6 +253,8 @@ void homingStepXY(AccelStepper &motor,
     }
 }
 
+// MÁQUINA DE ESTADOS DE HOMING DEL EJE Z
+// -----------------------------------------------------------------------
 void homingStepZ(AccelStepper &motor,
                  const MotorConfig &cfg,
                  HomingZ &st,

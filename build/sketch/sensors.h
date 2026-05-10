@@ -31,8 +31,7 @@ float estimateSensorAngle(
     float targetAngle,
     float reduction,
     float homingOffset,
-    int8_t motorDirection,
-    int8_t sensorDirection);
+    int8_t motorDirection);
 float calculateError(
     float targetAngle,
     TwoWire &wire,

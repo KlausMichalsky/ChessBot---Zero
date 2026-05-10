@@ -22,3 +22,5 @@ long angleToStep(float angle, MotorID id);
 float rawToDegrees(uint16_t rawAngle);
 
 float round1Decimal(float value);
+
+// float ToDegrees(const String &cmdStr);

@@ -57,8 +57,6 @@ extern HomeSingleState homeSingleState;
 extern MotorID motorToHome;
 extern bool homeAllActive;
 
-// API PÚBLICA PLANO
-// -----------------------------------------------------------------------
 void homingInitXY(HomingXY &st);
 
 void homingInitZ(HomingZ &st);
