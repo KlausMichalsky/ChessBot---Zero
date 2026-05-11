@@ -28,19 +28,20 @@ def main_loop():
     global shoulder, elbow
 
     print(
-        "Available commands:\n"
-        "STATUS\n"          # Muestra el estatus de motores y sensores
-        "RESET\n"           # Resetea el sistema
+        "Comandos disponibles:\n"
+        "ANGLES\n"          # Muestra angulos actuales del sensor 1 y 2
+        "HOME\n"        # Homing de todos los motores 1-2-3 + status
         "HOME1\n"           # Homing del motor1 + status
         "HOME2\n"           # Homing del motor2 + status
         "HOME3\n"           # Homing del motor3 + status
-        "HOME\n"        # Homing de todos los motores 1-2-3 + status
-        "ANGLES\n"          # Muestra angulos actuales del sensor 1 y 2
+        "MOVE\n"            # Mueve motores 1 y 2 a angulos ingresados
         "PICK\n"            # Mueve Z hacia abajo, agarra pieza y sube
         "PLACE\n"           # Mueve Z hacia abajo, suelta pieza y sube
-        "MOVE\n"            # Mueve motores 1 y 2 a angulos ingresados
-        "PRINT_BOARD\n"
-        "SHOW-COMMANDS\n"
+        "BOARD\n"           # Imprime coordenadas del tablero
+        "RESET\n"           # Resetea el sistema
+        "COMMANDS\n"        # Muestra lista de comandos
+        "SQUARE\n"          # Mueve a casilla (conversion a angulos y cinematica inversa)
+        "STATUS\n"          # Muestra el estatus de motores y sensores
     )
 
     print("Command: ")
@@ -87,7 +88,6 @@ def keyboard_input():
             while True:
                 try:
                     shoulder = float(input("Enter shoulder-angle: ").strip())
-                    # print(f"Target shoulder: {shoulder}")
                     break
                 except ValueError:
                     print("Invalid value. Enter a valid number.")
@@ -95,30 +95,59 @@ def keyboard_input():
             while True:
                 try:
                     elbow = float(input("Enter elbow-angle: ").strip())
-                    # print(f"Target elbow: {elbow}")
                     break
                 except ValueError:
                     print("Invalid value. Enter a valid number.")
 
             commands.send_command(f"MOVE {shoulder} {elbow}")
             return
+        
+        # 🔥 SQUARE
+        elif cmd == "SQUARE":
+
+            while True:
+                square = input("Enter square (example E4): ").strip().upper()
+
+                # VALIDAR LONGITUD
+                if len(square) != 2:
+                    print("Invalid square length.")
+                    continue
+
+                file = square[0]
+                rank = square[1]
+
+                # VALIDAR LETRA
+                if file < 'A' or file > 'H':
+                    print("Invalid file. Use A-H.")
+                    continue
+
+                # VALIDAR NUMERO
+                if rank < '1' or rank > '8':
+                    print("Invalid rank. Use 1-8.")
+                    continue
+
+                break
+
+            commands.send_command(f"SQUARE {square}")
+            return
 
         # 🔥 SHOW-COMMANDS
         elif cmd == "SHOW-COMMANDS":
             print(
                 "Comandos disponibles:\n"
-                "ANGLES\n"
-                "HOME1\n"
-                "HOME2\n"
-                "HOME3\n"
-                "HOME\n"
-                "RESET\n"
-                "STATUS\n"
-                "PICK\n"
-                "PLACE\n"
-                "MOVE\n"
-                "PRINT_BOARD\n"
-                "SHOW-COMMANDS\n"
+                "ANGLES\n"          # Muestra angulos actuales del sensor 1 y 2
+                "HOME\n"            # Homing de todos los motores 1-2-3 + status
+                "HOME1\n"           # Homing del motor1 + status
+                "HOME2\n"           # Homing del motor2 + status
+                "HOME3\n"           # Homing del motor3 + status
+                "MOVE\n"            # Mueve motores 1 y 2 a angulos ingresados
+                "PICK\n"            # Mueve Z hacia abajo, agarra pieza y sube
+                "PLACE\n"           # Mueve Z hacia abajo, suelta pieza y sube
+                "BOARD\n"           # Imprime coordenadas del tablero
+                "RESET\n"           # Resetea el sistema
+                "COMMANDS\n"        # Muestra lista de comandos
+                "SQUARE\n"          # Mueve a casilla (conversion a angulos y cinematica inversa)
+                "STATUS\n"          # Muestra el estatus de motores y sensores
             )
 
         # 🔥 TODOS LOS DEMÁS

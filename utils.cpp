@@ -135,6 +135,54 @@ float degreesToRad(float deg) {
     return deg * PI / 180.0;
 }
 
+// CONVERSION DE CASSILA A ANGULOS
+// -----------------------------------------------------------------------
+// 1️⃣ Casilla → XY
+// "E4"
+// ↓
+// (12, 220)
+// 2️⃣ XY → IK
+// (12,220)
+// ↓
+// (1.2 rad, 0.7 rad)
+// 3️⃣ Radianes → grados
+// (68°, 40°)
+// 4️⃣ Devuelve:
+// theta1Deg
+// theta2Deg
+bool chessSquareToAngles(
+    const String &square,
+    float &theta1Deg,
+    float &theta2Deg) {
+    float x;
+    float y;
+
+    // CASILLA -> XY
+    if (!chessSquareToXY(square, x, y)) { // si casilla invalida -> salir
+        return false;
+    }
+
+    float theta1Rad;
+    float theta2Rad;
+
+    // XY -> IK
+    if (!xyToIKRadians( // si punto fuera de alcance o geometría imposible -> salir
+            x,
+            y,
+            LINK1,
+            LINK2,
+            theta1Rad,
+            theta2Rad)) {
+        return false;
+    }
+
+    // RAD -> DEG
+    theta1Deg = radToDegrees(theta1Rad);
+    theta2Deg = radToDegrees(theta2Rad);
+
+    return true;
+}
+
 // DEBUG
 // TEST: IMPRIMIR TODAS LAS CASILLAS COMO COORDENADAS XY
 // -----------------------------------------------------------------------

@@ -75,24 +75,30 @@ constexpr int MOTOR3_MICROSTEPPING = 8;
 // -----------------------------------------------------------------------
 constexpr float SQUARE_SIZE = 25.0;
 constexpr float BOARD_OFFSET_X = 80.44;
-constexpr float BOARD_OFFSET_Y = 3 * SQUARE_SIZE + SQUARE_SIZE / 2;
+constexpr float BOARD_OFFSET_Y = -(3 * SQUARE_SIZE + SQUARE_SIZE / 2);
+
+// CONFIGURACION DE LOS BRAZOS EN MM
+// -----------------------------------------------------------------------
+constexpr float LINK1 = 175;
+constexpr float LINK2 = 95;
 
 // TIPOS DE DATOS
 // -----------------------------------------------------------------------
 // Comandos recibidos por UART
 enum class Command {
-    STATUS,
-    RESET,
+    ANGLES,
+    HOME,
     HOME1,
     HOME2,
     HOME3,
-    HOME,
-    ANGLES,
     PICK,
     PLACE,
+    BOARD,
     MOVE,
-    SHOW_COMMANDS,
-    PRINT_BOARD,
+    RESET,
+    COMMANDS,
+    SQUARE,
+    STATUS,
     UNKNOWN
 };
 

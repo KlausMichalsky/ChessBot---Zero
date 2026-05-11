@@ -28,9 +28,21 @@ bool chessSquareToXY(
     float &x,
     float &y);
 
-bool chessSquareToXY(
+bool xyToIKRadians(
+    float x,
+    float y,
+    float L1,
+    float L2,
+    float &theta1,
+    float &theta2);
+
+float radToDegrees(float rad);
+
+float degreesToRad(float deg); // por el momento no se usa
+
+bool chessSquareToAngles(
     const String &square,
-    float &x,
-    float &y);
+    float &theta1Deg,
+    float &theta2Deg);
 
 void printBoardXY();
