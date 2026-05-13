@@ -65,7 +65,7 @@ bool chessSquareToXY(
     char file = toupper(square[0]); // Optener la primera letra y convertira mayuscula
     char rank = square[1];          // obtener el numero
 
-    // VALIDAR RANGO
+    // VALIDAR FILA Y RANGO
     if (file < 'A' || file > 'H') {
         return false;
     }
@@ -77,14 +77,9 @@ bool chessSquareToXY(
     int fileIndex = file - 'A';
     int rankIndex = rank - '1';
 
-    // CONVERTIR A COORDENADAS CENTRO DE CASILLAS
-    x = BOARD_OFFSET_X +
-        fileIndex * SQUARE_SIZE +
-        SQUARE_SIZE / 2;
-
-    y = BOARD_OFFSET_Y +
-        rankIndex * SQUARE_SIZE +
-        SQUARE_SIZE / 2;
+    // CONVERTIR A COORDENADAS EN CENTRO DE CASILLAS
+    x = A1_OFFSET_X + (fileIndex * SQUARE_SIZE);
+    y = A1_OFFSET_Y + (rankIndex * SQUARE_SIZE);
 
     return true;
 }
