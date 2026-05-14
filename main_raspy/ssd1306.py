@@ -1,4 +1,7 @@
-# MicroPython SSD1306 OLED driver
+# MICROPYTHON SSD1306 OLED DRIVER
+# ========================================================================
+
+
 from micropython import const
 import framebuf
 

@@ -90,8 +90,12 @@ Command parseCommand(const String &cmd) {
         return Command::PLACE;
     else if (cmd.startsWith("MOVE"))
         return Command::MOVE;
-    else if (cmd == "SHOW-COMMANDS")
-        return Command::SHOW_COMMANDS;
+    else if (cmd == "COMMANDS")
+        return Command::COMMANDS;
+    else if (cmd == "BOARD")
+        return Command::BOARD;
+    else if (cmd.startsWith("SQUARE"))
+        return Command::SQUARE;
     else
         return Command::UNKNOWN;
 }
@@ -181,7 +185,39 @@ void processCommand(const String &cmdStr) {
             break;
         }
 
-        case Command::SHOW_COMMANDS:
+        case Command::BOARD:
+            printBoardXY();
+            break;
+
+        case Command::SQUARE: {
+            char square[3];
+
+            int parsed = sscanf(trimmedCmd.c_str(), "SQUARE %2s", square);
+            // "SQUARE %2s" leer máximo 2 caracteres.
+
+            if (parsed != 1) {
+                Serial1.println("ERROR: SQUARE format invalid");
+                break;
+            }
+
+            float shoulderDeg;
+            float elbowDeg;
+
+            // CASILLA -> ANGULOS
+            if (!chessSquareToAngles(
+                    String(square),
+                    shoulderDeg,
+                    elbowDeg)) {
+                Serial1.println("ERROR: Invalid square or unreachable");
+                break;
+            }
+
+            // MOVER BRAZO
+            moveToAngles(shoulderDeg, elbowDeg);
+            break;
+        }
+
+        case Command::COMMANDS:
             break;
 
         default:

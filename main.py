@@ -11,139 +11,181 @@
 #       - Mostrar resultados y respuestas del RP2040.
 # ========================================================================
 
+
 import time
 import sys
 import select
+
 import commands
 import communication
+import ikinematics
+import square_xy
 
 
 streaming = False
-
+board_done = False
 
 
 def main_loop():
     global streaming
     global shoulder, elbow
+
     print(
-        "Available commands:\n"
-        "STATUS\n"          # Muestra el estatus de motores y sensores
-        "RESET\n"           # Resetea el sistema
-        "HOME1\n"           # Homing del motor1 + status
-        "HOME2\n"           # Homing del motor2 + status
-        "HOME3\n"           # Homing del motor3 + status
-        "HOME\n"        # Homing de todos los motores 1-2-3 + status
-        "ANGLES\n"          # Muestra angulos actuales del sensor 1 y 2
-        "PICK\n"            # Mueve Z hacia abajo, agarra pieza y sube
-        "PLACE\n"           # Mueve Z hacia abajo, suelta pieza y sube
-        "MOVE\n"            # Mueve motores 1 y 2 a angulos ingresados
-                            # usando el AS5600
-        "SHOW-COMMANDS\n"
+        "Comandos disponibles:\n"
+        "ANGLES\n"
+        "HOME\n"
+        "HOME1\n"
+        "HOME2\n"
+        "HOME3\n"
+        "MOVE\n"
+        "PICK\n"
+        "PLACE\n"
+        "BOARD\n"
+        "RESET\n"
+        "COMMANDS\n"
+        "STATUS\n"
     )
 
     print("Command: ")
+
     while True:
         # 🔹 1️⃣ Leer UART siempre
         if communication.any():
             msg = communication.readline()
             if msg:
-                # decodificar y eliminar \r, \n, espacios
-                # print(msg)  # mostrar mensaje sin procesar
                 clean_msg = msg.decode('utf-8', 'ignore').rstrip('\r\n')
                 print(clean_msg)
 
-        # print(msg.decode().strip())
-
-        keyboard_input()  # revisar input de teclado sin bloquear
+        keyboard_input()
 
 
 def readUart():
     if communication.any():
         msg = communication.readline()
         if msg:
-            # decodificar y eliminar \r, \n, espacios
-            # print(msg)  # mostrar mensaje sin procesar
             clean_msg = msg.decode('utf-8', 'ignore').rstrip('\r\n')
-            # clean_msg = print(msg.decode().strip())
             print(clean_msg)
 
 
 def keyboard_input():
     global streaming
 
-    # 🔹 2️⃣ Revisar si hay input de teclado sin bloquear
     rlist, _, _ = select.select([sys.stdin], [], [], 0)
 
-    if rlist:
-        cmd = sys.stdin.readline().strip()
-        print(f"Input: {cmd}")
+    if not rlist:
+        return
 
-        # 🔥 MOVE
-        if cmd == "MOVE":
+    cmd = sys.stdin.readline().strip().upper()
+    print(f"Input: {cmd}")
 
-            while True:
-                try:
-                    shoulder = float(input("Enter shoulder-angle: ").strip())
-                    # print(f"Target shoulder: {shoulder}")
-                    break
-                except ValueError:
-                    print("Invalid value. Enter a valid number.")
+    # =========================================================
+    # 🔥 MOVE
+    # =========================================================
+    if cmd == "MOVE":
 
-            while True:
-                try:
-                    elbow = float(input("Enter elbow-angle: ").strip())
-                    # print(f"Target elbow: {elbow}")
-                    break
-                except ValueError:
-                    print("Invalid value. Enter a valid number.")
+        while True:
+            capture = input("Capture? (Y/N): ").strip().upper()
+            if capture in ["Y", "N"]:
+                break
+            print("Invalid value. Enter Y or N.")
+        # =========================================================
+        # START SQUARE
+        # =========================================================
+        while True:
+            start_square = input("Start square: ").strip().upper()
+            start_result = square_xy.chess_square_to_xy(start_square)
 
-            commands.send_command(f"MOVE {shoulder} {elbow}")
-            return
+            if start_result is None:
+                print(f"Invalid start square: {start_square}")
+                continue
+            break
 
-        # 🔥 MOVE_FEEDBACK
-        elif cmd == "MOVE_FEEDBACK":
+        start_x, start_y = start_result
 
-            while True:
-                try:
-                    shoulder = float(input("Enter the target angle for the shoulder: ").strip())
-                    print(f"Target angle for the shoulder: {shoulder}")
-                    break
-                except ValueError:
-                    print("Invalid value. Enter a valid number.")
+        # =========================================================
+        # END SQUARE
+        # =========================================================
+        while True:
+            end_square = input("End square: ").strip().upper()
+            end_result = square_xy.chess_square_to_xy(end_square)
 
-            while True:
-                try:
-                    elbow = float(input("Enter the target angle for the elbow: ").strip())
-                    print(f"Target angle for the elbow: {elbow}")
-                    break
-                except ValueError:
-                    print("Invalid value. Enter a valid number.")
+            if end_result is None:
+                print(f"Invalid end square: {end_square}")
+                continue
 
-            commands.send_command(f"MOVE_FEEDBACK {shoulder} {elbow}")
-            return
+            break
 
-        # 🔥 SHOW-COMMANDS
-        elif cmd == "SHOW-COMMANDS":
-            print(
-                "Comandos disponibles:\n"
-                "ANGLES\n"
-                "HOME1\n"
-                "HOME2\n"
-                "HOME3\n"
-                "HOME\n"
-                "RESET\n"
-                "STATUS\n"
-                "PICK\n"
-                "PLACE\n"
-                "MOVE\n"
-                "SHOW-COMMANDS\n"
-            )
+        end_x, end_y = end_result
 
-        # 🔥 TODOS LOS DEMÁS
+        print(f"Start: {start_square} -> X={start_x} Y={start_y}")
+        print(f"End: {end_square} -> X={end_x} Y={end_y}")
+
+        if capture == "Y":
+            commands.send_command(f"MOVE_CAPTURE {start_square} {end_square}")
         else:
-            commands.send_command(cmd)
+            commands.send_command(f"MOVE {start_square} {end_square}")
 
-    time.sleep_ms(10)
+        return
+
+    # =========================================================
+    # 🔥 SQUARE
+    # =========================================================
+    elif cmd == "SQUARE":
+
+        while True:
+            square = input("Enter square (example E4): ").strip().upper()
+
+            if len(square) != 2:
+                print("Invalid square length.")
+                continue
+
+            file = square[0]
+            rank = square[1]
+
+            if file < 'A' or file > 'H':
+                print("Invalid file. Use A-H.")
+                continue
+
+            if rank < '1' or rank > '8':
+                print("Invalid rank. Use 1-8.")
+                continue
+
+            break
+
+        commands.send_command(f"SQUARE {square}")
+        return
+
+    # =========================================================
+    # 🔥 SHOW COMMANDS
+    # =========================================================
+    elif cmd == "SHOW-COMMANDS":
+        print(
+            "Comandos disponibles:\n"
+            "ANGLES\n"
+            "HOME\n"
+            "HOME1\n"
+            "HOME2\n"
+            "HOME3\n"
+            "MOVE\n"
+            "PICK\n"
+            "PLACE\n"
+            "BOARD\n"
+            "RESET\n"
+            "COMMANDS\n"
+            "SQUARE\n"
+            "STATUS\n"
+        )
+        return
+
+    # =========================================================
+    # 🔥 DEFAULT
+    # =========================================================
+    else:
+        commands.send_command(cmd)
+        return
+
+
+# ❌ sleep_ms aquí no aplica porque no estás en loop válido
 
 if __name__ == "__main__":
     main_loop()
