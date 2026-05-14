@@ -88,22 +88,42 @@ def keyboard_input():
             if capture in ["Y", "N"]:
                 break
             print("Invalid value. Enter Y or N.")
+        # =========================================================
+        # START SQUARE
+        # =========================================================
+        while True:
+            start_square = input("Start square: ").strip().upper()
+            start_result = square_xy.chess_square_to_xy(start_square)
 
-        start_square = input("Start square: ").strip().upper()
-        end_square = input("End square: ").strip().upper()
+            if start_result is None:
+                print(f"Invalid start square: {start_square}")
+                continue
+            break
 
-        start_x, start_y = square_xy.chess_square_to_xy(start_square)
-        end_x, end_y = square_xy.chess_square_to_xy(end_square)
+        start_x, start_y = start_result
+
+        # =========================================================
+        # END SQUARE
+        # =========================================================
+        while True:
+            end_square = input("End square: ").strip().upper()
+            end_result = square_xy.chess_square_to_xy(end_square)
+
+            if end_result is None:
+                print(f"Invalid end square: {end_square}")
+                continue
+
+            break
+
+        end_x, end_y = end_result
 
         print(f"Start: {start_square} -> X={start_x} Y={start_y}")
         print(f"End: {end_square} -> X={end_x} Y={end_y}")
 
         if capture == "Y":
             commands.send_command(f"MOVE_CAPTURE {start_square} {end_square}")
-            print("MOVE_CAPTURE command sent.")
         else:
             commands.send_command(f"MOVE {start_square} {end_square}")
-            print("MOVE command sent.")
 
         return
 
