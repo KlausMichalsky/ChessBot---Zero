@@ -30,7 +30,7 @@ i2c = I2C(OLED_I2C_ID, scl=Pin(OLED_I2C_SCL),
 oled = SSD1306_I2C(OLED_ANCHO, OLED_ALTO, i2c)
 
 
-# Inicialización del OLED
+# INICIALIZACIÓN DE OLED
 def oled_init():
     oled.fill(0)
     oled.text("Iniciando...", 0, 0)
@@ -38,7 +38,7 @@ def oled_init():
     utime.sleep(2)  # espera 500 ms
 
 
-# Mostrar un título centrado en la primera línea
+# MUESTRA UN TITULO CENTRADO EN LA PRIMERA LINEA
 # Input: texto (str)
 def mostrar_titulo(texto):
     oled.fill(0)
@@ -46,7 +46,7 @@ def mostrar_titulo(texto):
     oled.show()
 
 
-# Mostrar una linea de texto comenzando desde la derecha
+# MOSTRAR TEXTO EN LINEA ESPECÍFICA
 # Input: linea (int), texto (str)
 def mostrar_texto(linea, texto):
     borrar_parte_inferior()
@@ -54,7 +54,7 @@ def mostrar_texto(linea, texto):
     oled.show()
 
 
-# Mostrar una linea de texto centrado entre los bordes
+# MOSTRAR TEXTO CENTRADO EN LINEA ESPECÍFICA
 # Input: linea (int), texto (str)
 def centrar_texto(linea, texto):
     borrar_parte_inferior()
@@ -63,7 +63,7 @@ def centrar_texto(linea, texto):
     oled.show()
 
 
-# Rellena un rectángulo en el OLED
+# RELLENAR UN RECTÁNGULO (para borrar o dibujar)
 # Input: (x, y, w, h). color: 0=borrar, 1=dibujar.
 def fill_rect(x, y, w, h, color=0):
     for yy in range(y, y + h):

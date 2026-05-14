@@ -1,4 +1,4 @@
-# MicroPython FrameBuffer library
+# MICROPYTHON FRAMEBUFFER LIBRARY
 # (Versión oficial mínima compatible con SSD1306)
 
 class FrameBuffer:

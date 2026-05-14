@@ -84,51 +84,51 @@ bool chessSquareToXY(
     return true;
 }
 
-// CONVERSIÓN XY → ANGULOS (CINEMATICA INVERSA)
-// -----------------------------------------------------------------------
-// “devuelve” theta1 y theta2 porque -> & modifica variables mediante referencias
-// La matemática trigonométrica de C++ usa: sin, cos, atan2, acos TODO en radianes
-// Ejemplo PI rad = 180°
-bool xyToIKRadians(
-    float x,
-    float y,
-    float L1,
-    float L2,
-    float &theta1, // El & significa NO crea copias. Modifica directamente las variables originales
-    float &theta2) {
-    float r2 = x * x + y * y;
-    float r = sqrt(r2);
+// // CONVERSIÓN XY → ANGULOS (CINEMATICA INVERSA)
+// // -----------------------------------------------------------------------
+// // “devuelve” theta1 y theta2 porque -> & modifica variables mediante referencias
+// // La matemática trigonométrica de C++ usa: sin, cos, atan2, acos TODO en radianes
+// // Ejemplo PI rad = 180°
+// bool xyToIKRadians(
+//     float x,
+//     float y,
+//     float L1,
+//     float L2,
+//     float &theta1, // El & significa NO crea copias. Modifica directamente las variables originales
+//     float &theta2) {
+//     float r2 = x * x + y * y;
+//     float r = sqrt(r2);
 
-    // CHECK: punto alcanzable
-    if (r > (L1 + L2) || r < fabs(L1 - L2)) {
-        return false; // fuera del alcance
-    }
+//     // CHECK: punto alcanzable
+//     if (r > (L1 + L2) || r < fabs(L1 - L2)) {
+//         return false; // fuera del alcance
+//     }
 
-    // Ley de cosenos para calcular del ángulo del codo.
-    float cosTheta2 = (r2 - L1 * L1 - L2 * L2) / (2 * L1 * L2);
-    theta2 = acos(cosTheta2); // queda en radianes
+//     // Ley de cosenos para calcular del ángulo del codo.
+//     float cosTheta2 = (r2 - L1 * L1 - L2 * L2) / (2 * L1 * L2);
+//     theta2 = acos(cosTheta2); // queda en radianes
 
-    // Parte auxiliar para calcular el hombro.
-    float k1 = L1 + L2 * cos(theta2); // Representa la proyección horizontal.
-    float k2 = L2 * sin(theta2);      // Representa la proyección vertical.
+//     // Parte auxiliar para calcular el hombro.
+//     float k1 = L1 + L2 * cos(theta2); // Representa la proyección horizontal.
+//     float k2 = L2 * sin(theta2);      // Representa la proyección vertical.
 
-    // theta1 = apunta hacia el objetivo - corrige el ángulo porque existe el segundo brazo
-    theta1 = atan2(y, x) - atan2(k2, k1);
+//     // theta1 = apunta hacia el objetivo - corrige el ángulo porque existe el segundo brazo
+//     theta1 = atan2(y, x) - atan2(k2, k1);
 
-    return true;
-}
+//     return true;
+// }
 
-// CONVERSION DE RADIANES A GRADOS
-// -----------------------------------------------------------------------
-float radToDegrees(float rad) {
-    return rad * 180.0 / PI;
-}
+// // CONVERSION DE RADIANES A GRADOS
+// // -----------------------------------------------------------------------
+// float radToDegrees(float rad) {
+//     return rad * 180.0 / PI;
+// }
 
-// CONVERSION DE GRADOS A RADIANES
-// -----------------------------------------------------------------------
-float degreesToRad(float deg) {
-    return deg * PI / 180.0;
-}
+// // CONVERSION DE GRADOS A RADIANES
+// // -----------------------------------------------------------------------
+// float degreesToRad(float deg) {
+//     return deg * PI / 180.0;
+// }
 
 // CONVERSION DE CASSILA A ANGULOS
 // -----------------------------------------------------------------------
@@ -145,38 +145,38 @@ float degreesToRad(float deg) {
 // 4️⃣ Devuelve:
 // theta1Deg
 // theta2Deg
-bool chessSquareToAngles(
-    const String &square,
-    float &theta1Deg,
-    float &theta2Deg) {
-    float x;
-    float y;
+// bool chessSquareToAngles(
+//     const String &square,
+//     float &theta1Deg,
+//     float &theta2Deg) {
+//     float x;
+//     float y;
 
-    // CASILLA -> XY
-    if (!chessSquareToXY(square, x, y)) { // si casilla invalida -> salir
-        return false;
-    }
+//     // CASILLA -> XY
+//     if (!chessSquareToXY(square, x, y)) { // si casilla invalida -> salir
+//         return false;
+//     }
 
-    float theta1Rad;
-    float theta2Rad;
+//     float theta1Rad;
+//     float theta2Rad;
 
-    // XY -> IK
-    if (!xyToIKRadians( // si punto fuera de alcance o geometría imposible -> salir
-            x,
-            y,
-            LINK1,
-            LINK2,
-            theta1Rad,
-            theta2Rad)) {
-        return false;
-    }
+//     // XY -> IK
+//     if (!xyToIKRadians( // si punto fuera de alcance o geometría imposible -> salir
+//             x,
+//             y,
+//             LINK1,
+//             LINK2,
+//             theta1Rad,
+//             theta2Rad)) {
+//         return false;
+//     }
 
-    // RAD -> DEG
-    theta1Deg = radToDegrees(theta1Rad);
-    theta2Deg = radToDegrees(theta2Rad);
+//     // RAD -> DEG
+//     theta1Deg = radToDegrees(theta1Rad);
+//     theta2Deg = radToDegrees(theta2Rad);
 
-    return true;
-}
+//     return true;
+// }
 
 // DEBUG
 // TEST: IMPRIMIR TODAS LAS CASILLAS COMO COORDENADAS XY

@@ -16,7 +16,7 @@
 from machine import UART
 import config
 
-# Crear instancia UART UNA sola vez
+# CREACIÓN DE UART
 # ------------------------------------------------------------------------
 uart = UART(
     config.UART_ID,

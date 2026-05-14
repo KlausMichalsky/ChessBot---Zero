@@ -14,8 +14,12 @@
 import time
 import sys
 import select
+
 import commands
 import communication
+import ikinematics
+import square_xy
+
 
 
 streaming = False
