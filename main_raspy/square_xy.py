@@ -42,8 +42,8 @@ def chess_square_to_xy(square):
     file_index = ord(file) - ord('A')
     rank_index = ord(rank) - ord('1')
 
-    x = A1_OFFSET_X + (file_index * SQUARE_SIZE)
-    y = A1_OFFSET_Y + (rank_index * SQUARE_SIZE)
+    x = config.A1_OFFSET_X + (file_index * config.SQUARE_SIZE)
+    y = config.A1_OFFSET_Y + (rank_index * config.SQUARE_SIZE)
 
     return x, y
 
