@@ -1,7 +1,7 @@
 # =======================================================================
 #             🔹 C H E S S   S Q U A R E   T O   X Y 🔹
 # =======================================================================
-#  Archivo    : square_xy.py
+#  Archivo    : chess_square_to_xy.py
 #  Autor      : Klaus Michalsky
 #  Fecha      : May-2026
 # -----------------------------------------------------------------------
@@ -24,7 +24,14 @@
 
 import time
 
-import config
+# CONSTANTES
+# -----------------------------------------------------------------------
+# Tamaño de casilla en mm
+SQUARE_SIZE = 25.0
+# Distancia desde DOF1 a centro Fila A
+A1_OFFSET_X = -((3 * SQUARE_SIZE) + SQUARE_SIZE / 2.0)
+# Distancia desde DOF1 a centro Rango 1
+A1_OFFSET_Y = 80.44
 
 
 # CONVERSION DE CASILLA XY
@@ -48,17 +55,12 @@ def chess_square_to_xy(square):
         return None
 
     # CONVERTIR A ÍNDICES
-    # Convertir la letra a un índice (A=0, B=1, ..., H=7) y el número a un índice (1=0, 2=1, ..., 8=7)
-    # ord() en Python devuelve el valor ASCII del carácter
     file_index = ord(file) - ord('A')
     rank_index = ord(rank) - ord('1')
 
     # CONVERTIR A COORDENADAS EN CENTRO DE CASILLAS
-    x = config.A1_OFFSET_X + (file_index * config.SQUARE_SIZE)
-    y = config.A1_OFFSET_Y + (rank_index * config.SQUARE_SIZE)
-
-    print("x =", x)
-    print("y =", y)
+    x = A1_OFFSET_X + (file_index * SQUARE_SIZE)
+    y = A1_OFFSET_Y + (rank_index * SQUARE_SIZE)
 
     return x, y
 
@@ -77,7 +79,7 @@ def print_board_xy():
             x = 0.0
             y = 0.0
 
-            time.sleep_ms(10)
+            time.sleep(0.1)
 
             result = chess_square_to_xy(square)
 
@@ -96,6 +98,11 @@ def print_board_xy():
 
 # MAIN
 # -----------------------------------------------------------------------
+print("Iniciando...")
+
+# IMPRIMIR TABLERO SOLO 1 VEZ
+print_board_xy()
+
 while True:
     square = input("Introduce casilla (ej: E2): ").strip()
 
@@ -103,8 +110,6 @@ while True:
 
     if result:
         x, y = result
-
-        print("OK {} -> X={} Y={}".format(square, x, y))
+        print(f"{square.upper()} -> X={x} Y={y}")
     else:
         print("Casilla invalida")
-    
