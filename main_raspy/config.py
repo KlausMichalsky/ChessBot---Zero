@@ -32,11 +32,9 @@ UART_BAUD = 115200
 UART_TX_PIN = 0
 UART_RX_PIN = 1
 
-# CONSTANTES DEL TABLERO
+# CONSTANTES DEL TABLERO EN MM
 # -----------------------------------------------------------------------
-# Tamaño de casilla en mm
 SQUARE_SIZE = 25.0
 # Distancia desde DOF1 a centro Fila A
 A1_OFFSET_X = -((3 * SQUARE_SIZE) + SQUARE_SIZE / 2.0)
-# Distancia desde DOF1 a centro Rango 1
-A1_OFFSET_Y = 80.44
+A1_OFFSET_Y = 80.44  # Distancia desde DOF1 a centro Rango 1
