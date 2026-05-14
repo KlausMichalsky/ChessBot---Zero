@@ -26,12 +26,13 @@
 # =======================================================================
 
 import math
-
-l1 = 175.0
-l2 = 95.0
+import config
 
 
-def inverse_kinematics(x, y, l1, l2):
+def inverse_kinematics(x, y):
+
+    l1 = config.L1
+    l2 = config.L2
 
     r2 = x*x + y*y
     r = math.sqrt(r2)
@@ -89,8 +90,6 @@ if __name__ == "__main__":
             theta1, theta2 = inverse_kinematics(
                 input_x,
                 input_y,
-                l1,
-                l2
             )
 
             print(f"\ntheta1 = {math.degrees(theta1):.2f}°")

@@ -11,6 +11,7 @@
 #       - Mostrar resultados y respuestas del RP2040.
 # ========================================================================
 
+
 import time
 import sys
 import select
@@ -31,18 +32,18 @@ def main_loop():
 
     print(
         "Comandos disponibles:\n"
-        "ANGLES\n"          # Muestra angulos actuales del sensor 1 y 2
-        "HOME\n"        # Homing de todos los motores 1-2-3 + status
-        "HOME1\n"           # Homing del motor1 + status
-        "HOME2\n"           # Homing del motor2 + status
-        "HOME3\n"           # Homing del motor3 + status
-        "MOVE\n"            # Mueve motores 1 y 2 a angulos ingresados
-        "PICK\n"            # Mueve Z hacia abajo, agarra pieza y sube
-        "PLACE\n"           # Mueve Z hacia abajo, suelta pieza y sube
-        "BOARD\n"           # Imprime coordenadas del tablero
-        "RESET\n"           # Resetea el sistema
-        "COMMANDS\n"        # Muestra lista de comandos
-        "STATUS\n"          # Muestra el estatus de motores y sensores
+        "ANGLES\n"
+        "HOME\n"
+        "HOME1\n"
+        "HOME2\n"
+        "HOME3\n"
+        "MOVE\n"
+        "PICK\n"
+        "PLACE\n"
+        "BOARD\n"
+        "RESET\n"
+        "COMMANDS\n"
+        "STATUS\n"
     )
 
     print("Command: ")
@@ -52,29 +53,23 @@ def main_loop():
         if communication.any():
             msg = communication.readline()
             if msg:
-                # decodificar y eliminar \r, \n, espacios
-                # print(msg)  # mostrar mensaje sin procesar
                 clean_msg = msg.decode('utf-8', 'ignore').rstrip('\r\n')
                 print(clean_msg)
 
-        keyboard_input()  # revisar input de teclado sin bloquear
+        keyboard_input()
 
 
 def readUart():
     if communication.any():
         msg = communication.readline()
         if msg:
-            # decodificar y eliminar \r, \n, espacios
-            # print(msg)  # mostrar mensaje sin procesar
             clean_msg = msg.decode('utf-8', 'ignore').rstrip('\r\n')
-            # clean_msg = print(msg.decode().strip())
             print(clean_msg)
 
 
 def keyboard_input():
     global streaming
 
-    # 🔹 Revisar input sin bloquear
     rlist, _, _ = select.select([sys.stdin], [], [], 0)
 
     if not rlist:
@@ -96,6 +91,12 @@ def keyboard_input():
 
         start_square = input("Start square: ").strip().upper()
         end_square = input("End square: ").strip().upper()
+
+        start_x, start_y = square_xy.chess_square_to_xy(start_square)
+        end_x, end_y = square_xy.chess_square_to_xy(end_square)
+
+        print(f"Start: {start_square} -> X={start_x} Y={start_y}")
+        print(f"End: {end_square} -> X={end_x} Y={end_y}")
 
         if capture == "Y":
             commands.send_command(f"MOVE_CAPTURE {start_square} {end_square}")
@@ -164,8 +165,7 @@ def keyboard_input():
         return
 
 
-time.sleep_ms(10)
-
+# ❌ sleep_ms aquí no aplica porque no estás en loop válido
 
 if __name__ == "__main__":
     main_loop()
