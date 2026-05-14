@@ -74,90 +74,97 @@ def readUart():
 def keyboard_input():
     global streaming
 
-    # 🔹 Revisar si hay input de teclado sin bloquear
+    # 🔹 Revisar input sin bloquear
     rlist, _, _ = select.select([sys.stdin], [], [], 0)
 
-    if rlist:
-        cmd = sys.stdin.readline().strip()
-        print(f"Input: {cmd}")
+    if not rlist:
+        return
 
-        match cmd:
+    cmd = sys.stdin.readline().strip().upper()
+    print(f"Input: {cmd}")
 
-            # 🔥 MOVE
-            case "MOVE":
+    # =========================================================
+    # 🔥 MOVE
+    # =========================================================
+    if cmd == "MOVE":
 
-                while True:
-                    try:
-                        shoulder = float(
-                            input("Enter shoulder-angle: ").strip())
-                        break
-                    except ValueError:
-                        print("Invalid value. Enter a valid number.")
+        while True:
+            capture = input("Capture? (Y/N): ").strip().upper()
+            if capture in ["Y", "N"]:
+                break
+            print("Invalid value. Enter Y or N.")
 
-                while True:
-                    try:
-                        elbow = float(input("Enter elbow-angle: ").strip())
-                        break
-                    except ValueError:
-                        print("Invalid value. Enter a valid number.")
+        start_square = input("Start square: ").strip().upper()
+        end_square = input("End square: ").strip().upper()
 
-                commands.send_command(f"MOVE {shoulder} {elbow}")
-                return
+        if capture == "Y":
+            commands.send_command(f"MOVE_CAPTURE {start_square} {end_square}")
+            print("MOVE_CAPTURE command sent.")
+        else:
+            commands.send_command(f"MOVE {start_square} {end_square}")
+            print("MOVE command sent.")
 
-            # 🔥 SQUARE
-            case "SQUARE":
+        return
 
-                while True:
-                    square = input(
-                        "Enter square (example E4): ").strip().upper()
+    # =========================================================
+    # 🔥 SQUARE
+    # =========================================================
+    elif cmd == "SQUARE":
 
-                    # VALIDAR LONGITUD
-                    if len(square) != 2:
-                        print("Invalid square length.")
-                        continue
+        while True:
+            square = input("Enter square (example E4): ").strip().upper()
 
-                    file = square[0]
-                    rank = square[1]
+            if len(square) != 2:
+                print("Invalid square length.")
+                continue
 
-                    # VALIDAR LETRA
-                    if file < 'A' or file > 'H':
-                        print("Invalid file. Use A-H.")
-                        continue
+            file = square[0]
+            rank = square[1]
 
-                    # VALIDAR NUMERO
-                    if rank < '1' or rank > '8':
-                        print("Invalid rank. Use 1-8.")
-                        continue
+            if file < 'A' or file > 'H':
+                print("Invalid file. Use A-H.")
+                continue
 
-                    break
+            if rank < '1' or rank > '8':
+                print("Invalid rank. Use 1-8.")
+                continue
 
-                commands.send_command(f"SQUARE {square}")
-                return
+            break
 
-            # 🔥 SHOW-COMMANDS
-            case "SHOW-COMMANDS":
-                print(
-                    "Comandos disponibles:\n"
-                    "ANGLES\n"
-                    "HOME\n"
-                    "HOME1\n"
-                    "HOME2\n"
-                    "HOME3\n"
-                    "MOVE\n"
-                    "PICK\n"
-                    "PLACE\n"
-                    "BOARD\n"
-                    "RESET\n"
-                    "COMMANDS\n"
-                    "SQUARE\n"
-                    "STATUS\n"
-                )
+        commands.send_command(f"SQUARE {square}")
+        return
 
-            # 🔥 DEFAULT
-            case _:
-                commands.send_command(cmd)
+    # =========================================================
+    # 🔥 SHOW COMMANDS
+    # =========================================================
+    elif cmd == "SHOW-COMMANDS":
+        print(
+            "Comandos disponibles:\n"
+            "ANGLES\n"
+            "HOME\n"
+            "HOME1\n"
+            "HOME2\n"
+            "HOME3\n"
+            "MOVE\n"
+            "PICK\n"
+            "PLACE\n"
+            "BOARD\n"
+            "RESET\n"
+            "COMMANDS\n"
+            "SQUARE\n"
+            "STATUS\n"
+        )
+        return
 
-    time.sleep_ms(10)
+    # =========================================================
+    # 🔥 DEFAULT
+    # =========================================================
+    else:
+        commands.send_command(cmd)
+        return
+
+
+time.sleep_ms(10)
 
 
 if __name__ == "__main__":

@@ -30,9 +30,6 @@ import math
 l1 = 175.0
 l2 = 95.0
 
-print()
-print("Inverse Kinematics for a 2-DOF SCARA Robot Arm")
-
 
 def inverse_kinematics(x, y, l1, l2):
 
@@ -79,21 +76,25 @@ def inverse_kinematics(x, y, l1, l2):
     return theta1, theta2
 
 
-while True:
-    try:
+# =========================================================
+# 🔥 SOLO SE EJECUTA SI CORRÉS ESTE ARCHIVO DIRECTO
+# =========================================================
+if __name__ == "__main__":
 
-        input_x = float(input("Enter x: "))
-        input_y = float(input("Enter y: "))
+    while True:
+        try:
+            input_x = float(input("Enter x: "))
+            input_y = float(input("Enter y: "))
 
-        theta1, theta2 = inverse_kinematics(
-            input_x,
-            input_y,
-            l1,
-            l2
-        )
+            theta1, theta2 = inverse_kinematics(
+                input_x,
+                input_y,
+                l1,
+                l2
+            )
 
-        print(f"\ntheta1 = {math.degrees(theta1):.2f}°")
-        print(f"theta2 = {math.degrees(theta2):.2f}°\n")
+            print(f"\ntheta1 = {math.degrees(theta1):.2f}°")
+            print(f"theta2 = {math.degrees(theta2):.2f}°\n")
 
-    except ValueError as e:
-        print(e)
+        except ValueError as e:
+            print(e)

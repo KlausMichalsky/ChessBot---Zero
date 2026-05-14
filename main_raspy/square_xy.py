@@ -23,93 +23,61 @@
 # =======================================================================
 
 import time
-
-# CONSTANTES
-# -----------------------------------------------------------------------
-# Tamaño de casilla en mm
-SQUARE_SIZE = 25.0
-# Distancia desde DOF1 a centro Fila A
-A1_OFFSET_X = -((3 * SQUARE_SIZE) + SQUARE_SIZE / 2.0)
-# Distancia desde DOF1 a centro Rango 1
-A1_OFFSET_Y = 80.44
+import config
 
 
-# CONVERSION DE CASILLA XY
-# -----------------------------------------------------------------------
 def chess_square_to_xy(square):
-    # VALIDAR LONGITUD
-    # Verifica que el texto tenga exactamente 2 caracteres.
     if len(square) != 2:
         return None
 
-    # OBTENER LETRA Y NÚMERO
-    # Obtener la primera letra y convertir a mayúscula
     file = square[0].upper()
-    rank = square[1]          # Obtener el número
+    rank = square[1]
 
-    # VALIDAR FILA Y RANGO
     if file < 'A' or file > 'H':
         return None
 
     if rank < '1' or rank > '8':
         return None
 
-    # CONVERTIR A ÍNDICES
     file_index = ord(file) - ord('A')
     rank_index = ord(rank) - ord('1')
 
-    # CONVERTIR A COORDENADAS EN CENTRO DE CASILLAS
     x = A1_OFFSET_X + (file_index * SQUARE_SIZE)
     y = A1_OFFSET_Y + (rank_index * SQUARE_SIZE)
 
     return x, y
 
 
-# IMPRIMIR TODAS LAS CASILLAS COMO COORDENADAS XY
-# -----------------------------------------------------------------------
 def print_board_xy():
-    print()
-    print("-------- BOARD XY DEBUG --------")
+    print("\n-------- BOARD XY DEBUG --------")
 
     for file in range(ord('A'), ord('H') + 1):
         for rank in range(ord('1'), ord('8') + 1):
 
             square = chr(file) + chr(rank)
 
-            x = 0.0
-            y = 0.0
-
-            time.sleep(0.1)
-
             result = chess_square_to_xy(square)
 
-            if result is not None:
+            if result:
                 x, y = result
+                print(f"{square} -> X: {x} Y: {y}")
 
-                print(square, end="")
-                print(" -> X: ", end="")
-                print(x, end="")
-                print(" Y: ", end="")
-                print(y)
-
-    print("-------- END BOARD --------")
-    print()
+    print("-------- END BOARD --------\n")
 
 
-# MAIN
-# -----------------------------------------------------------------------
-print("Iniciando...")
+# =========================================================
+# 🔥 SOLO SE EJECUTA SI CORRÉS ESTE ARCHIVO DIRECTO
+# =========================================================
+if __name__ == "__main__":
+    print("Iniciando...")
+    print_board_xy()
 
-# IMPRIMIR TABLERO SOLO 1 VEZ
-print_board_xy()
+    while True:
+        square = input("Introduce casilla (ej: E2): ").strip()
+        result = chess_square_to_xy(square)
 
-while True:
-    square = input("Introduce casilla (ej: E2): ").strip()
-
-    result = chess_square_to_xy(square)
-
-    if result:
-        x, y = result
-        print(f"{square.upper()} -> X={x} Y={y}")
-    else:
-        print("Casilla invalida")
+        if result:
+            x, y = result
+            print(f"{square.upper()} -> X={x} Y={y}")
+        else:
+            print("Casilla inválida")
