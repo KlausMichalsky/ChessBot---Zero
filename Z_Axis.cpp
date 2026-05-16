@@ -17,6 +17,23 @@
 ZState zState = ZState::IDLE;
 
 // flags internos (evitan re-disparos)
+// Es simplemente un “interruptor interno” (flag)
+// evita que repitas el mismo comando de movimiento mil veces.
+// Problema que soluciona
+// Sin ese flag, tu loop hace esto:
+// loop rápido:
+//   → zMoveDown()
+//   → zMoveDown()
+//   → zMoveDown()
+//   → zMoveDown()
+// Problema que soluciona
+// Sin ese flag, tu loop hace esto:
+// loop rápido:
+//   → zMoveDown()
+//   → zMoveDown()
+//   → zMoveDown()
+//   → zMoveDown()
+// “ya envié el comando de movimiento, no lo vuelvas a mandar”
 static bool zCommandIssued = false;
 
 // =========================================================
