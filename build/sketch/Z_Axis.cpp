@@ -1,10 +1,4 @@
 #line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\z_Axis.cpp"
-// =======================================================================
-//                 🔹 C H E S S B O T  —   Z E R O 🔹
-// =======================================================================
-//  Archivo    : z_axis.cpp
-// =======================================================================
-
 #include <Arduino.h>
 
 #include "config.h"
@@ -16,9 +10,6 @@
 // ESTADO GLOBAL Z
 // =========================================================
 ZState zState = ZState::IDLE;
-
-// flags internos (evitan re-disparos)
-static bool zCommandIssued = false;
 
 // =========================================================
 // MOVIMIENTOS BASE (NO BLOQUEANTES)
@@ -52,14 +43,12 @@ void magnetOFF() {
 void startZPick() {
     motorEnableZ();
     zState = ZState::PICK_DOWN;
-    zCommandIssued = false;
     zMoveDown();
 }
 
 void startZPlace() {
     motorEnableZ();
     zState = ZState::PLACE_DOWN;
-    zCommandIssued = false;
     zMoveDown();
 }
 
@@ -73,19 +62,13 @@ void updateZ() {
         // =====================================================
         case ZState::PICK_DOWN:
 
-            if (!zCommandIssued) {
-                Serial1.println("Z: PICK DOWN");
-                zMoveDown();
-                zCommandIssued = true;
-            }
-
             motor3.run();
 
             if (motor3.distanceToGo() == 0) {
                 Serial1.println("Z: GRIP");
                 magnetON();
-                zCommandIssued = false;
                 zState = ZState::PICK_GRIP;
+                zMoveUp(); // siguiente acción inmediata
             }
             break;
 
@@ -94,16 +77,9 @@ void updateZ() {
         // =====================================================
         case ZState::PICK_GRIP:
 
-            if (!zCommandIssued) {
-                Serial1.println("Z: GO UP");
-                zMoveUp();
-                zCommandIssued = true;
-            }
-
             motor3.run();
 
             if (motor3.distanceToGo() == 0) {
-                zCommandIssued = false;
                 zState = ZState::PICK_UP;
             }
             break;
@@ -124,37 +100,24 @@ void updateZ() {
         // =====================================================
         case ZState::PLACE_DOWN:
 
-            if (!zCommandIssued) {
-                Serial1.println("Z: PLACE DOWN");
-                zMoveDown();
-                zCommandIssued = true;
-            }
-
             motor3.run();
 
             if (motor3.distanceToGo() == 0) {
                 Serial1.println("Z: RELEASE");
                 magnetOFF();
-                zCommandIssued = false;
                 zState = ZState::PLACE_RELEASE;
+                zMoveUp();
             }
             break;
 
         // =====================================================
-        // PLACE RELEASE (SUBE)
+        // PLACE RELEASE
         // =====================================================
         case ZState::PLACE_RELEASE:
-
-            if (!zCommandIssued) {
-                Serial1.println("Z: GO UP");
-                zMoveUp();
-                zCommandIssued = true;
-            }
 
             motor3.run();
 
             if (motor3.distanceToGo() == 0) {
-                zCommandIssued = false;
                 zState = ZState::PLACE_UP;
             }
             break;

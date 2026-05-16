@@ -122,6 +122,7 @@ bool inverseKinematics(
         theta2 = -theta2;
     }
 
+    // Cinemática inversa
     float k1 = l1 + l2 * cosf(theta2);
     float k2 = l2 * sinf(theta2);
 
