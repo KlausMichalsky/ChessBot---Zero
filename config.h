@@ -94,6 +94,7 @@ enum class Command {
     PLACE,
     BOARD,
     MOVE,
+    CAPTURE,
     RESET,
     COMMANDS,
     SQUARE,

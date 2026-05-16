@@ -111,7 +111,7 @@ def keyboard_input():
             break
 
         if capture == "Y":
-            commands.send_command(f"MOVE_CAPTURE {start_square} {end_square}")
+            commands.send_command(f"CAPTURE {start_square} {end_square}")
         else:
             commands.send_command(f"MOVE {start_square} {end_square}")
         return
