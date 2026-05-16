@@ -20,6 +20,12 @@ static unsigned long settleStart = 0;
 // DEFINICION DE MAQUINA DE ESTADOS PARA MOVIMIENTO XY-PLANE
 // -----------------------------------------------------------------------
 MovingStateXY movingStateXY = MovingStateXY::IDLE;
+MoveSequenceState moveSeqState = MoveSequenceState::IDLE;
+
+float startT1 = 0;
+float startT2 = 0;
+float endT1 = 0;
+float endT2 = 0;
 
 // STATUS
 // -----------------------------------------------------------------------
@@ -136,6 +142,40 @@ void updateXY() {
                 Serial1.println();
                 movingStateXY = MovingStateXY::IDLE;
             }
+            break;
+    }
+}
+
+void startMoveSequence(float s1, float s2, float e1, float e2) {
+    startT1 = s1;
+    startT2 = s2;
+    endT1 = e1;
+    endT2 = e2;
+
+    moveSeqState = MoveSequenceState::MOVING_START;
+
+    moveToAngles(startT1, startT2);
+}
+
+void updateMoveSequence() {
+    switch (moveSeqState) {
+        case MoveSequenceState::MOVING_START:
+
+            if (!xyIsMoving()) {
+                moveToAngles(endT1, endT2);
+                moveSeqState = MoveSequenceState::MOVING_END;
+            }
+            break;
+
+        case MoveSequenceState::MOVING_END:
+
+            if (!xyIsMoving()) {
+                moveSeqState = MoveSequenceState::IDLE;
+                Serial1.println("MOVE DONE");
+            }
+            break;
+
+        default:
             break;
     }
 }

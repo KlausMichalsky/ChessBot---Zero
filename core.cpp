@@ -40,6 +40,7 @@ void coreUpdate() {
     }
 
     updateXY();
+    updateMoveSequence();
 
     // ...otras tareas
 }
