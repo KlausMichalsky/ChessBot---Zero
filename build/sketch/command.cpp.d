@@ -136,8 +136,8 @@ C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\command.cpp.o: \
  C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.6.0/pico-sdk/src/rp2_common/pico_stdio/include/pico/stdio.h \
  C:\Users\Klaus\Documents\Arduino\libraries\AccelStepper\src/AccelStepper.h \
  C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\Z_Axis.h \
- C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\command.h \
  C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\config.h \
+ C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\command.h \
  C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\core.h \
  C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\homing.h \
  C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\motors.h \

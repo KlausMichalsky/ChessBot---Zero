@@ -145,4 +145,5 @@ C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\xy_plane.cpp.o: \
  C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.6.0/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/i2c.h \
  C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.6.0/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/i2c.h \
  C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\utils.h \
- C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\xy_plane.h
+ C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\xy_plane.h \
+ C:\Users\Klaus\Documents\ChessBot---Zero\build\sketch\z_Axis.h

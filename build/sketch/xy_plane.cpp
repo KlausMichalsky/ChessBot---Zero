@@ -10,6 +10,7 @@
 #include "sensors.h"
 #include "utils.h"
 #include "xy_plane.h"
+#include "z_Axis.h"
 
 // VARIABLES LOCALES
 // -----------------------------------------------------------------------
@@ -119,7 +120,7 @@ void updateXY() {
                 settleStart = millis();
                 delay(100); // estabilizacion mecanica
                 Serial1.print("Moved to Target");
-                printDebugMove(targetShoulderAngle, targetElbowAngle);
+                // printDebugMove(targetShoulderAngle, targetElbowAngle);
                 movingStateXY = MovingStateXY::SETTLING;
             }
             break;
@@ -127,7 +128,7 @@ void updateXY() {
         case MovingStateXY::SETTLING:
             if (millis() - settleStart > 100) {
                 movingStateXY = MovingStateXY::CORRECTING;
-                Serial1.println("Correcting Error");
+                // Serial1.println("Correcting Error");
                 correctErrorOnce();
             }
             break;
@@ -159,22 +160,54 @@ void startMoveSequence(float s1, float s2, float e1, float e2) {
 
 void updateMoveSequence() {
     switch (moveSeqState) {
+        // =========================================================
+        // 1. MOVER PIEZA (START → XY)
+        // =========================================================
         case MoveSequenceState::MOVING_START:
 
             if (!xyIsMoving()) {
-                moveToAngles(endT1, endT2);
+                startZPick(); // 🔥 baja Z y agarra pieza
+                moveSeqState = MoveSequenceState::PICKING;
+            }
+            break;
+
+        // =========================================================
+        // 2. ESPERAR PICK TERMINADO (Z)
+        // =========================================================
+        case MoveSequenceState::PICKING:
+
+            if (zState == ZState::IDLE) {
+                moveToAngles(endT1, endT2); // 🔥 ir a destino
                 moveSeqState = MoveSequenceState::MOVING_END;
             }
             break;
 
+        // =========================================================
+        // 3. MOVIMIENTO FINAL (END → XY)
+        // =========================================================
         case MoveSequenceState::MOVING_END:
 
             if (!xyIsMoving()) {
+                startZPlace(); // 🔥 soltar pieza
+                moveSeqState = MoveSequenceState::PLACING;
+            }
+            break;
+
+        // =========================================================
+        // 4. FINALIZAR Z PLACE
+        // =========================================================
+        case MoveSequenceState::PLACING:
+
+            if (zState == ZState::IDLE) {
                 moveSeqState = MoveSequenceState::IDLE;
                 Serial1.println("MOVE DONE");
             }
             break;
 
+        // =========================================================
+        // IDLE
+        // =========================================================
+        case MoveSequenceState::IDLE:
         default:
             break;
     }

@@ -159,13 +159,13 @@ void processCommand(const String &cmdStr) {
 
         case Command::PICK:
             Serial1.println("PICKING PIECE!");
-            zPick(); // bloqueante: sube/baja Z y activa imán
-                     // después de esto, XY puede moverse sin problemas
+            // zPick(); // bloqueante: sube/baja Z y activa imán
+            // después de esto, XY puede moverse sin problemas
             break;
 
         case Command::PLACE:
             Serial1.println("PLACING PIECE!");
-            zPlace();
+            // zPlace();
             break;
 
             // case Command::MOVE: {

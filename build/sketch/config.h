@@ -167,7 +167,22 @@ enum class MovingStateXY {
 enum class MoveSequenceState {
     IDLE,
     MOVING_START,
-    MOVING_END
+    PICKING,
+    MOVING_END,
+    PLACING
+};
+
+// Maquina de estados para movimiento del eje Z
+enum class ZState {
+    IDLE,
+
+    PICK_DOWN,
+    PICK_GRIP,
+    PICK_UP,
+
+    PLACE_DOWN,
+    PLACE_RELEASE,
+    PLACE_UP
 };
 
 // ESTRUCTURAS DE CONFIGURACIÓN DE MOTORES

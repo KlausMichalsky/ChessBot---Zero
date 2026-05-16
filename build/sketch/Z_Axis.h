@@ -12,11 +12,17 @@
 
 #include <Arduino.h>
 
+#include "config.h"
+
 #pragma once
+
+// estado global del Z
+extern ZState zState;
 
 void zMoveDown();
 void zMoveUp();
 void magnetON();
 void magnetOFF();
-void zPick();
-void zPlace();
+void startZPick();
+void startZPlace();
+void updateZ();
