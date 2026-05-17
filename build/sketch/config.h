@@ -73,9 +73,9 @@ constexpr int MOTOR3_MICROSTEPPING = 8;
 
 // CONFIGURACION DEL TABLERO en MM
 // -----------------------------------------------------------------------
-constexpr float SQUARE_SIZE = 25.0;
-constexpr float BOARD_OFFSET_X = 80.44;
-constexpr float BOARD_OFFSET_Y = -(3 * SQUARE_SIZE + SQUARE_SIZE / 2);
+constexpr float SQUARE_SIZE = 25.0f;                                     // Tamaño de casilla en mm
+constexpr float A1_OFFSET_X = -((3 * SQUARE_SIZE) + SQUARE_SIZE / 2.0f); // Distancia desde DOF1 a centro Fila A
+constexpr float A1_OFFSET_Y = 80.0f;                                     // Distancia desde DOF1 a centro Rango 1
 
 // CONFIGURACION DE LOS BRAZOS EN MM
 // -----------------------------------------------------------------------
@@ -95,11 +95,20 @@ enum class Command {
     PLACE,
     BOARD,
     MOVE,
+    CAPTURE,
     RESET,
     COMMANDS,
     SQUARE,
     STATUS,
     UNKNOWN
+};
+
+// Asignacion de ID para motores
+enum class MotorID {
+    NONE,
+    J1,
+    J2,
+    Z
 };
 
 // Maquina de estados de homing, motor1-2 (CW = ClockWise, CCW = CounterClockWise)
@@ -145,14 +154,6 @@ enum class HomeSingleState {
     DONE
 };
 
-// Asignacion de ID para motores
-enum class MotorID {
-    NONE,
-    J1,
-    J2,
-    Z
-};
-
 // Maquina de estados para movimiento XY
 enum class MovingStateXY {
     IDLE,
@@ -160,6 +161,28 @@ enum class MovingStateXY {
     SETTLING,
     CORRECTING,
     CORRECTION_DONE
+};
+
+// Maquina de estados para secuencia de movimiento, captura, enrroque
+enum class MoveSequenceState {
+    IDLE,
+    MOVING_START,
+    PICKING,
+    MOVING_END,
+    PLACING
+};
+
+// Maquina de estados para movimiento del eje Z
+enum class ZState {
+    IDLE,
+
+    PICK_DOWN,
+    PICK_GRIP,
+    PICK_UP,
+
+    PLACE_DOWN,
+    PLACE_RELEASE,
+    PLACE_UP
 };
 
 // ESTRUCTURAS DE CONFIGURACIÓN DE MOTORES

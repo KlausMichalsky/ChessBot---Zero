@@ -18,6 +18,8 @@ extern float sensor2Offset;
 
 void moveToAngles(float targetShoulder, float targetElbow);
 void updateXY();
+void updateMoveSequence();
 bool xyIsMoving();
 void printDebugMove(float motor1Angle, float motor2Angle);
 void correctErrorOnce();
+void startMoveSequence(float s1, float s2, float e1, float e2);

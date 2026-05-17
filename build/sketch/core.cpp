@@ -20,6 +20,7 @@
 #include "sensors.h"
 #include "utils.h"
 #include "xy_plane.h"
+#include "z_Axis.h"
 
 // INICIALIZACION DEL CORE
 // -----------------------------------------------------------------------
@@ -40,7 +41,9 @@ void coreUpdate() {
         return;
     }
 
-    updateXY();
+    updateXY();           // 1. ejecuta movimiento físico XY
+    updateZ();            // 2. ejecuta movimiento físico Z
+    updateMoveSequence(); // 3. decide qué hacer después
 
     // ...otras tareas
 }

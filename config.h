@@ -94,11 +94,20 @@ enum class Command {
     PLACE,
     BOARD,
     MOVE,
+    CAPTURE,
     RESET,
     COMMANDS,
     SQUARE,
     STATUS,
     UNKNOWN
+};
+
+// Asignacion de ID para motores
+enum class MotorID {
+    NONE,
+    J1,
+    J2,
+    Z
 };
 
 // Maquina de estados de homing, motor1-2 (CW = ClockWise, CCW = CounterClockWise)
@@ -144,14 +153,6 @@ enum class HomeSingleState {
     DONE
 };
 
-// Asignacion de ID para motores
-enum class MotorID {
-    NONE,
-    J1,
-    J2,
-    Z
-};
-
 // Maquina de estados para movimiento XY
 enum class MovingStateXY {
     IDLE,
@@ -159,6 +160,28 @@ enum class MovingStateXY {
     SETTLING,
     CORRECTING,
     CORRECTION_DONE
+};
+
+// Maquina de estados para secuencia de movimiento, captura, enrroque
+enum class MoveSequenceState {
+    IDLE,
+    MOVING_START,
+    PICKING,
+    MOVING_END,
+    PLACING
+};
+
+// Maquina de estados para movimiento del eje Z
+enum class ZState {
+    IDLE,
+
+    PICK_DOWN,
+    PICK_GRIP,
+    PICK_UP,
+
+    PLACE_DOWN,
+    PLACE_RELEASE,
+    PLACE_UP
 };
 
 // ESTRUCTURAS DE CONFIGURACIÓN DE MOTORES

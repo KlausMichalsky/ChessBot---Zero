@@ -1,14 +1,3 @@
-// =======================================================================
-//                 🔹 C H E S S B O T  —   Z E R O 🔹
-// =======================================================================
-//  Archivo    : z_axis.cpp
-//  Autor      : Klaus Michalsky
-//  Fecha      : Feb-2026
-// -----------------------------------------------------------------------
-//  ▫️ DESCRIPCIÓN
-//      - Definicion de las funciones para controlar el eje Z
-// =======================================================================
-
 #include <Arduino.h>
 
 #include "config.h"
@@ -16,49 +5,29 @@
 #include "motors.h"
 #include "z_axis.h"
 
-// VARIABLES LOCALES
-// -----------------------------------------------------------------------
-static bool zMoving = false;
-static long zTarget = 0;
+// =========================================================
+// ESTADO GLOBAL Z
+// =========================================================
+ZState zState = ZState::IDLE;
 
-// MOVIMIENTO DEL EJE Z
-// -----------------------------------------------------------------------
-void zStep() {
-    if (zMoving) {
-        motor3.run(); // AccelStepper mueve y maneja aceleración
-        if (motor3.distanceToGo() == 0) {
-            zMoving = false;
-        }
-    }
-}
-
-// ASIGNACION DE DESTINO HACIA ABAJO (NO MUEVE TODAVIA)
-// -----------------------------------------------------------------------
+// =========================================================
+// MOVIMIENTOS BASE (NO BLOQUEANTES)
+// =========================================================
 void zMoveDown() {
     motor3.setMaxSpeed(6000);
     motor3.setAcceleration(15000);
-    motor3.setCurrentPosition(0);
-    zTarget = Z_STEPS_DOWN; // Z_STEPS_DOWN pasos definido en config.h
-    motor3.moveTo(zTarget);
-    zMoving = true; // activa zMoving para que zStep() lo ejecute.
-    while (zMoving)
-        zStep();
+    motor3.moveTo(Z_STEPS_DOWN);
 }
 
-// ASIGNACION DE DESTINO HACIA ARRIBA (NO MUEVE TODAVIA)
-// -----------------------------------------------------------------------
 void zMoveUp() {
     motor3.setMaxSpeed(6000);
     motor3.setAcceleration(15000);
-    zTarget = 0;
-    motor3.moveTo(zTarget);
-    zMoving = true;
-    while (zMoving)
-        zStep();
+    motor3.moveTo(0);
 }
 
-// CONTROL DEL IMAN
-// -----------------------------------------------------------------------
+// =========================================================
+// IMÁN
+// =========================================================
 void magnetON() {
     digitalWrite(MAGNET, HIGH);
 }
@@ -67,25 +36,107 @@ void magnetOFF() {
     digitalWrite(MAGNET, LOW);
 }
 
-// ZPick ZPlace SON BLOQUEANTES Y SE EJECUTAN DESDE COMMAND.CPP
-// -----------------------------------------------------------------------
-void zPick() {
+// =========================================================
+// INICIO DE SECUENCIAS
+// =========================================================
+void startZPick() {
     motorEnableZ();
-    magnetOFF();
+    zState = ZState::PICK_DOWN;
     zMoveDown();
-    delay(Z_DELAY); // para mejorar controal al agarrar y soltar
-    magnetON();
-    delay(Z_DELAY);
-    zMoveUp();
-    motorDisableZ();
 }
 
-void zPlace() {
+void startZPlace() {
     motorEnableZ();
+    zState = ZState::PLACE_DOWN;
     zMoveDown();
-    delay(Z_DELAY);
-    magnetOFF();
-    delay(Z_DELAY);
-    zMoveUp();
-    motorDisableZ();
+}
+
+// =========================================================
+// UPDATE Z STATE MACHINE
+// =========================================================
+void updateZ() {
+    switch (zState) {
+        // =====================================================
+        // PICK DOWN
+        // =====================================================
+        case ZState::PICK_DOWN:
+
+            motor3.run();
+
+            if (motor3.distanceToGo() == 0) {
+                Serial1.println("Z: GRIP");
+                magnetON();
+                zState = ZState::PICK_GRIP;
+                zMoveUp(); // siguiente acción inmediata
+            }
+            break;
+
+        // =====================================================
+        // PICK GRIP
+        // =====================================================
+        case ZState::PICK_GRIP:
+
+            motor3.run();
+
+            if (motor3.distanceToGo() == 0) {
+                zState = ZState::PICK_UP;
+            }
+            break;
+
+        // =====================================================
+        // PICK UP
+        // =====================================================
+        case ZState::PICK_UP:
+
+            if (motor3.distanceToGo() == 0) {
+                Serial1.println("Z PICK DONE");
+                zState = ZState::IDLE;
+            }
+            break;
+
+        // =====================================================
+        // PLACE DOWN
+        // =====================================================
+        case ZState::PLACE_DOWN:
+
+            motor3.run();
+
+            if (motor3.distanceToGo() == 0) {
+                Serial1.println("Z: RELEASE");
+                magnetOFF();
+                zState = ZState::PLACE_RELEASE;
+                zMoveUp();
+            }
+            break;
+
+        // =====================================================
+        // PLACE RELEASE
+        // =====================================================
+        case ZState::PLACE_RELEASE:
+
+            motor3.run();
+
+            if (motor3.distanceToGo() == 0) {
+                zState = ZState::PLACE_UP;
+            }
+            break;
+
+        // =====================================================
+        // PLACE UP
+        // =====================================================
+        case ZState::PLACE_UP:
+
+            if (motor3.distanceToGo() == 0) {
+                Serial1.println("Z PLACE DONE");
+                zState = ZState::IDLE;
+            }
+            break;
+
+        // =====================================================
+        // IDLE
+        // =====================================================
+        case ZState::IDLE:
+        default:
+            break;
+    }
 }

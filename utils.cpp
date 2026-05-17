@@ -84,99 +84,119 @@ bool chessSquareToXY(
     return true;
 }
 
-// // CONVERSIÓN XY → ANGULOS (CINEMATICA INVERSA)
-// // -----------------------------------------------------------------------
-// // “devuelve” theta1 y theta2 porque -> & modifica variables mediante referencias
-// // La matemática trigonométrica de C++ usa: sin, cos, atan2, acos TODO en radianes
-// // Ejemplo PI rad = 180°
-// bool xyToIKRadians(
-//     float x,
-//     float y,
-//     float L1,
-//     float L2,
-//     float &theta1, // El & significa NO crea copias. Modifica directamente las variables originales
-//     float &theta2) {
-//     float r2 = x * x + y * y;
-//     float r = sqrt(r2);
-
-//     // CHECK: punto alcanzable
-//     if (r > (L1 + L2) || r < fabs(L1 - L2)) {
-//         return false; // fuera del alcance
-//     }
-
-//     // Ley de cosenos para calcular del ángulo del codo.
-//     float cosTheta2 = (r2 - L1 * L1 - L2 * L2) / (2 * L1 * L2);
-//     theta2 = acos(cosTheta2); // queda en radianes
-
-//     // Parte auxiliar para calcular el hombro.
-//     float k1 = L1 + L2 * cos(theta2); // Representa la proyección horizontal.
-//     float k2 = L2 * sin(theta2);      // Representa la proyección vertical.
-
-//     // theta1 = apunta hacia el objetivo - corrige el ángulo porque existe el segundo brazo
-//     theta1 = atan2(y, x) - atan2(k2, k1);
-
-//     return true;
-// }
-
-// // CONVERSION DE RADIANES A GRADOS
-// // -----------------------------------------------------------------------
-// float radToDegrees(float rad) {
-//     return rad * 180.0 / PI;
-// }
-
-// // CONVERSION DE GRADOS A RADIANES
-// // -----------------------------------------------------------------------
-// float degreesToRad(float deg) {
-//     return deg * PI / 180.0;
-// }
-
-// CONVERSION DE CASSILA A ANGULOS
+// CONVERSIÓN XY → ANGULOS (CINEMATICA INVERSA)
 // -----------------------------------------------------------------------
-// 1️⃣ Casilla → XY
-// "E4"
-// ↓
-// (12, 220)
-// 2️⃣ XY → IK
-// (12,220)
-// ↓
-// (1.2 rad, 0.7 rad)
-// 3️⃣ Radianes → grados
-// (68°, 40°)
-// 4️⃣ Devuelve:
-// theta1Deg
-// theta2Deg
-// bool chessSquareToAngles(
-//     const String &square,
-//     float &theta1Deg,
-//     float &theta2Deg) {
-//     float x;
-//     float y;
+// “devuelve” theta1 y theta2 porque -> & modifica variables mediante referencias
+// La matemática trigonométrica de C++ usa: sin, cos, atan2, acos TODO en radianes
+// Ejemplo PI rad = 180°
+bool inverseKinematics(
+    float x,
+    float y,
+    float l1,
+    float l2,
+    float &theta1,
+    float &theta2) {
+    float r2 = x * x + y * y;
+    float r = sqrtf(r2);
 
-//     // CASILLA -> XY
-//     if (!chessSquareToXY(square, x, y)) { // si casilla invalida -> salir
-//         return false;
-//     }
+    // OUT OF REACH
+    if (r > (l1 + l2) || r < fabsf(l1 - l2)) {
+        return false;
+    }
 
-//     float theta1Rad;
-//     float theta2Rad;
+    float cos_theta2 = (r2 - l1 * l1 - l2 * l2) / (2.0f * l1 * l2);
 
-//     // XY -> IK
-//     if (!xyToIKRadians( // si punto fuera de alcance o geometría imposible -> salir
-//             x,
-//             y,
-//             LINK1,
-//             LINK2,
-//             theta1Rad,
-//             theta2Rad)) {
-//         return false;
-//     }
+    // clamp [-1, 1]
+    if (cos_theta2 > 1.0f)
+        cos_theta2 = 1.0f;
+    if (cos_theta2 < -1.0f)
+        cos_theta2 = -1.0f;
 
-//     // RAD -> DEG
-//     theta1Deg = radToDegrees(theta1Rad);
-//     theta2Deg = radToDegrees(theta2Rad);
+    // theta2 branch
+    theta2 = atan2f(
+        sqrtf(1.0f - cos_theta2 * cos_theta2),
+        cos_theta2);
 
-//     return true;
-// }
+    // flip según lado
+    if (x < 0.0f) {
+        theta2 = -theta2;
+    }
+
+    // Cinemática inversa
+    float k1 = l1 + l2 * cosf(theta2);
+    float k2 = l2 * sinf(theta2);
+
+    float theta1_raw = atan2f(y, x) - atan2f(k2, k1);
+
+    // offset mecánico
+    theta1 = (float)(M_PI_2)-theta1_raw;
+
+    // simetría física
+    theta1 = -theta1;
+
+    // normalización [-pi, pi]
+    theta1 = fmodf(theta1 + (float)M_PI, 2.0f * (float)M_PI);
+    if (theta1 < 0)
+        theta1 += 2.0f * (float)M_PI;
+    theta1 -= (float)M_PI;
+
+    if (x < 0.0f) {
+        theta1 = (float)M_PI - theta1;
+        theta2 = -((float)M_PI) - theta2;
+    } else if (x > 0.0f) {
+        theta1 = -((float)M_PI) - theta1;
+        theta2 = (float)M_PI - theta2;
+    }
+
+    return true;
+}
+
+// CONVERSION DE RADIANES A GRADOS
+// -----------------------------------------------------------------------
+float radToDegrees(float rad) {
+    return rad * 180.0 / PI;
+}
+
+// CONVERSION DE GRADOS A RADIANES
+// -----------------------------------------------------------------------
+float degreesToRad(float deg) {
+    return deg * PI / 180.0;
+}
+
+// CONVERSION DE CASSILA A ANGULOS-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -1️⃣ Casilla → XY
+//     "E4"
+// ↓ (12, 220)2️⃣ XY → IK(12, 220)
+// ↓ (1.2 rad, 0.7 rad)3️⃣ Radianes → grados(68°, 40°) 4️⃣ Devuelve : theta1Deg theta2Deg
+bool chessSquareToAngles(
+    const String &square,
+    float &theta1Deg,
+    float &theta2Deg) {
+    float x, y;
+
+    // CASILLA → XY
+    if (!chessSquareToXY(square, x, y)) {
+        return false;
+    }
+
+    float theta1Rad, theta2Rad;
+
+    // XY → IK
+    if (!inverseKinematics(
+            x,
+            y,
+            LINK1,
+            LINK2,
+            theta1Rad,
+            theta2Rad)) {
+        return false;
+    }
+
+    // RAD → DEG
+    theta1Deg = theta1Rad * 180.0f / M_PI;
+    theta2Deg = theta2Rad * 180.0f / M_PI;
+
+    return true;
+}
 
 // DEBUG
 // TEST: IMPRIMIR TODAS LAS CASILLAS COMO COORDENADAS XY

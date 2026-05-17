@@ -1,8 +1,8 @@
 C:\Users\Klaus\Documents\ChessBot---Zero\build\core\lwip\src\core\sys.c.o: \
- C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.5.1\cores\rp2040\lwip\src\core\sys.c \
- C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.5.1/pico-sdk/lib/lwip/src/core/sys.c \
- C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.5.1/pico-sdk/lib/lwip/src/include/lwip/opt.h \
- C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.5.1/pico-sdk/lib/lwip/src/include/lwip/debug.h \
- C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.5.1/pico-sdk/lib/lwip/src/include/lwip/arch.h \
- C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.5.1/pico-sdk/src/rp2_common/pico_lwip/include/arch/cc.h \
- C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.5.1/pico-sdk/lib/lwip/src/include/lwip/sys.h
+ C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0\cores\rp2040\lwip\src\core\sys.c \
+ C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.6.0/pico-sdk/lib/lwip/src/core/sys.c \
+ C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.6.0/pico-sdk/lib/lwip/src/include/lwip/opt.h \
+ C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.6.0/pico-sdk/lib/lwip/src/include/lwip/debug.h \
+ C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.6.0/pico-sdk/lib/lwip/src/include/lwip/arch.h \
+ C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.6.0/pico-sdk/src/rp2_common/pico_lwip/include/arch/cc.h \
+ C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/hardware/rp2040/5.6.0/pico-sdk/lib/lwip/src/include/lwip/sys.h
