@@ -24,6 +24,8 @@ void debug(const String &msg) {
 #endif
 }
 
+// INICIALIZACIÓN DE COMUNICACION UART
+// -----------------------------------------------------------------------
 void communicationInit() {
     // USB para debug (opcional)
     Serial.begin(115200);

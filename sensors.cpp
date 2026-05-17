@@ -86,8 +86,10 @@ float sensorHomingOffset(TwoWire &wire) {
     return offset;
 }
 
-// CORRECTURA DEL OFFSET DE HOMING EN EL SENSOR (ANGULO 0–360)
+// CORRECTURA DEL OFFSET DE HOMING EN EL SENSOR (ANGULO 0–360 ALINEACIÓN FISICA)
 // -----------------------------------------------------------------------
+// Si el sensor tiene un offset "phi" con respecto al cero mecánico
+// -> entonces toma ese valor como cero absoluto
 float sensorCorrectedAngle(TwoWire &wire, float offset) {
     float angle = rawToDegrees(sensorReadRawAngle(wire)) - offset;
 
@@ -99,7 +101,7 @@ float sensorCorrectedAngle(TwoWire &wire, float offset) {
     return angle;
 }
 
-// CALCULO DE ANGULO TOERICO (INCLUYENDO ALINEACION FISICA DEL SENSOR)
+// CÁLCULO DE ANGULO TEÓRICO (INCLUYENDO ALINEACIÓN FISICA DEL SENSOR)
 // -----------------------------------------------------------------------
 float estimateSensorAngle(
     float targetAngle,

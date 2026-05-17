@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\motors.cpp"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/motors.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -47,7 +47,7 @@ void motorsInit() {
     pinMode(motor2Config.enablePin, OUTPUT);
     pinMode(motor3Config.enablePin, OUTPUT);
 
-    // ‼️ Esto evita movimientos inesperados al encender el sistema
+    // ➡️ Esto evita movimientos inesperados al encender el sistema
     motorsDisableXY();
     motorDisableZ();
 
