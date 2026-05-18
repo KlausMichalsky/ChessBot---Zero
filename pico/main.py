@@ -19,35 +19,39 @@ import select
 import commands
 import communication
 
-
 streaming = False
 board_done = False
 
 
+# FUNCIÓN PRINCIPAL DEL SISTEMA
+# Inicializa comandos disponibles y ejecuta el bucle principal.
+# -----------------------------------------------------------------------
 def main_loop():
     global streaming
     global shoulder, elbow
 
     print(
         "Comandos disponibles:\n"
-        "ANGLES\n"
-        "HOME\n"
-        "HOME1\n"
-        "HOME2\n"
-        "HOME3\n"
-        "MOVE\n"
-        "PICK\n"
-        "PLACE\n"
-        "BOARD\n"
-        "RESET\n"
-        "COMMANDS\n"
-        "STATUS\n"
+        "ANGLES\n"  # Mostrar los ángulos actuales del brazo
+        "HOME\n"  # Mover el brazo a la posición de inicio
+        "HOME1\n"  # Mover el brazo a la posición de inicio 1
+        "HOME2\n"  # Mover el brazo a la posición de inicio 2
+        "HOME3\n"  # Mover el brazo a la posición de inicio 3
+        "MOVE\n"  # Mover el brazo de una casilla a otra
+        "PICK\n"  # Recoger una pieza
+        "PLACE\n"  # Colocar una pieza
+        "BOARD\n"  # Mostrar el tablero
+        "RESET\n"  # Reiniciar el sistema
+        "COMMANDS\n"  # Mostrar esta lista de comandos
+        "STATUS\n"  # Mostrar el estado actual del sistema
     )
 
     print("Command: ")
 
+    # BUCLE PRINCIPAL INFINITO:
+    # Lee mensajes UART continuamente y revisa input del teclado.
+    # -----------------------------------------------------------------------
     while True:
-        # 🔹 1️⃣ Leer UART siempre
         if communication.any():
             msg = communication.readline()
             if msg:
@@ -57,6 +61,9 @@ def main_loop():
         keyboard_input()
 
 
+# LECTURA DE MENSAJES UART DISPONIBLES
+# Los decodifica y los imprime limpios.
+# -----------------------------------------------------------------------
 def readUart():
     if communication.any():
         msg = communication.readline()
@@ -65,6 +72,12 @@ def readUart():
             print(clean_msg)
 
 
+# GESTIÓN DE COMANDOS DESDE TECLADO
+# Lee, valida y ejecuta comandos ingresados por el usuario.
+# DIVISIÓN DE COMANDOS DEL SISTEMA
+# Comandos especiales (MOVE, SQUARE): requieren inputs adicionales del usuario.
+# Comandos simples (HOME, RESET, PICK, etc.): se envían directamente sin procesamiento.
+# -----------------------------------------------------------------------
 def keyboard_input():
     global streaming
 
@@ -76,9 +89,9 @@ def keyboard_input():
     cmd = sys.stdin.readline().strip().upper()
     print(f"Input: {cmd}")
 
-    # =========================================================
-    # 🔥 MOVE
-    # =========================================================
+    # VALIDACIÓN DE CAPTURA EN COMANDO MOVE
+    # Solicita al usuario una respuesta válida Y o N.
+    # -----------------------------------------------------------------------
     if cmd == "MOVE":
 
         while True:
@@ -88,24 +101,36 @@ def keyboard_input():
                 break
             print("Invalid value. Enter Y or N.")
 
-        # =========================================================
-        # START SQUARE
-        # =========================================================
+        # VALIDACIÓN DE CASILLA INICIAL (A1-H8)
+        # Repite hasta que el usuario ingrese una coordenada de ajedrez válida.
+        # -----------------------------------------------------------------------
         while True:
             start_square = input("Start square: ").strip().upper()
 
-            if len(start_square) != 2 or start_square[0] < 'A' or start_square[0] > 'H' or start_square[1] < '1' or start_square[1] > '8':
+            if (
+                len(start_square) != 2
+                or start_square[0] < 'A'
+                or start_square[0] > 'H'
+                or start_square[1] < '1'
+                or start_square[1] > '8'
+            ):
                 print(f"Invalid start square: {start_square}")
                 continue
             break
 
-        # =========================================================
-        # END SQUARE
-        # =========================================================
+        # VALIDACIÓN DE CASILLA FINAL (A1-H8) Y ENVÍO DE COMANDO MOVE/CAPTURE
+        # Construye y envía el comando según si hay captura o no.
+        # -----------------------------------------------------------------------
         while True:
             end_square = input("End square: ").strip().upper()
 
-            if len(end_square) != 2 or end_square[0] < 'A' or end_square[0] > 'H' or end_square[1] < '1' or end_square[1] > '8':
+            if (
+                len(end_square) != 2
+                or end_square[0] < 'A'
+                or end_square[0] > 'H'
+                or end_square[1] < '1'
+                or end_square[1] > '8'
+            ):
                 print(f"Invalid end square: {end_square}")
                 continue
             break
@@ -116,8 +141,9 @@ def keyboard_input():
             commands.send_command(f"MOVE {start_square} {end_square}")
         return
 
+    # ❌ Este bloque se puede borrar
     # =========================================================
-    # 🔥 SQUARE
+    # SQUARE
     # =========================================================
     elif cmd == "SQUARE":
 
@@ -144,9 +170,8 @@ def keyboard_input():
         commands.send_command(f"SQUARE {square}")
         return
 
-    # =========================================================
-    # 🔥 SHOW COMMANDS
-    # =========================================================
+    # MUESTRA COMANDOS DISPONIBLES
+    # -----------------------------------------------------------------------
     elif cmd == "SHOW-COMMANDS":
         print(
             "Comandos disponibles:\n"
@@ -166,9 +191,8 @@ def keyboard_input():
         )
         return
 
-    # =========================================================
-    # 🔥 DEFAULT
-    # =========================================================
+    # MODO DIRECTO: todo comando no especial se envía al robot sin procesamiento.
+    # -----------------------------------------------------------------------
     else:
         commands.send_command(cmd)
         return

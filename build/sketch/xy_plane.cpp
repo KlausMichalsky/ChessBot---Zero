@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\xy_plane.cpp"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/xy_plane.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -10,7 +10,7 @@
 #include "sensors.h"
 #include "utils.h"
 #include "xy_plane.h"
-#include "z_Axis.h"
+#include "z_axis.h"
 
 // VARIABLES LOCALES
 // -----------------------------------------------------------------------
@@ -147,6 +147,10 @@ void updateXY() {
     }
 }
 
+// INICIAR SECUENCIA DE MOVIMIENTO COMPLETA (START → XY → Z → XY → Z)
+// -----------------------------------------------------------------------
+// startT1, startT2: ángulos iniciales para el movimiento XY
+// endT1, endT2: ángulos finales para el movimiento XY
 void startMoveSequence(float s1, float s2, float e1, float e2) {
     startT1 = s1;
     startT2 = s2;
@@ -158,11 +162,11 @@ void startMoveSequence(float s1, float s2, float e1, float e2) {
     moveToAngles(startT1, startT2);
 }
 
+// MAQUINA DE ESTADOS PARA SECUENCIA DE MOVIMIENTO COMPLETA (START → XY → Z → XY → Z)
+// -----------------------------------------------------------------------
 void updateMoveSequence() {
     switch (moveSeqState) {
-        // =========================================================
-        // 1. MOVER PIEZA (START → XY)
-        // =========================================================
+        // 1. Mover pieza (START → XY)
         case MoveSequenceState::MOVING_START:
 
             if (!xyIsMoving()) {
@@ -171,20 +175,16 @@ void updateMoveSequence() {
             }
             break;
 
-        // =========================================================
-        // 2. ESPERAR PICK TERMINADO (Z)
-        // =========================================================
+        // 2. Esperar Pick Terminado (Z)
         case MoveSequenceState::PICKING:
 
-            if (zState == ZState::IDLE) {
+            if (movingStateZ == MovingStateZ::IDLE) {
                 moveToAngles(endT1, endT2); // 🔥 ir a destino
                 moveSeqState = MoveSequenceState::MOVING_END;
             }
             break;
 
-        // =========================================================
-        // 3. MOVIMIENTO FINAL (END → XY)
-        // =========================================================
+        // 3. Movimiento final (END → XY)
         case MoveSequenceState::MOVING_END:
 
             if (!xyIsMoving()) {
@@ -193,20 +193,16 @@ void updateMoveSequence() {
             }
             break;
 
-        // =========================================================
-        // 4. FINALIZAR Z PLACE
-        // =========================================================
+        // 4. Finalizado (esperar Place terminado)
         case MoveSequenceState::PLACING:
 
-            if (zState == ZState::IDLE) {
+            if (movingStateZ == MovingStateZ::IDLE) {
                 moveSeqState = MoveSequenceState::IDLE;
                 Serial1.println("MOVE DONE");
             }
             break;
 
-        // =========================================================
         // IDLE
-        // =========================================================
         case MoveSequenceState::IDLE:
         default:
             break;

@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\utils.h"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/utils.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -28,7 +28,7 @@ bool chessSquareToXY(
     float &x,
     float &y);
 
-bool xyToIKRadians(
+bool inverseKinematics(
     float x,
     float y,
     float L1,
@@ -36,13 +36,9 @@ bool xyToIKRadians(
     float &theta1,
     float &theta2);
 
-float radToDegrees(float rad);
-
-float degreesToRad(float deg); // por el momento no se usa
-
 bool chessSquareToAngles(
     const String &square,
     float &theta1Deg,
     float &theta2Deg);
 
-void printBoardXY();
+void printBoardXY(); // Solo para Debug

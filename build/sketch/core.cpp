@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\core.cpp"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/core.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -20,9 +20,9 @@
 #include "sensors.h"
 #include "utils.h"
 #include "xy_plane.h"
-#include "z_Axis.h"
+#include "z_axis.h"
 
-// INICIALIZACION DEL CORE
+// INICIALIZACIÓN DEL CORE
 // -----------------------------------------------------------------------
 void coreInit() {
     homeAllState = HomeAllState::IDLE;

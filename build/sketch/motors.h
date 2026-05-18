@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\motors.h"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/motors.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -16,7 +16,7 @@
 
 #include <AccelStepper.h>
 
-// DECLARACIÓN DE MOTORES (extern -> sin duplicar instancias)
+// DECLARACIÓN DE MOTORES
 // -----------------------------------------------------------------------
 extern AccelStepper motor1;
 extern AccelStepper motor2;

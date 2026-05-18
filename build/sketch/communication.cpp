@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\communication.cpp"
+#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/communication.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -25,6 +25,8 @@ void debug(const String &msg) {
 #endif
 }
 
+// INICIALIZACIÓN DE COMUNICACION UART
+// -----------------------------------------------------------------------
 void communicationInit() {
     // USB para debug (opcional)
     Serial.begin(115200);
