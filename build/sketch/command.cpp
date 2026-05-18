@@ -169,56 +169,6 @@ void processCommand(const String &cmdStr) {
             // zPlace();
             break;
 
-            // case Command::MOVE: {
-            //     char startSquare[4] = {0};
-            //     char endSquare[4] = {0};
-
-            //     int parsed = sscanf(trimmedCmd.c_str(),
-            //                         "MOVE %3s %3s",
-            //                         startSquare,
-            //                         endSquare);
-
-            //     if (parsed != 2) {
-            //         Serial1.println("ERROR: MOVE format invalid");
-            //         break;
-            //     }
-
-            //     if (strcmp(startSquare, endSquare) == 0) {
-            //         Serial1.println("ERROR: Same square");
-            //         break;
-            //     }
-
-            //     float t1, t2;
-
-            //     // START
-            //     if (!chessSquareToAngles(String(startSquare), t1, t2)) {
-            //         Serial1.println("ERROR: Invalid start square");
-            //         break;
-            //     }
-
-            //     Serial1.print("theta1_start: ");
-            //     Serial1.print(t1);
-            //     Serial1.print(", theta2_start: ");
-            //     Serial1.println(t2);
-
-            //     moveToAngles(t1, t2);
-
-            //     // END
-            //     if (!chessSquareToAngles(String(endSquare), t1, t2)) {
-            //         Serial1.println("ERROR: Invalid end square");
-            //         break;
-            //     }
-
-            //     Serial1.print("theta1_end: ");
-            //     Serial1.print(t1);
-            //     Serial1.print(", theta2: ");
-            //     Serial1.println(t2);
-
-            //     moveToAngles(t1, t2);
-
-            //     break;
-            // }
-
         case Command::MOVE: {
             char startSquare[4] = {0};
             char endSquare[4] = {0};
