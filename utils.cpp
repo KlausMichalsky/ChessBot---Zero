@@ -277,3 +277,14 @@ void printBoardXY() {
     Serial1.println("-------- END BOARD --------");
     Serial1.println();
 }
+
+float shortestAngle(float target, float current) {
+    float diff = target - current;
+
+    while (diff > 180)
+        diff -= 360;
+    while (diff < -180)
+        diff += 360;
+
+    return current + diff;
+}
