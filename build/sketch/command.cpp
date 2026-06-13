@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/command.cpp"
+#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\command.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -74,32 +74,34 @@ Command parseCommand(const String &cmd) {
         return Command::STATUS;
     else if (cmd == "RESET")
         return Command::RESET;
-    else if (cmd == "HOME1")
-        return Command::HOME1;
-    else if (cmd == "HOME2")
-        return Command::HOME2;
-    else if (cmd == "HOME3")
-        return Command::HOME3;
-    else if (cmd == "HOME")
-        return Command::HOME;
     else if (cmd == "ANGLES")
         return Command::ANGLES;
-    else if (cmd == "PICK")
-        return Command::PICK;
-    else if (cmd == "PLACE")
-        return Command::PLACE;
-    else if (cmd.startsWith("MOVE"))
-        return Command::MOVE;
-    else if (cmd.startsWith("CAPTURE"))
-        return Command::CAPTURE;
-    else if (cmd == "COMMANDS")
-        return Command::COMMANDS;
     else if (cmd == "BOARD")
         return Command::BOARD;
+    else if (cmd == "COMMANDS")
+        return Command::COMMANDS;
+    else if (cmd == "HOME")
+        return Command::HOME;
+    else if (cmd == "HOMING")
+        return Command::HOMING;
+    else if (cmd.startsWith("MOVE"))
+        return Command::MOVE;
     else if (cmd.startsWith("SQUARE"))
         return Command::SQUARE;
     else
         return Command::UNKNOWN;
+    // else if (cmd == "HOME1")
+    //     return Command::HOME1;
+    // else if (cmd == "HOME2")
+    //     return Command::HOME2;
+    // else if (cmd == "HOME3")
+    //     return Command::HOME3;
+    // else if (cmd == "PICK")
+    //     return Command::PICK;
+    // else if (cmd == "PLACE")
+    //     return Command::PLACE;
+    // else if (cmd.startsWith("CAPTURE"))
+    //     return Command::CAPTURE;
 }
 
 // PROCESAMIENTO DE COMANDOS
@@ -123,31 +125,8 @@ void processCommand(const String &cmdStr) {
             homingInitXY(motor1Homing);
             homingInitXY(motor2Homing);
             homingInitZ(motor3Homing);
-            homeAllState = HomeAllState::IDLE; // si estabas en HOME-ALL, cancelalo
+            homeAllState = HomeAllState::IDLE; // si estabas en HOMING-ALL, cancelalo
             Serial1.println("SYSTEM RESET");
-            break;
-
-        case Command::HOME1:
-            Serial1.println("HOMING MOTOR1 STARTED");
-            homeSingleState = HomeSingleState::RUNNING;
-            homingStartXY(motor1, motor1Config, motor1Homing, HALL_1);
-            break;
-
-        case Command::HOME2:
-            Serial1.println("HOMING MOTOR2 STARTED");
-            homeSingleState = HomeSingleState::RUNNING;
-            homingStartXY(motor2, motor2Config, motor2Homing, HALL_2);
-            break;
-
-        case Command::HOME3:
-            Serial1.println("HOMING MOTOR3 STARTED");
-            homeSingleState = HomeSingleState::RUNNING;
-            homingStartZ(motor3, motor3Config, motor3Homing, HALL_3);
-            break;
-
-        case Command::HOME:
-            Serial1.println("HOME SEQUENCE STARTED");
-            homeAllState = HomeAllState::MOTOR1;
             break;
 
         case Command::ANGLES:
@@ -158,15 +137,20 @@ void processCommand(const String &cmdStr) {
             Serial1.println();
             break;
 
-        case Command::PICK:
-            Serial1.println("PICKING PIECE!");
-            // zPick(); // bloqueante: sube/baja Z y activa imán
-            // después de esto, XY puede moverse sin problemas
+        case Command::BOARD:
+            printBoardXY();
             break;
 
-        case Command::PLACE:
-            Serial1.println("PLACING PIECE!");
-            // zPlace();
+        case Command::COMMANDS:
+            break;
+
+        case Command::HOME:
+            moveToHomeXY();
+            break;
+
+        case Command::HOMING:
+            Serial1.println("HOMING SEQUENCE STARTED");
+            homeAllState = HomeAllState::MOTOR1;
             break;
 
         case Command::MOVE: {
@@ -201,77 +185,99 @@ void processCommand(const String &cmdStr) {
                 break;
             }
 
-            // 🔥 SOLO UNA LLAMADA
+            // SOLO UNA LLAMADA
             startMoveSequence(s1, s2, e1, e2);
 
             break;
         }
 
-        case Command::CAPTURE: {
-            char startSquare[4] = {0};
-            char endSquare[4] = {0};
-
-            int parsed = sscanf(trimmedCmd.c_str(),
-                                "CAPTURE %3s %3s",
-                                startSquare,
-                                endSquare);
-
-            if (parsed != 2) {
-                Serial1.println("ERROR: CAPTURE format invalid");
-                break;
-            }
-
-            if (strcmp(startSquare, endSquare) == 0) {
-                Serial1.println("ERROR: Same square");
-                break;
-            }
-
-            Serial1.print("CAPTURE FROM: ");
-            Serial1.print(startSquare);
-            Serial1.print(" TO: ");
-            Serial1.println(endSquare);
-            Serial1.println();
-
-            break;
-        }
-
-        case Command::BOARD:
-            printBoardXY();
-            break;
-
-        case Command::SQUARE: {
-            char square[3];
-
-            int parsed = sscanf(trimmedCmd.c_str(), "SQUARE %2s", square);
-            // "SQUARE %2s" leer máximo 2 caracteres.
-
-            if (parsed != 1) {
-                Serial1.println("ERROR: SQUARE format invalid");
-                break;
-            }
-
-            float shoulderDeg;
-            float elbowDeg;
-
-            // CASILLA -> ANGULOS
-            if (!chessSquareToAngles(
-                    String(square),
-                    shoulderDeg,
-                    elbowDeg)) {
-                Serial1.println("ERROR: Invalid square or unreachable");
-                break;
-            }
-
-            // MOVER BRAZO
-            moveToAngles(shoulderDeg, elbowDeg);
-            break;
-        }
-
-        case Command::COMMANDS:
-            break;
-
         default:
             Serial1.println("UNKNOWN COMMAND");
             break;
+
+            // case Command::HOME1:
+            //     Serial1.println("HOMING MOTOR1 STARTED");
+            //     homeSingleState = HomeSingleState::RUNNING;
+            //     homingStartXY(motor1, motor1Config, motor1Homing, HALL_1);
+            //     break;
+
+            // case Command::HOME2:
+            //     Serial1.println("HOMING MOTOR2 STARTED");
+            //     homeSingleState = HomeSingleState::RUNNING;
+            //     homingStartXY(motor2, motor2Config, motor2Homing, HALL_2);
+            //     break;
+
+            // case Command::HOME3:
+            //     Serial1.println("HOMING MOTOR3 STARTED");
+            //     homeSingleState = HomeSingleState::RUNNING;
+            //     homingStartZ(motor3, motor3Config, motor3Homing, HALL_3);
+            //     break;
+
+            // case Command::PICK:
+            //     Serial1.println("PICKING PIECE!");
+            //     // zPick(); // bloqueante: sube/baja Z y activa imán
+            //     // después de esto, XY puede moverse sin problemas
+            //     break;
+
+            // case Command::PLACE:
+            //     Serial1.println("PLACING PIECE!");
+            //     // zPlace();
+            //     break;
+
+            // case Command::CAPTURE: {
+            //     char startSquare[4] = {0};
+            //     char endSquare[4] = {0};
+
+            //     int parsed = sscanf(trimmedCmd.c_str(),
+            //                         "CAPTURE %3s %3s",
+            //                         startSquare,
+            //                         endSquare);
+
+            //     if (parsed != 2) {
+            //         Serial1.println("ERROR: CAPTURE format invalid");
+            //         break;
+            //     }
+
+            //     if (strcmp(startSquare, endSquare) == 0) {
+            //         Serial1.println("ERROR: Same square");
+            //         break;
+            //     }
+
+            //     Serial1.print("CAPTURE FROM: ");
+            //     Serial1.print(startSquare);
+            //     Serial1.print(" TO: ");
+            //     Serial1.println(endSquare);
+            //     Serial1.println();
+
+            //     break;
+            // }
+
+            // case Command::SQUARE: {
+            //     char square[3];
+
+            //     int parsed = sscanf(trimmedCmd.c_str(), "SQUARE %2s", square);
+            //     // "SQUARE %2s" leer máximo 2 caracteres.
+
+            //     if (parsed != 1) {
+            //         Serial1.println("ERROR: SQUARE format invalid");
+            //         break;
+            //     }
+
+            //     float shoulderDeg;
+            //     float elbowDeg;
+
+            //     // CASILLA -> ANGULOS
+            //     if (!chessSquareToAngles(
+            //             String(square),
+            //             shoulderDeg,
+            //             elbowDeg)) {
+            //         Serial1.println("ERROR: Invalid square or unreachable");
+            //         break;
+            //     }
+
+            //     // MOVER BRAZO
+            //     moveToAngles(shoulderDeg, elbowDeg);
+            //     break;
+            // }
     }
 }

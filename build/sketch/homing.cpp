@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/homing.cpp"
+#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\homing.cpp"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================

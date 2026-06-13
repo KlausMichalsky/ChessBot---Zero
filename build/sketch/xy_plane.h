@@ -1,4 +1,4 @@
-#line 1 "/Users/klausmichalsky/Proyectos Mac/ChessBot---Zero/xy_plane.h"
+#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\xy_plane.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -18,6 +18,7 @@ extern float sensor1Offset;
 extern float sensor2Offset;
 
 void moveToAngles(float targetShoulder, float targetElbow);
+void moveToHomeXY();
 void updateXY();
 void updateMoveSequence();
 bool xyIsMoving();

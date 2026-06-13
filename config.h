@@ -86,21 +86,21 @@ constexpr float LINK2 = 95;
 // -----------------------------------------------------------------------
 // Comandos recibidos por UART
 enum class Command {
-    ANGLES,
-    HOME,
-    HOME1,
-    HOME2,
-    HOME3,
-    PICK,
-    PLACE,
-    BOARD,
-    MOVE,
-    CAPTURE,
-    RESET,
-    COMMANDS,
-    SQUARE,
     STATUS,
+    RESET,
+    ANGLES,
+    BOARD,
+    COMMANDS,
+    HOME,
+    HOMING,
+    MOVE,
+    SQUARE,
     UNKNOWN
+    // HOME1,
+    // HOME2,
+    // HOME3,
+    // PICK,
+    // PLACE,
 };
 
 // Asignacion de ID para motores

@@ -212,6 +212,7 @@ void updateMoveSequence() {
 // (NO ES HOMING SOLO REGRESAR A POSICION CERO DESPUES DEL MOVIMIENTO)
 // -----------------------------------------------------------------------
 void moveToHomeXY() {
+    moveToAngles(0.0f, 0.0f);
 }
 
 // DEBUG

@@ -32,18 +32,20 @@ def main_loop():
 
     print(
         "Comandos disponibles:\n"
-        "ANGLES\n"  # Mostrar los ángulos actuales del brazo
-        "HOME\n"  # Mover el brazo a la posición de inicio
-        "HOME1\n"  # Mover el brazo a la posición de inicio 1
-        "HOME2\n"  # Mover el brazo a la posición de inicio 2
-        "HOME3\n"  # Mover el brazo a la posición de inicio 3
-        "MOVE\n"  # Mover el brazo de una casilla a otra
-        "PICK\n"  # Recoger una pieza
-        "PLACE\n"  # Colocar una pieza
-        "BOARD\n"  # Mostrar el tablero
-        "RESET\n"  # Reiniciar el sistema
-        "COMMANDS\n"  # Mostrar esta lista de comandos
         "STATUS\n"  # Mostrar el estado actual del sistema
+        "RESET\n"  # Reiniciar el sistema
+        "ANGLES\n"  # Mostrar los ángulos actuales del brazo
+        "BOARD\n"  # Mostrar el tablero
+        "COMMANDS\n"  # Mostrar esta lista de comandos
+        "HOME\n"  # Mover el brazo a la posición de inicio general
+        "HOMING\n"  # Hacer Homing para calibrar el sistema
+        "MOVE\n"  # Mover el brazo de una casilla a otra
+        # "HOME1\n"
+        # "HOME2\n"
+        # "HOME3\n"
+        # "PICK\n"  # Recoger una pieza
+        # "PLACE\n"  # Colocar una pieza
+        # "SQUARE\n"
     )
 
     print("Command: ")
@@ -141,53 +143,52 @@ def keyboard_input():
             commands.send_command(f"MOVE {start_square} {end_square}")
         return
 
-    # ❌ Este bloque se puede borrar
-    # =========================================================
-    # SQUARE
-    # =========================================================
-    elif cmd == "SQUARE":
+    # # ❌ Este bloque se puede borrar en  futuras versiones
+    # -----------------------------------------------------------------------
+    # elif cmd == "SQUARE":
 
-        while True:
-            square = input("Enter square (example E4): ").strip().upper()
+    #     while True:
+    #         square = input("Enter square (example E4): ").strip().upper()
 
-            if len(square) != 2:
-                print("Invalid square length.")
-                continue
+    #         if len(square) != 2:
+    #             print("Invalid square length.")
+    #             continue
 
-            file = square[0]
-            rank = square[1]
+    #         file = square[0]
+    #         rank = square[1]
 
-            if file < 'A' or file > 'H':
-                print("Invalid file. Use A-H.")
-                continue
+    #         if file < 'A' or file > 'H':
+    #             print("Invalid file. Use A-H.")
+    #             continue
 
-            if rank < '1' or rank > '8':
-                print("Invalid rank. Use 1-8.")
-                continue
+    #         if rank < '1' or rank > '8':
+    #             print("Invalid rank. Use 1-8.")
+    #             continue
 
-            break
+    #         break
 
-        commands.send_command(f"SQUARE {square}")
-        return
+    #     commands.send_command(f"SQUARE {square}")
+    #     return
 
     # MUESTRA COMANDOS DISPONIBLES
     # -----------------------------------------------------------------------
     elif cmd == "SHOW-COMMANDS":
         print(
             "Comandos disponibles:\n"
-            "ANGLES\n"
-            "HOME\n"
-            "HOME1\n"
-            "HOME2\n"
-            "HOME3\n"
-            "MOVE\n"
-            "PICK\n"
-            "PLACE\n"
-            "BOARD\n"
-            "RESET\n"
-            "COMMANDS\n"
-            "SQUARE\n"
             "STATUS\n"
+            "RESET\n"
+            "ANGLES\n"
+            "BOARD\n"
+            "COMMANDS\n"
+            "HOME\n"
+            "HOMING\n"
+            "MOVE\n"
+            # "HOME1\n"
+            # "HOME2\n"
+            # "HOME3\n"
+            # "PICK\n"
+            # "PLACE\n"
+            # "SQUARE\n"
         )
         return
 
