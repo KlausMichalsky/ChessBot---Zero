@@ -17,6 +17,7 @@ extern float sensor1Offset;
 extern float sensor2Offset;
 
 void moveToAngles(float targetShoulder, float targetElbow);
+void moveToHomeXY();
 void updateXY();
 void updateMoveSequence();
 bool xyIsMoving();

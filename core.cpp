@@ -19,9 +19,9 @@
 #include "sensors.h"
 #include "utils.h"
 #include "xy_plane.h"
-#include "z_Axis.h"
+#include "z_axis.h"
 
-// INICIALIZACION DEL CORE
+// INICIALIZACIÓN DEL CORE
 // -----------------------------------------------------------------------
 void coreInit() {
     homeAllState = HomeAllState::IDLE;

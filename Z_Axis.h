@@ -16,7 +16,7 @@
 #pragma once
 
 // estado global del Z
-extern ZState zState;
+extern MovingStateZ movingStateZ;
 
 void zMoveDown();
 void zMoveUp();

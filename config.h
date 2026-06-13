@@ -6,11 +6,15 @@
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      - Definición de pines fisicos, constantes y tipos de datos.
-//      - Definición de parametros globales.
-//      - Definición de enums de estados.
-//      - Definición estructuras de configuración de motores.
-//      - Centralizar parámetros mecánicos dependientes del hardware.
+//      - PINES DE CONFIGURACIÓN
+//      - PARAMETROS DE CONFIGURACIÓN PLANO XY
+//      - PARAMETROS DE CONFIGURACIÓN EJE Z
+//      - NIVELES LÓGICOS DE ENABLE DEL TMC2209
+//      - CONFIURACION DE STEPS Y MICROSTEPING
+//      - CONFIGURACION DEL TABLERO en MM
+//      - CONFIGURACION DE LOS BRAZOS EN MM
+//      - TIPOS DE DATOS Y DEFINICIÓN DE MAQUINA DE ESTADOS
+//      - ESTRUCTURAS DE CONFIGURACIÓN DE MOTORES
 // =======================================================================
 
 #pragma once
@@ -38,15 +42,13 @@
 #define MOTOR3_ENABLE 9
 #define MOTOR3_DIR 10
 #define MOTOR3_STEP 11
-// Pines de LEDs y electroimán
+// Pines de indicador LED y electroimán
 #define LED 2
 #define MAGNET 28
 
 // PARAMETROS DE CONFIGURACIÓN PLANO XY
 // -----------------------------------------------------------------------
 #define AS5600_ADDR 0x36
-#define SEND_INTERVAL 33    // ms -> ~30Hz
-#define DELTA_DEG 0.5f      // Enviar si el ángulo cambia más de DELTA_DEG
 #define BASE_SPEED 2 * 1500 // usada para igualar tiempo de llegada de motor1 y 2
 // BASE_SPEED: velocidad máxima que tendrá el motor que recorre la mayor distancia
 // ✔ suficientemente alta para que el movimiento no sea lento
@@ -59,7 +61,6 @@
 
 // NIVELES LÓGICOS DE ENABLE DEL TMC2209
 // -----------------------------------------------------------------------
-// constexpr -> es constante Y además el compilador lo conoce desde compile-time
 constexpr bool ENABLE_ACTIVE = LOW; // Nivel lógico (LOW=ON, HIGH=OFF)
 constexpr bool ENABLE_INACTIVE = HIGH;
 
@@ -81,25 +82,25 @@ constexpr float A1_OFFSET_Y = 80.0f;                                     // Dist
 constexpr float LINK1 = 175;
 constexpr float LINK2 = 95;
 
-// TIPOS DE DATOS
+// TIPOS DE DATOS Y DEFINICIÓN DE MAQUINA DE ESTADOS
 // -----------------------------------------------------------------------
 // Comandos recibidos por UART
 enum class Command {
-    ANGLES,
-    HOME,
-    HOME1,
-    HOME2,
-    HOME3,
-    PICK,
-    PLACE,
-    BOARD,
-    MOVE,
-    CAPTURE,
-    RESET,
-    COMMANDS,
-    SQUARE,
     STATUS,
+    RESET,
+    ANGLES,
+    BOARD,
+    COMMANDS,
+    HOME,
+    HOMING,
+    MOVE,
+    SQUARE,
     UNKNOWN
+    // HOME1,
+    // HOME2,
+    // HOME3,
+    // PICK,
+    // PLACE,
 };
 
 // Asignacion de ID para motores
@@ -153,7 +154,7 @@ enum class HomeSingleState {
     DONE
 };
 
-// Maquina de estados para movimiento XY
+// Maquina de estados para movimiento del plano XY
 enum class MovingStateXY {
     IDLE,
     MOVING_TO_TARGET,
@@ -162,17 +163,8 @@ enum class MovingStateXY {
     CORRECTION_DONE
 };
 
-// Maquina de estados para secuencia de movimiento, captura, enrroque
-enum class MoveSequenceState {
-    IDLE,
-    MOVING_START,
-    PICKING,
-    MOVING_END,
-    PLACING
-};
-
 // Maquina de estados para movimiento del eje Z
-enum class ZState {
+enum class MovingStateZ {
     IDLE,
 
     PICK_DOWN,
@@ -182,6 +174,15 @@ enum class ZState {
     PLACE_DOWN,
     PLACE_RELEASE,
     PLACE_UP
+};
+
+// Maquina de estados para secuencia de movimiento, captura, enrroque...
+enum class MoveSequenceState {
+    IDLE,
+    MOVING_START,
+    PICKING,
+    MOVING_END,
+    PLACING
 };
 
 // ESTRUCTURAS DE CONFIGURACIÓN DE MOTORES

@@ -1,4 +1,8 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\z_Axis.cpp"
+#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\Z_Axis.cpp"
+// =======================================================================
+//                 🔹 C H E S S B O T  —   Z E R O 🔹
+// =======================================================================
+
 #include <Arduino.h>
 
 #include "config.h"
@@ -6,14 +10,12 @@
 #include "motors.h"
 #include "z_axis.h"
 
-// =========================================================
 // ESTADO GLOBAL Z
-// =========================================================
-ZState zState = ZState::IDLE;
+// -----------------------------------------------------------------------
+MovingStateZ movingStateZ = MovingStateZ::IDLE;
 
-// =========================================================
 // MOVIMIENTOS BASE (NO BLOQUEANTES)
-// =========================================================
+// -----------------------------------------------------------------------
 void zMoveDown() {
     motor3.setMaxSpeed(6000);
     motor3.setAcceleration(15000);
@@ -26,9 +28,8 @@ void zMoveUp() {
     motor3.moveTo(0);
 }
 
-// =========================================================
-// IMÁN
-// =========================================================
+// ELECTROIMÁN
+// -----------------------------------------------------------------------
 void magnetON() {
     digitalWrite(MAGNET, HIGH);
 }
@@ -37,106 +38,90 @@ void magnetOFF() {
     digitalWrite(MAGNET, LOW);
 }
 
-// =========================================================
 // INICIO DE SECUENCIAS
-// =========================================================
+// -----------------------------------------------------------------------
 void startZPick() {
     motorEnableZ();
-    zState = ZState::PICK_DOWN;
+    movingStateZ = MovingStateZ::PICK_DOWN;
     zMoveDown();
 }
 
 void startZPlace() {
     motorEnableZ();
-    zState = ZState::PLACE_DOWN;
+    movingStateZ = MovingStateZ::PLACE_DOWN;
     zMoveDown();
 }
 
-// =========================================================
-// UPDATE Z STATE MACHINE
-// =========================================================
+// MAQUINA DE ESTADOS PARA SECUENCIA DE MOVIMIENTO DEL EJE Z (PICK → PLACE)
+// -----------------------------------------------------------------------
 void updateZ() {
-    switch (zState) {
-        // =====================================================
-        // PICK DOWN
-        // =====================================================
-        case ZState::PICK_DOWN:
+    switch (movingStateZ) {
+        // Mover hacia abajo y activar electroimán
+        case MovingStateZ::PICK_DOWN:
 
             motor3.run();
 
             if (motor3.distanceToGo() == 0) {
                 Serial1.println("Z: GRIP");
                 magnetON();
-                zState = ZState::PICK_GRIP;
+                movingStateZ = MovingStateZ::PICK_GRIP;
                 zMoveUp(); // siguiente acción inmediata
             }
             break;
 
-        // =====================================================
-        // PICK GRIP
-        // =====================================================
-        case ZState::PICK_GRIP:
+        // Mover hacia arriba
+        case MovingStateZ::PICK_GRIP:
 
             motor3.run();
 
             if (motor3.distanceToGo() == 0) {
-                zState = ZState::PICK_UP;
+                movingStateZ = MovingStateZ::PICK_UP;
             }
             break;
 
-        // =====================================================
-        // PICK UP
-        // =====================================================
-        case ZState::PICK_UP:
+        // Pick DONE
+        case MovingStateZ::PICK_UP:
 
             if (motor3.distanceToGo() == 0) {
                 Serial1.println("Z PICK DONE");
-                zState = ZState::IDLE;
+                movingStateZ = MovingStateZ::IDLE;
             }
             break;
 
-        // =====================================================
-        // PLACE DOWN
-        // =====================================================
-        case ZState::PLACE_DOWN:
+        // Mover hacia abajo y desactivar electroimán
+        case MovingStateZ::PLACE_DOWN:
 
             motor3.run();
 
             if (motor3.distanceToGo() == 0) {
                 Serial1.println("Z: RELEASE");
                 magnetOFF();
-                zState = ZState::PLACE_RELEASE;
+                movingStateZ = MovingStateZ::PLACE_RELEASE;
                 zMoveUp();
             }
             break;
 
-        // =====================================================
-        // PLACE RELEASE
-        // =====================================================
-        case ZState::PLACE_RELEASE:
+        // Mover hacia arriba
+        case MovingStateZ::PLACE_RELEASE:
 
             motor3.run();
 
             if (motor3.distanceToGo() == 0) {
-                zState = ZState::PLACE_UP;
+                movingStateZ = MovingStateZ::PLACE_UP;
             }
             break;
 
-        // =====================================================
-        // PLACE UP
-        // =====================================================
-        case ZState::PLACE_UP:
+        // Place DONE
+        case MovingStateZ::PLACE_UP:
 
             if (motor3.distanceToGo() == 0) {
                 Serial1.println("Z PLACE DONE");
-                zState = ZState::IDLE;
+                movingStateZ = MovingStateZ::IDLE;
             }
             break;
 
-        // =====================================================
         // IDLE
-        // =====================================================
-        case ZState::IDLE:
+        case MovingStateZ::IDLE:
         default:
             break;
     }

@@ -47,7 +47,7 @@ void motorsInit() {
     pinMode(motor2Config.enablePin, OUTPUT);
     pinMode(motor3Config.enablePin, OUTPUT);
 
-    // ‼️ Esto evita movimientos inesperados al encender el sistema
+    // ➡️ Esto evita movimientos inesperados al encender el sistema
     motorsDisableXY();
     motorDisableZ();
 

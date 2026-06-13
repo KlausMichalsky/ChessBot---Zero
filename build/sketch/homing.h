@@ -25,11 +25,6 @@
 
 // ESTRUCTURA DE ESTADO DEL HOMING
 // -----------------------------------------------------------------------
-// Esta estructura guarda TODO el estado necesario para ejecutar
-// una rutina de homing no bloqueante.
-// Se pasa por referencia entre homingInitXY(), homingStartXY(),
-// homingStepXY() y las funciones de consulta.
-// Permite manejar múltiples motores con la misma lógica.
 struct HomingXY {
     HomingStateXY state;     // Estado actual de la máquina de estados de homing// <-- aquí usamos el enum
     unsigned long startTime; // Tiempo (millis) en el que comenzó el homing

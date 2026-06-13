@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\z_Axis.h"
+#line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\Z_Axis.h"
 // =======================================================================
 //                 🔹 C H E S S B O T  —   Z E R O 🔹
 // =======================================================================
@@ -17,7 +17,7 @@
 #pragma once
 
 // estado global del Z
-extern ZState zState;
+extern MovingStateZ movingStateZ;
 
 void zMoveDown();
 void zMoveUp();

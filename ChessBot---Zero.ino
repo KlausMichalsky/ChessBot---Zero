@@ -26,6 +26,7 @@
 // SETUP
 // -----------------------------------------------------------------------
 void setup() {
+    delay(1000);
     communicationInit();
     coreInit();
     homingInitXY(motor1Homing);
