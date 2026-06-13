@@ -27,6 +27,9 @@ float startT2 = 0;
 float endT1 = 0;
 float endT2 = 0;
 
+extern float currentShoulderAngle;
+extern float currentElbowAngle;
+
 // STATUS
 // -----------------------------------------------------------------------
 bool xyIsMoving() {
@@ -41,11 +44,17 @@ void moveToAngles(float shoulder, float elbow) {
 
     motorsEnableXY();
 
-    targetShoulderAngle = shoulder;
-    targetElbowAngle = elbow;
+    // 🔥 1. CORRECCIÓN DE CONTINUIDAD (AQUÍ ES DONDE VA)
+    float correctedShoulder = shortestAngle(shoulder, currentShoulderAngle);
+    float correctedElbow = shortestAngle(elbow, currentElbowAngle);
 
-    long sSteps = angleToStep(shoulder, MotorID::J1);
-    long eSteps = angleToStep(elbow, MotorID::J2);
+    // 🔥 2. guardar targets corregidos
+    targetShoulderAngle = correctedShoulder;
+    targetElbowAngle = correctedElbow;
+
+    // 🔥 3. convertir a pasos ya con valores suaves
+    long sSteps = angleToStep(correctedShoulder, MotorID::J1);
+    long eSteps = angleToStep(correctedElbow, MotorID::J2);
 
     motor1.moveTo(sSteps);
     motor2.moveTo(eSteps);
@@ -119,6 +128,9 @@ void updateXY() {
                 settleStart = millis();
                 delay(100); // estabilizacion mecanica
                 Serial1.print("Moved to Target");
+                // 🔥 AQUÍ VA LO IMPORTANTE
+                currentShoulderAngle = targetShoulderAngle;
+                currentElbowAngle = targetElbowAngle;
                 // printDebugMove(targetShoulderAngle, targetElbowAngle);
                 movingStateXY = MovingStateXY::SETTLING;
             }

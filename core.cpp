@@ -21,6 +21,10 @@
 #include "xy_plane.h"
 #include "z_axis.h"
 
+// 🔥 DEFINICIÓN REAL (NO extern)
+float currentShoulderAngle = 0.0f;
+float currentElbowAngle = 0.0f;
+
 // INICIALIZACIÓN DEL CORE
 // -----------------------------------------------------------------------
 void coreInit() {
