@@ -27,7 +27,10 @@ print("🤖 Iniciando ZERO-CHESS...")
 
 ser = serial.Serial(SERIAL_PORT, BAUDRATE, timeout=1)
 
-engine = chess.engine.SimpleEngine.popen_uci(STOCKFISH_PATH)
+engine = chess.engine.SimpleEngine.popen_uci(
+    STOCKFISH_PATH,
+    timeout=10.0
+)
 board = chess.Board()
 
 time.sleep(2)  # estabilizar USB
