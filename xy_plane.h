@@ -1,12 +1,14 @@
 // =======================================================================
-//                 🔹 C H E S S B O T  —   Z E R O 🔹
+//                          🔹 K A Y R O N 🔹
 // =======================================================================
 //  Archivo    : xy_axis.h
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      - Declaracion de funciones
+//      - Declaracion de funciones de movimientos
+//      - Sincronización de movimientos
+//      - Corrección de error (Feedback)
 // =======================================================================
 
 #pragma once

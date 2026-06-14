@@ -1,13 +1,12 @@
 // =======================================================================
-//                 🔹 C H E S S B O T  —   Z E R O 🔹
+//                          🔹 K A Y R O N 🔹
 // =======================================================================
 //  Archivo    : core.cpp
 //  Autor      : Klaus Michalsky
 //  Fecha      : Mar-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      - Implementación de funciones centrales del robot.
-//      - Sincronización
+//      - Implementación de funciones centrales de sincronización
 // =======================================================================
 
 #include <Arduino.h>

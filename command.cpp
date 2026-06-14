@@ -1,12 +1,12 @@
 // =======================================================================
-//                 🔹 C H E S S B O T  —   Z E R O 🔹
+//                          🔹 K A Y R O N 🔹
 // =======================================================================
 //  Archivo    : command.cpp
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      - Implementación de funciones para la gestión de comandos
+//      - Definición de funciones para la gestión de comandos
 //        recibidos por UART
 // =======================================================================
 
