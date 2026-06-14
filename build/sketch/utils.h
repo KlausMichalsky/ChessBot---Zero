@@ -1,6 +1,6 @@
 #line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\utils.h"
 // =======================================================================
-//                 🔹 C H E S S B O T  —   Z E R O 🔹
+//                          🔹 K A Y R O N 🔹
 // =======================================================================
 //  Archivo    : utils.h
 //  Autor      : Klaus Michalsky
@@ -8,8 +8,10 @@
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
 //      - Funciones de cálculo y conversión de valores
-//      - Ángulos de sensores
-//      - Coordenadas XY a ángulos para motores
+//      - Ángulos a pasos de motores
+//      - Casilla a coordenadas
+//      - Casilla a ángulos
+//      - Cinemática inversa
 // =======================================================================
 
 #pragma once

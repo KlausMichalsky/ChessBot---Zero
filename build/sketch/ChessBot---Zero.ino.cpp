@@ -1,12 +1,14 @@
 #line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\ChessBot---Zero.ino"
 // =======================================================================
-//                 🔹 C H E S S B O T  —   Z E R O 🔹
+//                          🔹 K A Y R O N 🔹
 // =======================================================================
 //  Archivo    : ChessBot---Zero.ino
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
+//      - Setup de inicialización
+//      - Loop principal
 // =======================================================================
 
 #include <Arduino.h>
@@ -23,14 +25,13 @@
 #include "sensors.h"
 #include "utils.h"
 
-// -----------------------------------------------------------------------
 // SETUP
 // -----------------------------------------------------------------------
-#line 28 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 29 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\ChessBot---Zero.ino"
 void setup();
 #line 46 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\ChessBot---Zero.ino"
 void loop();
-#line 28 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\ChessBot---Zero.ino"
+#line 29 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\ChessBot---Zero.ino"
 void setup() {
     delay(1000);
     communicationInit();
@@ -46,7 +47,6 @@ void setup() {
     pinMode(LED, OUTPUT);
 }
 
-// -----------------------------------------------------------------------
 // LOOP
 // -----------------------------------------------------------------------
 void loop() {
