@@ -15,7 +15,8 @@ import serial
 
 SERIAL_PORT = "/dev/ttyACM0"
 BAUDRATE = 115200
-STOCKFISH_PATH = "/usr/games/stockfish"
+STOCKFISH_PATH = "stockfish"
+# STOCKFISH_PATH = "/usr/games/stockfish"
 THINK_TIME = 0.1
 
 # =========================
