@@ -195,8 +195,42 @@ void processCommand(const String &cmdStr) {
             break;
         }
 
-        default:
+        default: {
+            // ==========================================================
+            // 🧠 NUEVO: soporte para Stockfish (UCI: e2e4)
+            // ==========================================================
+
+            if (trimmedCmd.length() == 4 &&
+                isalpha(trimmedCmd[0]) &&
+                isdigit(trimmedCmd[1]) &&
+                isalpha(trimmedCmd[2]) &&
+                isdigit(trimmedCmd[3])) {
+                float s1, s2;
+                float e1, e2;
+
+                String startSquare = trimmedCmd.substring(0, 2);
+                String endSquare = trimmedCmd.substring(2, 4);
+
+                if (!chessSquareToAngles(startSquare, s1, s2)) {
+                    COMM.println("ERROR START");
+                    break;
+                }
+
+                if (!chessSquareToAngles(endSquare, e1, e2)) {
+                    COMM.println("ERROR END");
+                    break;
+                }
+
+                COMM.print("OK:");
+                COMM.println(trimmedCmd);
+
+                startMoveSequence(s1, s2, e1, e2);
+
+                break;
+            }
+
             COMM.println("UNKNOWN COMMAND");
             break;
+        }
     }
 }
