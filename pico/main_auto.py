@@ -102,7 +102,11 @@ do_homing()
 
 while True:
 
-    input("\nENTER = jugar")
+    cmd = input("\nENTER = jugar | q = salir: ").strip().lower()
+
+    if cmd == "q":
+        print("👋 Saliendo del sistema...")
+        break
 
     move = get_best_move()
 
