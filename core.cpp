@@ -121,6 +121,10 @@ void coreHomeAll() {
             if (motor3Homing.state == HomingStateZ::OK) {
                 homeAllState = HomeAllState::DONE;
                 commandSendStatusReport();
+
+                COMM.println("DONE"); // 👈 ESTO ES LO IMPORTANTE
+                                      // Manda un mensaje de "DONE" al finalizar el homing de todos los motores,
+                                      // para que el Raspi sepa que puede continuar con el primer movimiento.
                 delay(100);
                 homingInitXY(motor1Homing);
                 homingInitXY(motor2Homing);
