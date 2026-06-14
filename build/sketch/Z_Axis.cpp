@@ -71,7 +71,7 @@ void updateZ() {
             motor3.run();
 
             if (motor3.distanceToGo() == 0) {
-                Serial1.println("Z: GRIP");
+                COMM.println("Z: GRIP");
                 magnetON();
                 movingStateZ = MovingStateZ::PICK_GRIP;
                 zMoveUp(); // siguiente acción inmediata
@@ -92,7 +92,7 @@ void updateZ() {
         case MovingStateZ::PICK_UP:
 
             if (motor3.distanceToGo() == 0) {
-                Serial1.println("Z PICK DONE");
+                COMM.println("Z PICK DONE");
                 movingStateZ = MovingStateZ::IDLE;
             }
             break;
@@ -103,7 +103,7 @@ void updateZ() {
             motor3.run();
 
             if (motor3.distanceToGo() == 0) {
-                Serial1.println("Z: RELEASE");
+                COMM.println("Z: RELEASE");
                 magnetOFF();
                 movingStateZ = MovingStateZ::PLACE_RELEASE;
                 zMoveUp();
@@ -124,7 +124,7 @@ void updateZ() {
         case MovingStateZ::PLACE_UP:
 
             if (motor3.distanceToGo() == 0) {
-                Serial1.println("Z PLACE DONE");
+                COMM.println("Z PLACE DONE");
                 movingStateZ = MovingStateZ::IDLE;
             }
             break;

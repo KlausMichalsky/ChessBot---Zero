@@ -38,7 +38,7 @@ long angleToStep(float angle, MotorID id) {
                    motor2Config.stepsPerRevolution;
         default:
             // Por si llega un MotorID inválido
-            Serial1.println("ERROR: MotorID inválido en angleToStep");
+            COMM.println("ERROR: MotorID inválido en angleToStep");
             return 0;
     }
 }
@@ -258,8 +258,8 @@ bool chessSquareToAngles(
 // TEST: IMPRIMIR TODAS LAS CASILLAS COMO COORDENADAS XY
 // -----------------------------------------------------------------------
 void printBoardXY() {
-    Serial1.println();
-    Serial1.println("-------- BOARD XY DEBUG --------");
+    COMM.println();
+    COMM.println("-------- BOARD XY DEBUG --------");
 
     for (char file = 'A'; file <= 'H'; file++) {
         for (char rank = '1'; rank <= '8'; rank++) {
@@ -270,17 +270,17 @@ void printBoardXY() {
             delay(10);
 
             if (chessSquareToXY(square, x, y)) {
-                Serial1.print(square);
-                Serial1.print(" -> X: ");
-                Serial1.print(x);
-                Serial1.print(" Y: ");
-                Serial1.println(y);
+                COMM.print(square);
+                COMM.print(" -> X: ");
+                COMM.print(x);
+                COMM.print(" Y: ");
+                COMM.println(y);
             }
         }
     }
 
-    Serial1.println("-------- END BOARD --------");
-    Serial1.println();
+    COMM.println("-------- END BOARD --------");
+    COMM.println();
 }
 
 float shortestAngle(float target, float current) {

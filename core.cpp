@@ -58,7 +58,7 @@ void coreHomeSingleMotor() {
         homingStepXY(motor1, motor1Config, motor1Homing, HALL_1);
     }
     if (motor1Homing.state == HomingStateXY::OK) {
-        Serial1.print(motorStatus(MotorID::J1));
+        COMM.print(motorStatus(MotorID::J1));
         homeSingleState = HomeSingleState::DONE;
         homingInitXY(motor1Homing);
         return;
@@ -69,7 +69,7 @@ void coreHomeSingleMotor() {
         homingStepXY(motor2, motor2Config, motor2Homing, HALL_2);
     }
     if (motor2Homing.state == HomingStateXY::OK) {
-        Serial1.print(motorStatus(MotorID::J2));
+        COMM.print(motorStatus(MotorID::J2));
         homeSingleState = HomeSingleState::DONE;
         homingInitXY(motor2Homing);
         return;
@@ -80,7 +80,7 @@ void coreHomeSingleMotor() {
         homingStepZ(motor3, motor3Config, motor3Homing, HALL_3);
     }
     if (motor3Homing.state == HomingStateZ::OK) {
-        Serial1.print(motorStatus(MotorID::Z));
+        COMM.print(motorStatus(MotorID::Z));
         homeSingleState = HomeSingleState::DONE;
         homingInitZ(motor3Homing);
         return;

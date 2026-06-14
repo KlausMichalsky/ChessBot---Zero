@@ -21,6 +21,8 @@
 
 #include <Arduino.h>
 
+#define COMM Serial // Cambia a Serial1 si usas UART hardware en pines 0 y 1
+
 // PINES DE CONFIGURACIÓN
 // -----------------------------------------------------------------------
 // Sensor1, Encoder1, Motor1

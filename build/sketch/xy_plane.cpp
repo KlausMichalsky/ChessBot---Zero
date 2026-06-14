@@ -137,7 +137,7 @@ void updateXY() {
                 motor2.distanceToGo() == 0) {
                 settleStart = millis();
                 delay(100); // estabilizacion mecanica
-                Serial1.print("Moved to Target");
+                COMM.print("Moved to Target");
                 // 🔥 AQUÍ VA LO IMPORTANTE
                 currentShoulderAngle = targetShoulderAngle;
                 currentElbowAngle = targetElbowAngle;
@@ -149,7 +149,7 @@ void updateXY() {
         case MovingStateXY::SETTLING:
             if (millis() - settleStart > 100) {
                 movingStateXY = MovingStateXY::CORRECTING;
-                // Serial1.println("Correcting Error");
+                // COMM.println("Correcting Error");
                 correctErrorOnce();
             }
             break;
@@ -160,8 +160,8 @@ void updateXY() {
             if (motor1.distanceToGo() == 0 &&
                 motor2.distanceToGo() == 0) {
                 settleStart = millis();
-                Serial1.println("Correction Done");
-                Serial1.println();
+                COMM.println("Correction Done");
+                COMM.println();
                 movingStateXY = MovingStateXY::IDLE;
             }
             break;
@@ -219,7 +219,7 @@ void updateMoveSequence() {
 
             if (movingStateZ == MovingStateZ::IDLE) {
                 moveSeqState = MoveSequenceState::IDLE;
-                Serial1.println("MOVE DONE");
+                COMM.println("MOVE DONE");
             }
             break;
 
@@ -240,8 +240,8 @@ void moveToHomeXY() {
 // DEBUG
 // -----------------------------------------------------------------------
 void printDebugMove(float motor1Angle, float motor2Angle) {
-    Serial1.println();
-    Serial1.println("-------- MOTOR 1 --------");
+    COMM.println();
+    COMM.println("-------- MOTOR 1 --------");
 
     float sensor1 = estimateSensorAngle(
         targetShoulderAngle,
@@ -249,16 +249,16 @@ void printDebugMove(float motor1Angle, float motor2Angle) {
         sensor1Offset,
         motor1Config.motorDirection);
 
-    Serial1.print("HomingOffset: ");
-    Serial1.println(sensor1Offset, 1);
+    COMM.print("HomingOffset: ");
+    COMM.println(sensor1Offset, 1);
 
-    Serial1.print("Estimated Sensor Angle: ");
-    Serial1.println(sensor1, 1);
+    COMM.print("Estimated Sensor Angle: ");
+    COMM.println(sensor1, 1);
 
-    Serial1.print("Real Sensor Angle: ");
-    Serial1.println(rawToDegrees(sensorReadRawAngle(Wire)), 1);
+    COMM.print("Real Sensor Angle: ");
+    COMM.println(rawToDegrees(sensorReadRawAngle(Wire)), 1);
 
-    Serial1.println("-------- MOTOR 2 --------");
+    COMM.println("-------- MOTOR 2 --------");
 
     float sensor2 = estimateSensorAngle(
         targetElbowAngle,
@@ -266,16 +266,16 @@ void printDebugMove(float motor1Angle, float motor2Angle) {
         sensor2Offset,
         motor2Config.motorDirection);
 
-    Serial1.print("HomingOffset: ");
-    Serial1.println(sensor2Offset, 1);
+    COMM.print("HomingOffset: ");
+    COMM.println(sensor2Offset, 1);
 
-    Serial1.print("Estimated Sensor Angle: ");
-    Serial1.println(round1Decimal(sensor2), 1);
+    COMM.print("Estimated Sensor Angle: ");
+    COMM.println(round1Decimal(sensor2), 1);
 
-    Serial1.print("Real Sensor Angle: ");
-    Serial1.println(rawToDegrees(sensorReadRawAngle(Wire1)), 1);
+    COMM.print("Real Sensor Angle: ");
+    COMM.println(rawToDegrees(sensorReadRawAngle(Wire1)), 1);
 
-    Serial1.println();
+    COMM.println();
 
     float errorShoulder =
         calculateError(targetShoulderAngle, Wire, motor1Config, sensor1Offset);
@@ -283,11 +283,11 @@ void printDebugMove(float motor1Angle, float motor2Angle) {
     float errorElbow =
         calculateError(targetElbowAngle, Wire1, motor2Config, sensor2Offset);
 
-    Serial1.print("Error1: ");
-    Serial1.println(errorShoulder, 1);
+    COMM.print("Error1: ");
+    COMM.println(errorShoulder, 1);
 
-    Serial1.print("Error2: ");
-    Serial1.println(errorElbow, 1);
+    COMM.print("Error2: ");
+    COMM.println(errorElbow, 1);
 
-    Serial1.println();
+    COMM.println();
 }
