@@ -1,21 +1,21 @@
 #line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\config.h"
 // =======================================================================
-//                 🔹 C H E S S B O T  —   Z E R O 🔹
+//                          🔹 K A Y R O N 🔹
 // =======================================================================
 //  Archivo    : config.h
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      - PINES DE CONFIGURACIÓN
-//      - PARAMETROS DE CONFIGURACIÓN PLANO XY
-//      - PARAMETROS DE CONFIGURACIÓN EJE Z
-//      - NIVELES LÓGICOS DE ENABLE DEL TMC2209
-//      - CONFIURACION DE STEPS Y MICROSTEPING
-//      - CONFIGURACION DEL TABLERO en MM
-//      - CONFIGURACION DE LOS BRAZOS EN MM
-//      - TIPOS DE DATOS Y DEFINICIÓN DE MAQUINA DE ESTADOS
-//      - ESTRUCTURAS DE CONFIGURACIÓN DE MOTORES
+//      - Pines de configuración
+//      - Parametros de configuración plano xy
+//      - Parametros de configuración eje z
+//      - Niveles lógicos de enable del tmc2209
+//      - Configuracion de steps y microstepping
+//      - Configuracion del tablero en mm
+//      - Configuracion de los brazos en mm
+//      - Tipos de datos y definición de maquina de estados
+//      - Estructuras de configuración de motores
 // =======================================================================
 
 #pragma once
@@ -97,11 +97,6 @@ enum class Command {
     MOVE,
     SQUARE,
     UNKNOWN
-    // HOME1,
-    // HOME2,
-    // HOME3,
-    // PICK,
-    // PLACE,
 };
 
 // Asignacion de ID para motores

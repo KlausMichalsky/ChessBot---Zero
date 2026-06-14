@@ -1,5 +1,14 @@
 // =======================================================================
-//                 🔹 C H E S S B O T  —   Z E R O 🔹
+//                          🔹 K A Y R O N 🔹
+// =======================================================================
+//  Archivo    : xy_axis.cpp
+//  Autor      : Klaus Michalsky
+//  Fecha      : Feb-2026
+// -----------------------------------------------------------------------
+//  ▫️ DESCRIPCIÓN
+//      - Definición de funciones de movimientos
+//      - Sincronización de movimientos
+//      - Corrección de error (Feedback)
 // =======================================================================
 
 #include <Arduino.h>

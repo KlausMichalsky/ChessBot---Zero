@@ -1,6 +1,6 @@
 #line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\sensors.h"
 // =======================================================================
-//                    🔹 P I C O   —   C H E S S 🔹
+//                          🔹 K A Y R O N 🔹
 // =======================================================================
 //  Archivo    : sensores.h
 //  Autor      : Klaus Michalsky

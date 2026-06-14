@@ -1,6 +1,15 @@
 #line 1 "C:\\Users\\Klaus\\Documents\\ChessBot---Zero\\Z_Axis.cpp"
 // =======================================================================
-//                 🔹 C H E S S B O T  —   Z E R O 🔹
+//                          🔹 K A Y R O N 🔹
+// =======================================================================
+//  Archivo    : z_axis.cpp
+//  Autor      : Klaus Michalsky
+//  Fecha      : Feb-2026
+// -----------------------------------------------------------------------
+//  ▫️ DESCRIPCIÓN
+//      - Definición de funciones para movimiento del eje Z
+//      - Sincronización de movimiento del eje Z
+//      - Controll del electroimán
 // =======================================================================
 
 #include <Arduino.h>
