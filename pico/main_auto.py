@@ -80,11 +80,18 @@ def get_best_move():
     board.push(move)
     return move.uci()
 
+
+def send_move_cycle(move):
+    send_to_robot(move)
+    wait_done()
+
+    send_to_robot("HOME")
+    wait_done()
+
+
 # =========================
 # START
 # =========================
-
-
 print("🤖 ZERO-CHESS READY")
 
 do_homing()
@@ -101,6 +108,4 @@ while True:
 
     print("♟️ Stockfish:", move)
 
-    send_to_robot(move)
-
-    wait_done()
+    send_move_cycle(move)
