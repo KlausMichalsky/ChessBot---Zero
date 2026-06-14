@@ -8,7 +8,7 @@ import time
 import chess
 import chess.engine
 import serial
-from gpiozero import Button
+import RPi.GPIO as GPIO
 
 # =========================
 # CONFIG
@@ -26,7 +26,6 @@ BUTTON_PIN = 17
 # =========================
 
 ser = serial.Serial(SERIAL_PORT, BAUDRATE, timeout=1)
-button = Button(BUTTON_PIN, bounce_time=0.2)
 
 engine = chess.engine.SimpleEngine.popen_uci(STOCKFISH_PATH)
 board = chess.Board()
@@ -34,23 +33,27 @@ board = chess.Board()
 time.sleep(2)
 
 # =========================
-# FLAGS
+# GPIO SETUP
 # =========================
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 homing_requested = False
 
 # =========================
-# BOTÓN
+# BOTÓN (DEBOUNCE SIMPLE)
 # =========================
 
 
-def request_homing():
+def check_button():
     global homing_requested
-    print("🔄 HOMING solicitado")
-    homing_requested = True
 
-
-button.when_pressed = request_homing
+    if GPIO.input(BUTTON_PIN) == GPIO.LOW:
+        if not homing_requested:
+            print("🔄 HOMING solicitado (botón)")
+            homing_requested = True
+        time.sleep(0.2)
 
 # =========================
 # UART HELPERS
@@ -68,8 +71,6 @@ def wait_done():
             print("RP2040:", line)
             if "DONE" in line:
                 return True
-            if "ERROR" in line:
-                return False
 
 # =========================
 # HOMING
@@ -79,18 +80,7 @@ def wait_done():
 def do_homing():
     print("🤖 Ejecutando HOMING...")
     send_to_robot("HOMING")
-    return wait_done()
-
-# =========================
-# RESET GAME
-# =========================
-
-
-def reset_game():
-    global board
-    print("♻️ Reiniciando partida...")
-    board = chess.Board()
-    return do_homing()
+    wait_done()
 
 # =========================
 # STOCKFISH
@@ -102,34 +92,27 @@ def get_best_move():
     return result.move.uci(), result.move
 
 # =========================
-# LOOP PRINCIPAL
+# LOOP
 # =========================
 
 
 print("🤖 ZERO-CHESS READY")
 
-# HOMING inicial
 do_homing()
 
 while True:
 
-    # HOMING por botón
+    # 🔘 botón siempre activo
+    check_button()
+
+    # ejecutar homing si fue pedido
     if homing_requested:
         homing_requested = False
         do_homing()
         continue
 
-    cmd = input("\nENTER = jugar | r = reset | q = salir: ").strip().lower()
+    input("\nENTER = jugar")
 
-    if cmd == "q":
-        print("👋 Saliendo...")
-        break
-
-    if cmd == "r":
-        reset_game()
-        continue
-
-    # jugar movimiento
     uci, move_obj = get_best_move()
 
     print("♟️ Stockfish:", uci)
@@ -140,5 +123,3 @@ while True:
 
     if success:
         board.push(move_obj)
-    else:
-        print("⚠️ Movimiento falló, no se actualiza tablero")
