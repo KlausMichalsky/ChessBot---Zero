@@ -6,17 +6,29 @@
 #   Fecha      : 2025-12-04
 # ------------------------------------------------------------------------
 #   ▫️ DESCRIPCIÓN
-#       Módulo del motor de ajedrez de Pico-Chess. Encargado de
-#       calcular movimientos, validar jugadas y gestionar la
-#       lógica interna del juego.
-#   ▫️ RESPONSABILIDADES:
-#       - Calcular movimientos legales y estrategias del juego.
-#       - Validar las jugadas realizadas por el usuario o robot.
-#       - Mantener el estado del tablero actualizado.
-#       - Proveer funciones de soporte para la ejecución de partidas.
+#   Este módulo implementa un motor de ajedrez utilizando la biblioteca
+#   `python-chess` y el motor de ajedrez Stockfish.
 # ========================================================================
 
-def calcular_siguiente_movimiento():
-    # Devuelve coordenadas x, y de movimiento
-    # Aquí va la lógica de ajedrez
-    return (100, 200)  # ejemplo temporal
+import chess
+import chess.engine
+
+engine = chess.engine.SimpleEngine.popen_uci("/usr/games/stockfish")
+
+board = chess.Board()
+
+
+def jugar(movida):
+    board.push_san(movida)
+
+    result = engine.play(board, chess.engine.Limit(time=0.1))
+    print("Stockfish juega:", result.move)
+
+    board.push(result.move)
+
+    return result.move
+
+
+while True:
+    entrada = input("Tu jugada (ej: e2e4): ")
+    jugar(entrada)
