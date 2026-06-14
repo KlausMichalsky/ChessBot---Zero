@@ -220,6 +220,7 @@ void updateMoveSequence() {
             if (movingStateZ == MovingStateZ::IDLE) {
                 moveSeqState = MoveSequenceState::IDLE;
                 COMM.println("MOVE DONE");
+                moveToHomeXY(); // 👈 VOLVER A CERO
             }
             break;
 

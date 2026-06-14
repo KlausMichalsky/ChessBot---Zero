@@ -150,6 +150,7 @@ void processCommand(const String &cmdStr) {
 
         case Command::HOME:
             moveToHomeXY();
+            COMM.println("HOME DONE"); // 👈 ESTO ES CLAVE
             break;
 
         case Command::HOMING:
