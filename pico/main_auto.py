@@ -1,14 +1,13 @@
 """
-ZERO---CHESS
+ZERO-CHESS
 Raspberry Pi Controller
-Botón + Stockfish + UART RP2040
+Stockfish + UART RP2040 + HOMING automático
 """
 
 import time
 import chess
 import chess.engine
 import serial
-import RPi.GPIO as GPIO
 
 # =========================
 # CONFIG
@@ -19,41 +18,18 @@ BAUDRATE = 115200
 STOCKFISH_PATH = "/usr/games/stockfish"
 THINK_TIME = 0.1
 
-BUTTON_PIN = 17
+# =========================
+# INIT HARDWARE
+# =========================
 
-# =========================
-# INIT
-# =========================
+print("🤖 Iniciando ZERO-CHESS...")
 
 ser = serial.Serial(SERIAL_PORT, BAUDRATE, timeout=1)
 
 engine = chess.engine.SimpleEngine.popen_uci(STOCKFISH_PATH)
 board = chess.Board()
 
-time.sleep(2)
-
-# =========================
-# GPIO SETUP
-# =========================
-
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-
-homing_requested = False
-
-# =========================
-# BOTÓN (DEBOUNCE SIMPLE)
-# =========================
-
-
-def check_button():
-    global homing_requested
-
-    if GPIO.input(BUTTON_PIN) == GPIO.LOW:
-        if not homing_requested:
-            print("🔄 HOMING solicitado (botón)")
-            homing_requested = True
-        time.sleep(0.2)
+time.sleep(2)  # estabilizar USB
 
 # =========================
 # UART HELPERS
@@ -70,17 +46,24 @@ def wait_done():
         if line:
             print("RP2040:", line)
             if "DONE" in line:
-                return True
+                break
 
 # =========================
-# HOMING
+# HOMING AUTOMÁTICO
 # =========================
 
 
 def do_homing():
-    print("🤖 Ejecutando HOMING...")
-    send_to_robot("HOMING")
-    wait_done()
+    print("🤖 Enviando HOMING...")
+    ser.write(b"HOMING\n")
+
+    while True:
+        line = ser.readline().decode(errors="ignore").strip()
+        if line:
+            print("RP2040:", line)
+            if "DONE" in line:
+                print("✅ HOMING COMPLETO")
+                break
 
 # =========================
 # STOCKFISH
@@ -89,10 +72,12 @@ def do_homing():
 
 def get_best_move():
     result = engine.play(board, chess.engine.Limit(time=THINK_TIME))
-    return result.move.uci(), result.move
+    move = result.move
+    board.push(move)
+    return move.uci()
 
 # =========================
-# LOOP
+# START
 # =========================
 
 
@@ -100,26 +85,18 @@ print("🤖 ZERO-CHESS READY")
 
 do_homing()
 
+# =========================
+# LOOP PRINCIPAL
+# =========================
+
 while True:
-
-    # 🔘 botón siempre activo
-    check_button()
-
-    # ejecutar homing si fue pedido
-    if homing_requested:
-        homing_requested = False
-        do_homing()
-        continue
 
     input("\nENTER = jugar")
 
-    uci, move_obj = get_best_move()
+    move = get_best_move()
 
-    print("♟️ Stockfish:", uci)
+    print("♟️ Stockfish:", move)
 
-    send_to_robot(uci)
+    send_to_robot(move)
 
-    success = wait_done()
-
-    if success:
-        board.push(move_obj)
+    wait_done()
