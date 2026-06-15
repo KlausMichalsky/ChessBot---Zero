@@ -89,56 +89,73 @@ print("🤖 ZERO-CHESS READY")
 
 do_homing()
 
-# =========================
+# =========================================
+# CONFIG INICIAL
+# =========================================
+
+mode = input("¿Quién empieza? (1=Humano, 2=Robot): ").strip()
+
+human_turn = (mode == "1")
+
+print("\n♟️ Iniciando partida...\n")
+
+# =========================================
 # LOOP PRINCIPAL
-# =========================
+# =========================================
 
 while True:
 
-    move = input("\n♟️ Tu jugada (ej: e2e4) | q = salir: ").strip().lower()
+    # =====================================================
+    # TURNO DEL HUMANO
+    # =====================================================
 
-    if move == "q":
-        print("👋 Saliendo...")
-        break
+    if human_turn:
 
-    try:
-        human_move = chess.Move.from_uci(move)
+        move = input("\n♟️ Tu jugada (ej: e2e4) | q = salir: ").strip().lower()
 
-        if human_move not in board.legal_moves:
-            print("❌ Jugada ilegal")
+        if move == "q":
+            print("👋 Saliendo...")
+            break
+
+        try:
+            human_move = chess.Move.from_uci(move)
+
+            if human_move not in board.legal_moves:
+                print("❌ Jugada ilegal")
+                continue
+
+        except ValueError:
+            print("❌ Formato inválido")
             continue
 
-    except ValueError:
-        print("❌ Formato inválido")
-        continue
+        board.push(human_move)
+
+        print("👤 Humano:", move)
+
+        # ❌ IMPORTANTE:
+        # NO mover pieza del humano físicamente aquí
+
+        human_turn = False
 
     # =====================================================
-    # JUGADA DEL HUMANO
+    # TURNO DEL ROBOT
     # =====================================================
 
-    board.push(human_move)
+    else:
 
-    print("👤 Humano:", move)
+        stockfish_move = get_best_move()
 
-    send_to_robot(move)
-    wait_done()
+        print("🤖 Stockfish:", stockfish_move)
 
-    send_to_robot("HOME")
-    wait_done()
+        send_to_robot(stockfish_move)
+        wait_done()
 
-    # =====================================================
-    # JUGADA DE STOCKFISH
-    # =====================================================
+        send_to_robot("HOME")
+        wait_done()
 
-    stockfish_move = get_best_move()
+        board.push(chess.Move.from_uci(stockfish_move))
 
-    print("🤖 Stockfish:", stockfish_move)
-
-    send_to_robot(stockfish_move)
-    wait_done()
-
-    send_to_robot("HOME")
-    wait_done()
+        human_turn = True
 
     # =====================================================
     # FIN DE PARTIDA
