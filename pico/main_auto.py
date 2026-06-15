@@ -82,14 +82,6 @@ def get_best_move():
     return move.uci()
 
 
-def send_move_cycle(move):
-    send_to_robot(move)
-    wait_done()
-
-    send_to_robot("HOME")
-    wait_done()
-
-
 # =========================
 # START
 # =========================
@@ -103,14 +95,56 @@ do_homing()
 
 while True:
 
-    cmd = input("\nENTER = jugar | q = salir: ").strip().lower()
+    move = input("\n♟️ Tu jugada (ej: e2e4) | q = salir: ").strip().lower()
 
-    if cmd == "q":
-        print("👋 Saliendo del sistema...")
+    if move == "q":
+        print("👋 Saliendo...")
         break
 
-    move = get_best_move()
+    try:
+        human_move = chess.Move.from_uci(move)
 
-    print("♟️ Stockfish:", move)
+        if human_move not in board.legal_moves:
+            print("❌ Jugada ilegal")
+            continue
 
-    send_move_cycle(move)
+    except ValueError:
+        print("❌ Formato inválido")
+        continue
+
+    # =====================================================
+    # JUGADA DEL HUMANO
+    # =====================================================
+
+    board.push(human_move)
+
+    print("👤 Humano:", move)
+
+    send_to_robot(move)
+    wait_done()
+
+    send_to_robot("HOME")
+    wait_done()
+
+    # =====================================================
+    # JUGADA DE STOCKFISH
+    # =====================================================
+
+    stockfish_move = get_best_move()
+
+    print("🤖 Stockfish:", stockfish_move)
+
+    send_to_robot(stockfish_move)
+    wait_done()
+
+    send_to_robot("HOME")
+    wait_done()
+
+    # =====================================================
+    # FIN DE PARTIDA
+    # =====================================================
+
+    if board.is_game_over():
+        print("\n🏁 Fin de partida")
+        print(board.result())
+        break
