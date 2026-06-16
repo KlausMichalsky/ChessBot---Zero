@@ -1,6 +1,6 @@
 """
 ZERO-CHESS
-main_auto.py - Controlador para Raspberry Pi
+main.py - Controlador para Raspberry Pi
 Raspberry Pi Controller
 Stockfish + UART RP2040 + HOMING automático
 """
