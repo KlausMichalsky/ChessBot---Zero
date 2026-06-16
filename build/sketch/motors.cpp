@@ -164,3 +164,28 @@ String motorStatus(MotorID id) {
 
     return status;
 }
+
+void stopAllMotors() {
+    motor1.stop();
+    motor2.stop();
+    motor3.stop();
+
+    motor1.setCurrentPosition(motor1.currentPosition());
+    motor2.setCurrentPosition(motor2.currentPosition());
+    motor3.setCurrentPosition(motor3.currentPosition());
+
+    motor1.disableOutputs();
+    motor2.disableOutputs();
+    motor3.disableOutputs();
+}
+
+void setCurrentPositionHome() {
+    motor1.setCurrentPosition(0);
+    motor2.setCurrentPosition(0);
+    motor3.setCurrentPosition(0);
+
+    currentShoulderAngle = 0.0f;
+    currentElbowAngle = 0.0f;
+
+    COMM.println("STEPPERS HOMED (SOFTWARE ZERO SET)");
+}

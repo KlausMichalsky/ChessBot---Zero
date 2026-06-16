@@ -124,14 +124,29 @@ void processCommand(const String &cmdStr) {
             break;
 
         case Command::RESET:
+
+            // 1. parar cualquier movimiento activo
+            stopAllMotors();      // ⬅️ IMPORTANTE (si no existe, hay que crearla)
+            cancelMoveSequence(); // ⬅️ clave si tenés planner
+            resetXYState();       // 🔥 ESTO ES CLAVE
+
+            // 2. reset flags de homing
             motor1Homing.fault = false;
             motor2Homing.fault = false;
             motor3Homing.fault = false;
+
+            // 3. reset estados de homing
             homingInitXY(motor1Homing);
             homingInitXY(motor2Homing);
             homingInitZ(motor3Homing);
-            homeAllState = HomeAllState::IDLE; // si estabas en HOMING-ALL, cancelalo
-            COMM.println("SYSTEM RESET");
+
+            // 4. reset máquina de estados global
+            homeAllState = HomeAllState::IDLE;
+
+            // 5. reset posición lógica (MUY IMPORTANTE)
+            setCurrentPositionHome(); // ⬅️ o algo equivalente en tu sistema
+
+            COMM.println("SYSTEM RESET OK");
             break;
 
         case Command::ANGLES:

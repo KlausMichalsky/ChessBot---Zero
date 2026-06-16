@@ -292,3 +292,59 @@ void printDebugMove(float motor1Angle, float motor2Angle) {
 
     COMM.println();
 }
+
+void resetXYState() {
+    // =========================
+    // RESET DE MÁQUINA XY
+    // =========================
+
+    movingStateXY = MovingStateXY::IDLE;
+    moveSeqState = MoveSequenceState::IDLE;
+
+    // =========================
+    // RESET DE TARGETS
+    // =========================
+
+    targetShoulderAngle = 0;
+    targetElbowAngle = 0;
+
+    startT1 = 0;
+    startT2 = 0;
+    endT1 = 0;
+    endT2 = 0;
+
+    // =========================
+    // RESET DE TIEMPOS
+    // =========================
+
+    settleStart = 0;
+
+    // =========================
+    // OPCIONAL SEGURIDAD
+    // =========================
+
+    motor1.stop();
+    motor2.stop();
+
+    COMM.println("XY STATE RESET");
+}
+
+void cancelMoveSequence() {
+    // parar máquina de estados
+    moveSeqState = MoveSequenceState::IDLE;
+
+    // parar XY inmediatamente
+    motor1.stop();
+    motor2.stop();
+
+    // opcional: reset targets
+    startT1 = 0;
+    startT2 = 0;
+    endT1 = 0;
+    endT2 = 0;
+
+    // opcional: reset estado XY también
+    movingStateXY = MovingStateXY::IDLE;
+
+    COMM.println("MOVE SEQUENCE CANCELED");
+}

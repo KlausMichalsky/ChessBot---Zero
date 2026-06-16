@@ -11,9 +11,16 @@ import chess.engine
 import serial
 from chess.engine import EngineTerminatedError
 
+
+def reset_robot():
+    ser.write(b"RESET\n")
+    time.sleep(0.5)
+    ser.reset_input_buffer()
+
 # =========================
 # CONFIG
 # =========================
+
 
 SERIAL_PORT = "/dev/ttyACM0"
 BAUDRATE = 115200
@@ -31,6 +38,10 @@ ser = serial.Serial(SERIAL_PORT, BAUDRATE, timeout=1)
 
 print("Esperando USB...")
 time.sleep(5)
+
+# 👉 AQUÍ VA EL RESET
+print("Reset RP2040...")
+reset_robot()
 
 print("Iniciando Stockfish...")
 t0 = time.time()

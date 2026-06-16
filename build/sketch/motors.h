@@ -21,6 +21,8 @@
 extern AccelStepper motor1;
 extern AccelStepper motor2;
 extern AccelStepper motor3;
+extern float currentShoulderAngle;
+extern float currentElbowAngle;
 
 // API PUBLICA FUNCIONES DE CONTROL DE MOTOR
 // -----------------------------------------------------------------------
@@ -31,3 +33,5 @@ void motorsDisableXY();
 void motorDisableZ();
 const char *motorName(MotorID id);
 String motorStatus(MotorID id);
+void stopAllMotors();
+void setCurrentPositionHome();
