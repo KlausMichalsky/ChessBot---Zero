@@ -31,10 +31,15 @@ ser = serial.Serial(SERIAL_PORT, BAUDRATE, timeout=1)
 print("Esperando USB...")
 time.sleep(5)
 
+print("Iniciando Stockfish...")
+
 engine = chess.engine.SimpleEngine.popen_uci(
     STOCKFISH_PATH,
     timeout=10.0
 )
+
+print("Stockfish OK")
+
 board = chess.Board()
 
 time.sleep(2)  # estabilizar USB
