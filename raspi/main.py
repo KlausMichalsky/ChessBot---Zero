@@ -5,43 +5,56 @@ Raspberry Pi Controller
 Stockfish + UART RP2040 + HOMING automático
 """
 
+import glob
 import time
 import chess
 import chess.engine
 import serial
 from chess.engine import EngineTerminatedError
 
-
-def reset_robot():
-    ser.write(b"RESET\n")
-    time.sleep(0.5)
-    ser.reset_input_buffer()
-
 # =========================
 # CONFIG
 # =========================
 
+ports = glob.glob("/dev/ttyACM*") + glob.glob("/dev/ttyUSB*")
 
-SERIAL_PORT = "/dev/ttyACM0"
+if not ports:
+    raise Exception("No se encontró RP2040 conectado")
+
+SERIAL_PORT = ports[0]
+print("Usando puerto:", SERIAL_PORT)
+
 BAUDRATE = 115200
-# STOCKFISH_PATH = "stockfish"
 STOCKFISH_PATH = "/usr/games/stockfish"
 THINK_TIME = 0.1
 
 # =========================
-# INIT HARDWARE
+# INIT SERIAL
 # =========================
 
 print("🤖 Iniciando ZERO-CHESS...")
 
 ser = serial.Serial(SERIAL_PORT, BAUDRATE, timeout=1)
 
-print("Esperando USB...")
-time.sleep(5)
+time.sleep(2)
 
-# 👉 AQUÍ VA EL RESET
+# =========================
+# RESET ROBOT
+# =========================
+
+
+def reset_robot(ser):
+    ser.write(b"RESET\n")
+    time.sleep(0.5)
+    ser.reset_input_buffer()
+
+
 print("Reset RP2040...")
-reset_robot()
+reset_robot(ser)
+
+# =========================
+# STOCKFISH INIT
+# =========================
 
 print("Iniciando Stockfish...")
 t0 = time.time()
@@ -56,7 +69,7 @@ print(f"Tiempo de inicio: {time.time() - t0:.2f} segundos")
 
 board = chess.Board()
 
-time.sleep(2)  # estabilizar USB
+time.sleep(1)
 
 # =========================
 # UART HELPERS
@@ -76,7 +89,7 @@ def wait_done():
                 break
 
 # =========================
-# HOMING AUTOMÁTICO
+# HOMING
 # =========================
 
 
@@ -93,7 +106,7 @@ def do_homing():
                 break
 
 # =========================
-# STOCKFISH
+# STOCKFISH MOVE
 # =========================
 
 
@@ -101,33 +114,44 @@ def get_best_move():
     result = engine.play(board, chess.engine.Limit(time=THINK_TIME))
     return result.move.uci()
 
+# =========================
+# SHUTDOWN
+# =========================
+
+
+def shutdown():
+    try:
+        engine.quit()
+    except:
+        pass
+    try:
+        ser.close()
+    except:
+        pass
 
 # =========================
 # START
 # =========================
+
+
 print("🤖 ZERO-CHESS READY")
 
 do_homing()
 
-# =========================================
-# CONFIG INICIAL
-# =========================================
-
 mode = input("¿Quién empieza? (1=Humano, 2=Robot): ").strip()
-
 human_turn = (mode == "1")
 
 print("\n♟️ Iniciando partida...\n")
 
-# =========================================
+# =========================
 # LOOP PRINCIPAL
-# =========================================
+# =========================
 
 while True:
 
-    # =====================================================
-    # TURNO DEL HUMANO
-    # =====================================================
+    # =====================
+    # TURNO HUMANO
+    # =====================
 
     if human_turn:
 
@@ -135,6 +159,7 @@ while True:
 
         if move == "q":
             print("👋 Saliendo...")
+            shutdown()
             break
 
         try:
@@ -149,19 +174,17 @@ while True:
             continue
 
         board.push(human_move)
-
         print("👤 Humano:", move)
-
-        # ❌ IMPORTANTE:
-        # NO mover pieza del humano físicamente aquí
 
         human_turn = False
 
-    # =====================================================
-    # TURNO DEL ROBOT
-    # =====================================================
+    # =====================
+    # TURNO ROBOT
+    # =====================
 
     else:
+
+        ser.reset_input_buffer()
 
         stockfish_move = get_best_move()
 
@@ -177,19 +200,12 @@ while True:
 
         human_turn = True
 
-    # =====================================================
-    # FIN DE PARTIDA
-    # =====================================================
+    # =====================
+    # FIN PARTIDA
+    # =====================
 
     if board.is_game_over():
         print("\n🏁 Fin de partida")
         print(board.result())
+        shutdown()
         break
-
-
-try:
-    engine.quit()
-except EngineTerminatedError:
-    pass
-
-ser.close()
