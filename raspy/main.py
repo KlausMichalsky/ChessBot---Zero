@@ -9,6 +9,7 @@ import time
 import chess
 import chess.engine
 import serial
+from chess.engine import EngineTerminatedError
 
 # =========================
 # CONFIG
@@ -121,10 +122,6 @@ while True:
 
         if move == "q":
             print("👋 Saliendo...")
-
-            engine.quit()
-            ser.close()
-
             break
 
         try:
@@ -177,5 +174,9 @@ while True:
         break
 
 
-engine.quit()
+try:
+    engine.quit()
+except EngineTerminatedError:
+    pass
+
 ser.close()
