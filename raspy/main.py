@@ -33,13 +33,15 @@ print("Esperando USB...")
 time.sleep(5)
 
 print("Iniciando Stockfish...")
+t0 = time.time()
 
 engine = chess.engine.SimpleEngine.popen_uci(
     STOCKFISH_PATH,
-    timeout=10.0
+    timeout=30.0
 )
 
 print("Stockfish OK")
+print(f"Tiempo de inicio: {time.time() - t0:.2f} segundos")
 
 board = chess.Board()
 
