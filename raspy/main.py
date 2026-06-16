@@ -116,6 +116,10 @@ while True:
 
         if move == "q":
             print("👋 Saliendo...")
+
+            engine.quit()
+            ser.close()
+
             break
 
         try:
@@ -166,3 +170,7 @@ while True:
         print("\n🏁 Fin de partida")
         print(board.result())
         break
+
+
+engine.quit()
+ser.close()
