@@ -16,8 +16,8 @@ import serial
 
 SERIAL_PORT = "/dev/ttyACM0"
 BAUDRATE = 115200
-STOCKFISH_PATH = "stockfish"
-# STOCKFISH_PATH = "/usr/games/stockfish"
+# STOCKFISH_PATH = "stockfish"
+STOCKFISH_PATH = "/usr/games/stockfish"
 THINK_TIME = 0.1
 
 # =========================
@@ -27,6 +27,9 @@ THINK_TIME = 0.1
 print("🤖 Iniciando ZERO-CHESS...")
 
 ser = serial.Serial(SERIAL_PORT, BAUDRATE, timeout=1)
+
+print("Esperando USB...")
+time.sleep(5)
 
 engine = chess.engine.SimpleEngine.popen_uci(
     STOCKFISH_PATH,
@@ -77,9 +80,7 @@ def do_homing():
 
 def get_best_move():
     result = engine.play(board, chess.engine.Limit(time=THINK_TIME))
-    move = result.move
-    board.push(move)
-    return move.uci()
+    return result.move.uci()
 
 
 # =========================
