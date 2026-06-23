@@ -16,16 +16,22 @@ MovingStateZ movingStateZ = MovingStateZ::IDLE;
 
 // MOVIMIENTOS BASE (NO BLOQUEANTES)
 // -----------------------------------------------------------------------
-void zMoveDown() {
-    motor3.setMaxSpeed(6000);
-    motor3.setAcceleration(15000);
-    motor3.moveTo(Z_STEPS_DOWN);
-}
-
-void zMoveUp() {
+void zMoveHome() {
     motor3.setMaxSpeed(6000);
     motor3.setAcceleration(15000);
     motor3.moveTo(0);
+}
+
+void zMoveDown() {
+    motor3.setMaxSpeed(6000);
+    motor3.setAcceleration(15000);
+    motor3.moveTo(Z_STEPS_DOWN - Z_HOME_OFFSET); // mover hacia abajo hasta la posición de agarre
+}
+
+void zMoveTravel() { // Subir a altura segura para mover alzar la pieza (Z arriba)
+    motor3.setMaxSpeed(6000);
+    motor3.setAcceleration(15000);
+    motor3.moveTo(Z_TRAVEL_POS);
 }
 
 // ELECTROIMÁN
@@ -65,7 +71,7 @@ void updateZ() {
                 Serial1.println("Z: GRIP");
                 magnetON();
                 movingStateZ = MovingStateZ::PICK_GRIP;
-                zMoveUp(); // siguiente acción inmediata
+                zMoveTravel();
             }
             break;
 
@@ -97,7 +103,7 @@ void updateZ() {
                 Serial1.println("Z: RELEASE");
                 magnetOFF();
                 movingStateZ = MovingStateZ::PLACE_RELEASE;
-                zMoveUp();
+                zMoveHome();
             }
             break;
 

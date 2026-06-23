@@ -56,8 +56,12 @@
 
 // PARAMETROS DE CONFIGURACIÓN EJE Z
 // -----------------------------------------------------------------------
-#define Z_STEPS_DOWN 12600 // cantidad de pasos para bajar
-#define Z_DELAY 100        // delay entre movimientos para darle tiempo al iman
+#define Z_STEPS_DOWN 12600            // cantidad de pasos desde el Sensor
+                                      // hasta el punto mas bajo -> posicion de agarre
+#define Z_HOME_OFFSET 8000            // cantidad de pasos desde Sensor hast HOME -> posicion de referencia
+#define Z_TRAVEL_POS (-Z_HOME_OFFSET) // cantidad de pasos desde HOME hasta la posición de viaje
+                                      // para levantar la pieza (Z arriba)
+#define Z_DELAY 100                   // delay entre movimientos para darle tiempo al iman
 
 // NIVELES LÓGICOS DE ENABLE DEL TMC2209
 // -----------------------------------------------------------------------
@@ -245,8 +249,8 @@ inline const MotorConfig motor3Config = {
     .motorDirection = 1,
     .slowSpeed = 2500.0,
     .fastSpeed = 4000.0,
-    .steps90Deg = 0,    // no existe para motor3
-    .stepsLimit = -100, // pasos máximos si arranca fuera del imán (solo motor3)
+    .steps90Deg = 0,     // no existe para motor3
+    .stepsLimit = -9000, // pasos máximos si arranca fuera del imán (solo motor3)
     .timeout = 12000,
     .baseSpeed = BASE_SPEED,
     .acceleration = 1000.0,
