@@ -170,11 +170,9 @@ enum class MovingStateXY {
 // Maquina de estados para movimiento del eje Z
 enum class MovingStateZ {
     IDLE,
-
     PICK_DOWN,
     PICK_GRIP,
     PICK_UP,
-
     PLACE_DOWN,
     PLACE_RELEASE,
     PLACE_UP
